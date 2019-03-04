@@ -1,9 +1,9 @@
-package com.mygdx.util.swipe.simplify
+package com.coden.util.swipe.simplify
 
 
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
-import com.mygdx.util.swipe.SwipeResolver
+import com.coden.util.swipe.SwipeResolver
 
 class ResolverCopy : SwipeResolver {
 

@@ -1,25 +1,20 @@
-package com.mygdx.slicer.screens
+package com.coden.starslicer.screens
 
-import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
-import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
-import com.mygdx.slicer.SlicerGame
-import com.mygdx.slicer.entities.Missile
-import com.mygdx.slicer.entities.SpaceCraft
-import com.mygdx.slicer.util.spawnRandomMissle
-import com.mygdx.slicer.util.xRatio
-import com.mygdx.slicer.util.yRatio
-import javax.xml.soap.Text
+import com.coden.starslicer.StarSlicerGame
+import com.coden.starslicer.entities.Missile
+import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.util.spawnRandomMissle
 
-class GameScreen(val game: SlicerGame) : Screen {
+class GameScreen(val game: StarSlicerGame) : Screen {
 
     lateinit var cam: OrthographicCamera
     lateinit var batch: SpriteBatch

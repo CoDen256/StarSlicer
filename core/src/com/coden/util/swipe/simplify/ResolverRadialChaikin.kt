@@ -1,9 +1,8 @@
-package com.mygdx.util.swipe.simplify
-
-import com.mygdx.util.swipe.SwipeResolver
+package com.coden.util.swipe.simplify
 
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
+import com.coden.util.swipe.SwipeResolver
 
 
 //Events that trigger a "slash"

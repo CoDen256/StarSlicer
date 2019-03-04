@@ -1,10 +1,10 @@
-package com.mygdx.slicer.entities
+package com.coden.starslicer.entities
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.mygdx.slicer.util.xRatio
-import com.mygdx.slicer.util.yRatio
+import com.coden.starslicer.util.xRatio
+import com.coden.starslicer.util.yRatio
 
 class SpaceCraft {
 

@@ -1,4 +1,4 @@
-package com.mygdx.slicer.util
+package com.coden.starslicer.util
 
 import com.badlogic.gdx.Gdx
 

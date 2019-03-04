@@ -1,4 +1,4 @@
-package com.mygdx.util.swipe.mesh
+package com.coden.util.swipe.mesh
 
 import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.Color

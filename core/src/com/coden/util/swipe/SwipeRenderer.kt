@@ -1,12 +1,11 @@
-package com.mygdx.util.swipe
+package com.coden.util.swipe
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
-
-import com.mygdx.util.swipe.mesh.SwipeTriStrip
+import com.coden.util.swipe.mesh.SwipeTriStrip
 
 class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNum: Int,
                     val maxLifeSpan: Float, val thickness: Float,

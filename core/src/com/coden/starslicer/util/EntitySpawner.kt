@@ -1,9 +1,9 @@
-package com.mygdx.slicer.util
+package com.coden.starslicer.util
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import com.mygdx.slicer.entities.Missile
+import com.coden.starslicer.entities.Missile
 import kotlin.collections.ArrayList
 
 fun spawnRandomMissle(state: Int, missiles: ArrayList<Missile>) {

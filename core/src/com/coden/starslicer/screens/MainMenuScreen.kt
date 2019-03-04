@@ -1,4 +1,4 @@
-package com.mygdx.slicer.screens
+package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.mygdx.slicer.SlicerGame
+import com.coden.starslicer.StarSlicerGame
 
-class MainMenuScreen(val game: SlicerGame) : Screen {
+class MainMenuScreen(val game: StarSlicerGame) : Screen {
 
     lateinit var cam: OrthographicCamera
     lateinit var batch: SpriteBatch

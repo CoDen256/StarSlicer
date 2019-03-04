@@ -1,4 +1,4 @@
-package com.mygdx.slicer.entities
+package com.coden.starslicer.entities
 
 class Bomb {
 }

@@ -1,4 +1,4 @@
-package com.mygdx.slicer.entities
+package com.coden.slicer.entities
 
 class PowerUpContainer {
 }

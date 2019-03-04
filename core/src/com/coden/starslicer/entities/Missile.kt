@@ -1,4 +1,4 @@
-package com.mygdx.slicer.entities
+package com.coden.starslicer.entities
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
@@ -6,10 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import com.mygdx.slicer.util.dist2
-import com.mygdx.slicer.util.xRatio
-import com.mygdx.slicer.util.yRatio
-import java.lang.Math.cos
+import com.coden.starslicer.util.dist2
+import com.coden.starslicer.util.xRatio
+import com.coden.starslicer.util.yRatio
 
 class Missile (var initialPos: Vector2,
                val state: Int){
@@ -25,8 +24,8 @@ class Missile (var initialPos: Vector2,
     var t = initT
 
 
-    val speed = 17f*dist2(xRatio, yRatio).toFloat()
-    val acc = 10f*dist2(xRatio, yRatio).toFloat()
+    val speed = 17f* dist2(xRatio, yRatio).toFloat()
+    val acc = 10f* dist2(xRatio, yRatio).toFloat()
     val lifeSpan = 20f
 
     val height = missleTexture.height
