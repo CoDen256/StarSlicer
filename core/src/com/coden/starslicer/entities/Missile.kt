@@ -5,17 +5,17 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
-import com.badlogic.gdx.math.Vector
 import com.badlogic.gdx.math.Vector2
+
 import com.coden.starslicer.util.*
 
 class Missile (var initialPos: Vector2,
                val state: Int){
 
     // Speed constants
-    val movementSpeed = 25f * xyRatio // direct missile
-    val oribtingSpeed = 20f * xyRatio // orbiting
-    val spiralSpeedStep = 8f * xyRatio // spiral
+    val movementSpeed = 25f * sqRatio// direct missile
+    val oribtingSpeed = 20f * sqRatio // orbiting
+    val spiralSpeedStep = 5f * sqRatio // spiral
 
 
     // Vectors
@@ -26,8 +26,8 @@ class Missile (var initialPos: Vector2,
         get() = targetVector.cpy().rotate90(-1)
 
     // Spiral Movement
-    val radius = 10f
-    val initialDt = 40f
+    val radius = 20f * sqRatio
+    val initialDt = 80f * sqRatio
 
     var dt = initialDt
 
@@ -127,8 +127,8 @@ class Missile (var initialPos: Vector2,
 
     }
 
-    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + Gdx.graphics.width/2f
-    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + Gdx.graphics.height/2f
+    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + centerX
+    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + centerY
     fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
 

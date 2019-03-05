@@ -10,7 +10,7 @@ fun dist2(v1:Vector2, v2:Vector2) = dist2(v1.x-v2.x, v1.y-v2.y)
 
 val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
-val xyRatio = dist2(xRatio, yRatio)
+val sqRatio = dist2(xRatio, yRatio)
 
 val centerX = Gdx.graphics.width/2f
 val centerY = Gdx.graphics.height/2f
