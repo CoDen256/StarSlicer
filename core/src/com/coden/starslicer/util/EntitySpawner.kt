@@ -11,7 +11,6 @@ fun spawnRandomMissle(state: Int, missiles: ArrayList<Missile>) {
     val radius = dist2(Gdx.graphics.width/2f, Gdx.graphics.height/2f).toFloat()+50
     val vector = Vector2(1f, 0f).setLength(radius).rotate(angle).add(Gdx.graphics.width/2f, Gdx.graphics.height/2f)
 
-    Gdx.app.log("spawnRandomMissile", "Missle: ${vector.x} ${vector.y} - State: $state")
     missiles.add(Missile(vector, state))
 
 }

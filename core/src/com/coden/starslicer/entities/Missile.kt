@@ -12,49 +12,54 @@ import com.coden.starslicer.util.*
 class Missile (var initialPos: Vector2,
                val state: Int){
 
-    var speed = 25f * dist2(xRatio, yRatio)
-    var varSpeed = speed
-    // Lifespan and current life of a missile
-    var life = 0f
-    val lifeSpan = 50f
-
-    var isDead: Boolean = false
-        get() = life >= lifeSpan
+    // Speed constants
+    val movementSpeed = 25f * xyRatio // direct missile
+    val oribtingSpeed = 20f * xyRatio // orbiting
+    val spiralSpeedStep = 8f * xyRatio // spiral
 
 
-    // Orbiting
+    // Vectors
+    var targetVector = Vector2(0f, 0f)
+        get() = pos.cpy().sub(center).scl(-1f)
+
+    var perpendicularVector = Vector2(0f, 0f)
+        get() = targetVector.cpy().rotate90(-1)
+
+    // Spiral Movement
     val radius = 10f
-    val initialDt = 50f
+    val initialDt = 40f
+
     var dt = initialDt
 
-    var prevVel = Vector2(0f,0f)
+    // Orbit Movement
+    var currentOrbitingSpeed = oribtingSpeed
+
+    var nextVelocity = Vector2(0f,0f)
     var previousAngle = 0f
 
     var instantAngle = 0f
         get() = targetVector.cpy().rotate90(1).angle()
 
-    var dtime = 0f
-
-
-    // Movement
-    var pos  = initialPos.cpy() //= Vector2(300f, 300f)
+    // Direct Movement
+    var pos  = initialPos.cpy()
     var velocity: Vector2
 
-    var angle = 0f
-        get() = velocity.angle()
 
-    var targetVector = Vector2(0f, 0f)
-        get() = pos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f)
+    // Lifespan and current life of a missile
+    val lifeSpan = 40f
+    var life = 0f
 
-    var perpVector = Vector2(0f, 0f)
-        get() = targetVector.cpy().rotate90(-1)
+    var isDead: Boolean = false
+        get() = life >= lifeSpan
 
     // Sprite properties
-    val missleTexture = Texture("missile.png")
-    val sprite = Sprite(missleTexture)
+    val missileTexture = Texture("missile.png")
+    val sprite = Sprite(missileTexture)
 
-    val height = missleTexture.height
-    val width = missleTexture.width
+    val height = missileTexture.height
+    val width = missileTexture.width
+
+    val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
 
     /*
     states:
@@ -65,17 +70,17 @@ class Missile (var initialPos: Vector2,
      */
     init {
 
-        velocity = when {
-            state == 0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                                   MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
-            state == 3 -> initialPos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f).setLength(speed)
+        velocity = when (state) {
+            0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
+                         MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
+            3 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
             else -> Vector2(0f,0f)
         }
 
-        Gdx.app.log("missle.init", "Launched at Vel:$velocity Angle:$angle Init:$initialPos")
+        Gdx.app.log("missle.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
 
         sprite.setCenter(pos.x,pos.y)
-        sprite.rotate(if (state == 1) 180f else angle)
+        sprite.rotate(if (state == 1) 180f else velocity.angle())
 
     }
 
@@ -90,7 +95,6 @@ class Missile (var initialPos: Vector2,
             2 -> moveSpiral()
         }
 
-
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 
@@ -100,25 +104,21 @@ class Missile (var initialPos: Vector2,
         sprite.draw(batch)
     }
 
-    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + Gdx.graphics.width/2f
-    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + Gdx.graphics.height/2f
-    fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
-
     fun moveOribting() {
-        //varSpeed = speed * dist2(pos, center) / dist2(initialPos, center)
+        //currentOrbitingSpeed = oribtingSpeed * dist2(pos, center)/dist2(initialPos, center)
 
-        pos = pos.add(prevVel)
+        pos = pos.add(nextVelocity)
 
         val dAngle = instantAngle - previousAngle
-        prevVel = perpVector.setLength(1.5f*varSpeed).rotate(dAngle)
 
-        sprite.rotate(instantAngle-previousAngle)
+        nextVelocity = perpendicularVector.setLength(currentOrbitingSpeed).rotate(dAngle)
+
+        sprite.rotate(dAngle)
         previousAngle = instantAngle
     }
 
     fun moveSpiral() {
-        dt -= 5*Gdx.graphics.deltaTime
-
+        dt -= spiralSpeedStep*Gdx.graphics.deltaTime
 
         pos = getOrbitalPos(dt)
 
@@ -126,6 +126,11 @@ class Missile (var initialPos: Vector2,
         previousAngle = instantAngle
 
     }
+
+    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + Gdx.graphics.width/2f
+    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + Gdx.graphics.height/2f
+    fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
+
 
 
 

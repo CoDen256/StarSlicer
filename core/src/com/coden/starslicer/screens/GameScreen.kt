@@ -80,13 +80,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
 
 
-        for (missile in missiles) {
-            shapeRenderer.setColor(255f, 0f, 0f, 255f)
-
-            renderVector(shapeRenderer, missile.pos, missile.targetVector)
-            renderVector(shapeRenderer, missile.pos, missile.perpVector)
-        }
-
         shapeRenderer.end()
     }
 
@@ -115,13 +108,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
-        shapeRenderer.line(pos, pos.cpy().add(vector.cpy().setLength(4f)))
+        shapeRenderer.line(pos, pos.cpy().add(vector.cpy().setLength(50f)))
     }
 
     fun updateInput() {
 
         if (Gdx.input.justTouched()) {
-            spawnRandomMissle(MathUtils.random(-1, 1), missiles)
+            spawnRandomMissle(MathUtils.random(0, 3), missiles)
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
