@@ -12,7 +12,7 @@ import com.coden.starslicer.util.*
 class Missile (var initialPos: Vector2,
                val state: Int){
 
-    var speed = 17f * dist2(xRatio, yRatio)
+    var speed = 25f * dist2(xRatio, yRatio)
     var varSpeed = speed
     // Lifespan and current life of a missile
     var life = 0f
@@ -58,27 +58,25 @@ class Missile (var initialPos: Vector2,
 
     /*
     states:
-    -1 : Miss
-    0 : Orbiting
-    1 : Direct
+    0 : Miss
+    1 : Orbiting
+    2 : Spiraling
+    3 : Direct
      */
     init {
 
         velocity = when {
-            state == -1 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
+            state == 0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
-            state == 0 -> Vector2(0f, 0f)//Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                                //MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
-            state == 1 -> initialPos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f).setLength(speed)
+            state == 3 -> initialPos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f).setLength(speed)
             else -> Vector2(0f,0f)
         }
 
         Gdx.app.log("missle.init", "Launched at Vel:$velocity Angle:$angle Init:$initialPos")
+
         sprite.setCenter(pos.x,pos.y)
-        sprite.rotate(angle)
-        if (state == 0) {
-            sprite.rotate(180f)
-        }
+        sprite.rotate(if (state == 1) 180f else angle)
+
     }
 
 
@@ -86,12 +84,12 @@ class Missile (var initialPos: Vector2,
     fun update() {
         life += Gdx.graphics.deltaTime
 
-
-        if (state != 0) {
-            pos = pos.add(velocity)
-        } else{
-            moveOribting()
+        when (state){
+            0, 3 -> pos = pos.add(velocity)
+            1 -> moveOribting()
+            2 -> moveSpiral()
         }
+
 
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
@@ -120,6 +118,7 @@ class Missile (var initialPos: Vector2,
 
     fun moveSpiral() {
         dt -= 5*Gdx.graphics.deltaTime
+
 
         pos = getOrbitalPos(dt)
 
