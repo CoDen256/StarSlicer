@@ -12,7 +12,7 @@ import com.coden.starslicer.util.*
 class Missile (var initialPos: Vector2,
                val state: Int){
 
-    var speed = 20f//* dist2(xRatio, yRatio)
+    var speed = 17f * dist2(xRatio, yRatio)
     var varSpeed = speed
     // Lifespan and current life of a missile
     var life = 0f
@@ -23,7 +23,7 @@ class Missile (var initialPos: Vector2,
 
 
     // Orbiting
-    val radius = 200f
+    val radius = 10f
     val initialDt = 50f
     var dt = initialDt
 
@@ -31,7 +31,7 @@ class Missile (var initialPos: Vector2,
     var previousAngle = 0f
 
     var instantAngle = 0f
-        get() = perpVector.cpy().angle()
+        get() = targetVector.cpy().rotate90(1).angle()
 
     var dtime = 0f
 
@@ -44,7 +44,7 @@ class Missile (var initialPos: Vector2,
         get() = velocity.angle()
 
     var targetVector = Vector2(0f, 0f)
-        get() = pos.cpy().sub(center).scl(-1f)
+        get() = pos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f)
 
     var perpVector = Vector2(0f, 0f)
         get() = targetVector.cpy().rotate90(-1)
@@ -67,15 +67,18 @@ class Missile (var initialPos: Vector2,
         velocity = when {
             state == -1 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
-            state == 0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                                MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
-            state == 1 -> initialPos.cpy().sub(center).scl(-1f).setLength(speed)
+            state == 0 -> Vector2(0f, 0f)//Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
+                                //MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(speed)
+            state == 1 -> initialPos.cpy().sub(Gdx.graphics.width/2f, Gdx.graphics.height/2f).scl(-1f).setLength(speed)
             else -> Vector2(0f,0f)
         }
 
         Gdx.app.log("missle.init", "Launched at Vel:$velocity Angle:$angle Init:$initialPos")
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(angle)
+        if (state == 0) {
+            sprite.rotate(180f)
+        }
     }
 
 
@@ -87,7 +90,7 @@ class Missile (var initialPos: Vector2,
         if (state != 0) {
             pos = pos.add(velocity)
         } else{
-            moveSpiral()
+            moveOribting()
         }
 
         sprite.setScale(xRatio, yRatio)
@@ -99,26 +102,19 @@ class Missile (var initialPos: Vector2,
         sprite.draw(batch)
     }
 
-    fun getOrbitalX(t: Float) = (radius * Math.cos(t.toDouble())).toFloat() + centerX
-    fun getOrbitalY(t: Float) = (radius * Math.sin(t.toDouble())).toFloat() + centerY
+    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + Gdx.graphics.width/2f
+    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + Gdx.graphics.height/2f
     fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
-    fun moveOribing() {
+    fun moveOribting() {
         //varSpeed = speed * dist2(pos, center) / dist2(initialPos, center)
-
-        //Gdx.app.log("moveOrbiting", "$pos, $targetVector, $previousAngle")
-        //velocity  = targetVector.cpy().rotate90(1)
-
 
         pos = pos.add(prevVel)
 
-
         val dAngle = instantAngle - previousAngle
-        prevVel = perpVector.setLength(0.75f*varSpeed).rotate(dAngle)
+        prevVel = perpVector.setLength(1.5f*varSpeed).rotate(dAngle)
 
-        //sprite.rotate(instantAngle-previousAngle)
-        Gdx.app.log("moveOrbiting3", "${dist2(initialPos, center)}, ${varSpeed}, ${dist2(pos, center)}")
-        sprite.rotate(instantAngle-previousAngle )
+        sprite.rotate(instantAngle-previousAngle)
         previousAngle = instantAngle
     }
 

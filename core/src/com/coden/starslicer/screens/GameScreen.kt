@@ -83,8 +83,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         for (missile in missiles) {
             shapeRenderer.setColor(255f, 0f, 0f, 255f)
 
-            //renderVector(shapeRenderer, missile.pos, missile.targetVector)
-            //renderVector(shapeRenderer, missile.pos, missile.perpVector)
+            renderVector(shapeRenderer, missile.pos, missile.targetVector)
+            renderVector(shapeRenderer, missile.pos, missile.perpVector)
         }
 
         shapeRenderer.end()

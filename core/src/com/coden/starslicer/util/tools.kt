@@ -11,6 +11,6 @@ fun dist2(v1:Vector2, v2:Vector2) = dist2(v1.x-v2.x, v1.y-v2.y)
 val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
 
-val centerX = Gdx.graphics.width/2f
+fun centerX() = Gdx.graphics.width/2f
 val centerY = Gdx.graphics.height/2f
-val center = Vector2(centerX, centerY)
+val center = Vector2(centerX(), centerY)
