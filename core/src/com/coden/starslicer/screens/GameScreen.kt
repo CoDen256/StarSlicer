@@ -3,12 +3,14 @@ package com.coden.starslicer.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.Missile
 import com.coden.starslicer.entities.SpaceCraft
@@ -74,7 +76,14 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Point)
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
+
+
+        for (missile in missiles) {
+            shapeRenderer.setColor(255f, 0f, 0f, 255f)
+
+            renderVector(shapeRenderer, missile.pos, missile.targetVector)
+        }
 
         shapeRenderer.end()
     }
@@ -101,6 +110,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderFPS() {
         font.draw(batch, Gdx.graphics.framesPerSecond.toString(), w-50, h-75)
+    }
+
+    fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
+        shapeRenderer.line(pos, pos.cpy().add(vector.cpy().scl(0.3f)))
     }
 
     fun updateInput() {

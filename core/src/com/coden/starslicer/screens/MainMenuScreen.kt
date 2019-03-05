@@ -20,7 +20,7 @@ class MainMenuScreen(val game: StarSlicerGame) : Screen {
 
         cam = OrthographicCamera()
 
-        cam.setToOrtho(false, Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+        cam.setToOrtho(false, 2030f, 1080f)
 
         batch = SpriteBatch()
 
