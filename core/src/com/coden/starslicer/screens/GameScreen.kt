@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.math.Vector3
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.Missile
 import com.coden.starslicer.entities.SpaceCraft
@@ -82,7 +83,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         for (missile in missiles) {
             shapeRenderer.setColor(255f, 0f, 0f, 255f)
 
-            renderVector(shapeRenderer, missile.pos, missile.targetVector)
+            //renderVector(shapeRenderer, missile.pos, missile.targetVector)
+            //renderVector(shapeRenderer, missile.pos, missile.perpVector)
         }
 
         shapeRenderer.end()
