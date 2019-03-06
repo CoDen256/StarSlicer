@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Vector3
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.Missile
 import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.handlers.MissileHandler
 import com.coden.starslicer.util.spawnRandomMissle
 
 class GameScreen(val game: StarSlicerGame) : Screen {
@@ -22,11 +23,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var cam: OrthographicCamera
     lateinit var batch: SpriteBatch
     lateinit var shapeRenderer: ShapeRenderer
+
     lateinit var spaceCraft: SpaceCraft
 
+    lateinit var missileHandler: MissileHandler
 
 
-    val missiles = ArrayList<Missile>()
+
     val font = BitmapFont()
 
     val bg = Texture("bg.png")
@@ -39,6 +42,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         spaceCraft = SpaceCraft()
+
+        missileHandler = MissileHandler()
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -64,12 +69,12 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.begin()
 
         batch.draw(bg, 0f, 0f, w, h)
-        renderFPS()
-        spaceCraft.render(batch)
 
-        for (missile in missiles) {
-            missile.render(batch)
-        }
+        renderFPS()
+
+        spaceCraft.render(batch)
+        missileHandler.render(batch)
+
 
         batch.end()
 
@@ -87,45 +92,31 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.update()
 
-        val iterator = missiles.iterator()
-        while (iterator.hasNext()) {
-            val missile = iterator.next()
-            missile.update()
-            if (missile.isDead) {
-                Gdx.app.log("update", "Missile is dead")
-                iterator.remove()
-            }
-        }
-
+        missileHandler.update()
+        missileHandler.updateSpawning()
 
         updateInput()
 
 
+
+
     }
 
+    fun updateInput() {
+
+        if (Gdx.input.justTouched()) {
+            missileHandler.spawnSomeMissile()
+        }
+
+    }
+
+    // DEBUG SECTION
     fun renderFPS() {
         font.draw(batch, Gdx.graphics.framesPerSecond.toString(), w-50, h-75)
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
         shapeRenderer.line(pos, pos.cpy().add(vector.cpy().setLength(50f)))
-    }
-
-    fun updateInput() {
-
-        if (Gdx.input.justTouched()) {
-            spawnRandomMissle(MathUtils.random(0, 3), missiles)
-        }
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
-            spawnRandomMissle(0, missiles)
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            spawnRandomMissle(1, missiles)
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            spawnRandomMissle(2, missiles)
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
-            spawnRandomMissle(3, missiles)
-        }
     }
 
     override fun pause() {
