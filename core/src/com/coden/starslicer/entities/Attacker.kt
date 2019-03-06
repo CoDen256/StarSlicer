@@ -10,10 +10,17 @@ import com.coden.starslicer.util.center
 
 abstract class Attacker(path: String) {
 
+    // Life
+    abstract val lifeSpan : Float
+
+    private var life = 0f
+    var isDead: Boolean = false
+
     // Movement
     abstract val movementSpeed: Float
     abstract val initialPos: Vector2
     abstract var pos: Vector2
+
 
     // Sprite
     abstract val state: Int
@@ -21,12 +28,6 @@ abstract class Attacker(path: String) {
 
     val spriteTexture = Texture(path)
     val sprite = Sprite(spriteTexture)
-
-    // Life
-    abstract val lifeSpan : Float
-
-    private var life = 0f
-    var isDead: Boolean = false
 
     // specialized vectors
     var targetVector = Vector2()
