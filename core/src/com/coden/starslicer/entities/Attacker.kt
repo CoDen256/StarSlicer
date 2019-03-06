@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.center
 
-abstract class Attacker(path: String) {
+abstract class Attacker(private val path: String) {
 
     // Life
     abstract val lifeSpan : Float
@@ -52,6 +52,7 @@ abstract class Attacker(path: String) {
     }
 
     open fun kill() {
+        Gdx.app.log("killing", path.substringBefore(".png"))
         isDead = true
     }
 
