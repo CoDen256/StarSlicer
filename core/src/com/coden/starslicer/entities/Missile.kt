@@ -13,40 +13,41 @@ class Missile (override val initialPos: Vector2,
 
     // Speed constants
     override val movementSpeed = 25f * sqRatio // direct missile
-    val oribtingSpeed = 19f * sqRatio // orbiting
-    val spiralSpeedStep = 3f * sqRatio // spiral
+    private val oribtingSpeed = 19f * sqRatio // orbiting
+    private val spiralSpeedStep = 3f * sqRatio // spiral
 
+    // Life
     override val lifeSpan = 40f
 
-
-    // Vectors
+    // Movement
     override var pos = initialPos
+    private var velocity: Vector2
 
 
     // Spiral Movement
-    val radius = 20f * sqRatio
-    val initialDt = 80f * sqRatio
+    private val radius = 20f * sqRatio
+    private val initialDt = 80f * sqRatio
 
-    var dt = initialDt
+    private var dt = initialDt
 
     // Orbit Movement
-    var currentOrbitingSpeed = oribtingSpeed
+    private var currentOrbitingSpeed = oribtingSpeed
 
-    var nextVelocity = Vector2(0f,0f)
-    var previousAngle = 0f
+    private var nextVelocity = Vector2(0f,0f)
+    private var previousAngle = 0f
 
-    var instantAngle = 0f
+    private var instantAngle = 0f
         get() = targetVector.cpy().rotate90(1).angle()
 
 
-    // Direct Movement
-    val size = spriteTexture.height
+    // Sprite
+    private val size = spriteTexture.height
+    private val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
 
     override var hitBox = Rectangle(0f, 0f, 0f, 0f)
         get() = Rectangle(pos.x - size * yRatio/2, pos.y - size * yRatio/2, size * yRatio, size * yRatio)
 
-    val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
-    var velocity: Vector2
+
     /*
     states:
     0 : Miss
@@ -63,7 +64,7 @@ class Missile (override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("missle.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
+        Gdx.app.log("missile.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 180f else velocity.angle())
@@ -87,7 +88,7 @@ class Missile (override val initialPos: Vector2,
     }
 
 
-    fun moveOribting() {
+    private fun moveOribting() {
         //currentOrbitingSpeed = oribtingSpeed * dist2(pos, center)/dist2(initialPos, center)
 
         pos = pos.add(nextVelocity)
@@ -100,7 +101,7 @@ class Missile (override val initialPos: Vector2,
         previousAngle = instantAngle
     }
 
-    fun moveSpiral() {
+    private fun moveSpiral() {
         dt -= spiralSpeedStep*Gdx.graphics.deltaTime
 
         pos = getOrbitalPos(dt)
@@ -111,9 +112,9 @@ class Missile (override val initialPos: Vector2,
     }
 
 
-    fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + centerX
-    fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + centerY
-    fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
+    private fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + centerX
+    private fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + centerY
+    private fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
 
 
