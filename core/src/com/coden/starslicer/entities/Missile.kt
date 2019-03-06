@@ -15,8 +15,8 @@ class Missile (var initialPos: Vector2,
 
     // Speed constants
     val movementSpeed = 25f * sqRatio// direct missile
-    val oribtingSpeed = 20f * sqRatio // orbiting
-    val spiralSpeedStep = 5f * sqRatio // spiral
+    val oribtingSpeed = 19f * sqRatio // orbiting
+    val spiralSpeedStep = 3f * sqRatio // spiral
 
 
     // Vectors
@@ -67,8 +67,8 @@ class Missile (var initialPos: Vector2,
     states:
     0 : Miss
     1 : Orbiting
-    2 : Spiraling
-    3 : Direct
+    2 : Spiraling clockwise
+    3 : Direct counter clockwise
      */
     init {
 
