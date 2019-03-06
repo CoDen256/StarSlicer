@@ -41,11 +41,12 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    private val size = spriteTexture.height
+    private val w = spriteTexture.width
+    private val h = spriteTexture.height
     private val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
 
     override var hitBox = Rectangle(0f, 0f, 0f, 0f)
-        get() = Rectangle(pos.x - size * yRatio/2, pos.y - size * yRatio/2, size * yRatio, size * yRatio)
+        get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
 
 
     /*
@@ -73,7 +74,7 @@ class Missile (override val initialPos: Vector2,
 
 
 
-    fun update() {
+    override fun update() {
         updateLife()
 
         when (state){

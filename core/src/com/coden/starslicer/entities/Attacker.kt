@@ -37,6 +37,8 @@ abstract class Attacker(path: String) {
         get() = targetVector.cpy().rotate90(-1)
 
 
+    abstract fun update()
+
     open fun render(batch: SpriteBatch) {
         sprite.draw(batch)
     }

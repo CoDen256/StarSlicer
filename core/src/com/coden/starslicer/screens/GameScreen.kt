@@ -15,8 +15,11 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.math.Vector3
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.Missile
+import com.coden.starslicer.entities.NuclerBomb
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.MissileHandler
+import com.coden.starslicer.util.centerX
+import com.coden.starslicer.util.spawnRandomBomb
 import com.coden.starslicer.util.spawnRandomMissle
 
 class GameScreen(val game: StarSlicerGame) : Screen {
@@ -28,6 +31,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var spaceCraft: SpaceCraft
 
     lateinit var missileHandler: MissileHandler
+
+    val bombs = ArrayList<NuclerBomb>()
 
 
 
@@ -76,6 +81,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         spaceCraft.render(batch)
         missileHandler.render(batch)
 
+        for (bomb in bombs) {
+            bomb.render(batch)
+        }
+
 
         batch.end()
 
@@ -90,6 +99,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             renderRect(shapeRenderer, missile.hitBox)
         }
 
+        for (bomb in bombs) {
+            renderRect(shapeRenderer, bomb.hitBox)
+        }
+
 
         shapeRenderer.end()
     }
@@ -101,6 +114,16 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         missileHandler.update(spaceCraft)
         missileHandler.updateSpawning()
 
+        val iterator = bombs.iterator()
+        while (iterator.hasNext()) {
+            val bomb = iterator.next()
+            bomb.update()
+            if (bomb.isDead) {
+                Gdx.app.log("update", "NuclearBomb is dead")
+                iterator.remove()
+            }
+        }
+
         updateInput()
 
 
@@ -109,7 +132,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun updateInput() {
 
         if (Gdx.input.justTouched()) {
-            missileHandler.spawnSomeMissile()
+            if (Gdx.input.x < centerX) {
+                missileHandler.spawnSomeMissile()
+            } else {
+                spawnRandomBomb(0, bombs)
+            }
+
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+            spawnRandomBomb(0, bombs)
         }
 
     }

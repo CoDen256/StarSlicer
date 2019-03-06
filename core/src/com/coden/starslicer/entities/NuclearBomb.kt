@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.center
 import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.yRatio
 
 class NuclerBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb.png"){
@@ -13,14 +14,18 @@ class NuclerBomb(override val initialPos: Vector2,
     override val lifeSpan = 100f
 
     // Speed constants
-    override val movementSpeed = 10 * sqRatio
+    override val movementSpeed = 5 * sqRatio
 
     // Movement
     override var pos: Vector2 = initialPos
     private var velocity: Vector2
 
     // Sprite
-    override val hitBox = Rectangle()
+    private val w = spriteTexture.width
+    private val h = spriteTexture.height
+
+    override var hitBox = Rectangle(0f,0f,0f,0f)
+        get() = Rectangle(pos.x - w * yRatio/2, pos.y - h * yRatio/2, w * yRatio, h * yRatio)
 
     init {
         velocity = when (state) {
@@ -30,10 +35,17 @@ class NuclerBomb(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("missile.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
+        Gdx.app.log("nuclearBomb.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${state}")
 
         sprite.setCenter(pos.x,pos.y)
-        sprite.rotate(if (state == 2) 180f else velocity.angle())
+        sprite.rotate(velocity.angle()+90)
+    }
+
+    override fun update() {
+        updateLife()
+        pos = pos.add(velocity)
+        sprite.setScale(yRatio, yRatio)
+        sprite.setCenter(pos.x, pos.y)
     }
 
 }
