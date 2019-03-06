@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.entities.Missile
+import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.spawnRandomMissle
 
 class MissileHandler {
@@ -16,15 +17,25 @@ class MissileHandler {
         }
     }
 
-    fun update(){
+    fun update(spaceCraft: SpaceCraft){
         val iterator = missiles.iterator()
         while (iterator.hasNext()) {
+
             val missile = iterator.next()
             missile.update()
+
+            updateCollision(spaceCraft, missile)
             if (missile.isDead) {
                 Gdx.app.log("update", "Missile is dead")
                 iterator.remove()
             }
+        }
+    }
+
+    fun updateCollision(spaceCraft: SpaceCraft,missile: Missile) {
+        if (spaceCraft.hitBox.overlaps(missile.hitBox)){
+            Gdx.app.log("missileHandler.updateCollision", "overlaps")
+            missile.kill()
         }
     }
 

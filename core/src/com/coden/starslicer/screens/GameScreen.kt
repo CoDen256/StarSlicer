@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.math.Vector3
 import com.coden.starslicer.StarSlicerGame
@@ -83,6 +84,11 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         // SHAPE RENDERER FOR DEBUG
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
+        renderRect(shapeRenderer, spaceCraft.hitBox)
+
+        for (missile in missileHandler.missiles) {
+            renderRect(shapeRenderer, missile.hitBox)
+        }
 
 
         shapeRenderer.end()
@@ -92,12 +98,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.update()
 
-        missileHandler.update()
+        missileHandler.update(spaceCraft)
         missileHandler.updateSpawning()
 
         updateInput()
-
-
 
 
     }
@@ -117,6 +121,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
         shapeRenderer.line(pos, pos.cpy().add(vector.cpy().setLength(50f)))
+    }
+
+    fun renderRect(shapeRenderer: ShapeRenderer,rect: Rectangle) {
+        shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height)
     }
 
     override fun pause() {

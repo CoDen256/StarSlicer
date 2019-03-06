@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 
 import com.coden.starslicer.util.*
@@ -50,14 +51,15 @@ class Missile (var initialPos: Vector2,
     var life = 0f
 
     var isDead: Boolean = false
-        get() = life >= lifeSpan
 
     // Sprite properties
     val missileTexture = Texture("missile.png")
     val sprite = Sprite(missileTexture)
 
-    val height = missileTexture.height
-    val width = missileTexture.width
+    val size = missileTexture.height
+
+    var hitBox = Rectangle(0f, 0f, 0f, 0f)
+        get() = Rectangle(pos.x - size * yRatio/2, pos.y - size * yRatio/2, size * yRatio, size * yRatio)
 
     val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
 
@@ -87,7 +89,7 @@ class Missile (var initialPos: Vector2,
 
 
     fun update() {
-        life += Gdx.graphics.deltaTime
+        updateLife()
 
         when (state){
             0, 3 -> pos = pos.add(velocity)
@@ -95,13 +97,21 @@ class Missile (var initialPos: Vector2,
             2 -> moveSpiral()
         }
 
-        sprite.setScale(xRatio, yRatio)
+        sprite.setScale(yRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 
     }
 
     fun render(batch: SpriteBatch) {
         sprite.draw(batch)
+    }
+
+    fun updateLife() {
+        life += Gdx.graphics.deltaTime
+        if (life >= lifeSpan) {
+            kill()
+        }
+
     }
 
     fun moveOribting() {
@@ -125,6 +135,10 @@ class Missile (var initialPos: Vector2,
         sprite.rotate(instantAngle-previousAngle)
         previousAngle = instantAngle
 
+    }
+
+    fun kill() {
+        isDead = true
     }
 
     fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + centerX
