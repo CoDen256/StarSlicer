@@ -25,12 +25,11 @@ class NuclerBomb(override val initialPos: Vector2,
     private val h = spriteTexture.height
 
     override var hitBox = Rectangle(0f,0f,0f,0f)
-        get() = Rectangle(pos.x - w * yRatio/2, pos.y - h * yRatio/2, w * yRatio, h * yRatio)
+        get() = Rectangle(pos.x - h * yRatio/3, pos.y - h * yRatio/3, h * yRatio/1.5f, h * yRatio/1.5f)
 
     init {
         velocity = when (state) {
-            0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
+            0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(movementSpeed)
             1 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }
