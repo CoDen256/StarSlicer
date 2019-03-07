@@ -3,25 +3,19 @@ package com.coden.starslicer.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.math.Vector3
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.StarSlicerGame
-import com.coden.starslicer.entities.Missile
 import com.coden.starslicer.entities.NuclerBomb
 import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.handlers.MissileHandler
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.spawnRandomBomb
-import com.coden.starslicer.util.spawnRandomMissle
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -31,9 +25,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     lateinit var spaceCraft: SpaceCraft
 
-    lateinit var missileHandler: MissileHandler
-
-    val bombs = ArrayList<NuclerBomb>()
 
     val blades = arrayListOf(BladePoint(0),BladePoint(1))
 
@@ -49,8 +40,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         spaceCraft = SpaceCraft()
-
-        missileHandler = MissileHandler()
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -93,7 +82,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        debugShapes()
+        //debugShapes()
     }
 
     fun update() {

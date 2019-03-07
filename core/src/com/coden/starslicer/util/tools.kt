@@ -1,8 +1,17 @@
 package com.coden.starslicer.util
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+
+
+fun generateRandomSpawnPoint() : Vector2 {
+
+    val angle = MathUtils.random(0, 360).toFloat()
+    val radius = dist2(centerX, centerY)+50
+    return Vector2(1f, 0f).setLength(radius).rotate(angle).add(center)
+}
 
 fun dist4(x1:Float, y1:Float, x2:Float, y2:Float) = dist2(x2-x1, y2-y1)
 

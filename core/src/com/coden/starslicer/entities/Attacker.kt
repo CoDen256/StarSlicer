@@ -23,11 +23,13 @@ abstract class Attacker(private val path: String) {
 
 
     // Sprite
+    abstract val collisional: Boolean
     abstract val state: Int
     abstract val hitBox: Rectangle
 
     val spriteTexture = Texture(path)
     val sprite = Sprite(spriteTexture)
+    val name = path.substringBefore(".png").substringAfterLast("/")
 
     // specialized vectors
     var targetVector = Vector2()
@@ -52,7 +54,6 @@ abstract class Attacker(private val path: String) {
     }
 
     open fun kill() {
-        Gdx.app.log("killing", path.substringBefore(".png"))
         isDead = true
     }
 

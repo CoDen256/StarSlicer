@@ -8,7 +8,7 @@ import com.coden.starslicer.util.center
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.yRatio
 
-class NuclerBomb(override val initialPos: Vector2,
+class NuclearBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb.png"){
     // Life
     override val lifeSpan = 20f
@@ -23,6 +23,8 @@ class NuclerBomb(override val initialPos: Vector2,
     // Sprite
     private val w = spriteTexture.width/1.5f
     private val h = spriteTexture.height/1.5f
+
+    override val collisional: Boolean = false
 
     override var hitBox = Rectangle(0f,0f,0f,0f)
         get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
