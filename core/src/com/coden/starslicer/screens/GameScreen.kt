@@ -35,7 +35,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     val bombs = ArrayList<NuclerBomb>()
 
-    val blades = arrayListOf<BladePoint>(BladePoint(0),BladePoint(1))
+    val blades = arrayListOf(BladePoint(0),BladePoint(1))
 
     val font = BitmapFont()
 
@@ -140,8 +140,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         if (Gdx.input.isTouched(0)) {
             blades[0].active = true
 
-        }else if (Gdx.input.isTouched(1)) {
-            blades[1].active = false
+        }
+        if (Gdx.input.isTouched(1)) {
+            blades[1].active = true
         }
 
     }

@@ -1,5 +1,6 @@
 package com.coden.starslicer
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Rectangle
 import com.coden.starslicer.util.sqRatio
 import com.coden.util.swipe.SwipeHandler
@@ -17,6 +18,9 @@ class BladePoint(val pointer: Int) {
         if (active) {
             hitBoxes.clear()
             val simplified = swipe.path(pointer)
+            if (pointer == 1) {
+                Gdx.app.log("update", "blade1 is active and drawing")
+            }
             for (i in 0 until Math.round(simplified.size*detectionRatio)) {
                 if (i % 2 == 0){
                     hitBoxes.add(Rectangle(simplified[i].x-size/2, simplified[i].y-size/2, size, size))
