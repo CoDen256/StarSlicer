@@ -42,7 +42,7 @@ class Missile (override val initialPos: Vector2,
 
     // Sprite
     private val w = spriteTexture.width
-    private val h = spriteTexture.height
+    private val h = spriteTexture.height*1.5f
     private val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
 
     override var hitBox = Rectangle(0f, 0f, 0f, 0f)
