@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
 import com.coden.starslicer.util.centerX
+import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
 class AttackerHandler {
@@ -49,26 +50,21 @@ class AttackerHandler {
     fun updateInput() {
 
         if (Gdx.input.justTouched()) {
-            if (Gdx.input.getX() < centerX) {
-                spawnMissile()
-            } else {
-                spawnNuclearBomb()
+            when{
+                Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile()
+                Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb()
+                Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor(1)
             }
         }
 
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) {
-            spawnMissile(0)
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) {
-            spawnMissile(1)
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) {
-            spawnMissile(2)
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
-            spawnMissile(3)
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-            spawnNuclearBomb()
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-            spawnMeteor(1)
+        when {
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile(0)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> spawnMissile(1)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> spawnMissile(2)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> spawnMissile(3)
+            Gdx.input.isKeyJustPressed(Input.Keys.B) -> spawnNuclearBomb()
+            Gdx.input.isKeyJustPressed(Input.Keys.M) -> spawnMeteor(1)
         }
     }
 
@@ -115,7 +111,7 @@ class AttackerHandler {
             return
         }
         val spawnPoint = generateRandomSpawnPoint()
-        val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1) else state, size)
+        val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1) else state, size)
         increment("meteor", 1)
         attackers.add(meteor)
     }

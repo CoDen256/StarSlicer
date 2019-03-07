@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.center
 import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.xRatio
 import com.coden.starslicer.util.yRatio
 
 class Meteor(override val initialPos: Vector2,
@@ -20,8 +21,8 @@ class Meteor(override val initialPos: Vector2,
     override val lifeSpan = 40f
 
     // Speed constants
-    override val movementSpeed = 40f * sqRatio
-    val angleSpeed = MathUtils.random(0, 180)
+    override val movementSpeed = MathUtils.random(1, 20) * sqRatio
+    val angleSpeed = MathUtils.random(0, 360)
 
     // Movement
     override var pos = initialPos
@@ -29,8 +30,8 @@ class Meteor(override val initialPos: Vector2,
 
 
     // Sprite
-    private val width = spriteTexture.width/1f
-    private val height = spriteTexture.height/1f
+    private val width = spriteTexture.width * xRatio/1f
+    private val height = spriteTexture.height* yRatio/1f
 
     override val collisional = true
 
@@ -44,7 +45,7 @@ class Meteor(override val initialPos: Vector2,
     init {
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
+                         MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
             1 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }
