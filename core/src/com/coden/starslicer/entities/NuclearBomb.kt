@@ -11,7 +11,7 @@ import com.coden.starslicer.util.yRatio
 class NuclearBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb.png"){
     // Life
-    override val lifeSpan = 20f
+    override val lifeSpan = 5f
 
     // Speed constants
     override val movementSpeed = 5 * sqRatio

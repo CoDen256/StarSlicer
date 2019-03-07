@@ -12,10 +12,8 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.StarSlicerGame
-import com.coden.starslicer.entities.NuclerBomb
 import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.util.centerX
-import com.coden.starslicer.util.spawnRandomBomb
+import com.coden.starslicer.handlers.AttackerHandler
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -24,6 +22,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var shapeRenderer: ShapeRenderer
 
     lateinit var spaceCraft: SpaceCraft
+
+    lateinit var attackerHandler: AttackerHandler
 
 
     val blades = arrayListOf(BladePoint(0),BladePoint(1))
@@ -40,6 +40,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         spaceCraft = SpaceCraft()
+
+        attackerHandler = AttackerHandler()
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -69,11 +71,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         renderFPS()
 
         spaceCraft.render(batch)
-        missileHandler.render(batch)
-
-        for (bomb in bombs) {
-            bomb.render(batch)
-        }
+        attackerHandler.renderAll(batch)
 
 
         batch.end()
@@ -89,42 +87,19 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.update()
 
-        missileHandler.update(spaceCraft)
-        missileHandler.updateSpawning()
+        attackerHandler.updateAll(spaceCraft)
 
         for (blade in blades){
             blade.update(game.swipeRenderer.swipe)
         }
 
-        val iterator = bombs.iterator()
-        while (iterator.hasNext()) {
-            val bomb = iterator.next()
-            bomb.update()
-            if (bomb.isDead) {
-                Gdx.app.log("update", "NuclearBomb is dead")
-                iterator.remove()
-            }
-        }
-
         updateInput()
-
         updateSlicing()
 
     }
 
     fun updateInput() {
-
-        if (Gdx.input.justTouched()) {
-            if (Gdx.input.x < centerX) {
-                missileHandler.spawnSomeMissile()
-            } else {
-                spawnRandomBomb(0, bombs)
-            }
-
-        }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
-            spawnRandomBomb(0, bombs)
-        }
+        attackerHandler.updateInput()
 
         if (Gdx.input.isTouched(0)) {
             blades[0].active = true
@@ -138,20 +113,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun updateSlicing() {
 
-        if (!(blades[0].active || blades[1].active)){
-            return
-        }
-        for (bomb in bombs) {
-            if (blades[0].isSlicing(bomb.hitBox) || blades[1].isSlicing(bomb.hitBox)){
-                bomb.kill()
-            }
-        }
-
-        for (missile in missileHandler.missiles) {
-            if (blades[0].isSlicing(missile.hitBox) || blades[1].isSlicing(missile.hitBox)){
-                missile.kill()
-            }
-        }
+        attackerHandler.updateSlicing(blades)
 
     }
 
@@ -161,12 +123,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         renderRect(shapeRenderer, spaceCraft.hitBox)
 
-        for (missile in missileHandler.missiles) {
-            renderRect(shapeRenderer, missile.hitBox)
-        }
-
-        for (bomb in bombs) {
-            renderRect(shapeRenderer, bomb.hitBox)
+        for (attacker in attackerHandler.attackers) {
+            renderRect(shapeRenderer, attacker.hitBox)
         }
 
         //shapeRenderer.circle(blade0.pos.x, blade0.pos.y, blade0.radius)

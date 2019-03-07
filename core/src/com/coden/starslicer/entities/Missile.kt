@@ -17,7 +17,10 @@ class Missile (override val initialPos: Vector2,
     private val spiralSpeedStep = 1.5f * sqRatio // spiral
 
     // Life
-    override val lifeSpan = 40f
+    override val lifeSpan = when (state) {
+        0,1 -> 15f
+        else -> 100f
+    }
 
     // Movement
     override var pos = initialPos
@@ -43,7 +46,7 @@ class Missile (override val initialPos: Vector2,
     // Sprite
     private val w = spriteTexture.width
     private val h = spriteTexture.height*1.5f
-    private val states = mapOf(0 to "Missing", 1 to "Orbiting", 2 to "Spiraling", 3 to "Direct")
+    private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
 
     override val collisional: Boolean = true
 

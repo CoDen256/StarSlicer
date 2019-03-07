@@ -11,11 +11,10 @@ import com.coden.starslicer.entities.NuclearBomb
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.generateRandomSpawnPoint
-import com.coden.starslicer.util.spawnRandomMissle
 
 class AttackerHandler {
 
-    val maxMissiles = 17
+    val maxMissiles = 26
     val maxNuclearBombs = 13
 
     var currentMissiles = 0
@@ -48,7 +47,7 @@ class AttackerHandler {
 
     }
 
-    fun updateSpawning() {
+    fun updateInput() {
 
         if (Gdx.input.justTouched()) {
             if (Gdx.input.getX() < centerX) {
