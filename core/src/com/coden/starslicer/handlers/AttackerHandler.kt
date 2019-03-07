@@ -5,10 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.BladePoint
-import com.coden.starslicer.entities.Attacker
-import com.coden.starslicer.entities.Missile
-import com.coden.starslicer.entities.NuclearBomb
-import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.*
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
@@ -16,9 +13,11 @@ class AttackerHandler {
 
     val maxMissiles = 26
     val maxNuclearBombs = 13
+    val maxMeteors = 30
 
     var currentMissiles = 0
     var currentNuclearBombs = 0
+    var currentMeteors = 0
 
     val attackers = ArrayList<Attacker>()
 
@@ -68,6 +67,8 @@ class AttackerHandler {
             spawnMissile(3)
         }else if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
             spawnNuclearBomb()
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            spawnMeteor(1)
         }
     }
 
@@ -109,10 +110,21 @@ class AttackerHandler {
         attackers.add(nuclearBomb)
     }
 
+    fun spawnMeteor(size: Int,state: Int = -100) {
+        if (currentMeteors >= maxMeteors) {
+            return
+        }
+        val spawnPoint = generateRandomSpawnPoint()
+        val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1) else state, size)
+        increment("meteor", 1)
+        attackers.add(meteor)
+    }
+
 
     fun increment(name: String, value: Int) = when (name) {
         "missile" -> currentMissiles += value
         "nuclearbomb" -> currentNuclearBombs += value
+        "meteor" -> currentMeteors += value
         else -> Gdx.app.error("incrementation", "no such attacker")
     }
 

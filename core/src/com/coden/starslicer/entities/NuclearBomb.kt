@@ -36,7 +36,7 @@ class NuclearBomb(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("nuclearBomb.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${state}")
+        Gdx.app.log("nuclearBomb.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle()+90)
