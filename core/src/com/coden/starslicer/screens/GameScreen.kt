@@ -35,10 +35,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     val bombs = ArrayList<NuclerBomb>()
 
-    val blade0 = BladePoint(0)
-    val blade1 = BladePoint(1)
-
-
+    val blades = arrayListOf<BladePoint>(BladePoint(0),BladePoint(1))
 
     val font = BitmapFont()
 
@@ -96,7 +93,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        //debugShapes()
+        debugShapes()
     }
 
     fun update() {
@@ -106,8 +103,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         missileHandler.update(spaceCraft)
         missileHandler.updateSpawning()
 
-        blade0.update()
-        blade1.update()
+        for (blade in blades){
+            blade.update(game.swipeRenderer.swipe)
+        }
 
         val iterator = bombs.iterator()
         while (iterator.hasNext()) {
@@ -140,28 +138,27 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         }
 
         if (Gdx.input.isTouched(0)) {
-            Gdx.app.log("blade0", "active")
-            blade0.active = true
+            blades[0].active = true
 
         }else if (Gdx.input.isTouched(1)) {
-            blade1.active = false
+            blades[1].active = false
         }
 
     }
 
     fun updateSlicing() {
 
-        if (!blade0.active && !blade1.active) {
+        if (!(blades[0].active || blades[1].active)){
             return
         }
         for (bomb in bombs) {
-            if (blade1.isSlicing(bomb.hitBox) || blade0.isSlicing(bomb.hitBox)){
+            if (blades[0].isSlicing(bomb.hitBox) || blades[1].isSlicing(bomb.hitBox)){
                 bomb.kill()
             }
         }
 
         for (missile in missileHandler.missiles) {
-            if (blade1.isSlicing(missile.hitBox) || blade0.isSlicing(missile.hitBox)){
+            if (blades[0].isSlicing(missile.hitBox) || blades[1].isSlicing(missile.hitBox)){
                 missile.kill()
             }
         }
@@ -183,7 +180,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         }
 
         //shapeRenderer.circle(blade0.pos.x, blade0.pos.y, blade0.radius)
-        renderRect(shapeRenderer, blade0.hitBox)
+        for (hitBox in blades[0].hitBoxes){
+            renderRect(shapeRenderer, hitBox)
+        }
+        for (hitBox in blades[1].hitBoxes){
+            renderRect(shapeRenderer, hitBox)
+        }
+
 
 
         shapeRenderer.end()

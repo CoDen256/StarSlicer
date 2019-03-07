@@ -11,7 +11,7 @@ import com.coden.starslicer.util.yRatio
 class NuclerBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb.png"){
     // Life
-    override val lifeSpan = 100f
+    override val lifeSpan = 20f
 
     // Speed constants
     override val movementSpeed = 5 * sqRatio
@@ -21,11 +21,11 @@ class NuclerBomb(override val initialPos: Vector2,
     private var velocity: Vector2
 
     // Sprite
-    private val w = spriteTexture.width
-    private val h = spriteTexture.height
+    private val w = spriteTexture.width/1.5f
+    private val h = spriteTexture.height/1.5f
 
     override var hitBox = Rectangle(0f,0f,0f,0f)
-        get() = Rectangle(pos.x - h * yRatio/3, pos.y - h * yRatio/3, h * yRatio/1.5f, h * yRatio/1.5f)
+        get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
 
     init {
         velocity = when (state) {

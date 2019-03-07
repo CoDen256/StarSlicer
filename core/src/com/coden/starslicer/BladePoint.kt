@@ -1,35 +1,40 @@
 package com.coden.starslicer
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.util.sqRatio
+import com.coden.util.swipe.SwipeHandler
 
 class BladePoint(val pointer: Int) {
 
+    val detectionRatio = 0.6f
+    val size = 35f*sqRatio
+
     var active = false
 
-    var pos: Vector2 = Vector2(0f,0f)
+    var hitBoxes = ArrayList<Rectangle>()
 
-    val radius = 20f
-    val size = 20f
-
-    private var hitBoxC = Circle(0f,0f, radius)
-            get() = Circle(pos.x, pos.y, radius)
-
-    var hitBox = Rectangle(0f, 0f, 0f, 0f)
-            get() = Rectangle(pos.x-size/2f, pos.y-size/2f, size, size)
-
-    fun update() {
+    fun update(swipe: SwipeHandler) {
         if (active) {
-            pos = Vector2(Gdx.input.getX(pointer).toFloat(), Gdx.graphics.height - Gdx.input.getY(pointer).toFloat())
+            hitBoxes.clear()
+            val simplified = swipe.path(pointer)
+            for (i in 0 until Math.round(simplified.size*detectionRatio)) {
+                if (i % 2 == 0){
+                    hitBoxes.add(Rectangle(simplified[i].x-size/2, simplified[i].y-size/2, size, size))
+                }
+
+            }
+
         }
 
         active = false
     }
 
     fun isSlicing(rect: Rectangle): Boolean {
-        Gdx.app.log("isSlicing", "$rect - $hitBox ${rect.contains(hitBox) && active}")
-        return hitBox.overlaps(rect) && active
+        for (hB in hitBoxes){
+            if(hB.overlaps(rect) && active)
+                return true
+        }
+        return false
+
     }
 }

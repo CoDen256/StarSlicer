@@ -12,9 +12,9 @@ class Missile (override val initialPos: Vector2,
                override val state: Int): Attacker("missile.png"){
 
     // Speed constants
-    override val movementSpeed = 13f * sqRatio // direct missile
-    private val oribtingSpeed = 17f * sqRatio // orbiting
-    private val spiralSpeedStep = 3f * sqRatio // spiral
+    override val movementSpeed = 8f * sqRatio // direct missile
+    private val oribtingSpeed = 13f * sqRatio // orbiting
+    private val spiralSpeedStep = 1.5f * sqRatio // spiral
 
     // Life
     override val lifeSpan = 40f
