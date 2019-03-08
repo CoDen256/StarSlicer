@@ -19,7 +19,7 @@ class Missile (override val initialPos: Vector2,
 
     // Life
     override val lifeSpan = when (state) {
-        0,1 -> 15f
+        0,1 -> 5f
         else -> 100f
     }
     override val maxHealth = 15f

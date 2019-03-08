@@ -3,20 +3,24 @@ package com.coden.starslicer.handlers
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.Shield
+import com.coden.starslicer.entities.powerups.ShockWave
 
 class PowerUpHandler(val spaceCraft: SpaceCraft) {
 
     val boosts = ArrayList<HPBoost>()
     val shields = ArrayList<Shield>()
+    val shockWaves = ArrayList<ShockWave>()
 
 
     fun updateAll() {
         updateHPBoost()
         updateShield()
+        updateShockWaves()
     }
 
     fun renderAll(batch: SpriteBatch) {
@@ -66,7 +70,7 @@ class PowerUpHandler(val spaceCraft: SpaceCraft) {
 
     fun useShield() {
         if (!shields.isEmpty() && !spaceCraft.isShielded) {
-            shields[0].applyEffect(spaceCraft)
+            shields[0].applyEffect()
             Gdx.app.log("shield", "applied")
         }
     }
@@ -83,17 +87,37 @@ class PowerUpHandler(val spaceCraft: SpaceCraft) {
                     iterator.remove()
                 }
             }
-
-
         }
     }
 
     fun addShockWave() {
-
+        shockWaves.add(ShockWave())
     }
 
     fun useShockWave() {
+        if (!shockWaves.isEmpty()) {
+            for (shockWave in shockWaves) {
+                if (!shockWave.active) {
+                    shockWave.applyEffect()
+                    return
+                }
+            }
+        }
+    }
 
+    fun updateShockWaves() {
+        val iterator = shockWaves.iterator()
+        while (iterator.hasNext()) {
+            val shockWave = iterator.next()
+            if (shockWave.active){
+                shockWave.update()
+
+                if (shockWave.isDead) {
+                    Gdx.app.log("shockWave", "is dead")
+                    iterator.remove()
+                }
+            }
+        }
     }
 
 }

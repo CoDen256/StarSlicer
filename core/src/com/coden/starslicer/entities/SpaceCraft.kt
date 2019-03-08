@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Circle
 import com.coden.starslicer.util.xRatio
 import com.coden.starslicer.util.yRatio
 import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.spaceCraftX
 import com.coden.starslicer.util.spaceCraftY
 
@@ -25,6 +26,9 @@ class SpaceCraft : Entity {
     override val damage = 5f
     override var isDead = false
 
+    override var pos = Vector2(0f,0f)
+    get() = Vector2(x, y)
+
     val height = spaceCraftTexture.height
     val width = spaceCraftTexture.width
 
@@ -37,7 +41,7 @@ class SpaceCraft : Entity {
     val relativeX = x-relativeWidth/2
     val relativeY = y-relativeHeight/2
 
-    val hitBox = Rectangle(relativeX, relativeY, relativeWidth, relativeHeight)
+    override var hitBox = Rectangle(relativeX, relativeY, relativeWidth, relativeHeight)
 
     fun render(batch: SpriteBatch) {
 

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
+import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.textureMap
 
@@ -23,13 +24,13 @@ abstract class Attacker(val name: String) : Entity {
     // Movement
     abstract val movementSpeed: Float
     abstract val initialPos: Vector2
-    abstract var pos: Vector2
+    abstract override var pos: Vector2
 
 
     // Sprite
     abstract val collisional: Boolean
     abstract val state: Int
-    abstract val hitBox: Rectangle
+    abstract override var hitBox: Rectangle
 
 
     val spriteTexture = textureMap[name]
@@ -45,6 +46,10 @@ abstract class Attacker(val name: String) : Entity {
 
     abstract fun update()
 
+    init {
+        entities.add(this)
+    }
+
     open fun render(batch: SpriteBatch) {
         sprite.draw(batch)
     }
@@ -55,6 +60,11 @@ abstract class Attacker(val name: String) : Entity {
             kill()
         }
 
+    }
+
+    override fun kill() {
+        super.kill()
+        entities.remove(this)
     }
 
 

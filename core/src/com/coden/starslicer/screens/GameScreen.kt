@@ -12,9 +12,13 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.StarSlicerGame
+import com.coden.starslicer.entities.Entity
+import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
+import com.coden.starslicer.util.spaceCraftX
+import com.coden.starslicer.util.spaceCraftY
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -26,7 +30,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     lateinit var attackerHandler: AttackerHandler
     lateinit var powerUpHandler: PowerUpHandler
-
 
     var blades = ArrayList<BladePoint>()
 
@@ -45,8 +48,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         blades.add(BladePoint(0, spaceCraft))
         blades.add(BladePoint(1, spaceCraft))
 
-        attackerHandler = AttackerHandler()
+        attackerHandler = AttackerHandler(entities)
         powerUpHandler = PowerUpHandler(spaceCraft)
+
+
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -95,6 +100,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         attackerHandler.updateAll(spaceCraft)
         powerUpHandler.updateAll()
+        Gdx.app.log("updating", "$entities")
+
 
         for (blade in blades){
             blade.update(game.swipeRenderer.swipe)
@@ -132,6 +139,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         renderRect(shapeRenderer, spaceCraft.hitBox)
         if (spaceCraft.isShielded){
             shapeRenderer.circle(spaceCraft.x, spaceCraft.y, spaceCraft.shieldRadius)
+        }
+
+        for (shockwave in powerUpHandler.shockWaves) {
+            if (shockwave.active){
+                shapeRenderer.circle(spaceCraftX, spaceCraftY, shockwave.radius)
+            }
+
         }
 
 

@@ -14,7 +14,7 @@ import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
-class AttackerHandler {
+class AttackerHandler(val entities: ArrayList<Entity>) {
 
     val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
     val maxNuclearBombs = arrayListOf(8, 0) //0 - missing, 1 - direct
