@@ -1,5 +1,7 @@
 package com.coden.starslicer.entities
 
+import com.badlogic.gdx.Gdx
+
 interface Entity {
     var health: Float
     val damage: Float
@@ -23,7 +25,7 @@ interface Entity {
         }
     }
 
-    fun takeDamage(value: Float) {
+     fun takeDamage(value: Float) {
         health -= value
         if (health <= 0) kill()
     }

@@ -26,7 +26,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var attackerHandler: AttackerHandler
 
 
-    val blades = arrayListOf(BladePoint(0, spaceCraft),BladePoint(1, spaceCraft))
+    var blades = ArrayList<BladePoint>()
 
     val font = BitmapFont()
 
@@ -40,6 +40,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         spaceCraft = SpaceCraft()
+        blades.add(BladePoint(0, spaceCraft))
+        blades.add(BladePoint(1, spaceCraft))
 
         attackerHandler = AttackerHandler()
 

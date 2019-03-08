@@ -58,7 +58,7 @@ class AttackerHandler {
             when{
                 Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile()
                 Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb()
-                Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor(1)
+                Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor()
             }
         }
 
@@ -81,7 +81,7 @@ class AttackerHandler {
         }
         for (attacker in attackers) {
             if (blades[0].isSlicing(attacker.hitBox) || blades[1].isSlicing(attacker.hitBox)) {
-                attacker.kill()
+                attacker.takeDamage(blades[0].damage)
             }
         }
     }

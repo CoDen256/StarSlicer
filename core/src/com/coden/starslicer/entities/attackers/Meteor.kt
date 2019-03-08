@@ -18,9 +18,9 @@ class Meteor(override val initialPos: Vector2,
     // Life
     override val lifeSpan = 20f
     override var health = when (size) {
-        0 -> 25f
-        1 -> 50f
-        2 -> 125f
+        0 -> 30f
+        1 -> 75f
+        2 -> 200f
         else -> throw IllegalArgumentException()
     }
     override var damage = when (size) {

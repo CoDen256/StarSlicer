@@ -14,7 +14,7 @@ class SpaceCraft : Entity {
     val spaceCraftTexture: Texture = Texture("spacecraft.png")
 
     override var health = 100f
-    override val damage = 10f
+    override val damage = 5f
     override var isDead = false
 
     val height = spaceCraftTexture.height
