@@ -1,18 +1,21 @@
-package com.coden.starslicer.entities
+package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.textureMap
 
-abstract class Attacker(val name: String) {
+abstract class Attacker(val name: String) : Entity {
 
     // Life
     abstract val lifeSpan : Float
+
+    abstract override var health: Float
+    abstract override var damage: Float
 
     private var life = 0f
     var isDead: Boolean = false
@@ -56,6 +59,19 @@ abstract class Attacker(val name: String) {
 
     open fun kill() {
         isDead = true
+    }
+
+    override fun giveDamage(entity: Entity, value: Float) {
+
+    }
+
+    override fun giveDamage(entities: ArrayList<Entity>, value: Float) {
+
+    }
+
+    override fun takeDamage(value: Float) {
+        health -= value
+        if (health <= 0) kill()
     }
 
 }

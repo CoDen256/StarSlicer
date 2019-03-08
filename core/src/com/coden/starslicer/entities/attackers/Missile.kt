@@ -1,10 +1,11 @@
-package com.coden.starslicer.entities
+package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.Entity
 
 import com.coden.starslicer.util.*
 
@@ -21,6 +22,8 @@ class Missile (override val initialPos: Vector2,
         0,1 -> 15f
         else -> 100f
     }
+    override var health = 15f
+    override var damage = 30f
 
     // Movement
     override var pos = initialPos

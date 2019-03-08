@@ -1,10 +1,10 @@
-package com.coden.starslicer.entities
+package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.util.center
+import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.yRatio
@@ -13,6 +13,8 @@ class NuclearBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb"){
     // Life
     override val lifeSpan = 5f
+    override var health = 20f
+    override var damage = 200f
 
     // Speed constants
     override val movementSpeed = 5 * sqRatio

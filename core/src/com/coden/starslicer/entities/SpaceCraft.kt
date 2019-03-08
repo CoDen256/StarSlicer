@@ -12,6 +12,7 @@ import com.coden.starslicer.util.spaceCraftY
 class SpaceCraft {
 
     val spaceCraftTexture: Texture = Texture("spacecraft.png")
+    val health = 100f
 
     val height = spaceCraftTexture.height
     val width = spaceCraftTexture.width

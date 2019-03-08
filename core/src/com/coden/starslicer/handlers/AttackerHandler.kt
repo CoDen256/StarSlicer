@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
+import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.Meteor
+import com.coden.starslicer.entities.attackers.Missile
+import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint

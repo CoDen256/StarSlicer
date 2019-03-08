@@ -7,6 +7,7 @@ import com.coden.util.swipe.SwipeHandler
 
 class BladePoint(val pointer: Int) {
 
+    val damage = 5f
     val detectionRatio = 0.6f
     val size = 35f*sqRatio
 

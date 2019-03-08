@@ -1,9 +1,10 @@
-package com.coden.starslicer.entities
+package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.*
 
 class Meteor(override val initialPos: Vector2,
@@ -16,6 +17,18 @@ class Meteor(override val initialPos: Vector2,
 }){
     // Life
     override val lifeSpan = 20f
+    override var health = when (size) {
+        0 -> 25f
+        1 -> 50f
+        2 -> 125f
+        else -> throw IllegalArgumentException()
+    }
+    override var damage = when (size) {
+        0 -> 30f
+        1 -> 50f
+        2 -> 90f
+        else -> throw IllegalArgumentException()
+    }
 
     // Speed constants
     override val movementSpeed = when (size) {
