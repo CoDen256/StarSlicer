@@ -1,0 +1,19 @@
+shield.png
+size: 100, 50
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shieldUp
+  rotate: false
+  xy: 0, 0
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+shieldDown
+  rotate: false
+  xy: 50, 0
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1

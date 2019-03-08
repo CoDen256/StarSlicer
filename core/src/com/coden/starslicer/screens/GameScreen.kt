@@ -1,7 +1,6 @@
 package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -11,9 +10,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
+import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
-import com.coden.starslicer.entities.Entity
-import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
@@ -24,6 +22,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var cam: OrthographicCamera
     private lateinit var batch: SpriteBatch
+    private lateinit var hud: HUD
     private lateinit var shapeRenderer: ShapeRenderer
 
     private lateinit var spaceCraft: SpaceCraft
@@ -61,6 +60,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         cam.setToOrtho(false, w, h)
 
         batch = SpriteBatch()
+        hud = HUD()
         shapeRenderer = ShapeRenderer()
 
         cam.update()
@@ -68,32 +68,41 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
     }
+    // RENDER SECTION
 
     override fun render(delta: Float) {
         // UPDATING EVENTS
         update()
 
         // MAIN BATCH
-        batch.begin()
 
-        batch.draw(bg, 0f, 0f, w, h)
-
-        renderFPS()
-
-        spaceCraft.render(batch)
-        attackerHandler.renderAll(batch)
-        powerUpHandler.renderAll(batch)
-
-
-        batch.end()
+        renderMainEntities()
 
         // SWIPE RENDERER
         game.swipeRenderer.render(cam)
+
+        // HUD
+        hud.render()
 
         // SHAPE RENDERER FOR DEBUG
         debugShapes()
     }
 
+    fun renderMainEntities() {
+        batch.begin()
+
+        batch.draw(bg, 0f, 0f, w, h)
+
+        renderFPS(batch)
+
+        spaceCraft.render(batch)
+        attackerHandler.renderAll(batch)
+        powerUpHandler.renderAll(batch)
+
+        batch.end()
+    }
+
+    // UPDATE SECTION
     fun update() {
 
         spaceCraft.update()
@@ -108,6 +117,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         updateInput()
         updateSlicing()
 
+        hud.update()
     }
 
     fun updateInput() {
@@ -129,6 +139,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         attackerHandler.updateSlicing(blades)
 
     }
+
 
     // DEBUG SECTION
 
@@ -162,7 +173,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         shapeRenderer.end()
     }
-    fun renderFPS() {
+    fun renderFPS(batch: SpriteBatch) {
         font.draw(batch, Gdx.graphics.framesPerSecond.toString(), w-50, h-75)
     }
 
@@ -193,6 +204,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun dispose() {
 
         Gdx.app.log("GameScreen", "The screen is disposed")
+        batch.dispose()
+        shapeRenderer.dispose()
+        hud.dispose()
 
     }
 
