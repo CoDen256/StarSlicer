@@ -10,7 +10,7 @@ import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
-               override val state: Int): Attacker("missile"){
+               override val state: Int): Attacker(AttackerType.MISSILE){
 
     // Speed constants
     override val movementSpeed = 8f * sqRatio // direct missile

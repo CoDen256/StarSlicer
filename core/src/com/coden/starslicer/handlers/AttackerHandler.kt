@@ -6,10 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
-import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.entities.attackers.Meteor
-import com.coden.starslicer.entities.attackers.Missile
-import com.coden.starslicer.entities.attackers.NuclearBomb
+import com.coden.starslicer.entities.attackers.*
+import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
@@ -105,7 +103,7 @@ class AttackerHandler(val entities: ArrayList<Entity>) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState)
-        increment("missile", newState, 1)
+        increment(missile.name, newState, 1)
         attackers.add(missile)
     }
 
@@ -116,7 +114,7 @@ class AttackerHandler(val entities: ArrayList<Entity>) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, newState)
-        increment("nuclearbomb", newState, 1)
+        increment(nuclearBomb.name, newState, 1)
         attackers.add(nuclearBomb)
     }
 
@@ -128,16 +126,15 @@ class AttackerHandler(val entities: ArrayList<Entity>) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize)
-        increment(meteor.name, newSize, 1)
+        increment(meteor.name, newSize, s1)
         attackers.add(meteor)
     }
 
 
-    fun increment(name: String, state: Int, value: Int) = when (name) {
-        "missile" -> currentMissiles[state] += value
-        "nuclearbomb" -> currentNuclearBombs[state] += value
-        "smallMeteor", "mediumMeteor", "largeMeteor" -> currentMeteors[state] += value
-        else -> Gdx.app.error("incrementation", "no such attacker")
+    fun increment(name: AttackerType, state: Int, value: Int) = when (name) {
+        MISSILE -> currentMissiles[state] += value
+        NUCLEAR_BOMB -> currentNuclearBombs[state] += value
+        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> currentMeteors[state] += value
     }
 
 

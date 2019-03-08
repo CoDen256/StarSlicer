@@ -1,7 +1,5 @@
 package com.coden.starslicer.entities.powerups
 
-import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.SpaceCraft
 
 class HPBoost: PowerUp(PowerUpType.HPBOOST) {

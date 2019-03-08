@@ -8,11 +8,11 @@ import com.coden.starslicer.entities.SpaceCraft
 
 class Shield(private val spaceCraft: SpaceCraft): PowerUp(PowerUpType.SHIELD) {
 
-    val maxRadius = 120f
-    var radius = 0f
+    private val maxRadius = 120f
+    private val lifeSpan = 10f
 
-    val lifeSpan = 10f
-    var life = 0f
+    private var radius = 0f
+    private var life = 0f
 
     fun applyEffect() {
         spaceCraft.isShielded = true

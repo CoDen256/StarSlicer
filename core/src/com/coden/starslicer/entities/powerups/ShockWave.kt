@@ -11,14 +11,13 @@ import com.coden.starslicer.util.*
 
 class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
 
-    val maxRadius = 1000 * sqRatio
+    private val maxRadius = 1000 * sqRatio // ratio of growth
+    private val iterations = 18
+    private val maxLife = iterations/60f // 0.333 seconds of life
+    private val damage = 100f / iterations // 100 damage by 18 iterations
+
     var radius = 0f
-
-    var iterations = 18
-    var life = 0f
-    var maxLife = iterations/60f // 0.333 seconds of life
-
-    val damage = 100f / iterations // 100 damage by 18 iterations
+    private var life = 0f
 
     fun applyEffect() {
         active = true

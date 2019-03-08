@@ -10,7 +10,7 @@ import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.yRatio
 
 class NuclearBomb(override val initialPos: Vector2,
-                 override val state: Int): Attacker("nuclearbomb"){
+                 override val state: Int): Attacker(AttackerType.NUCLEAR_BOMB){
     // Life
     override val lifeSpan = 5f
     override val maxHealth = 20f

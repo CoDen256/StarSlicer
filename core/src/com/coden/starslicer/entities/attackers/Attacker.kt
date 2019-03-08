@@ -10,7 +10,7 @@ import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.textureMap
 
-abstract class Attacker(val name: String) : Entity {
+abstract class Attacker(val name: AttackerType) : Entity {
 
     // Life
     abstract val lifeSpan : Float

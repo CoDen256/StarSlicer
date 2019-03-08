@@ -4,15 +4,14 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.*
 
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
              size: Int): Attacker(when(size){
-                                    0 -> "smallMeteor"
-                                    1 -> "mediumMeteor"
-                                    2 -> "largeMeteor"
+                                    0 -> AttackerType.SMALL_METEOR
+                                    1 -> AttackerType.MEDIUM_METEOR
+                                    2 -> AttackerType.LARGE_METEOR
                                     else -> throw IllegalArgumentException()
 }){
     // Life
