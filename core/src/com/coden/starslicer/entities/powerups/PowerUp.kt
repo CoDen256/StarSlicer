@@ -12,7 +12,10 @@ abstract class PowerUp(name: String) : Entity {
     override var isDead = false
     abstract override  var hitBox: Rectangle
     abstract override var pos: Vector2
+    abstract val active: Boolean
 
     abstract val continuous: Boolean
+
+    abstract fun update()
 
 }

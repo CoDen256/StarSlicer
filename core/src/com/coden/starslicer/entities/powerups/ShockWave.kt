@@ -27,13 +27,13 @@ class ShockWave: PowerUp("shockwave") {
 
     override val damage = 100f / iterations // 100 damage by 18 iterations
 
-    var active = false
+    override var active = false
 
     fun applyEffect() {
         active = true
     }
 
-    fun update() {
+    override fun update() {
         life += Gdx.graphics.deltaTime
         //Gdx.app.log("updateing", "$life")
         if (life < maxLife) radius += maxRadius/15

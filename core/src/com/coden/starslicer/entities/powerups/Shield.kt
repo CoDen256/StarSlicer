@@ -21,7 +21,7 @@ class Shield(val spaceCraft: SpaceCraft): PowerUp("shield") {
     val lifeSpan = 10f
     var life = 0f
 
-    var active = false
+    override var active = false
 
     fun applyEffect() {
         spaceCraft.isShielded = true
@@ -31,7 +31,7 @@ class Shield(val spaceCraft: SpaceCraft): PowerUp("shield") {
 
     }
 
-    fun update() {
+    override fun update() {
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
 

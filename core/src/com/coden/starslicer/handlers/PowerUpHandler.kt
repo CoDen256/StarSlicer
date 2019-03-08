@@ -5,10 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.entities.powerups.HPBoost
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.powerups.Shield
-import com.coden.starslicer.entities.powerups.ShockWave
+import com.coden.starslicer.entities.powerups.*
 
 class PowerUpHandler(val spaceCraft: SpaceCraft) {
 
@@ -18,9 +15,9 @@ class PowerUpHandler(val spaceCraft: SpaceCraft) {
 
 
     fun updateAll() {
-        updateHPBoost()
-        updateShield()
-        updateShockWaves()
+        update(PowerUpType.HPBOOST)
+        update(PowerUpType.SHIELD)
+        update(PowerUpType.SHOCKWAVE)
     }
 
     fun renderAll(batch: SpriteBatch) {
@@ -29,95 +26,63 @@ class PowerUpHandler(val spaceCraft: SpaceCraft) {
 
     fun updateInput() {
         when  {
-            Gdx.input.isKeyJustPressed(Input.Keys.H) -> addHPBoost()
-            Gdx.input.isKeyJustPressed(Input.Keys.J) -> useHPBoost()
+            Gdx.input.isKeyJustPressed(Input.Keys.H) -> add(PowerUpType.HPBOOST)
+            Gdx.input.isKeyJustPressed(Input.Keys.J) -> use(PowerUpType.HPBOOST)
 
-            Gdx.input.isKeyJustPressed(Input.Keys.S) -> addShield()
-            Gdx.input.isKeyJustPressed(Input.Keys.D) -> useShield()
+            Gdx.input.isKeyJustPressed(Input.Keys.S) -> add(PowerUpType.SHIELD)
+            Gdx.input.isKeyJustPressed(Input.Keys.D) -> use(PowerUpType.SHIELD)
 
-            Gdx.input.isKeyJustPressed(Input.Keys.W) -> addShockWave()
-            Gdx.input.isKeyJustPressed(Input.Keys.E) -> useShockWave()
+            Gdx.input.isKeyJustPressed(Input.Keys.W) -> add(PowerUpType.SHOCKWAVE)
+            Gdx.input.isKeyJustPressed(Input.Keys.E) -> use(PowerUpType.SHOCKWAVE)
         }
 
     }
 
-    fun addHPBoost(){
-        boosts.add(HPBoost())
+    private fun add(ability: PowerUpType) = when (ability) {
+        PowerUpType.SHIELD -> shields.add(Shield(spaceCraft))
+        PowerUpType.HPBOOST -> boosts.add(HPBoost())
+        PowerUpType.SHOCKWAVE -> shockWaves.add(ShockWave())
     }
 
-    fun useHPBoost() {
-        if (!boosts.isEmpty()){
-            boosts[0].applyEffect(spaceCraft)
-            Gdx.app.log("hpBoost", "applied")
-        }
-    }
-
-    fun updateHPBoost() {
-        val iterator = boosts.iterator()
-        while (iterator.hasNext()) {
-            val boost = iterator.next()
-            boost.update()
-            if (boost.isDead) {
-                Gdx.app.log("hpBoost", "is dead")
-                iterator.remove()
-            }
-        }
-    }
-
-    fun addShield() {
-        shields.add(Shield(spaceCraft))
-    }
-
-    fun useShield() {
-        if (!shields.isEmpty() && !spaceCraft.isShielded) {
-            shields[0].applyEffect()
-            Gdx.app.log("shield", "applied")
-        }
-    }
-
-    fun updateShield() {
-        val iterator = shields.iterator()
-        while (iterator.hasNext()) {
-            val shield = iterator.next()
-            if (shield.active){
-                shield.update()
-
-                if (shield.isDead) {
-                    Gdx.app.log("shield", "is dead")
-                    iterator.remove()
-                }
-            }
-        }
-    }
-
-    fun addShockWave() {
-        shockWaves.add(ShockWave())
-    }
-
-    fun useShockWave() {
-        if (!shockWaves.isEmpty()) {
-            for (shockWave in shockWaves) {
-                if (!shockWave.active) {
+    private fun use(ability: PowerUpType) = when (ability) {
+        PowerUpType.SHIELD -> if (!shields.isEmpty() && !spaceCraft.isShielded) shields[0].applyEffect() else Unit
+        PowerUpType.HPBOOST -> if (!boosts.isEmpty()) boosts[0].applyEffect(spaceCraft) else Unit
+        PowerUpType.SHOCKWAVE -> {
+            if (!shockWaves.isEmpty()) {
+                for (shockWave in shockWaves) if (!shockWave.active) {
                     shockWave.applyEffect()
-                    return
+                    break
+                }
+            }
+            else Unit
+        }
+
+
+    }
+
+    private fun update(ability: PowerUpType) {
+        val iterator = when (ability) {
+            PowerUpType.SHOCKWAVE -> shockWaves.iterator()
+            PowerUpType.SHIELD -> shields.iterator()
+            PowerUpType.HPBOOST -> boosts.iterator()
+        }
+
+        while (iterator.hasNext()) {
+            val powerup = iterator.next()
+            if (powerup.active) {
+                powerup.update()
+                if (powerup.isDead) {
+                    iterator.remove()
+                    Gdx.app.log("powerupUpdate", "$powerup is dead")
                 }
             }
         }
     }
 
-    fun updateShockWaves() {
-        val iterator = shockWaves.iterator()
-        while (iterator.hasNext()) {
-            val shockWave = iterator.next()
-            if (shockWave.active){
-                shockWave.update()
-
-                if (shockWave.isDead) {
-                    Gdx.app.log("shockWave", "is dead")
-                    iterator.remove()
-                }
-            }
-        }
+    fun getPowerUps() : Map<PowerUpType, Int>{
+        return mapOf(PowerUpType.HPBOOST to boosts.size,
+                    PowerUpType.SHIELD to shields.size,
+                    PowerUpType.SHOCKWAVE to shockWaves.size)
     }
 
 }

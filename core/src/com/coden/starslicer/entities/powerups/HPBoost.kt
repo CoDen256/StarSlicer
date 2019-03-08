@@ -7,6 +7,8 @@ import com.coden.starslicer.entities.SpaceCraft
 class HPBoost: PowerUp("hpboost") {
     override val damage = -100f // healing amount
 
+    override var active = false
+
     override val continuous = false
     override var hitBox: Rectangle = Rectangle(0f, 0f,0f,0f)
         get() = Rectangle(0f, 0f,0f,0f)
@@ -16,10 +18,11 @@ class HPBoost: PowerUp("hpboost") {
 
     fun applyEffect(spaceCraft: SpaceCraft) {
         spaceCraft.takeDamage(damage)
+        active = true
         kill()
     }
 
-    fun update() {
+    override fun update() {
 
     }
 
