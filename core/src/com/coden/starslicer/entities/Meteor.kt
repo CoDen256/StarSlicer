@@ -9,9 +9,9 @@ import com.coden.starslicer.util.*
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
              size: Int): Attacker(when(size){
-                                    1 -> "smallMeteor"
-                                    2 -> "mediumMeteor"
-                                    3 -> "largeMeteor"
+                                    0 -> "smallMeteor"
+                                    1 -> "mediumMeteor"
+                                    2 -> "largeMeteor"
                                     else -> throw IllegalArgumentException()
 }){
     // Life
@@ -19,16 +19,16 @@ class Meteor(override val initialPos: Vector2,
 
     // Speed constants
     override val movementSpeed = when (size) {
-        1 -> MathUtils.random(1, 8) * sqRatio
-        2 -> MathUtils.random(1, 4) * sqRatio
-        3 -> MathUtils.random(1, 2) * sqRatio
+        0 -> MathUtils.random(1, 8) * sqRatio
+        1 -> MathUtils.random(1, 4) * sqRatio
+        2 -> MathUtils.random(1, 2) * sqRatio
         else -> throw IllegalArgumentException()
     }
 
     private val angleSpeed = when (size) {
-        1 -> MathUtils.random(1, 360)
-        2 -> MathUtils.random(1, 180)
-        3 -> MathUtils.random(0, 90)
+        0 -> MathUtils.random(1, 360)
+        1 -> MathUtils.random(1, 180)
+        2 -> MathUtils.random(0, 90)
         else -> throw IllegalArgumentException()
     }
 
