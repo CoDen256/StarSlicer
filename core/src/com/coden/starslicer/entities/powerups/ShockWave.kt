@@ -7,13 +7,10 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.util.spaceCraftCenter
-import com.coden.starslicer.util.spaceCraftX
-import com.coden.starslicer.util.spaceCraftY
-import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.*
 
 class ShockWave: PowerUp("shockwave") {
-    override val damage = 70f
+
 
     override val continuous = true
     override var hitBox: Rectangle = Rectangle(0f, 0f,0f,0f)
@@ -24,8 +21,11 @@ class ShockWave: PowerUp("shockwave") {
     val maxRadius = 1000 * sqRatio
     var radius = 0f
 
-    var shockWaveHitCircle = Circle(0f, 0f, 0f)
-    get() = Circle(spaceCraftX, spaceCraftY, radius)
+    var iterations = 18
+    var life = 0f
+    var maxLife = iterations/60f // 0.333 seconds of life
+
+    override val damage = 100f / iterations // 100 damage by 18 iterations
 
     var active = false
 
@@ -34,14 +34,19 @@ class ShockWave: PowerUp("shockwave") {
     }
 
     fun update() {
-        if (radius < maxRadius) radius += maxRadius/15
+        life += Gdx.graphics.deltaTime
+        //Gdx.app.log("updateing", "$life")
+        if (life < maxLife) radius += maxRadius/15
         else kill()
 
         val iterator = entities.iterator()
-        Gdx.app.log("updateing shockwave", "$entities")
         while (iterator.hasNext()) {
             val entity = iterator.next()
-            entity.takeDamage(damage)
+            if (dist2(entity.pos, spaceCraftCenter) < radius){
+                entity.takeDamage(damage)
+            }
+
+
         }
 
 

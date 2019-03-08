@@ -45,6 +45,7 @@ class AttackerHandler(val entities: ArrayList<Entity>) {
             if (attacker.isDead) {
                 Gdx.app.log("attackers.update", "${attacker.name} is dead")
                 increment(attacker.name, attacker.state, -1)
+                entities.remove(attacker)
                 iterator.remove()
             }
         }

@@ -19,8 +19,8 @@ class Meteor(override val initialPos: Vector2,
     override val lifeSpan = 20f
     override val maxHealth = when (size) {
         0 -> 30f
-        1 -> 75f
-        2 -> 200f
+        1 -> 70f
+        2 -> 150f
         else -> throw IllegalArgumentException()
     }
 

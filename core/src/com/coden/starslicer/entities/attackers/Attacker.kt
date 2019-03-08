@@ -62,10 +62,4 @@ abstract class Attacker(val name: String) : Entity {
 
     }
 
-    override fun kill() {
-        super.kill()
-        entities.remove(this)
-    }
-
-
 }

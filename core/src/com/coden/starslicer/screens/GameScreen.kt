@@ -100,8 +100,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         attackerHandler.updateAll(spaceCraft)
         powerUpHandler.updateAll()
-        Gdx.app.log("updating", "$entities")
-
 
         for (blade in blades){
             blade.update(game.swipeRenderer.swipe)
