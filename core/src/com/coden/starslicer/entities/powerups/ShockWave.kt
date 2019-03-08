@@ -9,14 +9,7 @@ import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.*
 
-class ShockWave: PowerUp("shockwave") {
-
-
-    override val continuous = true
-    override var hitBox: Rectangle = Rectangle(0f, 0f,0f,0f)
-        get() = Rectangle(0f, 0f,0f,0f)
-
-    override var pos: Vector2 = Vector2(0f, 0f)
+class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
 
     val maxRadius = 1000 * sqRatio
     var radius = 0f
@@ -25,9 +18,7 @@ class ShockWave: PowerUp("shockwave") {
     var life = 0f
     var maxLife = iterations/60f // 0.333 seconds of life
 
-    override val damage = 100f / iterations // 100 damage by 18 iterations
-
-    override var active = false
+    val damage = 100f / iterations // 100 damage by 18 iterations
 
     fun applyEffect() {
         active = true
@@ -35,20 +26,19 @@ class ShockWave: PowerUp("shockwave") {
 
     override fun update() {
         life += Gdx.graphics.deltaTime
-        //Gdx.app.log("updateing", "$life")
         if (life < maxLife) radius += maxRadius/15
         else kill()
 
+        damageAll()
+    }
+
+    private fun damageAll() {
         val iterator = entities.iterator()
         while (iterator.hasNext()) {
             val entity = iterator.next()
             if (dist2(entity.pos, spaceCraftCenter) < radius){
                 entity.takeDamage(damage)
             }
-
-
         }
-
-
     }
 }

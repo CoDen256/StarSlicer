@@ -4,17 +4,9 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.SpaceCraft
 
-class HPBoost: PowerUp("hpboost") {
-    override val damage = -100f // healing amount
+class HPBoost: PowerUp(PowerUpType.HPBOOST) {
 
-    override var active = false
-
-    override val continuous = false
-    override var hitBox: Rectangle = Rectangle(0f, 0f,0f,0f)
-        get() = Rectangle(0f, 0f,0f,0f)
-
-    override var pos: Vector2 = Vector2(0f, 0f)
-
+    val damage = -100f // healing amount
 
     fun applyEffect(spaceCraft: SpaceCraft) {
         spaceCraft.takeDamage(damage)

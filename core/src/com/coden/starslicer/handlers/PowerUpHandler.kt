@@ -73,7 +73,7 @@ class PowerUpHandler(val spaceCraft: SpaceCraft) {
                 powerup.update()
                 if (powerup.isDead) {
                     iterator.remove()
-                    Gdx.app.log("powerupUpdate", "$powerup is dead")
+                    Gdx.app.log("powerupUpdate", "${powerup.name} is dead")
                 }
             }
         }
