@@ -22,7 +22,8 @@ class Missile (override val initialPos: Vector2,
         0,1 -> 15f
         else -> 100f
     }
-    override var health = 15f
+    override val maxHealth = 15f
+    override var health = maxHealth
     override var damage = 30f
 
     // Movement

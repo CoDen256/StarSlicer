@@ -86,7 +86,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        //debugShapes()
+        debugShapes()
     }
 
     fun update() {
@@ -130,6 +130,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun debugShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         renderRect(shapeRenderer, spaceCraft.hitBox)
+        if (spaceCraft.isShielded){
+            shapeRenderer.circle(spaceCraft.x, spaceCraft.y, spaceCraft.shieldRadius)
+        }
+
 
         for (attacker in attackerHandler.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)

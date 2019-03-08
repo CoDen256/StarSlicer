@@ -87,7 +87,12 @@ class AttackerHandler {
     }
 
     fun updateCollision(spaceCraft: SpaceCraft, attacker: Attacker) {
-        if (spaceCraft.hitBox.overlaps(attacker.hitBox)){
+        if (spaceCraft.isShielded) {
+           if (spaceCraft.shieldCircle.contains(attacker.pos)) {
+               attacker.kill()
+           }
+        } else if (spaceCraft.hitBox.overlaps(attacker.hitBox)){
+            attacker.giveDamage(spaceCraft, attacker.damage)
             attacker.kill()
         }
     }
