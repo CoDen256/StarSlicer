@@ -66,7 +66,7 @@ class Missile (override val initialPos: Vector2,
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                     MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }
 
@@ -118,8 +118,8 @@ class Missile (override val initialPos: Vector2,
     }
 
 
-    private fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + centerX
-    private fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + centerY
+    private fun getOrbitalX(t: Float) = (radius * t * Math.cos(t.toDouble())).toFloat() + spaceCraftX
+    private fun getOrbitalY(t: Float) = (radius * t * Math.sin(t.toDouble())).toFloat() + spaceCraftY
     private fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
 

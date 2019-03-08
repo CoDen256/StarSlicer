@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.center
+import com.coden.starslicer.util.spaceCraftCenter
 
 abstract class Attacker(private val path: String) {
 
@@ -33,7 +34,7 @@ abstract class Attacker(private val path: String) {
 
     // specialized vectors
     var targetVector = Vector2()
-        get() = pos.cpy().sub(center).scl(-1f)
+        get() = pos.cpy().sub(spaceCraftCenter).scl(-1f)
 
     var perpendicularVector = Vector2()
         get() = targetVector.cpy().rotate90(-1)

@@ -23,6 +23,10 @@ val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
 val sqRatio = dist2(xRatio, yRatio)
 
+val spaceCraftX = Gdx.graphics.width*0.5f
+val spaceCraftY = Gdx.graphics.height*0.5f
+val spaceCraftCenter = Vector2(spaceCraftX, spaceCraftY)
+
 val centerX = Gdx.graphics.width/2f
 val centerY = Gdx.graphics.height/2f
 val center = Vector2(centerX, centerY)

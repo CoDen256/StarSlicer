@@ -4,10 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.util.center
-import com.coden.starslicer.util.sqRatio
-import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
+import com.coden.starslicer.util.*
 
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
@@ -22,11 +19,11 @@ class Meteor(override val initialPos: Vector2,
 
     // Speed constants
     override val movementSpeed = MathUtils.random(1, 20) * sqRatio
-    val angleSpeed = MathUtils.random(0, 360)
+    private val angleSpeed = MathUtils.random(0, 360)
 
     // Movement
     override var pos = initialPos
-    var velocity = Vector2()
+    private var velocity = Vector2()
 
 
     // Sprite
@@ -46,7 +43,7 @@ class Meteor(override val initialPos: Vector2,
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                          MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }
 
@@ -65,7 +62,7 @@ class Meteor(override val initialPos: Vector2,
 
 }
 
-    fun rotate() {
+    private fun rotate() {
         sprite.rotate(angleSpeed*Gdx.graphics.deltaTime)
     }
 }

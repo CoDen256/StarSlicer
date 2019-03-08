@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.center
+import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.yRatio
 
@@ -32,7 +33,7 @@ class NuclearBomb(override val initialPos: Vector2,
     init {
         velocity = when (state) {
             0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(center).scl(-1f).setLength(movementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }
 

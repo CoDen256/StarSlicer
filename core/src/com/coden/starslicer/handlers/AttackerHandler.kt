@@ -112,7 +112,7 @@ class AttackerHandler {
         }
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1) else state, size)
-        increment("meteor", 1)
+        increment(meteor.name, 1)
         attackers.add(meteor)
     }
 
@@ -120,7 +120,7 @@ class AttackerHandler {
     fun increment(name: String, value: Int) = when (name) {
         "missile" -> currentMissiles += value
         "nuclearbomb" -> currentNuclearBombs += value
-        "meteor" -> currentMeteors += value
+        "smallMeteor", "mediumMeteor", "largeMeteor" -> currentMeteors += value
         else -> Gdx.app.error("incrementation", "no such attacker")
     }
 
