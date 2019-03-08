@@ -6,13 +6,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
+import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.*
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
-class AttackerHandler(val entities: ArrayList<Entity>) {
+class AttackerHandler {
 
     val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
     val maxNuclearBombs = arrayListOf(8, 0) //0 - missing, 1 - direct
@@ -126,7 +127,7 @@ class AttackerHandler(val entities: ArrayList<Entity>) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize)
-        increment(meteor.name, newSize, s1)
+        increment(meteor.name, newSize, 1)
         attackers.add(meteor)
     }
 

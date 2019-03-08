@@ -1,6 +1,5 @@
 package com.coden.starslicer.entities
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 
@@ -28,7 +27,6 @@ interface Entity {
     }
 
      fun takeDamage(value: Float) {
-         Gdx.app.log("taking damage", "$value")
         health -= value
         if (health <= 0) kill()
          else if (health > maxHealth) health = maxHealth

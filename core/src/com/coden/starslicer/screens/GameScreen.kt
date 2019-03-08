@@ -22,16 +22,16 @@ import com.coden.starslicer.util.spaceCraftY
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
-    lateinit var cam: OrthographicCamera
-    lateinit var batch: SpriteBatch
-    lateinit var shapeRenderer: ShapeRenderer
+    private lateinit var cam: OrthographicCamera
+    private lateinit var batch: SpriteBatch
+    private lateinit var shapeRenderer: ShapeRenderer
 
-    lateinit var spaceCraft: SpaceCraft
+    private lateinit var spaceCraft: SpaceCraft
 
-    lateinit var attackerHandler: AttackerHandler
-    lateinit var powerUpHandler: PowerUpHandler
+    private lateinit var attackerHandler: AttackerHandler
+    private lateinit var powerUpHandler: PowerUpHandler
 
-    var blades = ArrayList<BladePoint>()
+    private var blades = ArrayList<BladePoint>()
 
     val font = BitmapFont()
 
@@ -48,7 +48,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         blades.add(BladePoint(0, spaceCraft))
         blades.add(BladePoint(1, spaceCraft))
 
-        attackerHandler = AttackerHandler(entities)
+        attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler(spaceCraft)
 
 
@@ -145,7 +145,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             }
 
         }
-
 
         for (attacker in attackerHandler.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
