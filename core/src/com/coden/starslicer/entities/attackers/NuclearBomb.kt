@@ -13,7 +13,8 @@ class NuclearBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker("nuclearbomb"){
     // Life
     override val lifeSpan = 5f
-    override var health = 20f
+    override val maxHealth = 20f
+    override var health = maxHealth
     override var damage = 200f
 
     // Speed constants

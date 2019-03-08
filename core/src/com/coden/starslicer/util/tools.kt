@@ -24,8 +24,9 @@ val textureMap = mapOf("missile" to Texture("missile.png"),
                                           "smallMeteor" to Texture("smallMeteor.png"),
                                           "mediumMeteor" to Texture("mediumMeteor.png"),
                                           "largeMeteor" to Texture("largeMeteor.png"),
-                                            )
-
+                                          "shockwave" to Texture("shockwave.png"),
+                                          "shield" to Texture("shiled.png"),
+                                          "hpboost" to Texture("hpboost.png"))
 val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
 val sqRatio = dist2(xRatio, yRatio)

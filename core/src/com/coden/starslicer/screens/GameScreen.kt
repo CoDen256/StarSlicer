@@ -14,6 +14,7 @@ import com.coden.starslicer.BladePoint
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
+import com.coden.starslicer.handlers.PowerUpHandler
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -24,6 +25,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var spaceCraft: SpaceCraft
 
     lateinit var attackerHandler: AttackerHandler
+    lateinit var powerUpHandler: PowerUpHandler
 
 
     var blades = ArrayList<BladePoint>()
@@ -44,6 +46,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         blades.add(BladePoint(1, spaceCraft))
 
         attackerHandler = AttackerHandler()
+        powerUpHandler = PowerUpHandler(spaceCraft)
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -74,6 +77,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.render(batch)
         attackerHandler.renderAll(batch)
+        powerUpHandler.renderAll(batch)
 
 
         batch.end()
@@ -90,6 +94,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         spaceCraft.update()
 
         attackerHandler.updateAll(spaceCraft)
+        powerUpHandler.updateAll()
 
         for (blade in blades){
             blade.update(game.swipeRenderer.swipe)
@@ -102,6 +107,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun updateInput() {
         attackerHandler.updateInput()
+        powerUpHandler.updateInput()
 
         if (Gdx.input.isTouched(0)) {
             blades[0].active = true

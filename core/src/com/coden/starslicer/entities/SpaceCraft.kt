@@ -13,7 +13,11 @@ class SpaceCraft : Entity {
 
     val spaceCraftTexture: Texture = Texture("spacecraft.png")
 
-    override var health = 100f
+    var isShielded = false
+
+    override val maxHealth = 100f
+    override var health = maxHealth
+
     override val damage = 5f
     override var isDead = false
 
@@ -37,6 +41,8 @@ class SpaceCraft : Entity {
     }
 
     fun update() {
+
+        Gdx.app.log("spacecraft.update", "$health")
 
     }
 

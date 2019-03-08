@@ -3,6 +3,7 @@ package com.coden.starslicer.entities
 import com.badlogic.gdx.Gdx
 
 interface Entity {
+    val maxHealth: Float
     var health: Float
     val damage: Float
 
@@ -28,6 +29,7 @@ interface Entity {
      fun takeDamage(value: Float) {
         health -= value
         if (health <= 0) kill()
+         else if (health > maxHealth) health = maxHealth
     }
 
 }
