@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.util.center
 import com.coden.starslicer.util.spaceCraftCenter
+import com.coden.starslicer.util.textureMap
 
-abstract class Attacker(private val path: String) {
+abstract class Attacker(val name: String) {
 
     // Life
     abstract val lifeSpan : Float
@@ -28,9 +28,9 @@ abstract class Attacker(private val path: String) {
     abstract val state: Int
     abstract val hitBox: Rectangle
 
-    val spriteTexture = Texture(path)
+
+    val spriteTexture = textureMap[name]
     val sprite = Sprite(spriteTexture)
-    val name = path.substringBefore(".png").substringAfterLast("/")
 
     // specialized vectors
     var targetVector = Vector2()

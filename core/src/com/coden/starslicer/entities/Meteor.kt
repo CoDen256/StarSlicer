@@ -9,17 +9,28 @@ import com.coden.starslicer.util.*
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
              size: Int): Attacker(when(size){
-                                    1 -> "smallMeteor.png" // todo loading texture optimization
-                                    2 -> "mediumMeteor.png"
-                                    3 -> "largeMeteor.png"
+                                    1 -> "smallMeteor"
+                                    2 -> "mediumMeteor"
+                                    3 -> "largeMeteor"
                                     else -> throw IllegalArgumentException()
 }){
     // Life
-    override val lifeSpan = 40f
+    override val lifeSpan = 20f
 
     // Speed constants
-    override val movementSpeed = MathUtils.random(1, 20) * sqRatio
-    private val angleSpeed = MathUtils.random(0, 360)
+    override val movementSpeed = when (size) {
+        1 -> MathUtils.random(1, 8) * sqRatio
+        2 -> MathUtils.random(1, 4) * sqRatio
+        3 -> MathUtils.random(1, 2) * sqRatio
+        else -> throw IllegalArgumentException()
+    }
+
+    private val angleSpeed = when (size) {
+        1 -> MathUtils.random(1, 360)
+        2 -> MathUtils.random(1, 180)
+        3 -> MathUtils.random(0, 90)
+        else -> throw IllegalArgumentException()
+    }
 
     // Movement
     override var pos = initialPos
@@ -27,8 +38,8 @@ class Meteor(override val initialPos: Vector2,
 
 
     // Sprite
-    private val width = spriteTexture.width * xRatio/1f
-    private val height = spriteTexture.height* yRatio/1f
+    private val width = spriteTexture?.width!! * xRatio/1f
+    private val height = spriteTexture?.height!! * yRatio/1f
 
     override val collisional = true
 

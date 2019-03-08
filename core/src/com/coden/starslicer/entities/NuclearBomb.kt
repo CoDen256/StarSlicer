@@ -10,7 +10,7 @@ import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.yRatio
 
 class NuclearBomb(override val initialPos: Vector2,
-                 override val state: Int): Attacker("nuclearbomb.png"){
+                 override val state: Int): Attacker("nuclearbomb"){
     // Life
     override val lifeSpan = 5f
 
@@ -22,8 +22,8 @@ class NuclearBomb(override val initialPos: Vector2,
     private var velocity: Vector2
 
     // Sprite
-    private val w = spriteTexture.width/1.5f
-    private val h = spriteTexture.height/1.5f
+    private val w = spriteTexture?.width!!/1.5f
+    private val h = spriteTexture?.height!!/1.5f
 
     override val collisional: Boolean = false
 

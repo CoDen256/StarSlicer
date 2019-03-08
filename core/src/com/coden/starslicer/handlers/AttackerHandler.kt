@@ -12,9 +12,10 @@ import com.coden.starslicer.util.generateRandomSpawnPoint
 
 class AttackerHandler {
 
-    val maxMissiles = 26
-    val maxNuclearBombs = 13
-    val maxMeteors = 30
+    val maxMissiles = arrayListOf<Int>() // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
+    val maxNuclearBombs = arrayListOf<Int>() //0 - missing, 1 - direct
+    val maxMeteors = arrayListOf<Int>() //
+    // maybe ratio amount can be applied to speed when difficulty is bigger
 
     var currentMissiles = 0
     var currentNuclearBombs = 0
@@ -65,6 +66,8 @@ class AttackerHandler {
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> spawnMissile(3)
             Gdx.input.isKeyJustPressed(Input.Keys.B) -> spawnNuclearBomb()
             Gdx.input.isKeyJustPressed(Input.Keys.M) -> spawnMeteor(1)
+            Gdx.input.isKeyJustPressed(Input.Keys.COMMA) -> spawnMeteor(2)
+            Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> spawnMeteor(3)
         }
     }
 
@@ -87,9 +90,9 @@ class AttackerHandler {
     }
 
     fun spawnMissile(state: Int = -100) {
-        if (currentMissiles >= maxMissiles) {
-            return
-        }
+        //if (currentMissiles >= maxMissiles) {
+        //    return
+        //}
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, if (state == -100) MathUtils.random(0,3) else state)
         increment("missile", 1)
@@ -97,9 +100,9 @@ class AttackerHandler {
     }
 
     fun spawnNuclearBomb(state: Int = 0) {
-        if (currentNuclearBombs >= maxNuclearBombs) {
-            return
-        }
+        //if (currentNuclearBombs >= maxNuclearBombs) {
+        //    return
+        //}
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, state)
         increment("nuclearbomb", 1)
@@ -107,11 +110,11 @@ class AttackerHandler {
     }
 
     fun spawnMeteor(size: Int,state: Int = -100) {
-        if (currentMeteors >= maxMeteors) {
-            return
-        }
+        //if (currentMeteors >= maxMeteors) {
+        //    return
+        //}
         val spawnPoint = generateRandomSpawnPoint()
-        val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1) else state, size)
+        val meteor = Meteor(spawnPoint, if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1)*MathUtils.random(0,1) else state, size)
         increment(meteor.name, 1)
         attackers.add(meteor)
     }

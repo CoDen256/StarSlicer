@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
-               override val state: Int): Attacker("missile.png"){
+               override val state: Int): Attacker("missile"){
 
     // Speed constants
     override val movementSpeed = 8f * sqRatio // direct missile
@@ -44,8 +44,8 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    private val w = spriteTexture.width
-    private val h = spriteTexture.height*1.5f
+    private val w = spriteTexture?.width!!
+    private val h = spriteTexture?.height!! *1.5f
     private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
 
     override val collisional: Boolean = true
