@@ -2,12 +2,13 @@ package com.coden.starslicer
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Rectangle
+import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.sqRatio
 import com.coden.util.swipe.SwipeHandler
 
-class BladePoint(val pointer: Int) {
+class BladePoint(val pointer: Int, spaceCraft: SpaceCraft) {
 
-    val damage = 5f
+    val damage = spaceCraft.damage
     val detectionRatio = 0.6f
     val size = 35f*sqRatio
 

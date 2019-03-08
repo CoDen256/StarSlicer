@@ -18,7 +18,7 @@ abstract class Attacker(val name: String) : Entity {
     abstract override var damage: Float
 
     private var life = 0f
-    var isDead: Boolean = false
+    override var isDead = false
 
     // Movement
     abstract val movementSpeed: Float
@@ -57,21 +57,5 @@ abstract class Attacker(val name: String) : Entity {
 
     }
 
-    open fun kill() {
-        isDead = true
-    }
-
-    override fun giveDamage(entity: Entity, value: Float) {
-
-    }
-
-    override fun giveDamage(entities: ArrayList<Entity>, value: Float) {
-
-    }
-
-    override fun takeDamage(value: Float) {
-        health -= value
-        if (health <= 0) kill()
-    }
 
 }

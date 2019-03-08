@@ -26,7 +26,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     lateinit var attackerHandler: AttackerHandler
 
 
-    val blades = arrayListOf(BladePoint(0),BladePoint(1))
+    val blades = arrayListOf(BladePoint(0, spaceCraft),BladePoint(1, spaceCraft))
 
     val font = BitmapFont()
 

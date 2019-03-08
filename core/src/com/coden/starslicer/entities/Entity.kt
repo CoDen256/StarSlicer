@@ -4,7 +4,28 @@ interface Entity {
     var health: Float
     val damage: Float
 
-    fun takeDamage(value: Float)
-    fun giveDamage(entities: ArrayList<Entity>, value: Float)
-    fun giveDamage(entity: Entity, value: Float)
+    var isDead: Boolean
+
+    fun kill(){
+        isDead = true
+    }
+
+    fun giveDamage(entity: Entity, value: Float) {
+        entity.takeDamage(value)
+    }
+
+    fun giveDamage(entities: ArrayList<Entity>, value: Float) {
+        for (entity in entities) {
+            if (entity != this){
+                entity.takeDamage(value)
+            }
+
+        }
+    }
+
+    fun takeDamage(value: Float) {
+        health -= value
+        if (health <= 0) kill()
+    }
+
 }

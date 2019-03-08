@@ -9,10 +9,13 @@ import com.badlogic.gdx.math.Rectangle
 import com.coden.starslicer.util.spaceCraftX
 import com.coden.starslicer.util.spaceCraftY
 
-class SpaceCraft {
+class SpaceCraft : Entity {
 
     val spaceCraftTexture: Texture = Texture("spacecraft.png")
-    val health = 100f
+
+    override var health = 100f
+    override val damage = 10f
+    override var isDead = false
 
     val height = spaceCraftTexture.height
     val width = spaceCraftTexture.width
@@ -36,4 +39,7 @@ class SpaceCraft {
     fun update() {
 
     }
+
+
+
 }
