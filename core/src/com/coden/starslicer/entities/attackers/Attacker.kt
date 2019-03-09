@@ -12,6 +12,10 @@ import com.coden.starslicer.util.textureMap
 
 abstract class Attacker(val name: AttackerType) : Entity {
 
+    enum class AttackerType {
+        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR, MISSILE, NUCLEAR_BOMB
+    }
+
     // Life
     abstract val lifeSpan : Float
 

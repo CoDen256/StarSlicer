@@ -8,7 +8,7 @@ import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.*
-import com.coden.starslicer.entities.attackers.AttackerType.*
+import com.coden.starslicer.entities.attackers.Attacker.AttackerType.*
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
@@ -132,7 +132,7 @@ class AttackerHandler {
     }
 
 
-    fun increment(name: AttackerType, state: Int, value: Int) = when (name) {
+    fun increment(name: Attacker.AttackerType, state: Int, value: Int) = when (name) {
         MISSILE -> currentMissiles[state] += value
         NUCLEAR_BOMB -> currentNuclearBombs[state] += value
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> currentMeteors[state] += value

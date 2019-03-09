@@ -4,38 +4,34 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 
-class HUD {
+import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.util.Assets
+
+class HUD(assets: Assets) {
+
+    private var powerUpsBar = PowerUpsBar(Vector2(Gdx.graphics.width*0.75f, Gdx.graphics.height*0.2f), assets.powerUpAssets)
 
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
 
-    var stage = StageHandler()
-
-    var button = Button("shield", Vector2(50f, 50f), stage)
 
     init {
-        var click = ClickListener()
-        button.imageButton.addListener {
-            Gdx.app.log("He", "listens")
-            true
-        }
+
     }
 
 
-    fun update() {
-
+    fun update(powerups: Map<PowerUp.PowerUpType, Int>) {
+        powerUpsBar.update(powerups)
     }
 
     fun render() {
         batch.begin()
 
+        powerUpsBar.render(batch)
+
         batch.end()
 
-        stage.render()
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
 

@@ -55,12 +55,14 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
 
+        game.assets.manager.finishLoading()
+
         cam = OrthographicCamera()
 
         cam.setToOrtho(false, w, h)
 
         batch = SpriteBatch()
-        hud = HUD()
+        hud = HUD(game.assets)
         shapeRenderer = ShapeRenderer()
 
         cam.update()
@@ -99,6 +101,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         attackerHandler.renderAll(batch)
         powerUpHandler.renderAll(batch)
 
+
         batch.end()
     }
 
@@ -117,7 +120,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         updateInput()
         updateSlicing()
 
-        hud.update()
+        hud.update(powerUpHandler.getPowerUps())
     }
 
     fun updateInput() {

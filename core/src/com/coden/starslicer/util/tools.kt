@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.attackers.AttackerType
-import com.coden.starslicer.entities.powerups.PowerUpType
+import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.powerups.PowerUp
 
 
 fun generateRandomSpawnPoint() : Vector2 {
@@ -21,16 +21,12 @@ fun dist2(x:Float, y:Float) = Math.sqrt(Math.pow(x.toDouble(), 2.0) + Math.pow(y
 fun dist2(v1:Vector2, v2:Vector2) = dist2(v1.x-v2.x, v1.y-v2.y)
 
 val textureMap = mapOf(
-        AttackerType.MISSILE to Texture("missile.png"),
-        AttackerType.NUCLEAR_BOMB to Texture("nuclearbomb.png"),
-        AttackerType.SMALL_METEOR to Texture("smallMeteor.png"),
-        AttackerType.MEDIUM_METEOR to Texture("mediumMeteor.png"),
-        AttackerType.LARGE_METEOR to Texture("largeMeteor.png"),
-
-        PowerUpType.SHOCKWAVE to Texture("shockwave.png"),
-        PowerUpType.SHIELD to Texture("shield.png"),
-        PowerUpType.HPBOOST to Texture("hpboost.png")
-)
+        Attacker.AttackerType.MISSILE to Texture("missile.png"),
+        Attacker.AttackerType.NUCLEAR_BOMB to Texture("nuclearbomb.png"),
+        Attacker.AttackerType.SMALL_METEOR to Texture("smallMeteor.png"),
+        Attacker.AttackerType.MEDIUM_METEOR to Texture("mediumMeteor.png"),
+        Attacker.AttackerType.LARGE_METEOR to Texture("largeMeteor.png")
+        )
 
 val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f

@@ -3,7 +3,7 @@ package com.coden.starslicer.handlers
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.coden.starslicer.entities.powerups.PowerUpType.*
+import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.powerups.*
 
@@ -38,13 +38,13 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
 
     }
 
-    private fun add(ability: PowerUpType) = when (ability) {
+    private fun add(ability: PowerUp.PowerUpType) = when (ability) {
         SHIELD -> shields.add(Shield(spaceCraft))
         HPBOOST -> boosts.add(HPBoost())
         SHOCKWAVE -> shockWaves.add(ShockWave())
     }
 
-    private fun use(ability: PowerUpType) = when (ability) {
+    private fun use(ability: PowerUp.PowerUpType) = when (ability) {
         SHIELD -> if (!shields.isEmpty() && !spaceCraft.isShielded) shields[0].applyEffect() else Unit
         HPBOOST -> if (!boosts.isEmpty()) boosts[0].applyEffect(spaceCraft) else Unit
         SHOCKWAVE -> {
@@ -60,7 +60,7 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
 
     }
 
-    private fun update(ability: PowerUpType) {
+    private fun update(ability: PowerUp.PowerUpType) {
         val iterator = when (ability) {
             SHOCKWAVE -> shockWaves.iterator()
             SHIELD -> shields.iterator()
@@ -79,7 +79,7 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
         }
     }
 
-    fun getPowerUps() : Map<PowerUpType, Int>{
+    fun getPowerUps() : Map<PowerUp.PowerUpType, Int>{
         return mapOf(HPBOOST to boosts.size,
                      SHIELD to shields.size,
                      SHOCKWAVE to shockWaves.size)
