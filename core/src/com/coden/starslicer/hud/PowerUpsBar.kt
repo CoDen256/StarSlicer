@@ -1,6 +1,7 @@
 package com.coden.starslicer.hud
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
@@ -24,8 +25,8 @@ class PowerUpsBar(val x: Float,val  y:Float,val powerUpAssets: Assets.PowerUpAss
 
     fun update(powerups: Map<PowerUp.PowerUpType, Int>) {
         shieldIcon.amount = powerups[PowerUp.PowerUpType.SHIELD]
-        boostIcon.amount = powerups[PowerUp.PowerUpType.SHIELD]
-        shockwaveIcon.amount = powerups[PowerUp.PowerUpType.SHIELD]
+        boostIcon.amount = powerups[PowerUp.PowerUpType.HPBOOST]
+        shockwaveIcon.amount = powerups[PowerUp.PowerUpType.SHOCKWAVE]
     }
 
     fun render(batch: SpriteBatch) {
@@ -42,7 +43,8 @@ class PowerUpsBar(val x: Float,val  y:Float,val powerUpAssets: Assets.PowerUpAss
     }
 
     fun renderAmount(powerUpIcon: PowerUpIcon, shapeRenderer: ShapeRenderer) {
-
+        shapeRenderer.circle(powerUpIcon.topright.x, powerUpIcon.topright.y, 13f* sqRatio)
+        shapeRenderer.point(powerUpIcon.topright.x, powerUpIcon.topright.y, 0f)
     }
 
 }
