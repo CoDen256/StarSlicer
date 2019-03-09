@@ -6,22 +6,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.util.Assets
-import com.coden.starslicer.util.textureMap
-import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
+import com.coden.starslicer.util.*
 
-class PowerUpIcon(val pos: Vector2, val spriteTexture: TextureRegion?) {
+class PowerUpIcon(val x: Float, val y: Float, val spriteTexture: TextureRegion?) {
 
     var amount: Int? = 0
 
-    val width = spriteTexture?.regionWidth !! * xRatio
-    val height = spriteTexture?.regionHeight !! * yRatio
+    val width = spriteTexture?.regionWidth !! * sqRatio
+    val height = spriteTexture?.regionHeight !! * sqRatio
 
-    val hitBox = Rectangle(pos.x-width/2, pos.y-height/2, width, height)
+    val hitBox = Rectangle(x-width/2, y-height/2, width, height)
 
     fun draw(batch: SpriteBatch) {
-        batch.draw(spriteTexture, pos.x, pos.y)
+        batch.draw(spriteTexture, x, y, width, height)
     }
 
 }

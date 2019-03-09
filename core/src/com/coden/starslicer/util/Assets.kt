@@ -11,18 +11,44 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.coden.starslicer.entities.powerups.PowerUp
 
-class Assets {
-    val manager = AssetManager()
+class Assets{
+    private val manager = AssetManager()
 
-    val POWER_UP_ATLAS = AssetDescriptor<TextureAtlas>("powerups.atlas", TextureAtlas::class.java)
+    val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("powerups.atlas", TextureAtlas::class.java)
+    lateinit var powerUpAssets: PowerUpAssets
 
-    var powerUpAssets: PowerUpAssets
-    init {
+    var progress = 0f
+        get() = manager.progress
+
+    fun load() {
+        loadAllTextures()
+    }
+
+    fun loadAllTextures() {
+        loadPowerUpTextures()
+    }
+
+
+    fun loadPowerUpTextures() {
         manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
-        manager.load(POWER_UP_ATLAS)
+        manager.load(POWER_UP_ATLAS_DESCRIPTOR)
+    }
+
+    fun updateLoading(): Boolean {
+        return manager.update()
+    }
+
+    fun finishLoading() {
         manager.finishLoading()
-        val atlas = manager.get(POWER_UP_ATLAS)
-        powerUpAssets = PowerUpAssets(atlas)
+        initialize()
+    }
+
+    fun initialize() {
+        powerUpAssets = PowerUpAssets(manager.get(POWER_UP_ATLAS_DESCRIPTOR))
+    }
+
+    fun dispose() {
+        manager.dispose()
     }
 
     class PowerUpAssets(atlas: TextureAtlas){

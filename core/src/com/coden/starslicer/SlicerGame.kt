@@ -16,6 +16,7 @@ class StarSlicerGame : Game() {
     override fun create() {
 
         assets = Assets()
+        assets.load()
 
         swipeRenderer = SwipeRenderer(10, 10, 2,
                                     0.25f, 20f,
@@ -31,8 +32,8 @@ class StarSlicerGame : Game() {
 
     override fun render() {
         super.render()
-        if (assets.manager.update()) {
-            Gdx.app.log("splash screen", "assets loading")
+        if (!assets.updateLoading()) {
+            Gdx.app.log("splash screen", "assets loading, ${assets.progress}")
         }
     }
 

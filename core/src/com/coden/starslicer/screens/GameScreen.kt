@@ -55,7 +55,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
 
-        game.assets.manager.finishLoading()
+        game.assets.finishLoading() // HAS TO BE INITIALIZED IN OTHER SCREEN
 
         cam = OrthographicCamera()
 
@@ -80,11 +80,11 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         renderMainEntities()
 
-        // SWIPE RENDERER
-        game.swipeRenderer.render(cam)
-
         // HUD
         hud.render()
+
+        // SWIPE RENDERER
+        game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
         debugShapes()
@@ -209,7 +209,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Gdx.app.log("GameScreen", "The screen is disposed")
         batch.dispose()
         shapeRenderer.dispose()
-        hud.dispose()
+        game.assets.dispose()
 
     }
 
