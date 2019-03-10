@@ -5,46 +5,62 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.Assets
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
 
-class PowerUpsBar(val x: Float,val  y:Float,val powerUpAssets: Assets.PowerUpAssets, maxNumber: Int = 3) {
+class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, maxNumber: Int = 3) {
 
     val size = 75 * sqRatio
-    init {
-        Gdx.app.log("powerupsbar", "$size")
-    }
 
-    var shieldIcon = PowerUpIcon(x+(0.2f * size), y+0.2f*size, powerUpAssets.getTexture(PowerUp.PowerUpType.SHIELD))
-    var boostIcon = PowerUpIcon(x+(1.4f * size), y+0.2f*size, powerUpAssets.getTexture(PowerUp.PowerUpType.HPBOOST))
-    var shockwaveIcon = PowerUpIcon(x+(2.6f * size), y+0.2f*size, powerUpAssets.getTexture(PowerUp.PowerUpType.SHOCKWAVE))
+    val width = assets.width * sqRatio
+    val height = assets.height * sqRatio
 
-    val width = 0.2f*shieldIcon.width*(6 * maxNumber + 1)
+
+    private val icons = mapOf(
+            SHIELD to PowerUpIcon(x+(0.2f * width), y+0.2f*height, width, height, SHIELD),
+            HPBOOST to PowerUpIcon(x+(1.4f * width), y+0.2f*height, width, height, HPBOOST),
+            SHOCKWAVE to PowerUpIcon(x+(2.6f * width), y+0.2f*height, width, height, SHOCKWAVE)
+    )
+
+    val totalWidth = 0.2f*size*(6 * maxNumber + 1)
+    val totalHeight = height*1.4f
 
     fun update(powerups: Map<PowerUp.PowerUpType, Int>) {
-        shieldIcon.amount = powerups[PowerUp.PowerUpType.SHIELD]
-        boostIcon.amount = powerups[PowerUp.PowerUpType.HPBOOST]
-        shockwaveIcon.amount = powerups[PowerUp.PowerUpType.SHOCKWAVE]
+        for ((powerup, amount) in powerups) {
+            icons[powerup]?.amount = amount
+        }
+    }
+
+    fun updateInput() {
+
+
     }
 
     fun render(batch: SpriteBatch) {
-        shieldIcon.draw(batch)
-        boostIcon.draw(batch)
-        shockwaveIcon.draw(batch)
+        for (icon in icons.values) {
+            icon.draw(batch, assets)
+        }
     }
 
     fun render(shapeRenderer: ShapeRenderer){
-        shapeRenderer.rect(x, y, width, shieldIcon.height*1.4f)
-        renderAmount(shieldIcon, shapeRenderer)
-        renderAmount(boostIcon, shapeRenderer)
-        renderAmount(shockwaveIcon, shapeRenderer)
+        for (icon in icons.values){
+            renderAmount(icon, shapeRenderer)
+        }
     }
 
     fun renderAmount(powerUpIcon: PowerUpIcon, shapeRenderer: ShapeRenderer) {
         shapeRenderer.circle(powerUpIcon.topright.x, powerUpIcon.topright.y, 13f* sqRatio)
-        shapeRenderer.point(powerUpIcon.topright.x, powerUpIcon.topright.y, 0f)
+    }
+
+    fun debug(shapeRenderer: ShapeRenderer) {
+        shapeRenderer.rect(x, y, totalWidth, totalHeight)
+        for (icon in icons.values) {
+            shapeRenderer.rect(icon.x, icon.y, icon.width, icon.height)
+        }
     }
 
 }

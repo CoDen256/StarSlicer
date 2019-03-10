@@ -9,6 +9,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.powerups.PowerUp
 
 class Assets{
@@ -58,8 +59,10 @@ class Assets{
                 PowerUp.PowerUpType.SHOCKWAVE to atlas.findRegion("shockwave") as TextureRegion
         )
 
-        fun getTexture(type: PowerUp.PowerUpType): TextureRegion? {
-            return map[type]
-        }
+        fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
+
+        val width = map[PowerUp.PowerUpType.SHIELD]!!.regionWidth
+        val height = map[PowerUp.PowerUpType.SHIELD]!!.regionHeight
+
     }
 }

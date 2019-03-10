@@ -121,6 +121,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         updateSlicing()
 
         hud.update(powerUpHandler.getPowerUps())
+
     }
 
     fun updateInput() {
@@ -140,6 +141,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun updateSlicing() {
 
         attackerHandler.updateSlicing(blades)
+        hud.updateInput(blades)
 
     }
 
