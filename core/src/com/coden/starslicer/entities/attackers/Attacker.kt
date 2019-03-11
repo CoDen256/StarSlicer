@@ -3,6 +3,7 @@ package com.coden.starslicer.entities.attackers
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
@@ -35,6 +36,8 @@ abstract class Attacker(val name: AttackerType) : Entity {
     abstract val collisional: Boolean
     abstract val state: Int
     abstract override var hitBox: Rectangle
+
+    abstract var roundHitBox: Circle
 
 
     val spriteTexture = textureMap[name]

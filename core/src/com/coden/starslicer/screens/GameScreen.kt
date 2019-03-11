@@ -154,11 +154,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             }
 
         }
-        shapeRenderer.end()
-        return
 
         for (attacker in attackerHandler.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
+            shapeRenderer.circle(attacker.roundHitBox.x, attacker.roundHitBox.y, attacker.roundHitBox.radius)
         }
 
         //shapeRenderer.circle(blade0.pos.x, blade0.pos.y, blade0.radius)

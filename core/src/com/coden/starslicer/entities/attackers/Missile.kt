@@ -1,6 +1,7 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 
 import com.badlogic.gdx.math.Rectangle
@@ -48,15 +49,19 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    private val w = spriteTexture?.width!!
-    private val h = spriteTexture?.height!! *1.5f
+    private val w = spriteTexture?.width!! * 1f * xRatio
+    private val h = spriteTexture?.height!! *1.5f * yRatio
     private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
 
     override val collisional: Boolean = true
 
-    override var hitBox = Rectangle(0f, 0f, 0f, 0f)
-        get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
+    override var hitBox : Rectangle
+        get() = Rectangle(pos.x - h/2, pos.y - h /2, h, h)
+        set(value) {}
 
+    override var roundHitBox: Circle
+        get() = Circle(pos.x, pos.y, h/2)
+        set(value) {}
 
     /*
     states:

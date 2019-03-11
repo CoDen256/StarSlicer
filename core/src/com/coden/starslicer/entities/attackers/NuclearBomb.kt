@@ -1,12 +1,14 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.xRatio
 import com.coden.starslicer.util.yRatio
 
 class NuclearBomb(override val initialPos: Vector2,
@@ -30,8 +32,13 @@ class NuclearBomb(override val initialPos: Vector2,
 
     override val collisional: Boolean = false
 
-    override var hitBox = Rectangle(0f,0f,0f,0f)
+    override var hitBox :Rectangle
         get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
+        set(value) {}
+
+    override var roundHitBox: Circle
+        get() = Circle(pos.x, pos.y, minOf(w, h)/2)
+        set(value) {}
 
     init {
         velocity = when (state) {
@@ -49,7 +56,7 @@ class NuclearBomb(override val initialPos: Vector2,
     override fun update() {
         updateLife()
         pos = pos.add(velocity)
-        sprite.setScale(yRatio, yRatio)
+        sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
     }
 

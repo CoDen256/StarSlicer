@@ -11,7 +11,8 @@ import com.coden.util.swipe.Blade
 
 class HUD(assets: Assets) {
 
-    val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.715f, Gdx.graphics.height*0.05f, assets.powerUpAssets)
+    val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.715f, Gdx.graphics.height*0.05f, assets.powerUpAssets) // TODO: Move HUD to the top,
+                                                                                                              // since its uncomfortable to slice ther
 
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()

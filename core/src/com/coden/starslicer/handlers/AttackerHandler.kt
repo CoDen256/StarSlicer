@@ -37,9 +37,8 @@ class AttackerHandler {
         while (iterator.hasNext()) {
             val attacker = iterator.next()
             attacker.update()
-            if (attacker.collisional) {
-                updateCollision(spaceCraft, attacker)
-            }
+            updateCollision(spaceCraft, attacker)
+
 
             if (attacker.isDead) {
                 Gdx.app.log("attackers.update", "${attacker.name} is dead")
@@ -77,10 +76,10 @@ class AttackerHandler {
 
     fun updateCollision(spaceCraft: SpaceCraft, attacker: Attacker) {
         if (spaceCraft.isShielded) {
-           if (spaceCraft.shieldCircle.contains(attacker.pos)) {
+           if (spaceCraft.shieldCircle.overlaps(attacker.roundHitBox)) {
                attacker.kill()
            }
-        } else if (spaceCraft.hitBox.overlaps(attacker.hitBox)){
+        } else if (spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional){
             attacker.giveDamage(spaceCraft, attacker.damage)
             attacker.kill()
         }

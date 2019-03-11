@@ -1,10 +1,12 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.*
+import java.lang.Float.min
 
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
@@ -14,6 +16,7 @@ class Meteor(override val initialPos: Vector2,
                                     2 -> AttackerType.LARGE_METEOR
                                     else -> throw IllegalArgumentException()
 }){
+
     // Life
     override val lifeSpan = 20f
     override val maxHealth = when (size) {
@@ -58,8 +61,13 @@ class Meteor(override val initialPos: Vector2,
 
     override val collisional = true
 
-    override var hitBox = Rectangle(0f, 0f, width, height)
+    override var hitBox :Rectangle
         get() = Rectangle(pos.x-width/2, pos.y-height/2, width, height)
+        set(value) {}
+
+    override var roundHitBox: Circle
+        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
+        set(value) {}
 
     // state: 0 - miss
     // state: 1 - direct
@@ -81,7 +89,7 @@ class Meteor(override val initialPos: Vector2,
     override fun update() {
         updateLife()
         pos.add(velocity)
-        sprite.setScale(yRatio, yRatio)
+        sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 
         rotate()
