@@ -52,12 +52,14 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
         attackerHandler = AttackerHandler()
-        powerUpHandler = PowerUpHandler(spaceCraft)
+
         hud = HUD(game.assets)
 
 
-        data = EntityData(powerUpHandler, attackerHandler, spaceCraft, hud)
+        data = EntityData(spaceCraft, hud)
 
+
+        powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 
         Gdx.app.log("GameScreen", "The screen is created")
@@ -131,7 +133,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun updateInput() {
         attackerHandler.debugSpawning()
-        powerUpHandler.updateInput()
         hud.updateInput()
         inputManager.updateSwiping()
         inputManager.updateClicking()
@@ -148,7 +149,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             shapeRenderer.circle(spaceCraft.x, spaceCraft.y, spaceCraft.shieldRadius)
         }
 
-        for (shockwave in powerUpHandler.shockWaves) {
+        for (shockwave in data.shockWaves) {
             if (shockwave.active){
                 shapeRenderer.circle(spaceCraftX, spaceCraftY, shockwave.radius)
             }
