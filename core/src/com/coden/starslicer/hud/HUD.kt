@@ -11,7 +11,7 @@ import com.coden.util.swipe.Blade
 
 class HUD(assets: Assets) {
 
-    val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.75f, Gdx.graphics.height*0.05f, assets.powerUpAssets)
+    val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.715f, Gdx.graphics.height*0.05f, assets.powerUpAssets)
 
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
@@ -39,7 +39,7 @@ class HUD(assets: Assets) {
 
         powerUpsBar.render(shapeRenderer)
 
-        debug(shapeRenderer)
+        //debug(shapeRenderer)
 
         shapeRenderer.end()
     }

@@ -5,10 +5,11 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.util.sqRatio
 
 class Shield(private val spaceCraft: SpaceCraft): PowerUp(PowerUpType.SHIELD) {
 
-    private val maxRadius = 120f
+    private val maxRadius = 180f * sqRatio
     private val lifeSpan = 10f
 
     private var radius = 0f

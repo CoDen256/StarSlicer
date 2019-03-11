@@ -17,8 +17,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
-import com.coden.starslicer.util.spaceCraftX
-import com.coden.starslicer.util.spaceCraftY
+import com.coden.starslicer.util.*
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -47,8 +46,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
     override fun show() {
-        // HAS TO BE INITIALIZED IN OTHER SCREEN
-        game.assets.finishLoading()
+
+        game.assets.finishLoading()// TODO: Initialize in starting screen
         spaceCraft = SpaceCraft()
 
 
@@ -63,6 +62,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
+        Gdx.app.log("GameScreen", "xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
 
 
 

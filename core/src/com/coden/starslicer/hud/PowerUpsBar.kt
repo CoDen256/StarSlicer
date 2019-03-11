@@ -14,19 +14,20 @@ import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.util.Assets
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
+import com.coden.starslicer.util.yRatio
 
 class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, maxNumber: Int = 3) {
 
     val size = 75 * sqRatio
 
-    val width = assets.width * sqRatio
-    val height = assets.height * sqRatio
+    val width = assets.width * xRatio * 1.5f
+    val height = assets.height * yRatio * 1.5f
 
 
     val icons = mapOf(
-                SHIELD to PowerUpIcon(x+(0.2f * width), y+0.2f*height, width, height, SHIELD),
-                HPBOOST to PowerUpIcon(x+(1.4f * width), y+0.2f*height, width, height, HPBOOST),
-                SHOCKWAVE to PowerUpIcon(x+(2.6f * width), y+0.2f*height, width, height, SHOCKWAVE)
+                SHIELD to PowerUpIcon(x+(0.5f * width), y+0.2f*height, width, height, SHIELD),
+                HPBOOST to PowerUpIcon(x+(2.0f * width), y+0.2f*height, width, height, HPBOOST),
+                SHOCKWAVE to PowerUpIcon(x+(3.5f * width), y+0.2f*height, width, height, SHOCKWAVE)
         )
 
 

@@ -55,7 +55,6 @@ class Blade(val pointer: Int){
         val dx = v.x - lastPoint.x
         val dy = v.y - lastPoint.y
         val len = Math.sqrt((dx * dx + dy * dy).toDouble()).toFloat()
-        //TODO: use minDistanceSq
 
         //if we are under required distance
         if (len < minDistance && (inputPoints.size > 1 || len < initialDistance))

@@ -15,12 +15,11 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
     val shockWaves = ArrayList<ShockWave>()
 
     init {
-        add(HPBOOST)
-        add(HPBOOST)
-        add(SHIELD)
-        add(SHIELD)
-        add(SHOCKWAVE)
-        add(SHOCKWAVE)
+        for (i in 0 until 5) {
+            add(HPBOOST)
+            add(SHIELD)
+            add(SHOCKWAVE)
+        }
     }
 
     fun updateAll() {
