@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.sqRatio
 
 class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3) {
@@ -19,16 +20,18 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     init {
         var i = marginX
         for (icon in data.powerUpIcons) {
-            Gdx.app.log("initing", "$x ${i*size}")
-            Gdx.app.log("initing", "$x ${totalWidth}")
             icon.initialize(x + i * size, y + marginY*size, size)
             i += 1 + marginX
         }
     }
 
     fun update() {
-        for ( icon in data.powerUpIcons) {
-            icon.amount = data.powerUps.count{p -> p.type == icon.type }
+        for (icon in data.powerUpIcons) {
+            icon.amount = when (icon.type) {
+                SHIELD    -> data.shields.size
+                SHOCKWAVE -> data.shockWaves.size
+                HPBOOST   -> data.boosts.size
+            }
         }
     }
 

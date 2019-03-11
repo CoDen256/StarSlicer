@@ -8,7 +8,6 @@ import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
-import com.coden.starslicer.hud.PowerUpIcon
 
 class InputManager(private val data: EntityData) {
 
@@ -45,8 +44,8 @@ class InputManager(private val data: EntityData) {
     }
 
     private fun usePowerUp(ability: PowerUp.PowerUpType) = when (ability) {
-        SHIELD -> if (!data.shields.isEmpty() && !data.spaceCraft.isShielded) data.shields[0].applyEffect() else Unit
-        HPBOOST -> if (!data.boosts.isEmpty()) data.boosts[0].applyEffect(data.spaceCraft) else Unit
+        SHIELD    -> if (!data.shields.isEmpty() && !data.spaceCraft.isShielded) data.shields[0].applyEffect() else Unit
+        HPBOOST   -> if (!data.boosts.isEmpty()) data.boosts[0].applyEffect(data.spaceCraft) else Unit
         SHOCKWAVE -> {
             if (!data.shockWaves.isEmpty()) {
                 for (shockWave in data.shockWaves) if (!shockWave.active) {
@@ -59,9 +58,9 @@ class InputManager(private val data: EntityData) {
     }
 
     private fun addPowerUp(ability: PowerUp.PowerUpType) = when (ability) {
-       SHIELD -> data.shields.add(Shield(data.spaceCraft))
-       HPBOOST -> data.boosts.add(HPBoost())
-       SHOCKWAVE -> data.shockWaves.add(ShockWave())
+        SHIELD     -> data.shields.add(Shield(data.spaceCraft))
+        HPBOOST    -> data.boosts.add(HPBoost())
+        SHOCKWAVE  -> data.shockWaves.add(ShockWave())
     }
 
 }

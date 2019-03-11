@@ -15,8 +15,6 @@ data class EntityData(val spaceCraft: SpaceCraft, val assets: Assets) {
     val shields = ArrayList<Shield>()
     val shockWaves = ArrayList<ShockWave>()
 
-    val powerUps = ArrayList<PowerUp>()
-
     val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
     val maxNuclearBombs = arrayListOf(8, 0) // 0 - missing, 1 - direct
     val maxMeteors = arrayListOf(17, 8, 2) // 0 - small, 1-medium, 2-large

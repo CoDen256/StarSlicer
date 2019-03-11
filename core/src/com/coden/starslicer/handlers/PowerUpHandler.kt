@@ -13,9 +13,9 @@ class PowerUpHandler(private val data: EntityData) {
 
     private fun update(ability: PowerUp.PowerUpType) {
         val iterator = when (ability) {
-            SHOCKWAVE -> data.shockWaves.iterator()
-            SHIELD -> data.shields.iterator()
-            HPBOOST -> data.boosts.iterator()
+            SHOCKWAVE  -> data.shockWaves.iterator()
+            SHIELD     -> data.shields.iterator()
+            HPBOOST    -> data.boosts.iterator()
         }
 
         while (iterator.hasNext()) {
@@ -24,7 +24,6 @@ class PowerUpHandler(private val data: EntityData) {
                 powerUp.update()
                 if (powerUp.isDead) {
                     iterator.remove()
-                    data.powerUps.remove(powerUp)
                     Gdx.app.log("powerupUpdate", "${powerUp.type} is dead")
                 }
             }

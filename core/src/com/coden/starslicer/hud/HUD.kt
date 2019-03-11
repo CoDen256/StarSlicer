@@ -3,13 +3,8 @@ package com.coden.starslicer.hud
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.EntityData
 
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.util.Assets
-import com.coden.util.swipe.Blade
-import javax.swing.text.html.parser.Entity
 
 class HUD(data: EntityData) {
 
