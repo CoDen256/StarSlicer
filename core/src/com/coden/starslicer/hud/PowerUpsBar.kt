@@ -1,64 +1,46 @@
 package com.coden.starslicer.hud
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.BladePoint
-import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.powerUps
-import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
-import com.coden.starslicer.entities.powerups.Shield
-import com.coden.starslicer.util.Assets
+import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.sqRatio
-import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
 
-class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, maxNumber: Int = 3) {
+class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3) {
 
-    val size = 75 * sqRatio
+    val size = data.powerUpIconAssets.width * sqRatio
 
-    val width = assets.width * xRatio * 1.5f
-    val height = assets.height * yRatio * 1.5f
+    val marginX = 0.5f
+    val marginY = 0.2f
 
+    val totalWidth = ((maxNumber+1)*marginX + maxNumber)*size
+    val totalHeight = size*(1+2*marginY)
 
-    val icons = mapOf(
-                SHIELD to PowerUpIcon(x+(0.5f * width), y+0.2f*height, width, height, SHIELD),
-                HPBOOST to PowerUpIcon(x+(2.0f * width), y+0.2f*height, width, height, HPBOOST),
-                SHOCKWAVE to PowerUpIcon(x+(3.5f * width), y+0.2f*height, width, height, SHOCKWAVE)
-        )
-
-
-    val totalWidth = 0.2f*size*(6 * maxNumber + 1)
-    val totalHeight = height*1.4f
+    init {
+        var i = marginX
+        for (icon in data.powerUpIcons) {
+            Gdx.app.log("initing", "$x ${i*size}")
+            Gdx.app.log("initing", "$x ${totalWidth}")
+            icon.initialize(x + i * size, y + marginY*size, size)
+            i += 1 + marginX
+        }
+    }
 
     fun update() {
-        for ( (type, icon) in icons) {
-            icon.amount = powerUps.count{p -> p.type == type }
+        for ( icon in data.powerUpIcons) {
+            icon.amount = data.powerUps.count{p -> p.type == icon.type }
         }
     }
 
-    fun updateInput() {
-        if (Gdx.input.justTouched()) {
-            for (powerup in icons.values) {
-                if (powerup.hitBox.contains(Gdx.input.x * 1f, Gdx.graphics.height-Gdx.input.y * 1f)) {
-
-                }
-            }
-        }
-
-    }
 
     fun render(batch: SpriteBatch) {
-        for (icon in icons.values) {
-            icon.draw(batch, assets)
+        for (icon in data.powerUpIcons) {
+            icon.draw(batch)
         }
     }
 
     fun render(shapeRenderer: ShapeRenderer){
-        for (icon in icons.values){
+        for (icon in data.powerUpIcons){
             renderAmount(icon, shapeRenderer)
         }
     }
@@ -69,8 +51,8 @@ class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, m
 
     fun debug(shapeRenderer: ShapeRenderer) {
         shapeRenderer.rect(x, y, totalWidth, totalHeight)
-        for (icon in icons.values) {
-            shapeRenderer.rect(icon.x, icon.y, icon.width, icon.height)
+        for (icon in data.powerUpIcons) {
+            shapeRenderer.rect(icon.pos.x, icon.pos.y, icon.width, icon.width)
         }
     }
 

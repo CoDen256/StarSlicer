@@ -1,31 +1,36 @@
 package com.coden.starslicer.hud
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.*
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
-class PowerUpIcon(val x: Float, val y: Float,
-                  val width: Float, val height: Float,
-                  val type: PowerUp.PowerUpType) {
+class PowerUpIcon(val type: PowerUp.PowerUpType, private val texture: TextureRegion?) {
+
+    var pos = Vector2()
+    var width = 0f
 
     var amount: Int = 0
 
+    var topright: Vector2
+    get() = Vector2(pos.x + width, pos.y + width)
+    set(value) {}
+
+    var hitBox: Rectangle
+    get() = Rectangle(pos.x, pos.y, width, width)
+    set(value) {}
+
     val font = BitmapFont()
-
-    var topright = Vector2(0f, 0f)
-    get() = Vector2(x + width, y + width)
-
-    var hitBox = Rectangle(x, y, width, height)
-    get() = Rectangle(x, y, width, height)
-
     val glyphLayout = GlyphLayout()
 
+    fun initialize(x: Float, y: Float, size: Float) {
+        pos = Vector2(x, y)
+        this.width = size
+    }
 
-    fun draw(batch: SpriteBatch, assets: Assets.PowerUpAssets) {
-        batch.draw(assets.getTexture(type), x, y, width, height)
+    fun draw(batch: SpriteBatch) {
+        batch.draw(texture, pos.x, pos.y, width, width)
 
         font.data.scaleX = 1.5f*xRatio
         font.data.scaleY = 1.5f*yRatio

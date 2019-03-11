@@ -48,17 +48,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         game.assets.finishLoading()// TODO: Initialize in starting screen
+
         spaceCraft = SpaceCraft()
 
 
-        attackerHandler = AttackerHandler()
+        data = EntityData(spaceCraft, game.assets)
 
-        hud = HUD(game.assets)
+        hud = HUD(data)
 
-
-        data = EntityData(spaceCraft, hud)
-
-
+        attackerHandler = AttackerHandler(data)
         powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 
@@ -67,13 +65,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Gdx.app.log("GameScreen", "xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
 
 
-
         cam = OrthographicCamera()
-
         cam.setToOrtho(false, w, h)
 
         batch = SpriteBatch()
-
         shapeRenderer = ShapeRenderer()
 
         cam.update()
@@ -110,7 +105,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.render(batch)
         attackerHandler.renderAll(batch)
-        powerUpHandler.renderAll(batch)
 
 
         batch.end()
@@ -121,7 +115,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         spaceCraft.update(game.swipeRenderer.swipe)
 
-        attackerHandler.updateAll(spaceCraft)
+        attackerHandler.updateAll()
         powerUpHandler.updateAll()
 
 
@@ -156,7 +150,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         }
 
-        for (attacker in attackerHandler.attackers) {
+        for (attacker in data.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
             shapeRenderer.circle(attacker.roundHitBox.x, attacker.roundHitBox.y, attacker.roundHitBox.radius)
         }

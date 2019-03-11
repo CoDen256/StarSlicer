@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.*
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.powerUps
 
 class PowerUpHandler(private val data: EntityData) {
 
@@ -25,7 +24,7 @@ class PowerUpHandler(private val data: EntityData) {
                 powerUp.update()
                 if (powerUp.isDead) {
                     iterator.remove()
-                    powerUps.remove(powerUp)
+                    data.powerUps.remove(powerUp)
                     Gdx.app.log("powerupUpdate", "${powerUp.type} is dead")
                 }
             }

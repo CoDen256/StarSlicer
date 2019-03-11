@@ -13,44 +13,49 @@ import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
-class AttackerHandler {
-
-    val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
-    val maxNuclearBombs = arrayListOf(8, 0) //0 - missing, 1 - direct
-    val maxMeteors = arrayListOf(17, 8, 2) // 0 - small, 1-medium, 2-large
-    // maybe ratio amount can be applied to speed when difficulty is bigger
-
-    var currentMissiles = arrayListOf(0, 0, 0, 0)
-    var currentNuclearBombs = arrayListOf(0, 0)
-    var currentMeteors = arrayListOf(0, 0, 0)
-
-    val attackers = ArrayList<Attacker>()
+class AttackerHandler(private val data: EntityData) {
 
     fun renderAll(batch: SpriteBatch) {
-        for (attacker in attackers) {
+        for (attacker in data.attackers) {
             attacker.render(batch)
         }
     }
 
-    fun updateAll(spaceCraft: SpaceCraft){
-        val iterator = attackers.iterator()
+    fun updateAll(){
+        val iterator = data.attackers.iterator()
         while (iterator.hasNext()) {
             val attacker = iterator.next()
             attacker.update()
-            updateCollision(spaceCraft, attacker)
-
+            updateCollision(attacker)
 
             if (attacker.isDead) {
                 Gdx.app.log("attackers.update", "${attacker.name} is dead")
-                increment(attacker.name, attacker.state, -1)
-                entities.remove(attacker)
+                decrement(attacker.name, attacker.state)
+                entities.remove(attacker) // Removing from all entities
                 iterator.remove()
             }
         }
-
-
     }
 
+    fun updateCollision(attacker: Attacker) {
+        if (data.spaceCraft.isShielded) {
+            if (data.spaceCraft.shieldCircle.overlaps(attacker.roundHitBox)) {
+                attacker.kill()
+            }
+        } else if (data.spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional){
+            attacker.giveDamage(data.spaceCraft, attacker.damage)
+            attacker.kill()
+        }
+    }
+
+    private fun decrement(name: Attacker.AttackerType, index: Int) = when (name) {
+        MISSILE -> data.currentMissiles[index] --
+        NUCLEAR_BOMB -> data.currentNuclearBombs[index] --
+        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index] --
+    }
+
+
+    // TODO: Move spawning to ProgressClass
     fun debugSpawning() {
 
         if (Gdx.input.justTouched()) {
@@ -60,7 +65,6 @@ class AttackerHandler {
                 Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor()
             }
         }
-
 
         when {
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile(0)
@@ -74,57 +78,47 @@ class AttackerHandler {
         }
     }
 
-    fun updateCollision(spaceCraft: SpaceCraft, attacker: Attacker) {
-        if (spaceCraft.isShielded) {
-           if (spaceCraft.shieldCircle.overlaps(attacker.roundHitBox)) {
-               attacker.kill()
-           }
-        } else if (spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional){
-            attacker.giveDamage(spaceCraft, attacker.damage)
-            attacker.kill()
-        }
-    }
-
-    fun spawnMissile(state: Int = -100) {
+    private fun spawnMissile(state: Int = -100) {
         val newState = if (state == -100) MathUtils.random(0,3) else state
 
-        if (currentMissiles[newState] >= maxMissiles[newState]) return
+        if (data.currentMissiles[newState] >= data.maxMissiles[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState)
-        increment(missile.name, newState, 1)
-        attackers.add(missile)
+        increment(missile.name, newState)
+        data.attackers.add(missile)
     }
 
-    fun spawnNuclearBomb(state: Int = -100) {
+    private fun spawnNuclearBomb(state: Int = -100) {
         val newState = if (state == -100) MathUtils.random(0,1) else state
 
-        if (currentNuclearBombs[newState] >= maxNuclearBombs[newState]) return
+        if (data.currentNuclearBombs[newState] >= data.maxNuclearBombs[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, newState)
-        increment(nuclearBomb.name, newState, 1)
-        attackers.add(nuclearBomb)
+        increment(nuclearBomb.name, newState)
+        data.attackers.add(nuclearBomb)
     }
 
-    fun spawnMeteor(size: Int = -100,state: Int = -100) {
+    private fun spawnMeteor(size: Int = -100,state: Int = -100) {
         val newState = if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1) else state
         val newSize = if (size == -100) MathUtils.random(0,2) else size
 
-        if (currentMeteors[newSize] >= maxMeteors[newSize]) return
+        if (data.currentMeteors[newSize] >= data.maxMeteors[newSize]) return
 
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize)
-        increment(meteor.name, newSize, 1)
-        attackers.add(meteor)
+        increment(meteor.name, newSize)
+        data.attackers.add(meteor)
+    }
+
+    private fun increment(name: Attacker.AttackerType, index: Int) = when (name) {
+        MISSILE -> data.currentMissiles[index] ++
+        NUCLEAR_BOMB -> data.currentNuclearBombs[index] ++
+        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index] ++
     }
 
 
-    fun increment(name: Attacker.AttackerType, state: Int, value: Int) = when (name) {
-        MISSILE -> currentMissiles[state] += value
-        NUCLEAR_BOMB -> currentNuclearBombs[state] += value
-        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> currentMeteors[state] += value
-    }
 
 
 }
