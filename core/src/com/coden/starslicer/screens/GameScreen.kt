@@ -47,29 +47,31 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
     override fun show() {
-
+        // HAS TO BE INITIALIZED IN OTHER SCREEN
+        game.assets.finishLoading()
         spaceCraft = SpaceCraft()
 
 
         attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler(spaceCraft)
+        hud = HUD(game.assets)
 
 
-        data = EntityData(powerUpHandler, attackerHandler, spaceCraft)
+        data = EntityData(powerUpHandler, attackerHandler, spaceCraft, hud)
 
         inputManager = InputManager(data)
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
 
-        game.assets.finishLoading() // HAS TO BE INITIALIZED IN OTHER SCREEN
+
 
         cam = OrthographicCamera()
 
         cam.setToOrtho(false, w, h)
 
         batch = SpriteBatch()
-        hud = HUD(game.assets)
+
         shapeRenderer = ShapeRenderer()
 
         cam.update()
@@ -123,15 +125,16 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         updateInput()
 
-        hud.update(powerUpHandler.getPowerUps())
+        hud.update()
 
     }
 
     fun updateInput() {
-        attackerHandler.updateInput()
+        attackerHandler.debugSpawning()
         powerUpHandler.updateInput()
         hud.updateInput()
         inputManager.updateSwiping()
+        inputManager.updateClicking()
 
     }
 
@@ -151,6 +154,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             }
 
         }
+        shapeRenderer.end()
+        return
 
         for (attacker in attackerHandler.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
@@ -165,8 +170,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         }
 
 
-
         shapeRenderer.end()
+
     }
     fun renderFPS(batch: SpriteBatch) {
         font.draw(batch, Gdx.graphics.framesPerSecond.toString(), w-50, h-75)

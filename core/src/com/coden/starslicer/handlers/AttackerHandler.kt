@@ -52,7 +52,7 @@ class AttackerHandler {
 
     }
 
-    fun updateInput() {
+    fun debugSpawning() {
 
         if (Gdx.input.justTouched()) {
             when{

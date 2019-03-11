@@ -8,7 +8,9 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.powerUps
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
+import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.util.Assets
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
@@ -21,18 +23,19 @@ class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, m
     val height = assets.height * sqRatio
 
 
-    private val icons = mapOf(
-            SHIELD to PowerUpIcon(x+(0.2f * width), y+0.2f*height, width, height, SHIELD),
-            HPBOOST to PowerUpIcon(x+(1.4f * width), y+0.2f*height, width, height, HPBOOST),
-            SHOCKWAVE to PowerUpIcon(x+(2.6f * width), y+0.2f*height, width, height, SHOCKWAVE)
-    )
+    val icons = mapOf(
+                SHIELD to PowerUpIcon(x+(0.2f * width), y+0.2f*height, width, height, SHIELD),
+                HPBOOST to PowerUpIcon(x+(1.4f * width), y+0.2f*height, width, height, HPBOOST),
+                SHOCKWAVE to PowerUpIcon(x+(2.6f * width), y+0.2f*height, width, height, SHOCKWAVE)
+        )
+
 
     val totalWidth = 0.2f*size*(6 * maxNumber + 1)
     val totalHeight = height*1.4f
 
-    fun update(powerups: Map<PowerUp.PowerUpType, Int>) {
-        for ((powerup, amount) in powerups) {
-            icons[powerup]?.amount = amount
+    fun update() {
+        for ( (type, icon) in icons) {
+            icon.amount = powerUps.count{p -> p.type == type }
         }
     }
 

@@ -18,12 +18,13 @@ class HUD(assets: Assets) {
 
 
 
-    fun update(powerUps: Map<PowerUp.PowerUpType, Int>) {
-        powerUpsBar.update(powerUps)
+    fun update() {
+        powerUpsBar.update()
+
     }
 
     fun updateInput() {
-        powerUpsBar.updateInput()
+
     }
 
     fun render() {

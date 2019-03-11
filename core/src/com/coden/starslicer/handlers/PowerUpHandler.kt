@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.powerups.*
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.powerUps
 
 class PowerUpHandler(private val spaceCraft: SpaceCraft) {
 
@@ -13,6 +14,14 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
     val shields = ArrayList<Shield>()
     val shockWaves = ArrayList<ShockWave>()
 
+    init {
+        add(HPBOOST)
+        add(HPBOOST)
+        add(SHIELD)
+        add(SHIELD)
+        add(SHOCKWAVE)
+        add(SHOCKWAVE)
+    }
 
     fun updateAll() {
         update(HPBOOST)
@@ -44,7 +53,7 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
         SHOCKWAVE -> shockWaves.add(ShockWave())
     }
 
-    private fun use(ability: PowerUp.PowerUpType) = when (ability) {
+    fun use(ability: PowerUp.PowerUpType) = when (ability) {
         SHIELD -> if (!shields.isEmpty() && !spaceCraft.isShielded) shields[0].applyEffect() else Unit
         HPBOOST -> if (!boosts.isEmpty()) boosts[0].applyEffect(spaceCraft) else Unit
         SHOCKWAVE -> {
@@ -68,12 +77,13 @@ class PowerUpHandler(private val spaceCraft: SpaceCraft) {
         }
 
         while (iterator.hasNext()) {
-            val powerup = iterator.next()
-            if (powerup.active) {
-                powerup.update()
-                if (powerup.isDead) {
+            val powerUp = iterator.next()
+            if (powerUp.active) {
+                powerUp.update()
+                if (powerUp.isDead) {
                     iterator.remove()
-                    Gdx.app.log("powerupUpdate", "${powerup.name} is dead")
+                    powerUps.remove(powerUp)
+                    Gdx.app.log("powerupUpdate", "${powerUp.type} is dead")
                 }
             }
         }
