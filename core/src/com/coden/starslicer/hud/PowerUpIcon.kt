@@ -18,7 +18,8 @@ class PowerUpIcon(val x: Float, val y: Float,
     var topright = Vector2(0f, 0f)
     get() = Vector2(x + width, y + width)
 
-    val hitBox = Rectangle(x, y, width, height)
+    var hitBox = Rectangle(x, y, width, height)
+    get() = Rectangle(x, y, width, height)
 
     val glyphLayout = GlyphLayout()
 

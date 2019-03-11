@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
+import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.Assets
@@ -36,7 +37,13 @@ class PowerUpsBar(val x: Float,val  y:Float, val assets: Assets.PowerUpAssets, m
     }
 
     fun updateInput() {
+        if (Gdx.input.justTouched()) {
+            for (powerup in icons.values) {
+                if (powerup.hitBox.contains(Gdx.input.x * 1f, Gdx.graphics.height-Gdx.input.y * 1f)) {
 
+                }
+            }
+        }
 
     }
 

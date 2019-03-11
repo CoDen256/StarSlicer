@@ -22,13 +22,8 @@ class HUD(assets: Assets) {
         powerUpsBar.update(powerUps)
     }
 
-    fun updateInput(blades: ArrayList<BladePoint>) {
-        if (blades[0].active || blades[1].active){
-            return
-        }
-
+    fun updateInput() {
         powerUpsBar.updateInput()
-
     }
 
     fun render() {

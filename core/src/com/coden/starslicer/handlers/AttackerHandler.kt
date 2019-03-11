@@ -75,17 +75,6 @@ class AttackerHandler {
         }
     }
 
-    fun updateSlicing(blades: ArrayList<BladePoint>){
-        if (!(blades[0].active || blades[1].active)){
-            return
-        }
-        for (attacker in attackers) {
-            if (blades[0].isSlicing(attacker.hitBox) || blades[1].isSlicing(attacker.hitBox)) {
-                attacker.takeDamage(blades[0].damage)
-            }
-        }
-    }
-
     fun updateCollision(spaceCraft: SpaceCraft, attacker: Attacker) {
         if (spaceCraft.isShielded) {
            if (spaceCraft.shieldCircle.contains(attacker.pos)) {
@@ -121,7 +110,7 @@ class AttackerHandler {
 
     fun spawnMeteor(size: Int = -100,state: Int = -100) {
         val newState = if (state == -100) MathUtils.random(0,1)*MathUtils.random(0,1) else state
-        val newSize = if (size == -100) MathUtils.random(0,3) else size
+        val newSize = if (size == -100) MathUtils.random(0,2) else size
 
         if (currentMeteors[newSize] >= maxMeteors[newSize]) return
 

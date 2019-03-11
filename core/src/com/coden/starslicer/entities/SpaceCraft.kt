@@ -4,16 +4,14 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Circle
-import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.util.spaceCraftX
-import com.coden.starslicer.util.spaceCraftY
+import com.coden.starslicer.BladePoint
+import com.coden.starslicer.util.*
+import com.coden.util.swipe.SwipeHandler
 
 class SpaceCraft : Entity {
-
-    val spaceCraftTexture: Texture = Texture("spacecraft.png")
+    var spaceCraftTexture: Texture = Texture("spacecraft.png")
 
     var isShielded = false
     var shieldRadius = 0f
@@ -43,13 +41,35 @@ class SpaceCraft : Entity {
 
     override var hitBox = Rectangle(relativeX, relativeY, relativeWidth, relativeHeight)
 
+    private var blades = arrayOf(BladePoint(0), BladePoint(1))
+
+    val firstBlade = blades[0]
+    val secondBlade = blades[1]
+
+
     fun render(batch: SpriteBatch) {
 
         batch.draw(spaceCraftTexture, relativeX, relativeY, relativeWidth, relativeHeight)
     }
 
-    fun update() {
+    fun update(swipe: SwipeHandler) {
 
+        for (blade in blades) {
+            blade.update(swipe)
+        }
+
+        updateInput()
+
+    }
+
+    fun updateInput() {
+        if (Gdx.input.isTouched(0)) {
+            firstBlade.active = true
+
+        }
+        if (Gdx.input.isTouched(1)) {
+            secondBlade.active = true
+        }
     }
 
 

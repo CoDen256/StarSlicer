@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.BladePoint
+import com.coden.starslicer.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
+import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
@@ -30,7 +32,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var attackerHandler: AttackerHandler
     private lateinit var powerUpHandler: PowerUpHandler
 
-    private var blades = ArrayList<BladePoint>()
+    private lateinit var data: EntityData
+    private lateinit var inputManager: InputManager
+
+
 
     val font = BitmapFont()
 
@@ -44,13 +49,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         spaceCraft = SpaceCraft()
-        blades.add(BladePoint(0, spaceCraft))
-        blades.add(BladePoint(1, spaceCraft))
+
 
         attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler(spaceCraft)
 
 
+        data = EntityData(powerUpHandler, attackerHandler, spaceCraft)
+
+        inputManager = InputManager(data)
 
         Gdx.app.log("GameScreen", "The screen is created")
         Gdx.app.log("GameScreen", "Size: $w x $h")
@@ -108,17 +115,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     // UPDATE SECTION
     fun update() {
 
-        spaceCraft.update()
+        spaceCraft.update(game.swipeRenderer.swipe)
 
         attackerHandler.updateAll(spaceCraft)
         powerUpHandler.updateAll()
 
-        for (blade in blades){
-            blade.update(game.swipeRenderer.swipe)
-        }
 
         updateInput()
-        updateSlicing()
 
         hud.update(powerUpHandler.getPowerUps())
 
@@ -127,21 +130,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun updateInput() {
         attackerHandler.updateInput()
         powerUpHandler.updateInput()
-
-        if (Gdx.input.isTouched(0)) {
-            blades[0].active = true
-
-        }
-        if (Gdx.input.isTouched(1)) {
-            blades[1].active = true
-        }
-
-    }
-
-    fun updateSlicing() {
-
-        attackerHandler.updateSlicing(blades)
-        hud.updateInput(blades)
+        hud.updateInput()
+        inputManager.updateSwiping()
 
     }
 
@@ -167,10 +157,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         }
 
         //shapeRenderer.circle(blade0.pos.x, blade0.pos.y, blade0.radius)
-        for (hitBox in blades[0].hitBoxes){
+        for (hitBox in spaceCraft.firstBlade.hitBoxes){
             renderRect(shapeRenderer, hitBox)
         }
-        for (hitBox in blades[1].hitBoxes){
+        for (hitBox in spaceCraft.secondBlade.hitBoxes){
             renderRect(shapeRenderer, hitBox)
         }
 
