@@ -20,13 +20,6 @@ fun dist4(x1:Float, y1:Float, x2:Float, y2:Float) = dist2(x2-x1, y2-y1)
 fun dist2(x:Float, y:Float) = Math.sqrt(Math.pow(x.toDouble(), 2.0) + Math.pow(y.toDouble(), 2.0)).toFloat()
 fun dist2(v1:Vector2, v2:Vector2) = dist2(v1.x-v2.x, v1.y-v2.y)
 
-val textureMap = mapOf(
-        Attacker.AttackerType.MISSILE to Texture("entities/attackers/missile.png"),
-        Attacker.AttackerType.NUCLEAR_BOMB to Texture("entities/attackers/nuclearbomb.png"),
-        Attacker.AttackerType.SMALL_METEOR to Texture("entities/attackers/smallMeteor.png"),
-        Attacker.AttackerType.MEDIUM_METEOR to Texture("entities/attackers/mediumMeteor.png"),
-        Attacker.AttackerType.LARGE_METEOR to Texture("entities/attackers/largeMeteor.png")
-        )
 
 val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f

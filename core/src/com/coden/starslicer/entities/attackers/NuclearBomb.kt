@@ -1,22 +1,22 @@
 package com.coden.starslicer.entities.attackers
 
-import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.util.spaceCraftCenter
-import com.coden.starslicer.util.sqRatio
-import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
+import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,
-                 override val state: Int): Attacker(AttackerType.NUCLEAR_BOMB){
+                  override val state: Int,
+                  assets: Assets.AttackerAssets): Attacker(){
 
     private val log = Logger("NuclearBomb", Logger.NONE)
     // Life
+    override val name = AttackerType.NUCLEAR_BOMB
     override val lifeSpan = 5f
     override val maxHealth = 20f
     override var health = maxHealth
@@ -29,9 +29,11 @@ class NuclearBomb(override val initialPos: Vector2,
     override var pos: Vector2 = initialPos
     private var velocity: Vector2
 
-    // Sprite
-    private val w = spriteTexture?.width!!/1.5f
-    private val h = spriteTexture?.height!!/1.5f
+    override val spriteTexture = assets.getTexture(name)
+    override val sprite = Sprite(spriteTexture)
+
+    private val w = spriteTexture!!.regionWidth/1.5f
+    private val h = spriteTexture!!.regionHeight/1.5f
 
     override val collisional: Boolean = false
 

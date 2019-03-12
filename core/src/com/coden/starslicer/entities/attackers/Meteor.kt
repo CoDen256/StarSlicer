@@ -8,20 +8,31 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
+import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
 import java.lang.Float.min
+import javax.swing.text.html.parser.Entity
 
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
-             size: Int): Attacker() {
+             val size: Int,
+             assets: Assets.AttackerAssets): Attacker() {
 
     private val log = Logger("Meteor", Logger.NONE)
     // Life
+
+    override val name = when (size) {
+        0 -> AttackerType.SMALL_METEOR
+        1 -> AttackerType.MEDIUM_METEOR
+        2 -> AttackerType.LARGE_METEOR
+        else -> throw IllegalArgumentException()
+    }
+
     override val lifeSpan = 20f
     override val maxHealth = when (size) {
         0 -> 30f
         1 -> 70f
-        2 -> 150f
+        2 -> 200f
         else -> throw IllegalArgumentException()
     }
 
@@ -54,12 +65,8 @@ class Meteor(override val initialPos: Vector2,
     private var velocity = Vector2()
 
 
-    // Sprite
-    override val spriteTexture: TextureRegion?
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-    override val sprite: Sprite
-        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
-
+    override val spriteTexture: TextureRegion? = assets.getTexture(name)
+    override val sprite = Sprite(spriteTexture)
 
     private val width = spriteTexture!!.regionWidth * xRatio/1f
     private val height = spriteTexture!!.regionHeight * yRatio/1f

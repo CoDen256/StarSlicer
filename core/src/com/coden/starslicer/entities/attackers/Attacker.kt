@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
-import com.coden.starslicer.util.textureMap
 
 abstract class Attacker : Entity {
 
@@ -20,9 +19,7 @@ abstract class Attacker : Entity {
 
     // Life
     abstract val lifeSpan : Float
-
-    abstract override var health: Float
-    abstract override var damage: Float
+    open val name: AttackerType? = null
 
     private var life = 0f
     override var isDead = false
@@ -30,13 +27,11 @@ abstract class Attacker : Entity {
     // Movement
     abstract val movementSpeed: Float
     abstract val initialPos: Vector2
-    abstract override var pos: Vector2
 
 
     // Sprite
     abstract val collisional: Boolean
     abstract val state: Int
-    abstract override var hitBox: Rectangle
 
     abstract var roundHitBox: Circle
 

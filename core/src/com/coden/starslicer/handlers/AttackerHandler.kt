@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.*
@@ -13,6 +12,7 @@ import com.coden.starslicer.entities.attackers.Attacker.AttackerType.*
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
+import java.lang.IllegalArgumentException
 
 class AttackerHandler(private val data: EntityData) {
 
@@ -52,10 +52,11 @@ class AttackerHandler(private val data: EntityData) {
         }
     }
 
-    private fun decrement(name: Attacker.AttackerType, index: Int) = when (name) {
+    private fun decrement(name: Attacker.AttackerType?, index: Int) = when (name) {
         MISSILE -> data.currentMissiles[index]--
         NUCLEAR_BOMB -> data.currentNuclearBombs[index]--
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index]--
+        else -> throw IllegalArgumentException()
     }
 
 
@@ -88,7 +89,7 @@ class AttackerHandler(private val data: EntityData) {
         if (data.currentMissiles[newState] >= data.maxMissiles[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
-        val missile = Missile(spawnPoint, newState)
+        val missile = Missile(spawnPoint, newState, data.attackerAssets)
         increment(missile.name, newState)
         data.attackers.add(missile)
     }
@@ -99,7 +100,7 @@ class AttackerHandler(private val data: EntityData) {
         if (data.currentNuclearBombs[newState] >= data.maxNuclearBombs[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
-        val nuclearBomb = NuclearBomb(spawnPoint, newState)
+        val nuclearBomb = NuclearBomb(spawnPoint, newState, data.attackerAssets)
         increment(nuclearBomb.name, newState)
         data.attackers.add(nuclearBomb)
     }
@@ -111,15 +112,16 @@ class AttackerHandler(private val data: EntityData) {
         if (data.currentMeteors[newSize] >= data.maxMeteors[newSize]) return
 
         val spawnPoint = generateRandomSpawnPoint()
-        val meteor = Meteor(spawnPoint, newState, newSize)
+        val meteor = Meteor(spawnPoint, newState, newSize, data.attackerAssets)
         increment(meteor.name, newSize)
         data.attackers.add(meteor)
     }
 
-    private fun increment(name: Attacker.AttackerType, index: Int) = when (name) {
+    private fun increment(name: Attacker.AttackerType?, index: Int) = when (name) {
         MISSILE -> data.currentMissiles[index] ++
         NUCLEAR_BOMB -> data.currentNuclearBombs[index] ++
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index] ++
+        else -> throw IllegalArgumentException()
     }
 
 

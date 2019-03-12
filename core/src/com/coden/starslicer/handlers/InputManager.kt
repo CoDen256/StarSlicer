@@ -30,7 +30,7 @@ class InputManager(private val data: EntityData) {
             for (entity in entities) {
                 if (firstBlade.isSlicing(entity.hitBox) || secondBlade.isSlicing(entity.hitBox)) {
                     entity.takeDamage(damage) // TODO: The bigger slice the more damage will received
-                    //TODO: if entity is container add(random PowerUpType)
+                    //TODO: if entity is container add(thePowerUpType that in container)
                 }
             }
         }

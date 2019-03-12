@@ -1,6 +1,8 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 
@@ -8,11 +10,13 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity
+import com.coden.starslicer.entities.EntityData
 
 import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
-               override val state: Int): Attacker(AttackerType.MISSILE){
+               override val state: Int,
+               assets: Assets.AttackerAssets): Attacker(){
 
     private val log = Logger("Missile", Logger.INFO)
     // Speed constants
@@ -21,6 +25,7 @@ class Missile (override val initialPos: Vector2,
     private val spiralSpeedStep = 1.5f * sqRatio // spiral
 
     // Life
+    override val name = AttackerType.MISSILE
     override val lifeSpan = when (state) {
         0,1 -> 5f
         else -> 100f
@@ -46,13 +51,17 @@ class Missile (override val initialPos: Vector2,
     private var nextVelocity = Vector2(0f,0f)
     private var previousAngle = 0f
 
-    private var instantAngle = 0f
+    private var instantAngle: Float
         get() = targetVector.cpy().rotate90(1).angle()
+        set(value) {}
 
 
     // Sprite
-    private val w = spriteTexture?.width!! * 1f * xRatio
-    private val h = spriteTexture?.height!! *1.5f * yRatio
+    override val spriteTexture: TextureRegion? = assets.getTexture(name)
+    override val sprite = Sprite(spriteTexture)
+
+    private val w = spriteTexture!!.regionWidth * 1f * xRatio
+    private val h = spriteTexture!!.regionHeight *1.5f * yRatio
     private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
 
     override val collisional: Boolean = true
