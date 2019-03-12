@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
@@ -13,6 +14,8 @@ import com.coden.starslicer.util.yRatio
 
 class NuclearBomb(override val initialPos: Vector2,
                  override val state: Int): Attacker(AttackerType.NUCLEAR_BOMB){
+
+    private val log = Logger("NuclearBomb", Logger.NONE)
     // Life
     override val lifeSpan = 5f
     override val maxHealth = 20f
@@ -47,7 +50,7 @@ class NuclearBomb(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("nuclearBomb.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle()+90)

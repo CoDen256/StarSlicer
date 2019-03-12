@@ -1,21 +1,23 @@
 package com.coden.starslicer.hud
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.sqRatio
 
 class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3) {
 
-    val size = data.powerUpIconAssets.width * sqRatio
+    private val log = Logger("PowerUpsBar", Logger.DEBUG)
 
-    val marginX = 0.5f
-    val marginY = 0.2f
+    private val size = data.powerUpIconAssets.width * sqRatio
 
-    val totalWidth = ((maxNumber+1)*marginX + maxNumber)*size
-    val totalHeight = size*(1+2*marginY)
+    private val marginX = 0.5f
+    private val marginY = 0.2f
+
+    private val totalWidth = ((maxNumber+1)*marginX + maxNumber)*size
+    private val totalHeight = size*(1+2*marginY)
 
     init {
         var i = marginX
@@ -48,7 +50,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
         }
     }
 
-    fun renderAmount(powerUpIcon: PowerUpIcon, shapeRenderer: ShapeRenderer) {
+    private fun renderAmount(powerUpIcon: PowerUpIcon, shapeRenderer: ShapeRenderer) {
         shapeRenderer.circle(powerUpIcon.topright.x, powerUpIcon.topright.y, 13f* sqRatio)
     }
 

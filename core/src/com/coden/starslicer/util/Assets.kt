@@ -10,29 +10,39 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.containers.Container
 import com.coden.starslicer.entities.powerups.PowerUp
 
 class Assets{
     private val manager = AssetManager()
 
-    val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("powerups.atlas", TextureAtlas::class.java)
-    lateinit var powerUpAssets: PowerUpAssets
+    private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/powerups/powerups.atlas", TextureAtlas::class.java)
+    private val CONTAINER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/containers/containers.atlas", TextureAtlas::class.java)
+    private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers.atlas", TextureAtlas::class.java)
 
-    var progress = 0f
+    lateinit var powerUpAssets: PowerUpAssets
+    lateinit var containerAssets: ContainerAssets
+    lateinit var attackerAssets: AttackerAssets
+
+    var progress: Float
         get() = manager.progress
+        set(value) {}
 
     fun load() {
         loadAllTextures()
     }
 
     fun loadAllTextures() {
-        loadPowerUpTextures()
+        loadTextureAtlases()
     }
 
 
-    fun loadPowerUpTextures() {
+    fun loadTextureAtlases() {
         manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
         manager.load(POWER_UP_ATLAS_DESCRIPTOR)
+        manager.load(CONTAINER_ATLAS_DESCRIPTOR)
+        manager.load(ATTACKER_ATLAS_DESCRIPTOR)
     }
 
     fun updateLoading(): Boolean {
@@ -44,8 +54,11 @@ class Assets{
         initialize()
     }
 
-    fun initialize() {
+    private fun initialize() {
         powerUpAssets = PowerUpAssets(manager.get(POWER_UP_ATLAS_DESCRIPTOR))
+        containerAssets = ContainerAssets(manager.get(CONTAINER_ATLAS_DESCRIPTOR))
+        attackerAssets = AttackerAssets(manager.get(ATTACKER_ATLAS_DESCRIPTOR))
+
     }
 
     fun dispose() {
@@ -64,5 +77,24 @@ class Assets{
         val width = map[PowerUp.PowerUpType.SHIELD]!!.regionWidth
         val height = map[PowerUp.PowerUpType.SHIELD]!!.regionHeight
 
+    }
+
+    class ContainerAssets(atlas: TextureAtlas){
+        private val map = mapOf(
+                Container.ContainerType.SATELLITE to atlas.findRegion("satellite") as TextureRegion,
+                Container.ContainerType.POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
+        )
+        fun getTexture(type: Container.ContainerType): TextureRegion? = map[type]
+    }
+
+    class AttackerAssets(atlas: TextureAtlas){
+        private val map = mapOf(
+                Attacker.AttackerType.MISSILE to atlas.findRegion("missile") as TextureRegion,
+                Attacker.AttackerType.NUCLEAR_BOMB to atlas.findRegion("nuclearbomb") as TextureRegion,
+                Attacker.AttackerType.SMALL_METEOR to atlas.findRegion("smallMeteor") as TextureRegion,
+                Attacker.AttackerType.MEDIUM_METEOR to atlas.findRegion("mediumMeteor") as TextureRegion,
+                Attacker.AttackerType.LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion
+        )
+        fun getTexture(type: Attacker.AttackerType): TextureRegion? = map[type]
     }
 }

@@ -1,22 +1,21 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.util.*
 import java.lang.Float.min
 
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
-             size: Int): Attacker(when(size){
-                                    0 -> AttackerType.SMALL_METEOR
-                                    1 -> AttackerType.MEDIUM_METEOR
-                                    2 -> AttackerType.LARGE_METEOR
-                                    else -> throw IllegalArgumentException()
-}){
+             size: Int): Attacker() {
 
+    private val log = Logger("Meteor", Logger.NONE)
     // Life
     override val lifeSpan = 20f
     override val maxHealth = when (size) {
@@ -56,8 +55,14 @@ class Meteor(override val initialPos: Vector2,
 
 
     // Sprite
-    private val width = spriteTexture?.width!! * xRatio/1f
-    private val height = spriteTexture?.height!! * yRatio/1f
+    override val spriteTexture: TextureRegion?
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+    override val sprite: Sprite
+        get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
+
+
+    private val width = spriteTexture!!.regionWidth * xRatio/1f
+    private val height = spriteTexture!!.regionHeight * yRatio/1f
 
     override val collisional = true
 
@@ -81,7 +86,7 @@ class Meteor(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("meteor.init", "Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
+        log.info("Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
 
         sprite.setCenter(pos.x,pos.y)
     }

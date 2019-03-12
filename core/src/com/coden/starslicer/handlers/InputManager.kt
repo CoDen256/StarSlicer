@@ -1,6 +1,7 @@
-package com.coden.starslicer
+package com.coden.starslicer.handlers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.HPBoost
@@ -10,6 +11,8 @@ import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
 
 class InputManager(private val data: EntityData) {
+
+    private val log = Logger("InputManager", Logger.DEBUG)
 
     init {
         for (i in 0 until 5) {

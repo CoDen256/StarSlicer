@@ -1,4 +1,4 @@
-package com.coden.slicer.entities
+package com.coden.starslicer.entities.containers
 
 class PowerUpContainer {
 }

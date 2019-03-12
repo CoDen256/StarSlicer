@@ -1,8 +1,8 @@
 package com.coden.starslicer.entities
 
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.powerups.HPBoost
-import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
@@ -10,6 +10,8 @@ import com.coden.starslicer.hud.PowerUpIcon
 import com.coden.starslicer.util.Assets
 
 data class EntityData(val spaceCraft: SpaceCraft, val assets: Assets) {
+
+    private val log = Logger("EntityData", Logger.INFO)
 
     val boosts = ArrayList<HPBoost>()
     val shields = ArrayList<Shield>()

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.BladePoint
 import com.coden.starslicer.entities.*
 import com.coden.starslicer.entities.Entity.Companion.entities
@@ -14,6 +15,9 @@ import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
 
 class AttackerHandler(private val data: EntityData) {
+
+    private val log = Logger("AttackerHandler", Logger.NONE)
+
 
     fun renderAll(batch: SpriteBatch) {
         for (attacker in data.attackers) {
@@ -29,7 +33,7 @@ class AttackerHandler(private val data: EntityData) {
             updateCollision(attacker)
 
             if (attacker.isDead) {
-                Gdx.app.log("attackers.update", "${attacker.name} is dead")
+                log.info("${attacker.name} is dead")
                 decrement(attacker.name, attacker.state)
                 entities.remove(attacker) // Removing from all entities
                 iterator.remove()
@@ -37,7 +41,7 @@ class AttackerHandler(private val data: EntityData) {
         }
     }
 
-    fun updateCollision(attacker: Attacker) {
+    private fun updateCollision(attacker: Attacker) {
         if (data.spaceCraft.isShielded) {
             if (data.spaceCraft.shieldCircle.overlaps(attacker.roundHitBox)) {
                 attacker.kill()

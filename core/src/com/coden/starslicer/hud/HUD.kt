@@ -3,6 +3,7 @@ package com.coden.starslicer.hud
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 
 
@@ -14,14 +15,12 @@ class HUD(data: EntityData) {
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
 
+    private val log = Logger("HUD", Logger.INFO)
+
 
 
     fun update() {
         powerUpsBar.update()
-
-    }
-
-    fun updateInput() {
 
     }
 

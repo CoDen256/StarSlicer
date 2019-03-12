@@ -1,0 +1,19 @@
+containers.png
+size: 895, 825
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+powerUpContainer
+  rotate: false
+  xy: 0, 0
+  size: 162, 224
+  orig: 162, 224
+  offset: 0, 0
+  index: -1
+satellite
+  rotate: false
+  xy: 162, 0
+  size: 733, 825
+  orig: 733, 825
+  offset: 0, 0
+  index: -1

@@ -3,6 +3,7 @@ package com.coden.starslicer.entities.attackers
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
@@ -11,7 +12,7 @@ import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.textureMap
 
-abstract class Attacker(val name: AttackerType) : Entity {
+abstract class Attacker : Entity {
 
     enum class AttackerType {
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR, MISSILE, NUCLEAR_BOMB
@@ -40,15 +41,17 @@ abstract class Attacker(val name: AttackerType) : Entity {
     abstract var roundHitBox: Circle
 
 
-    val spriteTexture = textureMap[name]
-    val sprite = Sprite(spriteTexture)
+    abstract val spriteTexture: TextureRegion?
+    abstract val sprite: Sprite
 
     // specialized vectors
-    var targetVector = Vector2()
+    var targetVector : Vector2
         get() = pos.cpy().sub(spaceCraftCenter).scl(-1f)
+        set(value) {}
 
-    var perpendicularVector = Vector2()
+    var perpendicularVector : Vector2
         get() = targetVector.cpy().rotate90(-1)
+        set(value) {}
 
 
     abstract fun update()

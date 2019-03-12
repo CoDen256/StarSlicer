@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils
 
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity
 
 import com.coden.starslicer.util.*
@@ -13,6 +14,7 @@ import com.coden.starslicer.util.*
 class Missile (override val initialPos: Vector2,
                override val state: Int): Attacker(AttackerType.MISSILE){
 
+    private val log = Logger("Missile", Logger.INFO)
     // Speed constants
     override val movementSpeed = 8f * sqRatio // direct missile
     private val oribtingSpeed = 13f * sqRatio // orbiting
@@ -79,7 +81,7 @@ class Missile (override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Gdx.app.log("missile.init", "Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
+        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 180f else velocity.angle())

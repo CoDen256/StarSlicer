@@ -9,8 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.BladePoint
-import com.coden.starslicer.InputManager
+import com.badlogic.gdx.utils.Logger
+import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
@@ -33,6 +33,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var data: EntityData
     private lateinit var inputManager: InputManager
+
+    private val log = Logger("GameScreen", Logger.INFO)
 
 
 
@@ -60,9 +62,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 
-        Gdx.app.log("GameScreen", "The screen is created")
-        Gdx.app.log("GameScreen", "Size: $w x $h")
-        Gdx.app.log("GameScreen", "xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
+        log.info("The screen is created")
+        log.info("Size: $w x $h")
+        log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
 
 
         cam = OrthographicCamera()
@@ -127,7 +129,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun updateInput() {
         attackerHandler.debugSpawning()
-        hud.updateInput()
         inputManager.updateSwiping()
         inputManager.updateClicking()
 
@@ -196,7 +197,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     override fun dispose() {
 
-        Gdx.app.log("GameScreen", "The screen is disposed")
+        log.info("The screen is disposed")
         batch.dispose()
         shapeRenderer.dispose()
         game.assets.dispose()

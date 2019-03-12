@@ -11,7 +11,7 @@ import com.coden.starslicer.util.*
 import com.coden.util.swipe.SwipeHandler
 
 class SpaceCraft : Entity {
-    var spaceCraftTexture: Texture = Texture("spacecraft.png")
+    var spaceCraftTexture: Texture = Texture("entities/spacecraft/spacecraft.png")
 
     var isShielded = false
     var shieldRadius = 0f
