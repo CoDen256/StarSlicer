@@ -25,17 +25,17 @@ class Satellite(
 
     override val name = AttackerType.SATELLITE
 
-    override val lifeSpan = 15f
-    override val maxHealth = 150f
+    override val lifeSpan = 60f
+    override val maxHealth = 500f
     override var health = maxHealth
     override var damage = 0f
 
     // Speed constants
-    override val movementSpeed = 1.5f * sqRatio
+    override val movementSpeed = 0.75f * sqRatio
 
     // Movement
     override var pos: Vector2 = initialPos
-    val angleSpeed = MathUtils.random(1f, 10f)
+    val angleSpeed = MathUtils.random(0.05f, 0.5f)
 
     var velocity: Vector2
 
@@ -44,13 +44,13 @@ class Satellite(
     override val spriteTexture = assets.getTexture(name)
     override val sprite = Sprite(spriteTexture)
 
-    private val w = spriteTexture!!.regionWidth * 1f
-    private val h = spriteTexture!!.regionHeight * 1f
+    private val w = spriteTexture!!.regionWidth * xRatio
+    private val h = spriteTexture!!.regionHeight * yRatio
 
-    override val collisional: Boolean = false
+    override val collisional: Boolean = true
 
     override var hitBox : Rectangle
-        get() = Rectangle(pos.x - h * yRatio /2, pos.y - h * yRatio /2, h * yRatio, h * yRatio)
+        get() = Rectangle(pos.x - w/2, pos.y - h/2, w , h )
         set(value) {}
 
     override var roundHitBox: Circle
@@ -59,7 +59,7 @@ class Satellite(
 
     init {
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(8, 45)* MathUtils.randomSign().toFloat()).setLength(movementSpeed)
+            0 -> targetVector.rotate(MathUtils.random(15, 45)* MathUtils.randomSign().toFloat()).setLength(movementSpeed)
             1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
             else -> Vector2()
         }

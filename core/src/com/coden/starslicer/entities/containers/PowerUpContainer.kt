@@ -35,7 +35,7 @@ class PowerUpContainer(
 
     // Movement
     override var pos: Vector2 = initialPos
-    val angleSpeed = MathUtils.random(2f, 20f)
+    val angleSpeed = MathUtils.random(1f, 4f)
 
     var velocity: Vector2
 
