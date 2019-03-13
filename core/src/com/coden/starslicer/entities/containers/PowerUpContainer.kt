@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
+import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
@@ -13,14 +14,16 @@ class PowerUpContainer(
         override val initialPos: Vector2,
         override val state: Int,
         override val content: PowerUp.PowerUpType,
-        assets: Assets.ContainerAssets) : Container(){
+        assets: Assets.ContainerAssets) : Container, Attacker(){
+
     // TODO: Content of container decided on conditions of current situation
 
     private val log = Logger("PowerUpContainer", Logger.NONE)
 
     // Container properties
     // Life
-    override val type = ContainerType.POWERUP_CONTAINER
+
+    override val name = AttackerType.POWERUP_CONTAINER
 
     override val lifeSpan = 5f
     override val maxHealth = 150f
@@ -28,17 +31,17 @@ class PowerUpContainer(
     override var damage = 0f
 
     // Speed constants
-    override val movementSpeed = 8 * sqRatio
+    override val movementSpeed = 5 * sqRatio
 
     // Movement
     override var pos: Vector2 = initialPos
-    override val angleSpeed = MathUtils.random(5f, 50f)
+    val angleSpeed = MathUtils.random(2f, 20f)
 
-    override lateinit var velocity: Vector2
+    var velocity: Vector2
 
     // SPRITE
 
-    override val spriteTexture = assets.getTexture(type)
+    override val spriteTexture = assets.getTexture(name)
     override val sprite = Sprite(spriteTexture)
 
     private val w = spriteTexture!!.regionWidth * 1f
@@ -65,6 +68,15 @@ class PowerUpContainer(
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())
+    }
+
+    override fun update() {
+        updateLife()
+        pos = pos.add(velocity)
+        sprite.setScale(xRatio, yRatio)
+        sprite.setCenter(pos.x, pos.y)
+
+        sprite.rotate(angleSpeed)
     }
 
 

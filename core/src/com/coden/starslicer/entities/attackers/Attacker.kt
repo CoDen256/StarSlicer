@@ -14,12 +14,13 @@ import com.coden.starslicer.util.spaceCraftCenter
 abstract class Attacker : Entity {
 
     enum class AttackerType {
-        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR, MISSILE, NUCLEAR_BOMB
+        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR, MISSILE, NUCLEAR_BOMB,
+        SATELLITE, POWERUP_CONTAINER
     }
 
     // Life
     abstract val lifeSpan : Float
-    open val name: AttackerType? = null
+    abstract val name: AttackerType
 
     private var life = 0f
     override var isDead = false

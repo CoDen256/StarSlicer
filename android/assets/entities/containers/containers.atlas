@@ -1,19 +1,19 @@
 containers.png
-size: 895, 825
+size: 309, 250
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 powerUpContainer
   rotate: false
   xy: 0, 0
-  size: 162, 224
-  orig: 162, 224
+  size: 87, 120
+  orig: 87, 120
   offset: 0, 0
   index: -1
 satellite
   rotate: false
-  xy: 162, 0
-  size: 733, 825
-  orig: 733, 825
+  xy: 87, 0
+  size: 222, 250
+  orig: 222, 250
   offset: 0, 0
   index: -1

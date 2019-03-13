@@ -81,10 +81,10 @@ class Assets{
 
     class ContainerAssets(atlas: TextureAtlas){
         private val map = mapOf(
-                Container.ContainerType.SATELLITE to atlas.findRegion("satellite") as TextureRegion,
-                Container.ContainerType.POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
+                Attacker.AttackerType.SATELLITE to atlas.findRegion("satellite") as TextureRegion,
+                Attacker.AttackerType.POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
         )
-        fun getTexture(type: Container.ContainerType): TextureRegion? = map[type]
+        fun getTexture(type: Attacker.AttackerType): TextureRegion? = map[type]
     }
 
     class AttackerAssets(atlas: TextureAtlas){
