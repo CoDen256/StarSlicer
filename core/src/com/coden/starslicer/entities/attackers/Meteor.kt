@@ -27,7 +27,7 @@ class Meteor(override val initialPos: Vector2,
     }
 
     // Constant Speeds
-    private val movementSpeed= MathUtils.random(1f, maxMovementSpeed)
+    private val movementSpeed= MathUtils.random(50f, maxMovementSpeed)
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 
     // Movement
@@ -62,7 +62,7 @@ class Meteor(override val initialPos: Vector2,
 
     override fun update() {
         updateLife()
-        pos.add(velocity)
+        pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 

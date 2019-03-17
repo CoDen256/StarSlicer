@@ -1,5 +1,6 @@
 package com.coden.starslicer.entities.attackers
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
@@ -54,7 +55,7 @@ class Satellite(
 
     override fun update() {
         updateLife()
-        pos = pos.add(velocity)
+        pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 

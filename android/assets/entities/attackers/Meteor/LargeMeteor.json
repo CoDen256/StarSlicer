@@ -1,8 +1,8 @@
 {
   "name": "LARGE_METEOR",
   "maxHealth":200.0,
-  "lifeSpan":20.0,
-  "maxMovementSpeed": 2.0,
+  "lifeSpan":50.0,
+  "maxMovementSpeed": 120.0,
   "damage":90.0,
   "collisional": true,
   "maxAngleSpeed":90

@@ -5,7 +5,7 @@
   "container": true,
   "maxHealth":500.0,
   "lifeSpan":60.0,
-  "maxMovementSpeed": 5.0,
+  "maxMovementSpeed": 50.0,
   "damage":200.0,
   "collisional":true
 }

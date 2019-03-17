@@ -52,7 +52,7 @@ class PowerUpContainer(
 
     override fun update() {
         updateLife()
-        pos = pos.add(velocity)
+        pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 

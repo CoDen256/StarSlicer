@@ -84,7 +84,7 @@ class Missile (override val initialPos: Vector2,
         updateLife()
 
         when (state){
-            0, 1 -> pos = pos.add(velocity)
+            0, 1 -> pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))
             2 -> moveOribting()
             3 -> moveSpiral()
         }
@@ -98,7 +98,7 @@ class Missile (override val initialPos: Vector2,
     private fun moveOribting() {
         //currentOrbitingSpeed = oribtingSpeed * dist2(pos, center)/dist2(initialPos, center)
 
-        pos = pos.add(nextVelocity)
+        pos = pos.add(nextVelocity.cpy().scl(Gdx.graphics.deltaTime))
 
         val dAngle = instantAngle - previousAngle
 

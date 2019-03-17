@@ -6,9 +6,9 @@
   "spiralRadius": 20.0,
   "spiralInitialCount": 80.0,
   "maxMovementSpeedMap":{
-    0: 8.0,
-    1: 8.0,
-    2: 13.0,
+    0: 480.0,
+    1: 480.0,
+    2: 780.0,
     3: 1.5
   },
   "lifeSpanMap":{

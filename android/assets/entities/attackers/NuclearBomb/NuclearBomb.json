@@ -2,7 +2,7 @@
   "name": "NUCLEAR_BOMB",
   "maxHealth":20.0,
   "lifeSpan":5.0,
-  "maxMovementSpeed": 5.0,
+  "maxMovementSpeed": 300.0,
   "damage":200.0,
   "collisionalMap":{
     0: false,
