@@ -51,11 +51,11 @@ class Meteor(override val initialPos: Vector2,
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                          MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
+            1 -> targetVector.cpy().setLength(movementSpeed)
             else -> Vector2()
         }
 
-        Log.info("Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
+        Log.info("Meteor Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
 
         sprite.setCenter(pos.x,pos.y)
     }
@@ -66,11 +66,7 @@ class Meteor(override val initialPos: Vector2,
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 
-        rotate()
+        rotate(angleSpeed)
 
 }
-
-    private fun rotate() {
-        sprite.rotate(angleSpeed*Gdx.graphics.deltaTime)
-    }
 }

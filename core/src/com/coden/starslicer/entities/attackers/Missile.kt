@@ -66,12 +66,12 @@ class Missile (override val initialPos: Vector2,
     init {
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed) // TODO: To spesialized vector change
+                         MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
+            1 -> targetVector.cpy().setLength(maxMovementSpeed) // TODO: To spesialized vector change
             else -> Vector2()
         }
 
-        Log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("Missile Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 180f else velocity.angle())

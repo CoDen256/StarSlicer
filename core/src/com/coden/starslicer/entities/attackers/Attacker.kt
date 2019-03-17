@@ -69,6 +69,10 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     }
 
+    fun rotate(angleSpeed: Float) {
+        sprite.rotate(angleSpeed*Gdx.graphics.deltaTime)
+    }
+
     abstract fun update()
 
 }

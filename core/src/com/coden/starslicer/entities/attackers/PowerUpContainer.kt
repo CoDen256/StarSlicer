@@ -1,5 +1,6 @@
 package com.coden.starslicer.entities.attackers
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
@@ -39,11 +40,11 @@ class PowerUpContainer(
     init {
         velocity = when (state) {
             0 -> targetVector.rotate(MathUtils.random(8, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed)
+            1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
 
-        Log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("PUC Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())
@@ -55,7 +56,7 @@ class PowerUpContainer(
         sprite.setScale(xRatio, yRatio)
         sprite.setCenter(pos.x, pos.y)
 
-        sprite.rotate(angleSpeed)
+        rotate(angleSpeed)
     }
 
 
