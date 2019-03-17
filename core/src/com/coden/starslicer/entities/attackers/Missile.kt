@@ -16,15 +16,12 @@ import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
                state: Int,
-               assets: Assets.AttackerAssets): Attacker(snapshot, state){
+               assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
 
-    private val log = Logger("Missile", Logger.INFO)
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
     }
 
-    // Speed constants
-    // Life
 
     // Movement
     override var pos = initialPos
@@ -32,8 +29,8 @@ class Missile (override val initialPos: Vector2,
 
 
     // Spiral Movement
-    private val radius = 20f * sqRatio
-    private val initialDt = 80f * sqRatio
+    private val radius = snapshot.spiralRadius * sqRatio
+    private val initialDt = snapshot.spiralInitialCount * sqRatio
 
     private var dt = initialDt
 
@@ -49,18 +46,12 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    override val spriteTexture: TextureRegion? = assets.getTexture(type)
-    override val sprite = Sprite(spriteTexture)
-
-    private val w = spriteTexture!!.regionWidth * 1f * xRatio
-    private val h = spriteTexture!!.regionHeight *1.5f * yRatio
-
     override var hitBox : Rectangle
-        get() = Rectangle(pos.x - h/2, pos.y - h /2, h, h)
+        get() = Rectangle(pos.x - height*1.5f/2, pos.y - height*1.5f /2, height*1.5f, height*1.5f)
         set(value) {}
 
     override var hitCircle: Circle
-        get() = Circle(pos.x, pos.y, h/2)
+        get() = Circle(pos.x, pos.y, height/2)
         set(value) {}
 
     /*
@@ -76,11 +67,11 @@ class Missile (override val initialPos: Vector2,
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                     MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed) // TODO: To spesialized vector change
             else -> Vector2()
         }
 
-        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 180f else velocity.angle())

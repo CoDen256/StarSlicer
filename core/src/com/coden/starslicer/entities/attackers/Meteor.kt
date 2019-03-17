@@ -16,7 +16,7 @@ import javax.swing.text.html.parser.Entity
 class Meteor(override val initialPos: Vector2,
              state: Int,
              val size: Int,
-             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state) {
+             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state, assets) {
 
     companion object {
         val snapshots = mapOf(
@@ -26,28 +26,13 @@ class Meteor(override val initialPos: Vector2,
         )
     }
 
-    private val log = Logger("Meteor", Logger.NONE)
-
-    // Movement
-    val movementSpeed= MathUtils.random(1f, maxMovementSpeed)
-
-    private val angleSpeed = when (size) {
-        0 -> MathUtils.random(1, 360)
-        1 -> MathUtils.random(1, 180)
-        2 -> MathUtils.random(0, 90)
-        else -> throw IllegalArgumentException()
-    }
+    // Constant Speeds
+    private val movementSpeed= MathUtils.random(1f, maxMovementSpeed)
+    private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 
     // Movement
     override var pos = initialPos
     private var velocity = Vector2()
-
-
-    override val spriteTexture: TextureRegion? = assets.getTexture(type)
-    override val sprite = Sprite(spriteTexture)
-
-    private val width = spriteTexture!!.regionWidth * xRatio/1f
-    private val height = spriteTexture!!.regionHeight * yRatio/1f
 
 
     override var hitBox :Rectangle
@@ -70,7 +55,7 @@ class Meteor(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        log.info("Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
+        Log.info("Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
 
         sprite.setCenter(pos.x,pos.y)
     }

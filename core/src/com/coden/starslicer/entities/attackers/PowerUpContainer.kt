@@ -13,7 +13,7 @@ class PowerUpContainer(
         override val initialPos: Vector2,
         state: Int,
         override val content: PowerUp.PowerUpType,
-        assets: Assets.AttackerAssets): Attacker(snapshot, state){
+        assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
 
     // TODO: Content of container decided on conditions of current situation
 
@@ -21,29 +21,19 @@ class PowerUpContainer(
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
     }
 
-    private val log = Logger("PowerUpContainer", Logger.NONE)
-
-    // Speed constants
     // Movement
     override var pos: Vector2 = initialPos
-    val angleSpeed = MathUtils.random(1f, 4f)
+    private var velocity: Vector2
 
-    var velocity: Vector2
+    private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 
     // SPRITE
-
-    override val spriteTexture = assets.getTexture(type)
-    override val sprite = Sprite(spriteTexture)
-
-    private val w = spriteTexture!!.regionWidth * 1f
-    private val h = spriteTexture!!.regionHeight * 1f
-
     override var hitBox : Rectangle
-        get() = Rectangle(pos.x - h * yRatio /2, pos.y - h * yRatio /2, h * yRatio, h * yRatio)
+        get() = Rectangle(pos.x - height/2, pos.y - height/2, height, height)
         set(value) {}
 
     override var hitCircle: Circle
-        get() = Circle(pos.x, pos.y, minOf(w, h)/2)
+        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
         set(value) {}
 
     init {
@@ -53,7 +43,7 @@ class PowerUpContainer(
             else -> Vector2()
         }
 
-        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())

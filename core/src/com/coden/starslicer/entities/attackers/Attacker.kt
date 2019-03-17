@@ -9,10 +9,9 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.util.spaceCraftCenter
-import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.*
 
-abstract class Attacker(snapshot: AttackerSnapshot,val state: Int = 0): Entity {
+abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): Entity {
 
     init {
         entities.add(this)
@@ -40,8 +39,12 @@ abstract class Attacker(snapshot: AttackerSnapshot,val state: Int = 0): Entity {
     abstract val initialPos: Vector2
 
     // Sprite
-    abstract val spriteTexture: TextureRegion?
-    abstract val sprite: Sprite
+    private val spriteTexture: TextureRegion? = assets.getTexture(type)
+    protected val sprite = Sprite(spriteTexture)
+
+    protected val width = spriteTexture!!.regionWidth * xRatio
+    protected val height = spriteTexture!!.regionHeight * yRatio
+
     open val content: PowerUp.PowerUpType? = null
 
     // specialized vectors

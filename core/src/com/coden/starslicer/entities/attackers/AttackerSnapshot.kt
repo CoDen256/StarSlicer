@@ -2,12 +2,23 @@ package com.coden.starslicer.entities.attackers
 
 class AttackerSnapshot {
 
+    // TODO: var to val change and comments
+    // Attacker
     private var lifeSpan: Float? = null
     private var maxHealth: Float? = null
     private var maxMovementSpeed: Float? = null
     private var damage: Float? = null
     private var collisional: Boolean? = null
     private var container: Boolean? = null
+
+    // Meteors + Containers
+    var minAngleSpeed: Float = 0f
+    var maxAngleSpeed: Float = 0f
+
+    // Missile properties
+    var spiralRadius: Float = 0f
+    var spiralInitialCount = 0f
+
 
 
     private var lifeSpanMap = mutableMapOf<Int, Float>()

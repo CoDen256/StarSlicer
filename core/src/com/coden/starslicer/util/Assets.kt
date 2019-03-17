@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.PowerUp
+import java.io.File
 import java.io.FileReader
 
 class Assets{
@@ -100,9 +101,9 @@ class Assets{
 
         )
 
-        fun loadAttacker(name: String) = {
+        fun loadAttacker(name: String): FileReader  {
             Gdx.app.log("AttackerConfigMap", "Loading...$name")
-            FileReader("entities/attackers/$name")
+            return FileReader("entities/attackers/$name")
         }
     }
 }

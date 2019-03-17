@@ -13,7 +13,7 @@ class Satellite(
         override val initialPos: Vector2,
         state: Int,
         override val content: PowerUp.PowerUpType,
-        assets: Assets.AttackerAssets) : Attacker(snapshot, state){
+        assets: Assets.AttackerAssets) : Attacker(snapshot, state, assets){
 
     // TODO: Content of container decided on conditions of current situation
 
@@ -21,35 +21,22 @@ class Satellite(
         val snapshot = EntityLoader.loadAttacker(AttackerType.SATELLITE)
     }
 
-    private val log = Logger("Satellite", Logger.NONE)
-
-    // Container properties
-    // Life
-
-    override var health = maxHealth
-
-    // Speed constants
-
     // Movement
     override var pos: Vector2 = initialPos
-    val angleSpeed = MathUtils.random(0.05f, 0.5f)
+    private var velocity: Vector2
 
-    var velocity: Vector2
+    val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
+
+
 
     // SPRITE
 
-    override val spriteTexture = assets.getTexture(type)
-    override val sprite = Sprite(spriteTexture)
-
-    private val w = spriteTexture!!.regionWidth * xRatio
-    private val h = spriteTexture!!.regionHeight * yRatio
-
     override var hitBox : Rectangle
-        get() = Rectangle(pos.x - w/2, pos.y - h/2, w , h )
+        get() = Rectangle(pos.x - width/2, pos.y - height/2, width , height )
         set(value) {}
 
     override var hitCircle: Circle
-        get() = Circle(pos.x, pos.y, minOf(w, h)/2)
+        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
         set(value) {}
 
     init {
@@ -59,7 +46,7 @@ class Satellite(
             else -> Vector2()
         }
 
-        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())

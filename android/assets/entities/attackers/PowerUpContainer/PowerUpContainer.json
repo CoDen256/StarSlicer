@@ -1,5 +1,7 @@
 {
   "name": "POWERUP_CONTAINER",
+  "minAngleSpeed":1.0,
+  "maxAngleSpeed":4.0,
   "container": true,
   "maxHealth":150.0,
   "lifeSpan":5.0,

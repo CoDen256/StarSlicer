@@ -4,5 +4,6 @@
   "lifeSpan":20.0,
   "maxMovementSpeed": 4.0,
   "damage":50.0,
-  "collisional":true
+  "collisional":true,
+  "maxAngleSpeed":180
 }

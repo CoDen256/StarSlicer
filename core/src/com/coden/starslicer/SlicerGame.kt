@@ -15,6 +15,8 @@ class StarSlicerGame : Game() {
 
     override fun create() {
 
+        Gdx.app.log("StarSlicerGame", "Created")
+
         assets = Assets()
         assets.load()
 
