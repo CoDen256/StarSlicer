@@ -1,0 +1,14 @@
+{
+  "name": "MISSILE",
+  "maxHealth":15.0,
+  "lifeSpan":5.0,
+  "movementSpeed": 8.0,
+  "damage":30.0,
+  "collisional":true,
+  "lifeSpans":{
+    0:5.0,
+    1:5.0,
+    2: 100.0,
+    3: 100.0,
+  }
+}

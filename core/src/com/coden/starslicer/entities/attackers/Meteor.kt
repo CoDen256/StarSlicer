@@ -16,25 +16,32 @@ import javax.swing.text.html.parser.Entity
 class Meteor(override val initialPos: Vector2,
              override val state: Int,
              val size: Int,
-             assets: Assets.AttackerAssets): Attacker() {
+             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!) {
+
+    companion object {
+        val snapshots = mapOf<Int, AttackerSnapshot>(
+                0 to EntityLoader.loadAttacker("SmallMeteor.json"),
+                1 to EntityLoader.loadAttacker("MediumMeteor.json"),
+                2 to EntityLoader.loadAttacker("LargeMeteors.json")
+        )
+    }
 
     private val log = Logger("Meteor", Logger.NONE)
     // Life
 
-    override val name = when (size) {
+    val name2 = when (size) {
         0 -> AttackerType.SMALL_METEOR
         1 -> AttackerType.MEDIUM_METEOR
         2 -> AttackerType.LARGE_METEOR
         else -> throw IllegalArgumentException()
     }
 
-    override val lifeSpan = 20f
-    override val maxHealth = when (size) {
-        0 -> 30f
-        1 -> 70f
-        2 -> 200f
-        else -> throw IllegalArgumentException()
-    }
+    //override val maxHealth = when (size) {
+    //    0 -> 30f
+    //    1 -> 70f
+    //    2 -> 200f
+    //    else -> throw IllegalArgumentException()
+    //}
 
     override var health = maxHealth
 
@@ -46,7 +53,7 @@ class Meteor(override val initialPos: Vector2,
     }
 
     // Speed constants
-    override val movementSpeed = when (size) {
+    val rmovementSpeed = when (size) {
         0 -> MathUtils.random(1, 8) * sqRatio
         1 -> MathUtils.random(1, 4) * sqRatio
         2 -> MathUtils.random(1, 2) * sqRatio
@@ -65,13 +72,12 @@ class Meteor(override val initialPos: Vector2,
     private var velocity = Vector2()
 
 
-    override val spriteTexture: TextureRegion? = assets.getTexture(name)
+    override val spriteTexture: TextureRegion? = assets.getTexture(type)
     override val sprite = Sprite(spriteTexture)
 
     private val width = spriteTexture!!.regionWidth * xRatio/1f
     private val height = spriteTexture!!.regionHeight * yRatio/1f
 
-    override val collisional = true
 
     override var hitBox :Rectangle
         get() = Rectangle(pos.x-width/2, pos.y-height/2, width, height)

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
@@ -14,24 +15,22 @@ class Satellite(
         override val initialPos: Vector2,
         override val state: Int,
         override val content: PowerUp.PowerUpType,
-        assets: Assets.ContainerAssets) : Container, Attacker(){
+        assets: Assets.ContainerAssets) : Container, Attacker(snapshot){
 
     // TODO: Content of container decided on conditions of current situation
+
+    companion object {
+        val snapshot = EntityLoader.loadAttacker("Satellite.json")
+    }
 
     private val log = Logger("Satellite", Logger.NONE)
 
     // Container properties
     // Life
 
-    override val name = AttackerType.SATELLITE
-
-    override val lifeSpan = 60f
-    override val maxHealth = 500f
     override var health = maxHealth
-    override var damage = 0f
 
     // Speed constants
-    override val movementSpeed = 0.75f * sqRatio
 
     // Movement
     override var pos: Vector2 = initialPos
@@ -41,13 +40,11 @@ class Satellite(
 
     // SPRITE
 
-    override val spriteTexture = assets.getTexture(name)
+    override val spriteTexture = assets.getTexture(type)
     override val sprite = Sprite(spriteTexture)
 
     private val w = spriteTexture!!.regionWidth * xRatio
     private val h = spriteTexture!!.regionHeight * yRatio
-
-    override val collisional: Boolean = true
 
     override var hitBox : Rectangle
         get() = Rectangle(pos.x - w/2, pos.y - h/2, w , h )

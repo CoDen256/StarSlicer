@@ -16,23 +16,28 @@ import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
                override val state: Int,
-               assets: Assets.AttackerAssets): Attacker(){
+               assets: Assets.AttackerAssets): Attacker(snapshot){
+
+    companion object {
+        val snapshot = EntityLoader.loadAttacker("Missile.json")
+    }
+
+    init {
+        Gdx.app.log("snapshotMissile $state", "${snapshot.lifeSpans[state]}")
+    }
 
     private val log = Logger("Missile", Logger.INFO)
     // Speed constants
-    override val movementSpeed = 8f * sqRatio // direct missile
     private val oribtingSpeed = 13f * sqRatio // orbiting
     private val spiralSpeedStep = 1.5f * sqRatio // spiral
 
+
     // Life
-    override val name = AttackerType.MISSILE
-    override val lifeSpan = when (state) {
+    val lifeSpan2 = when (state) {
         0,1 -> 5f
         else -> 100f
     }
-    override val maxHealth = 15f
     override var health = maxHealth
-    override var damage = 30f
 
     // Movement
     override var pos = initialPos
@@ -57,14 +62,12 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    override val spriteTexture: TextureRegion? = assets.getTexture(name)
+    override val spriteTexture: TextureRegion? = assets.getTexture(type)
     override val sprite = Sprite(spriteTexture)
 
     private val w = spriteTexture!!.regionWidth * 1f * xRatio
     private val h = spriteTexture!!.regionHeight *1.5f * yRatio
     private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
-
-    override val collisional: Boolean = true
 
     override var hitBox : Rectangle
         get() = Rectangle(pos.x - h/2, pos.y - h /2, h, h)

@@ -1,0 +1,8 @@
+{
+  "name": "NUCLEAR_BOMB",
+  "maxHealth":20.0,
+  "lifeSpan":5.0,
+  "movementSpeed": 5.0,
+  "damage":200.0,
+  "collisional":false
+}

@@ -1,5 +1,6 @@
 package com.coden.starslicer.entities.attackers
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
@@ -12,30 +13,33 @@ import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,
                   override val state: Int,
-                  assets: Assets.AttackerAssets): Attacker(){
+                  assets: Assets.AttackerAssets): Attacker(snapshot){
+
+    companion object {
+        val snapshot = EntityLoader.loadAttacker("NuclearBomb.json")
+    }
+
+    init {
+        Gdx.app.log("snapshot", "$snapshot")
+    }
 
     private val log = Logger("NuclearBomb", Logger.NONE)
     // Life
-    override val name = AttackerType.NUCLEAR_BOMB
-    override val lifeSpan = 5f
-    override val maxHealth = 20f
     override var health = maxHealth
-    override var damage = 200f
+    override var damage = snapshot.damage
 
     // Speed constants
-    override val movementSpeed = 5 * sqRatio
 
     // Movement
     override var pos: Vector2 = initialPos
     private var velocity: Vector2
 
-    override val spriteTexture = assets.getTexture(name)
+    override val spriteTexture = assets.getTexture(type)
     override val sprite = Sprite(spriteTexture)
 
     private val w = spriteTexture!!.regionWidth/1.5f
     private val h = spriteTexture!!.regionHeight/1.5f
 
-    override val collisional: Boolean = false
 
     override var hitBox :Rectangle
         get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)

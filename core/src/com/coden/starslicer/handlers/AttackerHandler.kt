@@ -8,10 +8,11 @@ import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.*
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.*
-import com.coden.starslicer.entities.attackers.Attacker.AttackerType.*
+import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.containers.PowerUpContainer
 import com.coden.starslicer.entities.containers.Satellite
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.util.EntityLoader
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
@@ -37,7 +38,7 @@ class AttackerHandler(private val data: EntityData) {
 
             if (attacker.isDead) {
                 log.info("${attacker.name} is dead")
-                decrement(attacker.name, attacker.state)
+                decrement(attacker.type, attacker.state)
                 entities.remove(attacker) // Removing from all entities
                 iterator.remove()
             }
@@ -55,7 +56,7 @@ class AttackerHandler(private val data: EntityData) {
         }
     }
 
-    private fun decrement(name: Attacker.AttackerType?, index: Int) = when (name) {
+    private fun decrement(name: AttackerType?, index: Int) = when (name) {
         MISSILE -> data.currentMissiles[index]--
         NUCLEAR_BOMB -> data.currentNuclearBombs[index]--
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index]--
@@ -73,7 +74,15 @@ class AttackerHandler(private val data: EntityData) {
                 Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile()
                 Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb()
                 Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor()
-            }
+                Gdx.input.x > centerX && Gdx.input.y > centerY -> {
+                    spawnSatellite(listOf(PowerUp.PowerUpType.HPBOOST,
+                        PowerUp.PowerUpType.SHIELD,
+                        PowerUp.PowerUpType.SHOCKWAVE)[MathUtils.random(0, 2)])
+                    spawnPowerUpContainer(listOf(
+                            PowerUp.PowerUpType.HPBOOST,
+                            PowerUp.PowerUpType.SHIELD,
+                            PowerUp.PowerUpType.SHOCKWAVE)[MathUtils.random(0, 2)])
+            }}
         }
 
         when {
@@ -102,7 +111,7 @@ class AttackerHandler(private val data: EntityData) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState, data.attackerAssets)
-        increment(missile.name, newState)
+        increment(missile.type, newState)
         data.attackers.add(missile)
     }
 
@@ -113,7 +122,7 @@ class AttackerHandler(private val data: EntityData) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, newState, data.attackerAssets)
-        increment(nuclearBomb.name, newState)
+        increment(nuclearBomb.type, newState)
         data.attackers.add(nuclearBomb)
     }
 
@@ -125,7 +134,7 @@ class AttackerHandler(private val data: EntityData) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize, data.attackerAssets)
-        increment(meteor.name, newSize)
+        increment(meteor.type, newSize)
         data.attackers.add(meteor)
     }
 
@@ -136,7 +145,7 @@ class AttackerHandler(private val data: EntityData) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val powerUpContainer = PowerUpContainer(spawnPoint, newState, type, data.containerAssets)
-        increment(powerUpContainer.name, newState)
+        increment(powerUpContainer.type, newState)
         data.attackers.add(powerUpContainer)
     }
 
@@ -147,11 +156,11 @@ class AttackerHandler(private val data: EntityData) {
 
         val spawnPoint = generateRandomSpawnPoint()
         val satellite = Satellite(spawnPoint, newState, type, data.containerAssets)
-        increment(satellite.name, newState)
+        increment(satellite.type, newState)
         data.attackers.add(satellite)
     }
 
-    private fun increment(name: Attacker.AttackerType?, index: Int) = when (name) {
+    private fun increment(name: AttackerType?, index: Int) = when (name) {
         MISSILE -> data.currentMissiles[index]++
         NUCLEAR_BOMB -> data.currentNuclearBombs[index]++
         SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index]++

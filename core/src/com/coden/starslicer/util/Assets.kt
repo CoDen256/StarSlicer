@@ -1,17 +1,14 @@
 package com.coden.starslicer.util
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.assets.loaders.TextureAtlasLoader
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.entities.containers.Container
+import com.coden.starslicer.entities.attackers.AttackerType
+import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.PowerUp
 
 class Assets{
@@ -81,20 +78,20 @@ class Assets{
 
     class ContainerAssets(atlas: TextureAtlas){
         private val map = mapOf(
-                Attacker.AttackerType.SATELLITE to atlas.findRegion("satellite") as TextureRegion,
-                Attacker.AttackerType.POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
+                SATELLITE to atlas.findRegion("satellite") as TextureRegion,
+                POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
         )
-        fun getTexture(type: Attacker.AttackerType): TextureRegion? = map[type]
+        fun getTexture(type: AttackerType): TextureRegion? = map[type]
     }
 
     class AttackerAssets(atlas: TextureAtlas){
         private val map = mapOf(
-                Attacker.AttackerType.MISSILE to atlas.findRegion("missile") as TextureRegion,
-                Attacker.AttackerType.NUCLEAR_BOMB to atlas.findRegion("nuclearbomb") as TextureRegion,
-                Attacker.AttackerType.SMALL_METEOR to atlas.findRegion("smallMeteor") as TextureRegion,
-                Attacker.AttackerType.MEDIUM_METEOR to atlas.findRegion("mediumMeteor") as TextureRegion,
-                Attacker.AttackerType.LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion
+                MISSILE to atlas.findRegion("missile") as TextureRegion,
+                NUCLEAR_BOMB to atlas.findRegion("nuclearbomb") as TextureRegion,
+                SMALL_METEOR to atlas.findRegion("smallMeteor") as TextureRegion,
+                MEDIUM_METEOR to atlas.findRegion("mediumMeteor") as TextureRegion,
+                LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion
         )
-        fun getTexture(type: Attacker.AttackerType): TextureRegion? = map[type]
+        fun getTexture(type: AttackerType): TextureRegion? = map[type]
     }
 }

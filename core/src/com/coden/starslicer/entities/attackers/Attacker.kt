@@ -5,33 +5,32 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
-import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
+import com.coden.starslicer.util.sqRatio
 
-abstract class Attacker : Entity {
-
-    enum class AttackerType {
-        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR, MISSILE, NUCLEAR_BOMB,
-        SATELLITE, POWERUP_CONTAINER
-    }
+abstract class Attacker(snapshot: AttackerSnapshot): Entity {
 
     // Life
-    abstract val lifeSpan : Float
-    abstract val name: AttackerType
+    val lifeSpan = snapshot.lifeSpan
+    val name = snapshot.name
+    val type = snapshot.type
+
+    override val maxHealth = snapshot.maxHealth
+    override val damage = snapshot.damage
 
     private var life = 0f
     override var isDead = false
 
     // Movement
-    abstract val movementSpeed: Float
+    val movementSpeed = snapshot.movementSpeed * sqRatio
     abstract val initialPos: Vector2
 
 
     // Sprite
-    abstract val collisional: Boolean
+    val collisional: Boolean = snapshot.collisional
     abstract val state: Int
 
     abstract var roundHitBox: Circle

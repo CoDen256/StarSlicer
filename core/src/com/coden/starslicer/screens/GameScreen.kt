@@ -15,6 +15,8 @@ import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.attackers.Missile
+import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
@@ -65,6 +67,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         log.info("The screen is created")
         log.info("Size: $w x $h")
         log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
+
 
 
         cam = OrthographicCamera()
