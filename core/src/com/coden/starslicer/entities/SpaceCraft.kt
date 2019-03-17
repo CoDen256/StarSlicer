@@ -24,8 +24,9 @@ class SpaceCraft : Entity {
     override val damage = 5f
     override var isDead = false
 
-    override var pos = Vector2(0f,0f)
+    override var pos: Vector2
     get() = Vector2(x, y)
+    set(value) {}
 
     val height = spaceCraftTexture.height
     val width = spaceCraftTexture.width
@@ -40,6 +41,7 @@ class SpaceCraft : Entity {
     val relativeY = y-relativeHeight/2
 
     override var hitBox = Rectangle(relativeX, relativeY, relativeWidth, relativeHeight)
+    override var hitCircle = Circle(x, y, (relativeHeight+relativeWidth)/2)
 
     private var blades = arrayOf(BladePoint(0), BladePoint(1))
 

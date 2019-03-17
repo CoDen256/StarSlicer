@@ -156,7 +156,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         for (attacker in data.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
-            shapeRenderer.circle(attacker.roundHitBox.x, attacker.roundHitBox.y, attacker.roundHitBox.radius)
+            shapeRenderer.circle(attacker.hitCircle.x, attacker.hitCircle.y, attacker.hitCircle.radius)
         }
 
         for (hitBox in spaceCraft.firstBlade.hitBoxes){

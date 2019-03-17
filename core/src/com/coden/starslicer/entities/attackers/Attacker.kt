@@ -11,7 +11,7 @@ import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
 
-abstract class Attacker(snapshot: AttackerSnapshot, state: Int): Entity {
+abstract class Attacker(snapshot: AttackerSnapshot,val state: Int = 0): Entity {
 
     init {
         entities.add(this)
@@ -22,12 +22,12 @@ abstract class Attacker(snapshot: AttackerSnapshot, state: Int): Entity {
     val type = snapshot.type
 
     // If special property is null, so undefined, then look in map for every state
-    val lifeSpan = if (snapshot.lifeSpan == null) snapshot.lifeSpanMap[state]!! else snapshot.lifeSpan!!
-    val maxMovementSpeed = (if (snapshot.maxMovementSpeed == null) snapshot.maxMovementSpeedMap[state]!! else snapshot.maxMovementSpeed!!)* sqRatio
-    val collisional = if (snapshot.collisional == null) snapshot.collisionalMap[state]!! else snapshot.collisional!!
+    val lifeSpan = snapshot.getLifeSpan(state)
+    val maxMovementSpeed = snapshot.getMaxMovementSpeed(state) * sqRatio
+    val collisional = snapshot.getCollisional(state)
 
-    final override val maxHealth = if (snapshot.maxHealth == null) snapshot.maxHealthMap[state]!! else snapshot.maxHealth!!
-    override val damage = if (snapshot.damage == null) snapshot.damageMap[state]!! else snapshot.damage!!
+    final override val maxHealth = snapshot.getMaxHealth(state)
+    override val damage = snapshot.getDamage(state)
 
     // Life
     private var life = 0f

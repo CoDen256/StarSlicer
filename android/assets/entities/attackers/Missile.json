@@ -3,7 +3,7 @@
   "maxHealth":15.0,
   "damage":30.0,
   "collisional":true,
-  "movementSpeedMap":{
+  "maxMovementSpeedMap":{
     0: 8.0,
     1: 8.0,
     2: 13.0,

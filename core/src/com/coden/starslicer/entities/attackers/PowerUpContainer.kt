@@ -11,7 +11,7 @@ import com.coden.starslicer.util.*
 
 class PowerUpContainer(
         override val initialPos: Vector2,
-        val state: Int,
+        state: Int,
         val content: PowerUp.PowerUpType,
         assets: Assets.ContainerAssets): Attacker(snapshot, state){
 

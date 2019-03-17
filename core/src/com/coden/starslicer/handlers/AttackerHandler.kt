@@ -46,7 +46,7 @@ class AttackerHandler(private val data: EntityData) {
 
     private fun updateCollision(attacker: Attacker) {
         if (data.spaceCraft.isShielded) {
-            if (data.spaceCraft.shieldCircle.overlaps(attacker.roundHitBox)) {
+            if (data.spaceCraft.shieldCircle.overlaps(attacker.hitCircle)) {
                 attacker.kill()
             }
         } else if (data.spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {

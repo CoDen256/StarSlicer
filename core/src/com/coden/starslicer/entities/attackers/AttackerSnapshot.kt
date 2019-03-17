@@ -2,27 +2,43 @@ package com.coden.starslicer.entities.attackers
 
 class AttackerSnapshot {
 
-    var lifeSpan: Float? = null
-    var maxHealth: Float? = null
-    var maxMovementSpeed: Float? = null
-    var damage: Float? = null
-    var collisional: Boolean? = null
+    private var lifeSpan: Float? = null
+    private var maxHealth: Float? = null
+    private var maxMovementSpeed: Float? = null
+    private var damage: Float? = null
+    private var collisional: Boolean? = null
 
 
-    var lifeSpanMap = mutableMapOf<Int, Float>()
-    var maxHealthMap = mutableMapOf<Int, Float>()
-    var maxMovementSpeedMap = mutableMapOf<Int, Float>()
-    var damageMap = mutableMapOf<Int, Float>()
-    var collisionalMap = mutableMapOf<Int, Boolean>()
+    private var lifeSpanMap = mutableMapOf<Int, Float>()
+    private var maxHealthMap = mutableMapOf<Int, Float>()
+    private var maxMovementSpeedMap = mutableMapOf<Int, Float>()
+    private var damageMap = mutableMapOf<Int, Float>()
+    private var collisionalMap = mutableMapOf<Int, Boolean>()
 
     var name = "UNDEFINED"
-
     var type: AttackerType
     get() = AttackerType.get(name)!!
     set(value) {}
 
-    override fun toString(): String {
-        return "$lifeSpanMap, $maxHealthMap, $damageMap, $maxMovementSpeedMap $type $lifeSpanMap"
+
+    fun getMaxHealth(state: Int): Float {
+        return if (maxHealth == null) maxHealthMap[state]!! else maxHealth!!
+    }
+
+    fun getLifeSpan(state: Int): Float {
+        return if (lifeSpan == null) lifeSpanMap[state]!! else lifeSpan!!
+    }
+
+    fun getMaxMovementSpeed(state: Int): Float {
+        return if (maxMovementSpeed == null) maxMovementSpeedMap[state]!! else maxMovementSpeed!!
+    }
+
+    fun getDamage(state: Int): Float {
+        return if (damage == null) damageMap[state]!! else damage!!
+    }
+
+    fun getCollisional(state: Int): Boolean {
+        return if (collisional == null) collisionalMap[state]!! else collisional!!
     }
 
 

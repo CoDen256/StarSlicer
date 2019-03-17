@@ -2,7 +2,7 @@
   "name": "SATELLITE",
   "maxHealth":500.0,
   "lifeSpan":60.0,
-  "movementSpeed": 5.0,
+  "maxMovementSpeed": 5.0,
   "damage":200.0,
   "collisional":true
 }

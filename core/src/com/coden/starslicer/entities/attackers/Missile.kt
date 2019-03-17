@@ -15,7 +15,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
-               val state: Int,
+               state: Int,
                assets: Assets.AttackerAssets): Attacker(snapshot, state){
 
     private val log = Logger("Missile", Logger.INFO)

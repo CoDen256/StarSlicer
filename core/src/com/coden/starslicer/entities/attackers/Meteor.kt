@@ -14,7 +14,7 @@ import java.lang.Float.min
 import javax.swing.text.html.parser.Entity
 
 class Meteor(override val initialPos: Vector2,
-             val state: Int,
+             state: Int,
              val size: Int,
              assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state) {
 
@@ -22,7 +22,7 @@ class Meteor(override val initialPos: Vector2,
         val snapshots = mapOf(
                 0 to EntityLoader.loadAttacker("SmallMeteor.json"),
                 1 to EntityLoader.loadAttacker("MediumMeteor.json"),
-                2 to EntityLoader.loadAttacker("LargeMeteors.json")
+                2 to EntityLoader.loadAttacker("LargeMeteor.json")
         )
     }
 

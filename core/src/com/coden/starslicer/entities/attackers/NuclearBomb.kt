@@ -12,7 +12,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,
-                  val state: Int,
+                  state: Int,
                   assets: Assets.AttackerAssets): Attacker(snapshot, state){
 
     companion object {
