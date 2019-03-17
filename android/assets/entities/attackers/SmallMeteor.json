@@ -2,7 +2,7 @@
   "name": "SMALL_METEOR",
   "maxHealth":30.0,
   "lifeSpan":20.0,
-  "movementSpeed": 8,
-  "damage":200.0,
-  "collisional":true
+  "maxMovementSpeed": 8.0,
+  "damage":30.0,
+  "collisional": true
 }

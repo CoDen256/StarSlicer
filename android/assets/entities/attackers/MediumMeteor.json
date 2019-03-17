@@ -1,8 +1,8 @@
 {
   "name": "MEDIUM_METEOR",
-  "maxHealth":30.0,
+  "maxHealth":70.0,
   "lifeSpan":20.0,
-  "movementSpeed": 8,
-  "damage":200.0,
+  "maxMovementSpeed": 4.0,
+  "damage":50.0,
   "collisional":true
 }

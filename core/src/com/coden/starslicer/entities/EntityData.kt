@@ -2,7 +2,6 @@ package com.coden.starslicer.entities
 
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.entities.containers.Container
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield

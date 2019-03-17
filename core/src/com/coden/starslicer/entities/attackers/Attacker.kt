@@ -11,31 +11,33 @@ import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
 
-abstract class Attacker(snapshot: AttackerSnapshot): Entity {
+abstract class Attacker(snapshot: AttackerSnapshot, state: Int): Entity {
 
-    // Life
-    val lifeSpan = snapshot.lifeSpan
+    init {
+        entities.add(this)
+    }
+
+    // Snapshot properties
     val name = snapshot.name
     val type = snapshot.type
 
-    override val maxHealth = snapshot.maxHealth
-    override val damage = snapshot.damage
+    // If special property is null, so undefined, then look in map for every state
+    val lifeSpan = if (snapshot.lifeSpan == null) snapshot.lifeSpanMap[state]!! else snapshot.lifeSpan!!
+    val maxMovementSpeed = (if (snapshot.maxMovementSpeed == null) snapshot.maxMovementSpeedMap[state]!! else snapshot.maxMovementSpeed!!)* sqRatio
+    val collisional = if (snapshot.collisional == null) snapshot.collisionalMap[state]!! else snapshot.collisional!!
 
+    final override val maxHealth = if (snapshot.maxHealth == null) snapshot.maxHealthMap[state]!! else snapshot.maxHealth!!
+    override val damage = if (snapshot.damage == null) snapshot.damageMap[state]!! else snapshot.damage!!
+
+    // Life
     private var life = 0f
     override var isDead = false
+    override var health = maxHealth
 
     // Movement
-    val movementSpeed = snapshot.movementSpeed * sqRatio
     abstract val initialPos: Vector2
 
-
     // Sprite
-    val collisional: Boolean = snapshot.collisional
-    abstract val state: Int
-
-    abstract var roundHitBox: Circle
-
-
     abstract val spriteTexture: TextureRegion?
     abstract val sprite: Sprite
 
@@ -49,12 +51,6 @@ abstract class Attacker(snapshot: AttackerSnapshot): Entity {
         set(value) {}
 
 
-    abstract fun update()
-
-    init {
-        entities.add(this)
-    }
-
     open fun render(batch: SpriteBatch) {
         sprite.draw(batch)
     }
@@ -66,5 +62,7 @@ abstract class Attacker(snapshot: AttackerSnapshot): Entity {
         }
 
     }
+
+    abstract fun update()
 
 }

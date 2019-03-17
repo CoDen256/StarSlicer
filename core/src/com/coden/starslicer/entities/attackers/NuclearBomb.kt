@@ -12,8 +12,8 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,
-                  override val state: Int,
-                  assets: Assets.AttackerAssets): Attacker(snapshot){
+                  val state: Int,
+                  assets: Assets.AttackerAssets): Attacker(snapshot, state){
 
     companion object {
         val snapshot = EntityLoader.loadAttacker("NuclearBomb.json")
@@ -24,11 +24,7 @@ class NuclearBomb(override val initialPos: Vector2,
     }
 
     private val log = Logger("NuclearBomb", Logger.NONE)
-    // Life
-    override var health = maxHealth
-    override var damage = snapshot.damage
 
-    // Speed constants
 
     // Movement
     override var pos: Vector2 = initialPos
@@ -45,14 +41,14 @@ class NuclearBomb(override val initialPos: Vector2,
         get() = Rectangle(pos.x - h * yRatio/2, pos.y - h * yRatio/2, h * yRatio, h * yRatio)
         set(value) {}
 
-    override var roundHitBox: Circle
+    override var hitCircle: Circle
         get() = Circle(pos.x, pos.y, minOf(w, h)/2)
         set(value) {}
 
     init {
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
+            0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed)
             else -> Vector2()
         }
 

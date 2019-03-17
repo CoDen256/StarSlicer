@@ -9,10 +9,9 @@ import com.coden.starslicer.entities.*
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.*
 import com.coden.starslicer.entities.attackers.AttackerType.*
-import com.coden.starslicer.entities.containers.PowerUpContainer
-import com.coden.starslicer.entities.containers.Satellite
+import com.coden.starslicer.entities.attackers.PowerUpContainer
+import com.coden.starslicer.entities.attackers.Satellite
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.util.EntityLoader
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint

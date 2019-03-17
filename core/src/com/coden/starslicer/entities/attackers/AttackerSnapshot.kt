@@ -2,13 +2,18 @@ package com.coden.starslicer.entities.attackers
 
 class AttackerSnapshot {
 
-    var  lifeSpan: Float = 0f
-    var  maxHealth : Float = 0f
-    var  damage : Float = 0f
-    var  movementSpeed : Float = 0f
-    var collisional = false
+    var lifeSpan: Float? = null
+    var maxHealth: Float? = null
+    var maxMovementSpeed: Float? = null
+    var damage: Float? = null
+    var collisional: Boolean? = null
 
-    var lifeSpans = mutableMapOf<Int, Float>()
+
+    var lifeSpanMap = mutableMapOf<Int, Float>()
+    var maxHealthMap = mutableMapOf<Int, Float>()
+    var maxMovementSpeedMap = mutableMapOf<Int, Float>()
+    var damageMap = mutableMapOf<Int, Float>()
+    var collisionalMap = mutableMapOf<Int, Boolean>()
 
     var name = "UNDEFINED"
 
@@ -17,7 +22,7 @@ class AttackerSnapshot {
     set(value) {}
 
     override fun toString(): String {
-        return "$lifeSpan, $maxHealth, $damage, $movementSpeed $type $lifeSpans"
+        return "$lifeSpanMap, $maxHealthMap, $damageMap, $maxMovementSpeedMap $type $lifeSpanMap"
     }
 
 

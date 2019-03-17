@@ -15,29 +15,16 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
 
 class Missile (override val initialPos: Vector2,
-               override val state: Int,
-               assets: Assets.AttackerAssets): Attacker(snapshot){
+               val state: Int,
+               assets: Assets.AttackerAssets): Attacker(snapshot, state){
 
+    private val log = Logger("Missile", Logger.INFO)
     companion object {
         val snapshot = EntityLoader.loadAttacker("Missile.json")
     }
 
-    init {
-        Gdx.app.log("snapshotMissile $state", "${snapshot.lifeSpans[state]}")
-    }
-
-    private val log = Logger("Missile", Logger.INFO)
     // Speed constants
-    private val oribtingSpeed = 13f * sqRatio // orbiting
-    private val spiralSpeedStep = 1.5f * sqRatio // spiral
-
-
     // Life
-    val lifeSpan2 = when (state) {
-        0,1 -> 5f
-        else -> 100f
-    }
-    override var health = maxHealth
 
     // Movement
     override var pos = initialPos
@@ -51,7 +38,7 @@ class Missile (override val initialPos: Vector2,
     private var dt = initialDt
 
     // Orbit Movement
-    private var currentOrbitingSpeed = oribtingSpeed
+    private var currentOrbitingSpeed = maxMovementSpeed
 
     private var nextVelocity = Vector2(0f,0f)
     private var previousAngle = 0f
@@ -67,13 +54,12 @@ class Missile (override val initialPos: Vector2,
 
     private val w = spriteTexture!!.regionWidth * 1f * xRatio
     private val h = spriteTexture!!.regionHeight *1.5f * yRatio
-    private val states = mapOf(0 to "Missing", 1 to "Direct", 2 to "Orbiting", 3 to "Spiraling")
 
     override var hitBox : Rectangle
         get() = Rectangle(pos.x - h/2, pos.y - h /2, h, h)
         set(value) {}
 
-    override var roundHitBox: Circle
+    override var hitCircle: Circle
         get() = Circle(pos.x, pos.y, h/2)
         set(value) {}
 
@@ -85,15 +71,16 @@ class Missile (override val initialPos: Vector2,
     3 : Spiraling (clockwise)
 
      */
+
     init {
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
-            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(movementSpeed)
+                    MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
+            1 -> initialPos.cpy().sub(spaceCraftCenter).scl(-1f).setLength(maxMovementSpeed)
             else -> Vector2()
         }
 
-        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state - ${states[state]}")
+        log.info("Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 180f else velocity.angle())
@@ -131,7 +118,7 @@ class Missile (override val initialPos: Vector2,
     }
 
     private fun moveSpiral() {
-        dt -= spiralSpeedStep*Gdx.graphics.deltaTime
+        dt -= maxMovementSpeed*Gdx.graphics.deltaTime
 
         pos = getOrbitalPos(dt)
 

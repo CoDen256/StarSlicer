@@ -14,12 +14,12 @@ import java.lang.Float.min
 import javax.swing.text.html.parser.Entity
 
 class Meteor(override val initialPos: Vector2,
-             override val state: Int,
+             val state: Int,
              val size: Int,
-             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!) {
+             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state) {
 
     companion object {
-        val snapshots = mapOf<Int, AttackerSnapshot>(
+        val snapshots = mapOf(
                 0 to EntityLoader.loadAttacker("SmallMeteor.json"),
                 1 to EntityLoader.loadAttacker("MediumMeteor.json"),
                 2 to EntityLoader.loadAttacker("LargeMeteors.json")
@@ -27,38 +27,9 @@ class Meteor(override val initialPos: Vector2,
     }
 
     private val log = Logger("Meteor", Logger.NONE)
-    // Life
 
-    val name2 = when (size) {
-        0 -> AttackerType.SMALL_METEOR
-        1 -> AttackerType.MEDIUM_METEOR
-        2 -> AttackerType.LARGE_METEOR
-        else -> throw IllegalArgumentException()
-    }
-
-    //override val maxHealth = when (size) {
-    //    0 -> 30f
-    //    1 -> 70f
-    //    2 -> 200f
-    //    else -> throw IllegalArgumentException()
-    //}
-
-    override var health = maxHealth
-
-    override var damage = when (size) {
-        0 -> 30f
-        1 -> 50f
-        2 -> 90f
-        else -> throw IllegalArgumentException()
-    }
-
-    // Speed constants
-    val rmovementSpeed = when (size) {
-        0 -> MathUtils.random(1, 8) * sqRatio
-        1 -> MathUtils.random(1, 4) * sqRatio
-        2 -> MathUtils.random(1, 2) * sqRatio
-        else -> throw IllegalArgumentException()
-    }
+    // Movement
+    val movementSpeed= MathUtils.random(1f, maxMovementSpeed)
 
     private val angleSpeed = when (size) {
         0 -> MathUtils.random(1, 360)
@@ -83,7 +54,7 @@ class Meteor(override val initialPos: Vector2,
         get() = Rectangle(pos.x-width/2, pos.y-height/2, width, height)
         set(value) {}
 
-    override var roundHitBox: Circle
+    override var hitCircle: Circle
         get() = Circle(pos.x, pos.y, minOf(width, height)/2)
         set(value) {}
 
