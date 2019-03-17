@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
+import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.spaceCraftCenter
 import com.coden.starslicer.util.sqRatio
 
@@ -20,6 +21,7 @@ abstract class Attacker(snapshot: AttackerSnapshot,val state: Int = 0): Entity {
     // Snapshot properties
     val name = snapshot.name
     val type = snapshot.type
+    val container = snapshot.isContainer()
 
     // If special property is null, so undefined, then look in map for every state
     val lifeSpan = snapshot.getLifeSpan(state)
@@ -40,6 +42,7 @@ abstract class Attacker(snapshot: AttackerSnapshot,val state: Int = 0): Entity {
     // Sprite
     abstract val spriteTexture: TextureRegion?
     abstract val sprite: Sprite
+    open val content: PowerUp.PowerUpType? = null
 
     // specialized vectors
     var targetVector : Vector2

@@ -1,5 +1,6 @@
 {
   "name": "POWERUP_CONTAINER",
+  "container": true,
   "maxHealth":150.0,
   "lifeSpan":5.0,
   "maxMovementSpeed": 5,

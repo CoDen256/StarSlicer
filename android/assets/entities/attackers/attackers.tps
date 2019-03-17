@@ -181,20 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Meteor.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>140,139,279,279</rect>
-                <key>scale9Paddings</key>
-                <rect>140,139,279,279</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">largeMeteor.png</key>
+            <key type="filename">Meteor/largeMeteor.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -207,7 +194,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">mediumMeteor.png</key>
+            <key type="filename">Meteor/mediumMeteor.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -220,7 +207,20 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">missile.png</key>
+            <key type="filename">Meteor/smallMeteor.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>19,19,37,37</rect>
+                <key>scale9Paddings</key>
+                <rect>19,19,37,37</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">Missile/missile.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -233,7 +233,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">nuclearbomb.png</key>
+            <key type="filename">NuclearBomb/nuclearbomb.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -246,28 +246,42 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">smallMeteor.png</key>
+            <key type="filename">PowerUpContainer/powerUpContainer.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>19,19,37,37</rect>
+                <rect>22,30,43,60</rect>
                 <key>scale9Paddings</key>
-                <rect>19,19,37,37</rect>
+                <rect>22,30,43,60</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">Satellite/satellite.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>56,63,111,125</rect>
+                <key>scale9Paddings</key>
+                <rect>56,63,111,125</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>largeMeteor.png</filename>
-            <filename>mediumMeteor.png</filename>
-            <filename>Meteor.png</filename>
-            <filename>missile.png</filename>
-            <filename>nuclearbomb.png</filename>
-            <filename>smallMeteor.png</filename>
+            <filename>Meteor/largeMeteor.png</filename>
+            <filename>Meteor/mediumMeteor.png</filename>
+            <filename>Meteor/smallMeteor.png</filename>
+            <filename>Missile/missile.png</filename>
+            <filename>NuclearBomb/nuclearbomb.png</filename>
+            <filename>PowerUpContainer/powerUpContainer.png</filename>
+            <filename>Satellite/satellite.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

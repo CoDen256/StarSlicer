@@ -47,8 +47,5 @@ data class EntityData(val spaceCraft: SpaceCraft, val assets: Assets) {
     get() =  assets.attackerAssets
     set(value) {}
 
-    var containerAssets: Assets.ContainerAssets
-    get() = assets.containerAssets
-    set(value) {}
 
 }

@@ -20,7 +20,7 @@ class Missile (override val initialPos: Vector2,
 
     private val log = Logger("Missile", Logger.INFO)
     companion object {
-        val snapshot = EntityLoader.loadAttacker("Missile.json")
+        val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
     }
 
     // Speed constants

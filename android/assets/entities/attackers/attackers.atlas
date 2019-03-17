@@ -1,27 +1,20 @@
 attackers.png
-size: 687, 757
+size: 237, 925
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 largeMeteor
   rotate: false
-  xy: 325, 0
+  xy: 0, 225
   size: 236, 200
   orig: 236, 200
   offset: 0, 0
   index: -1
 mediumMeteor
   rotate: false
-  xy: 175, 0
+  xy: 87, 75
   size: 150, 150
   orig: 150, 150
-  offset: 0, 0
-  index: -1
-Meteor
-  rotate: false
-  xy: 128, 200
-  size: 559, 557
-  orig: 559, 557
   offset: 0, 0
   index: -1
 missile
@@ -33,9 +26,23 @@ missile
   index: -1
 nuclearbomb
   rotate: false
-  xy: 0, 200
+  xy: 0, 675
   size: 128, 250
   orig: 128, 250
+  offset: 0, 0
+  index: -1
+powerUpContainer
+  rotate: false
+  xy: 0, 75
+  size: 87, 120
+  orig: 87, 120
+  offset: 0, 0
+  index: -1
+satellite
+  rotate: false
+  xy: 0, 425
+  size: 222, 250
+  orig: 222, 250
   offset: 0, 0
   index: -1
 smallMeteor

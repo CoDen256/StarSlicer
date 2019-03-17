@@ -7,6 +7,7 @@ class AttackerSnapshot {
     private var maxMovementSpeed: Float? = null
     private var damage: Float? = null
     private var collisional: Boolean? = null
+    private var container: Boolean? = null
 
 
     private var lifeSpanMap = mutableMapOf<Int, Float>()
@@ -40,6 +41,8 @@ class AttackerSnapshot {
     fun getCollisional(state: Int): Boolean {
         return if (collisional == null) collisionalMap[state]!! else collisional!!
     }
+
+    fun isContainer() = if (container == null) false else container!!
 
 
 }

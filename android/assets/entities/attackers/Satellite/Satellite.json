@@ -1,5 +1,6 @@
 {
   "name": "SATELLITE",
+  "container": true,
   "maxHealth":500.0,
   "lifeSpan":60.0,
   "maxMovementSpeed": 5.0,

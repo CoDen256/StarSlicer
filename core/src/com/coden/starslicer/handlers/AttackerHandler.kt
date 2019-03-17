@@ -143,7 +143,7 @@ class AttackerHandler(private val data: EntityData) {
         if (data.currentPowerUpContainers[newState] >= data.maxPowerUpContainers[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
-        val powerUpContainer = PowerUpContainer(spawnPoint, newState, type, data.containerAssets)
+        val powerUpContainer = PowerUpContainer(spawnPoint, newState, type, data.attackerAssets)
         increment(powerUpContainer.type, newState)
         data.attackers.add(powerUpContainer)
     }
@@ -154,7 +154,7 @@ class AttackerHandler(private val data: EntityData) {
         if (data.currentSatellites[newState] >= data.maxSatellites[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
-        val satellite = Satellite(spawnPoint, newState, type, data.containerAssets)
+        val satellite = Satellite(spawnPoint, newState, type, data.attackerAssets)
         increment(satellite.type, newState)
         data.attackers.add(satellite)
     }

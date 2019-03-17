@@ -16,12 +16,9 @@ class NuclearBomb(override val initialPos: Vector2,
                   assets: Assets.AttackerAssets): Attacker(snapshot, state){
 
     companion object {
-        val snapshot = EntityLoader.loadAttacker("NuclearBomb.json")
+        val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
     }
 
-    init {
-        Gdx.app.log("snapshot", "$snapshot")
-    }
 
     private val log = Logger("NuclearBomb", Logger.NONE)
 

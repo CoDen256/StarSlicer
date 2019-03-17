@@ -12,13 +12,13 @@ import com.coden.starslicer.util.*
 class Satellite(
         override val initialPos: Vector2,
         state: Int,
-        val content: PowerUp.PowerUpType,
-        assets: Assets.ContainerAssets) : Attacker(snapshot, state){
+        override val content: PowerUp.PowerUpType,
+        assets: Assets.AttackerAssets) : Attacker(snapshot, state){
 
     // TODO: Content of container decided on conditions of current situation
 
     companion object {
-        val snapshot = EntityLoader.loadAttacker("Satellite.json")
+        val snapshot = EntityLoader.loadAttacker(AttackerType.SATELLITE)
     }
 
     private val log = Logger("Satellite", Logger.NONE)

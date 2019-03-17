@@ -1,26 +1,26 @@
 package com.coden.starslicer.util
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.TextureAtlasLoader
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.PowerUp
+import java.io.FileReader
 
 class Assets{
     private val manager = AssetManager()
 
     private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/powerups/powerups.atlas", TextureAtlas::class.java)
-    private val CONTAINER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/containers/containers.atlas", TextureAtlas::class.java)
     private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers.atlas", TextureAtlas::class.java)
 
     lateinit var powerUpAssets: PowerUpAssets
-    lateinit var containerAssets: ContainerAssets
     lateinit var attackerAssets: AttackerAssets
+    //lateinit var attackerConfigs:
 
     var progress: Float
         get() = manager.progress
@@ -38,9 +38,9 @@ class Assets{
     fun loadTextureAtlases() {
         manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
         manager.load(POWER_UP_ATLAS_DESCRIPTOR)
-        manager.load(CONTAINER_ATLAS_DESCRIPTOR)
         manager.load(ATTACKER_ATLAS_DESCRIPTOR)
     }
+
 
     fun updateLoading(): Boolean {
         return manager.update()
@@ -53,7 +53,6 @@ class Assets{
 
     private fun initialize() {
         powerUpAssets = PowerUpAssets(manager.get(POWER_UP_ATLAS_DESCRIPTOR))
-        containerAssets = ContainerAssets(manager.get(CONTAINER_ATLAS_DESCRIPTOR))
         attackerAssets = AttackerAssets(manager.get(ATTACKER_ATLAS_DESCRIPTOR))
 
     }
@@ -76,22 +75,34 @@ class Assets{
 
     }
 
-    class ContainerAssets(atlas: TextureAtlas){
-        private val map = mapOf(
-                SATELLITE to atlas.findRegion("satellite") as TextureRegion,
-                POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
-        )
-        fun getTexture(type: AttackerType): TextureRegion? = map[type]
-    }
-
     class AttackerAssets(atlas: TextureAtlas){
         private val map = mapOf(
                 MISSILE to atlas.findRegion("missile") as TextureRegion,
                 NUCLEAR_BOMB to atlas.findRegion("nuclearbomb") as TextureRegion,
                 SMALL_METEOR to atlas.findRegion("smallMeteor") as TextureRegion,
                 MEDIUM_METEOR to atlas.findRegion("mediumMeteor") as TextureRegion,
-                LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion
+                LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion,
+                SATELLITE to atlas.findRegion("satellite") as TextureRegion,
+                POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
         )
         fun getTexture(type: AttackerType): TextureRegion? = map[type]
+    }
+
+    companion object {
+        val attackerConfigMap = mapOf(
+                MISSILE to loadAttacker("Missile/Missile.json"),
+                NUCLEAR_BOMB to loadAttacker("NuclearBomb/NuclearBomb.json"),
+                SMALL_METEOR to loadAttacker("Meteor/SmallMeteor.json"),
+                MEDIUM_METEOR to loadAttacker("Meteor/MediumMeteor.json"),
+                LARGE_METEOR to loadAttacker("Meteor/LargeMeteor.json"),
+                SATELLITE to loadAttacker("Satellite/Satellite.json"),
+                POWERUP_CONTAINER to loadAttacker("PowerUpContainer/PowerUpContainer.json")
+
+        )
+
+        fun loadAttacker(name: String) = {
+            Gdx.app.log("AttackerConfigMap", "Loading...$name")
+            FileReader("entities/attackers/$name")
+        }
     }
 }

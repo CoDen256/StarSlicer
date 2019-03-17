@@ -20,9 +20,9 @@ class Meteor(override val initialPos: Vector2,
 
     companion object {
         val snapshots = mapOf(
-                0 to EntityLoader.loadAttacker("SmallMeteor.json"),
-                1 to EntityLoader.loadAttacker("MediumMeteor.json"),
-                2 to EntityLoader.loadAttacker("LargeMeteor.json")
+                0 to EntityLoader.loadAttacker(AttackerType.SMALL_METEOR),
+                1 to EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
+                2 to EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
         )
     }
 

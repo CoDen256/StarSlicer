@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
@@ -30,9 +31,12 @@ class InputManager(private val data: EntityData) {
             for (entity in entities) {
                 if (firstBlade.isSlicing(entity.hitBox) || secondBlade.isSlicing(entity.hitBox)) {
                     entity.takeDamage(damage) // TODO: The bigger slice the more damage will received
-                    //if (entity.isDead && entity is com.coden.starslicer.entities.attackers.Container) {
-                    //    addPowerUp(entity.content)
-                    //}
+                    if (entity.isDead && entity is Attacker) {
+                        if (entity.container) {
+                            addPowerUp(entity.content!!)
+                        }
+
+                    }
                 }
             }
         }
