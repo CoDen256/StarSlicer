@@ -2,7 +2,6 @@ package com.coden.starslicer.entities.attackers
 
 class AttackerSnapshot {
 
-    // TODO: var to val change and comments
     // Attacker
     private var lifeSpan: Float? = null
     private var maxHealth: Float? = null

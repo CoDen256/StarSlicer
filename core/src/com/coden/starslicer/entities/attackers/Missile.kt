@@ -67,7 +67,7 @@ class Missile (override val initialPos: Vector2,
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                          MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
-            1 -> targetVector.cpy().setLength(maxMovementSpeed) // TODO: To spesialized vector change
+            1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
 

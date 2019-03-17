@@ -5,7 +5,7 @@
   "maxMovementSpeed": 300.0,
   "damage":200.0,
   "collisionalMap":{
-    0: false,
-    1: true
+    "0": false,
+    "1": true
   }
 }

@@ -9,7 +9,7 @@ import com.coden.starslicer.entities.EntityData
 
 class HUD(data: EntityData) {
 
-    private val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.715f, Gdx.graphics.height*0.05f, data) // TODO: Move HUD to the top,
+    private val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.5f, Gdx.graphics.height*0.88f, data) // TODO: Move HUD to the top,
                                                                                                     // since its uncomfortable to slice ther
 
     private var batch: SpriteBatch = SpriteBatch()

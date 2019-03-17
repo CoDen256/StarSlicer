@@ -5,13 +5,13 @@ import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.TextureAtlasLoader
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
+import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.PowerUp
-import java.io.File
-import java.io.FileReader
+import java.io.*
 
 class Assets{
     private val manager = AssetManager()
@@ -101,9 +101,10 @@ class Assets{
 
         )
 
-        fun loadAttacker(name: String): FileReader  {
+        fun loadAttacker(name: String): Reader {
             Gdx.app.log("AttackerConfigMap", "Loading...$name")
-            return FileReader("entities/attackers/$name")
+            val path = "entities/attackers/$name"
+            return Gdx.files.internal(path).reader()
         }
     }
 }

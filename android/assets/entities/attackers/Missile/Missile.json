@@ -6,15 +6,15 @@
   "spiralRadius": 20.0,
   "spiralInitialCount": 80.0,
   "maxMovementSpeedMap":{
-    0: 480.0,
-    1: 480.0,
-    2: 780.0,
-    3: 1.5
+    "0": 480.0, // missing
+    "1": 480.0, // direct
+    "2": 780.0, // orbiting
+    "3": 1.5    // spiral
   },
   "lifeSpanMap":{
-    0:5.0,
-    1:5.0,
-    2: 100.0,
-    3: 100.0
+    "0":5.0,   // missing
+    "1":5.0,   // direct
+    "2": 100.0,// orbiting
+    "3": 100.0 // spiral
   }
 }

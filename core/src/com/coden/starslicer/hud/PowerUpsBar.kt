@@ -2,18 +2,18 @@ package com.coden.starslicer.hud
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.sqRatio
+import com.coden.starslicer.util.xRatio
+import com.coden.starslicer.util.yRatio
 
 class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3) {
+    // x center, y bottom
 
-    private val log = Logger("PowerUpsBar", Logger.DEBUG)
+    private val size = data.powerUpIconAssets.width * xRatio
 
-    private val size = data.powerUpIconAssets.width * sqRatio
-
-    private val marginX = 0.5f
+    private val marginX = 0.5f // ratio to size in which it has to be margined DO NOT APPLY XRATIO(YRATIO)
     private val marginY = 0.2f
 
     private val totalWidth = ((maxNumber+1)*marginX + maxNumber)*size
@@ -22,7 +22,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     init {
         var i = marginX
         for (icon in data.powerUpIcons) {
-            icon.initialize(x + i * size, y + marginY*size, size)
+            icon.initialize(x - totalWidth/2 + i * size, y + marginY*size, size)
             i += 1 + marginX
         }
     }
@@ -55,7 +55,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     }
 
     fun debug(shapeRenderer: ShapeRenderer) {
-        shapeRenderer.rect(x, y, totalWidth, totalHeight)
+        shapeRenderer.rect(x - totalWidth/2, y, totalWidth, totalHeight)
         for (icon in data.powerUpIcons) {
             shapeRenderer.rect(icon.pos.x, icon.pos.y, icon.width, icon.width)
         }
