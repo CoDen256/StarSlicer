@@ -13,7 +13,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
 
     private val size = data.powerUpIconAssets.width * xRatio
 
-    private val marginX = 0.5f // ratio to size in which it has to be margined DO NOT APPLY XRATIO(YRATIO)
+    private val marginX = 0.5f //TODO: ratio to size in which it has to be margined DO NOT APPLY XRATIO(YRATIO)
     private val marginY = 0.2f
 
     private val totalWidth = ((maxNumber+1)*marginX + maxNumber)*size

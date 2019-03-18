@@ -10,7 +10,7 @@ import com.coden.starslicer.BladePoint
 import com.coden.starslicer.util.*
 import com.coden.util.swipe.SwipeHandler
 
-class SpaceCraft : Entity {
+class SpaceCraft : Entity { // TODO: Has to be Singleton
     var spaceCraftTexture: Texture = Texture("entities/spacecraft/spacecraft.png")
 
     var isShielded = false

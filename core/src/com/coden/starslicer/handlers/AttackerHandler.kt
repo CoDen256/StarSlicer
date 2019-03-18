@@ -37,6 +37,10 @@ class AttackerHandler(private val data: EntityData) {
 
             if (attacker.isDead) {
                 log.info("${attacker.name} is dead")
+                if (attacker is NuclearBomb) {
+                    attacker.damageAll()
+                    data.spaceCraft.takeDamage(attacker.damage) // TODO: Move to kill() method as soon as Spacecraft is Singleton
+                }
                 decrement(attacker.type, attacker.state)
                 entities.remove(attacker) // Removing from all entities
                 iterator.remove()
