@@ -37,10 +37,6 @@ class AttackerHandler(private val data: EntityData) {
 
             if (attacker.isDead) {
                 log.info("${attacker.name} is dead")
-                if (attacker is NuclearBomb) {
-                    attacker.damageAll()
-                    data.spaceCraft.takeDamage(attacker.damage) // TODO: Move to kill() method as soon as Spacecraft is Singleton
-                }
                 decrement(attacker.type, attacker.state)
                 entities.remove(attacker) // Removing from all entities
                 iterator.remove()
@@ -51,6 +47,11 @@ class AttackerHandler(private val data: EntityData) {
     private fun updateCollision(attacker: Attacker) {
         if (data.spaceCraft.isShielded) {
             if (data.spaceCraft.shieldCircle.overlaps(attacker.hitCircle)) {
+                if (attacker is NuclearBomb) {
+                    attacker.damageAll()
+                    data.spaceCraft.takeDamage(attacker.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
+                    data.shields[0].active = false
+                }
                 attacker.kill()
             }
         } else if (data.spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {

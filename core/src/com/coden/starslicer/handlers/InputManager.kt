@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
@@ -35,7 +36,11 @@ class InputManager(private val data: EntityData) {
                         if (entity.container) {
                             addPowerUp(entity.content!!)
                         }
-
+                        if (entity is NuclearBomb) {
+                            entity.damageAll()
+                            data.spaceCraft.takeDamage(entity.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
+                            data.shields[0].active = false
+                        }
                     }
                 }
             }
