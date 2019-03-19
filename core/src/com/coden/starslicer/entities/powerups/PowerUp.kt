@@ -3,7 +3,13 @@ package com.coden.starslicer.entities.powerups
 abstract class PowerUp(val type: PowerUpType){
 
     enum class PowerUpType {
-        SHIELD, HPBOOST, SHOCKWAVE
+        SHIELD, HPBOOST, SHOCKWAVE;
+
+    }
+
+    object Converter{
+        private val map = PowerUpType.values().map{it.toString() to it}.toMap()
+        fun get(name: String) = map[name]!!
     }
 
 

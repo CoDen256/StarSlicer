@@ -28,7 +28,7 @@ class AttackerSnapshot {
 
     var name = "UNDEFINED"
     var type: AttackerType
-    get() = AttackerType.get(name)!!
+    get() = AttackerType.Converter.get(name)
     set(value) {}
 
 

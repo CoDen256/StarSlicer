@@ -116,14 +116,23 @@ class Assets{
 
         )
 
+        val powerupConfigMap = mapOf<PowerUp.PowerUpType, Reader>()
+
+        fun load(path: String) = Gdx.files.internal(path).reader()
+
         fun loadAttacker(name: String): Reader {
             Gdx.app.log("AttackerConfigMap", "Loading...$name")
-            val path = "entities/attackers/$name"
-            return Gdx.files.internal(path).reader()
+            return load("entities/attackers/$name")
+        }
+
+        fun loadPowerUp(name: String): Reader {
+            Gdx.app.log("PowerUpConfigMap", "Loading...$name")
+            return load("entities/powerups/$name")
         }
 
         init {
             Gdx.app.log("Initializing", "attackerConfigMap...")
+            Gdx.app.log("Initializing", "powerupConfigMap...")
         }
     }
 
