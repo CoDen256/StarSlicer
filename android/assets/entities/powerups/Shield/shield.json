@@ -1,0 +1,6 @@
+{
+  "name": "SHIELD",
+  "radius": 180.0, // radius of the shield
+  "lifeSpan": 10.0, // lifespan of the shield
+  "growthSpeed": 360 // the bigger growthspeed the faste shield is stabilized (multiplied by deltaTime)
+}

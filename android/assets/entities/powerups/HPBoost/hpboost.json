@@ -1,0 +1,4 @@
+{
+  "name" : "HPBOOST",
+  "damage" : -100.0 // The Healing Amount
+}

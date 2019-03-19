@@ -8,15 +8,20 @@ import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.EntityLoader.loadPowerUp
 
 class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
 
-    private val maxRadius = 1000 * sqRatio // ratio of growth
-    private val iterations = 18
-    private val maxLife = iterations/60f // 0.333 seconds of life
-    private val damage = 100f / iterations // 100 damage by 18 iterations
+    companion object {
+        val snapshot = loadPowerUp(PowerUpType.SHOCKWAVE)
+    }
+
+    private val growthSpeed = snapshot.growthSpeed * sqRatio
+    private val lifeSpan = snapshot.lifeSpan
+    private val deltaDamage = snapshot.damage / (lifeSpan*60)
 
     var radius = 0f
+    var damage = 0f
     private var life = 0f
 
     fun applyEffect() {
@@ -25,9 +30,11 @@ class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
 
     override fun update() {
         life += Gdx.graphics.deltaTime
-        if (life < maxLife) radius += maxRadius/15
+        damage += deltaDamage
+        if (life < lifeSpan) radius += growthSpeed * Gdx.graphics.deltaTime
         else kill()
 
+        //Log.info("Radius: $radius - Life: $life - Damage: $damage")
         damageAll()
     }
 
@@ -36,7 +43,7 @@ class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
         while (iterator.hasNext()) {
             val entity = iterator.next()
             if (dist2(entity.pos, spaceCraftCenter) < radius){
-                entity.takeDamage(damage)
+                entity.takeDamage(deltaDamage)
             }
         }
     }

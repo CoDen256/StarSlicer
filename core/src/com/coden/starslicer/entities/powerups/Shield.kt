@@ -5,27 +5,34 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.util.EntityLoader
 import com.coden.starslicer.util.sqRatio
 
 class Shield: PowerUp(PowerUpType.SHIELD) {
 
-    private val maxRadius = 180f * sqRatio
-    private val lifeSpan = 10f
+    companion object {
+        val snapshot = EntityLoader.loadPowerUp(PowerUpType.SHIELD)
+    }
+
+    private val maxRadius = snapshot.radius
+    private val lifeSpan = snapshot.lifeSpan
+    private val growthSpeed = snapshot.growthSpeed
 
     private var radius = 0f
     private var life = 0f
 
     fun applyEffect() {
         SpaceCraft.isShielded = true
-        active = true
         SpaceCraft.shieldRadius = radius
+        active = true
+
     }
 
     override fun update() {
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan || !SpaceCraft.isShielded) kill()
 
-        if (radius < maxRadius) radius += maxRadius/30
+        if (radius < maxRadius) radius += growthSpeed*Gdx.graphics.deltaTime
         SpaceCraft.shieldRadius = radius
 
 

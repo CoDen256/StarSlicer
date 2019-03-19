@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
+import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import java.io.*
 
@@ -116,16 +117,20 @@ class Assets{
 
         )
 
-        val powerupConfigMap = mapOf<PowerUp.PowerUpType, Reader>()
+        val powerupConfigMap = mapOf(
+                PowerUp.PowerUpType.HPBOOST to loadPowerUp("HPBoost/hpboost.json"),
+                PowerUp.PowerUpType.SHIELD to loadPowerUp("Shield/shield.json"),
+                PowerUp.PowerUpType.SHOCKWAVE to loadPowerUp("ShockWave/shockwave.json")
+        )
 
-        fun load(path: String) = Gdx.files.internal(path).reader()
+        private fun load(path: String) = Gdx.files.internal(path).reader()
 
-        fun loadAttacker(name: String): Reader {
+        private fun loadAttacker(name: String): Reader {
             Gdx.app.log("AttackerConfigMap", "Loading...$name")
             return load("entities/attackers/$name")
         }
 
-        fun loadPowerUp(name: String): Reader {
+        private fun loadPowerUp(name: String): Reader {
             Gdx.app.log("PowerUpConfigMap", "Loading...$name")
             return load("entities/powerups/$name")
         }
