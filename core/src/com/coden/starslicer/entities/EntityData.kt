@@ -9,7 +9,7 @@ import com.coden.starslicer.entities.powerups.ShockWave
 import com.coden.starslicer.hud.PowerUpIcon
 import com.coden.starslicer.util.Assets
 
-data class EntityData(val spaceCraft: SpaceCraft, val assets: Assets) {
+data class EntityData(val assets: Assets) {
 
     private val log = Logger("EntityData", Logger.INFO)
 

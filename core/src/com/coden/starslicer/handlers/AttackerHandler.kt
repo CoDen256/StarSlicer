@@ -45,17 +45,13 @@ class AttackerHandler(private val data: EntityData) {
     }
 
     private fun updateCollision(attacker: Attacker) {
-        if (data.spaceCraft.isShielded) {
-            if (data.spaceCraft.shieldCircle.overlaps(attacker.hitCircle)) {
-                if (attacker is NuclearBomb) {
-                    attacker.damageAll()
-                    data.spaceCraft.takeDamage(attacker.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
-                    data.spaceCraft.isShielded = false
-                }
+        if (SpaceCraft.isShielded) {
+            if (SpaceCraft.shieldCircle.overlaps(attacker.hitCircle)) {
+                if (attacker is NuclearBomb) attacker.damageAll()
                 attacker.kill()
             }
-        } else if (data.spaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {
-            attacker.giveDamage(data.spaceCraft, attacker.damage)
+        } else if (SpaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {
+            attacker.giveDamage(SpaceCraft, attacker.damage)
             attacker.kill()
         }
     }

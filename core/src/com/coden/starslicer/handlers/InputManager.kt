@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.powerups.HPBoost
@@ -25,7 +26,7 @@ class InputManager(private val data: EntityData) {
     }
 
     fun updateSwiping(){
-        with(data.spaceCraft){
+        with(SpaceCraft){
             if (!(firstBlade.active || secondBlade.active)){
                 return
             }
@@ -33,14 +34,8 @@ class InputManager(private val data: EntityData) {
                 if (firstBlade.isSlicing(entity.hitBox) || secondBlade.isSlicing(entity.hitBox)) {
                     entity.takeDamage(damage) // TODO: The bigger slice the more damage will received
                     if (entity.isDead && entity is Attacker) {
-                        if (entity.container) {
-                            addPowerUp(entity.content!!)
-                        }
-                        if (entity is NuclearBomb) {
-                            entity.damageAll()
-                            data.spaceCraft.takeDamage(entity.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
-                            data.spaceCraft.isShielded = false
-                        }
+                        if (entity.container) addPowerUp(entity.content!!)
+                        if (entity is NuclearBomb) entity.damageAll()
                     }
                 }
             }
@@ -58,8 +53,8 @@ class InputManager(private val data: EntityData) {
     }
 
     private fun usePowerUp(ability: PowerUp.PowerUpType) = when (ability) {
-        SHIELD    -> if (!data.shields.isEmpty() && !data.spaceCraft.isShielded) data.shields[0].applyEffect() else Unit
-        HPBOOST   -> if (!data.boosts.isEmpty()) data.boosts[0].applyEffect(data.spaceCraft) else Unit
+        SHIELD    -> if (!data.shields.isEmpty() && !SpaceCraft.isShielded) data.shields[0].applyEffect() else Unit
+        HPBOOST   -> if (!data.boosts.isEmpty()) data.boosts[0].applyEffect() else Unit
         SHOCKWAVE -> {
             if (!data.shockWaves.isEmpty()) {
                 for (shockWave in data.shockWaves) if (!shockWave.active) {
@@ -72,7 +67,7 @@ class InputManager(private val data: EntityData) {
     }
 
     private fun addPowerUp(ability: PowerUp.PowerUpType) = when (ability) {
-        SHIELD     -> data.shields.add(Shield(data.spaceCraft))
+        SHIELD     -> data.shields.add(Shield())
         HPBOOST    -> data.boosts.add(HPBoost())
         SHOCKWAVE  -> data.shockWaves.add(ShockWave())
     }

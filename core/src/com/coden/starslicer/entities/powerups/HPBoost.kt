@@ -6,8 +6,8 @@ class HPBoost: PowerUp(PowerUpType.HPBOOST) {
 
     val damage = -100f // healing amount
 
-    fun applyEffect(spaceCraft: SpaceCraft) {
-        spaceCraft.takeDamage(damage)
+    fun applyEffect() {
+        SpaceCraft.takeDamage(damage)
         active = true
         kill()
     }

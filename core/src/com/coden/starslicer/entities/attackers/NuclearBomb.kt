@@ -17,6 +17,7 @@ class NuclearBomb(override val initialPos: Vector2,
         val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
     }
 
+    val shieldPortion = 0.2f
     // Movement
     override var pos: Vector2 = initialPos
     private var velocity: Vector2
@@ -53,6 +54,8 @@ class NuclearBomb(override val initialPos: Vector2,
         for (entity in entities) {
             entity.takeDamage(damage)
         }
+        SpaceCraft.takeDamage(damage*shieldPortion)
+        SpaceCraft.isShielded = false
     }
 
 }

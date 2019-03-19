@@ -50,7 +50,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.assets.finishLoading()// TODO: Initialize in starting screen
 
 
-        data = EntityData(SpaceCraft, game.assets)
+        data = EntityData(game.assets)
 
         hud = HUD(data)
 

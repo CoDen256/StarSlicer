@@ -7,7 +7,7 @@ import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.SpaceCraft
 import com.coden.starslicer.util.sqRatio
 
-class Shield(private val spaceCraft: SpaceCraft): PowerUp(PowerUpType.SHIELD) {
+class Shield: PowerUp(PowerUpType.SHIELD) {
 
     private val maxRadius = 180f * sqRatio
     private val lifeSpan = 10f
@@ -16,24 +16,24 @@ class Shield(private val spaceCraft: SpaceCraft): PowerUp(PowerUpType.SHIELD) {
     private var life = 0f
 
     fun applyEffect() {
-        spaceCraft.isShielded = true
+        SpaceCraft.isShielded = true
         active = true
-        spaceCraft.shieldRadius = radius
+        SpaceCraft.shieldRadius = radius
     }
 
     override fun update() {
         life += Gdx.graphics.deltaTime
-        if (life >= lifeSpan) kill()
+        if (life >= lifeSpan || !SpaceCraft.isShielded) kill()
 
         if (radius < maxRadius) radius += maxRadius/30
-        spaceCraft.shieldRadius = radius
+        SpaceCraft.shieldRadius = radius
 
 
     }
 
     override fun kill() {
         super.kill()
-        spaceCraft.isShielded = false
+        SpaceCraft.isShielded = false
     }
 
 
