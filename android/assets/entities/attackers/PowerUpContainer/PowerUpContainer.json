@@ -4,7 +4,7 @@
   "maxAngleSpeed":200.0,
   "container": true,
   "maxHealth":150.0,
-  "lifeSpan":5.0,
+  "lifeSpan":15.0,
   "maxMovementSpeed": 150.0,
   "damage":0.0,
   "collisional": false

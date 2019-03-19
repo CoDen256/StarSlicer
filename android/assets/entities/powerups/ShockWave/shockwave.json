@@ -1,6 +1,7 @@
 {
   "name": "SHOCKWAVE",
   "damage": 100.0,       // max damage that can be applied to all entities(it will fade with bigger distances)
-  "lifeSpan": 0.31,      // max life - the bigger lifeSpan the more it will live
-  "growthSpeed" : 4000.0 // speed of radius growth - the bigger growthSpeed the faster the shockwave will spread
+  "lifeSpan": 0.3,      // max life - the bigger lifeSpan the more it will live
+  "growthSpeed" : 4000.0, // speed of radius growth - the bigger growthSpeed the faster the shockwave will spread
+  "pushingSpeed": 720.0 // Speed Scalar at which entities will be pushed from center
 }

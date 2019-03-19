@@ -1,12 +1,9 @@
 package com.coden.starslicer.entities.powerups
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.math.Circle
-import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.Entity
 import com.coden.starslicer.entities.Entity.Companion.entities
-import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.*
 import com.coden.starslicer.util.EntityLoader.loadPowerUp
 
@@ -16,6 +13,8 @@ class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
         val snapshot = loadPowerUp(PowerUpType.SHOCKWAVE)
     }
 
+    // TODO: Throw away
+    private val pushingSpeed = snapshot.pushingSpeed * sqRatio
     private val growthSpeed = snapshot.growthSpeed * sqRatio
     private val lifeSpan = snapshot.lifeSpan
     private val deltaDamage = snapshot.damage / (lifeSpan*60)
@@ -44,6 +43,9 @@ class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
             val entity = iterator.next()
             if (dist2(entity.pos, spaceCraftCenter) < radius){
                 entity.takeDamage(deltaDamage)
+                if (entity is Attacker) {
+                    entity.applyVelocity(entity.targetVector.cpy().scl(-1f).setLength(pushingSpeed*Gdx.graphics.deltaTime))
+                }
             }
         }
     }

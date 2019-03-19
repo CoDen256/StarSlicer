@@ -24,7 +24,7 @@ class PowerUpContainer(
 
     // Movement
     override var pos: Vector2 = initialPos
-    private var velocity: Vector2
+    override var velocity = Vector2()
 
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 

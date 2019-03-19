@@ -20,7 +20,7 @@ class NuclearBomb(override val initialPos: Vector2,
     val shieldPortion = 0.2f
     // Movement
     override var pos: Vector2 = initialPos
-    private var velocity: Vector2
+    override var velocity = Vector2()
 
     override var hitBox :Rectangle
         get() = Rectangle(pos.x - height/1.5f /2, pos.y - height/1.5f /2, height/1.5f , height/1.5f)

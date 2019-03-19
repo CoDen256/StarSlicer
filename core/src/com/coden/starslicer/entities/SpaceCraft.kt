@@ -11,8 +11,8 @@ import com.coden.starslicer.BladePoint
 import com.coden.starslicer.util.*
 import com.coden.util.swipe.SwipeHandler
 
-object SpaceCraft : Entity { // TODO: Has to be Singleton
-
+// TODO: To json integration
+object SpaceCraft : Entity {
 
     var isShielded = false
     var shieldRadius = 0f
@@ -27,8 +27,8 @@ object SpaceCraft : Entity { // TODO: Has to be Singleton
     override var isDead = false
 
     override var pos: Vector2
-    get() = Vector2(x, y)
-    set(value) {}
+        get() = Vector2(x, y)
+        set(value) {}
 
     val spaceCraftTexture = Assets.SpaceCraftAssets.spaceCraftTexture
 

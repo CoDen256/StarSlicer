@@ -37,6 +37,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     // Movement
     abstract val initialPos: Vector2
+    abstract var velocity: Vector2
 
     // Sprite
     private val spriteTexture: TextureRegion? = assets.getTexture(type)
@@ -63,9 +64,8 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     open fun updateLife() {
         life += Gdx.graphics.deltaTime
-        if (life >= lifeSpan) {
-            kill()
-        }
+        if (life >= lifeSpan) kill()
+
 
     }
 
@@ -74,5 +74,9 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     }
 
     abstract fun update()
+
+    fun applyVelocity(vel: Vector2) {
+        velocity.add(vel)
+    }
 
 }

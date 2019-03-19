@@ -25,7 +25,7 @@ class Missile (override val initialPos: Vector2,
 
     // Movement
     override var pos = initialPos
-    private var velocity: Vector2
+    override var velocity = Vector2()
 
 
     // Spiral Movement
