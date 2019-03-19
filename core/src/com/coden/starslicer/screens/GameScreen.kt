@@ -28,8 +28,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var hud: HUD
     private lateinit var shapeRenderer: ShapeRenderer
 
-    private lateinit var spaceCraft: SpaceCraft
-
     private lateinit var attackerHandler: AttackerHandler
     private lateinit var powerUpHandler: PowerUpHandler
 
@@ -37,8 +35,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var inputManager: InputManager
 
     private val log = Logger("GameScreen", Logger.INFO)
-
-
 
     val font = BitmapFont()
 
@@ -53,10 +49,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         game.assets.finishLoading()// TODO: Initialize in starting screen
 
-        spaceCraft = SpaceCraft()
 
-
-        data = EntityData(spaceCraft, game.assets)
+        data = EntityData(SpaceCraft, game.assets)
 
         hud = HUD(data)
 
@@ -108,7 +102,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         renderFPS(batch)
 
-        spaceCraft.render(batch)
+        SpaceCraft.render(batch)
         attackerHandler.renderAll(batch)
 
 
@@ -118,7 +112,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     // UPDATE SECTION
     fun update() {
 
-        spaceCraft.update(game.swipeRenderer.swipe)
+        SpaceCraft.update(game.swipeRenderer.swipe)
 
         attackerHandler.updateAll()
         powerUpHandler.updateAll()
@@ -142,9 +136,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun debugShapes() {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
-        renderRect(shapeRenderer, spaceCraft.hitBox)
-        if (spaceCraft.isShielded){
-            shapeRenderer.circle(spaceCraft.x, spaceCraft.y, spaceCraft.shieldRadius)
+        renderRect(shapeRenderer, SpaceCraft.hitBox)
+        if (SpaceCraft.isShielded){
+            shapeRenderer.circle(SpaceCraft.x, SpaceCraft.y, SpaceCraft.shieldRadius)
         }
 
         for (shockwave in data.shockWaves) {
@@ -159,10 +153,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             shapeRenderer.circle(attacker.hitCircle.x, attacker.hitCircle.y, attacker.hitCircle.radius)
         }
 
-        for (hitBox in spaceCraft.firstBlade.hitBoxes){
+        for (hitBox in SpaceCraft.firstBlade.hitBoxes){
             renderRect(shapeRenderer, hitBox)
         }
-        for (hitBox in spaceCraft.secondBlade.hitBoxes){
+        for (hitBox in SpaceCraft.secondBlade.hitBoxes){
             renderRect(shapeRenderer, hitBox)
         }
 
@@ -203,7 +197,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         log.info("The screen is disposed")
         batch.dispose()
         shapeRenderer.dispose()
-        game.assets.dispose()
+        SpaceCraft.dispose()
 
     }
 

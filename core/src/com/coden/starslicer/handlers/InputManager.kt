@@ -39,7 +39,7 @@ class InputManager(private val data: EntityData) {
                         if (entity is NuclearBomb) {
                             entity.damageAll()
                             data.spaceCraft.takeDamage(entity.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
-                            data.shields[0].active = false
+                            data.spaceCraft.isShielded = false
                         }
                     }
                 }

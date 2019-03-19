@@ -3,6 +3,7 @@ package com.coden.starslicer.entities
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
@@ -10,13 +11,14 @@ import com.coden.starslicer.BladePoint
 import com.coden.starslicer.util.*
 import com.coden.util.swipe.SwipeHandler
 
-class SpaceCraft : Entity { // TODO: Has to be Singleton
-    var spaceCraftTexture: Texture = Texture("entities/spacecraft/spacecraft.png")
+object SpaceCraft : Entity { // TODO: Has to be Singleton
+
 
     var isShielded = false
     var shieldRadius = 0f
-    var shieldCircle = Circle(0f, 0f, 0f)
+    var shieldCircle: Circle
     get() = Circle(x, y, shieldRadius)
+    set(value) {}
 
     override val maxHealth = 100f
     override var health = maxHealth
@@ -28,8 +30,10 @@ class SpaceCraft : Entity { // TODO: Has to be Singleton
     get() = Vector2(x, y)
     set(value) {}
 
-    val height = spaceCraftTexture.height
-    val width = spaceCraftTexture.width
+    val spaceCraftTexture = Assets.SpaceCraftAssets.spaceCraftTexture
+
+    val height = spaceCraftTexture.regionHeight
+    val width = spaceCraftTexture.regionWidth
 
     val x = spaceCraftX
     val y = spaceCraftY
@@ -74,6 +78,10 @@ class SpaceCraft : Entity { // TODO: Has to be Singleton
         }
     }
 
+
+    fun dispose() {
+        Assets.SpaceCraftAssets.dispose()
+    }
 
 
 }

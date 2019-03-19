@@ -50,7 +50,7 @@ class AttackerHandler(private val data: EntityData) {
                 if (attacker is NuclearBomb) {
                     attacker.damageAll()
                     data.spaceCraft.takeDamage(attacker.damage/10f) // TODO: Move to kill() method as soon as Spacecraft is Singleton
-                    data.shields[0].active = false
+                    data.spaceCraft.isShielded = false
                 }
                 attacker.kill()
             }

@@ -2,6 +2,7 @@ package com.coden.starslicer
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.screens.GameScreen
 import com.coden.starslicer.util.Assets
@@ -31,6 +32,11 @@ class StarSlicerGame : Game() {
 
     }
 
+    override fun resume() {
+        super.resume()
+        Texture.setAssetManager(assets.getManager())
+    }
+
 
     override fun render() {
         super.render()
@@ -40,6 +46,9 @@ class StarSlicerGame : Game() {
     }
 
     override fun dispose() {
+        Gdx.app.log("SlicerGame", "disposing...")
+        assets.dispose()
         swipeRenderer.dispose()
+        //screen.dispose()
     }
 }

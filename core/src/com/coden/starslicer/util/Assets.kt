@@ -5,7 +5,7 @@ import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.TextureAtlasLoader
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
-import com.badlogic.gdx.files.FileHandle
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.coden.starslicer.entities.attackers.AttackerType
@@ -18,6 +18,7 @@ class Assets{
 
     private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/powerups/powerups.atlas", TextureAtlas::class.java)
     private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers.atlas", TextureAtlas::class.java)
+
 
     lateinit var powerUpAssets: PowerUpAssets
     lateinit var attackerAssets: AttackerAssets
@@ -37,9 +38,11 @@ class Assets{
 
 
     fun loadTextureAtlases() {
+        Gdx.app.log("Assets", "Loading TextureAtlases...")
         manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
         manager.load(POWER_UP_ATLAS_DESCRIPTOR)
         manager.load(ATTACKER_ATLAS_DESCRIPTOR)
+
     }
 
 
@@ -48,7 +51,9 @@ class Assets{
     }
 
     fun finishLoading() {
+        Gdx.app.log("Assets", "Finishing Loading...")
         manager.finishLoading()
+        Gdx.app.log("Assets", "Initializing")
         initialize()
     }
 
@@ -62,6 +67,10 @@ class Assets{
         manager.dispose()
     }
 
+    fun getManager(): AssetManager {
+        return manager
+    }
+
     class PowerUpAssets(atlas: TextureAtlas){
         private val map = mapOf(
                 PowerUp.PowerUpType.HPBOOST to atlas.findRegion("hpboost") as TextureRegion,
@@ -69,6 +78,9 @@ class Assets{
                 PowerUp.PowerUpType.SHOCKWAVE to atlas.findRegion("shockwave") as TextureRegion
         )
 
+        init {
+            Gdx.app.log("Initializing", "PowerUpAssets...")
+        }
         fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
 
         val width = map[PowerUp.PowerUpType.SHIELD]!!.regionWidth
@@ -86,6 +98,9 @@ class Assets{
                 SATELLITE to atlas.findRegion("satellite") as TextureRegion,
                 POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
         )
+        init {
+            Gdx.app.log("Initializing", "AttackerAssets...")
+        }
         fun getTexture(type: AttackerType): TextureRegion? = map[type]
     }
 
@@ -106,5 +121,26 @@ class Assets{
             val path = "entities/attackers/$name"
             return Gdx.files.internal(path).reader()
         }
+
+        init {
+            Gdx.app.log("Initializing", "attackerConfigMap...")
+        }
     }
-}
+
+    object SpaceCraftAssets {
+        private val path = "entities/spacecraft/spacecraft.png"
+        val spaceCraftTexture = TextureRegion(Texture(path))
+
+        init {
+            Gdx.app.log("Initializing", "SpaceCraftAssets...")
+        }
+
+        fun dispose() {
+            Gdx.app.log("SpaceCraftAssets", "disposing")
+            spaceCraftTexture.texture.dispose()
+        }
+    }
+
+
+
+    }
