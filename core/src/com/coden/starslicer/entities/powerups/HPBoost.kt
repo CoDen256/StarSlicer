@@ -1,6 +1,6 @@
 package com.coden.starslicer.entities.powerups
 
-import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.util.EntityLoader
 
 class HPBoost: PowerUp(PowerUpType.HPBOOST) {

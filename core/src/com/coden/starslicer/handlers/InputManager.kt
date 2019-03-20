@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.powerups.HPBoost

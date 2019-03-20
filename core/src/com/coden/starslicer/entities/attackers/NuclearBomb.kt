@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.Entity.Companion.entities
-import com.coden.starslicer.entities.SpaceCraft
+import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,

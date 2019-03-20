@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.powerups.PowerUp
 
@@ -24,8 +25,8 @@ val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
 val sqRatio = dist2(xRatio, yRatio)
 
-val spaceCraftX = Gdx.graphics.width*0.5f
-val spaceCraftY = Gdx.graphics.height*0.5f
+val spaceCraftX = SpaceCraft.x
+val spaceCraftY = SpaceCraft.y
 val spaceCraftCenter = Vector2(spaceCraftX, spaceCraftY)
 
 val centerX = Gdx.graphics.width/2f

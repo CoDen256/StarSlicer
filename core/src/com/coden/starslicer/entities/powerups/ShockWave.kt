@@ -13,7 +13,6 @@ class ShockWave: PowerUp(PowerUpType.SHOCKWAVE) {
         val snapshot = loadPowerUp(PowerUpType.SHOCKWAVE)
     }
 
-    // TODO: Throw away
     private val pushingSpeed = snapshot.pushingSpeed * sqRatio
     private val growthSpeed = snapshot.growthSpeed * sqRatio
     private val lifeSpan = snapshot.lifeSpan

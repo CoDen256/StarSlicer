@@ -14,9 +14,7 @@ import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.SpaceCraft
-import com.coden.starslicer.entities.attackers.Missile
-import com.coden.starslicer.entities.attackers.NuclearBomb
+import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
@@ -33,8 +31,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var data: EntityData
     private lateinit var inputManager: InputManager
-
-    private val log = Logger("GameScreen", Logger.INFO)
 
     val font = BitmapFont()
 
@@ -58,11 +54,11 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 
-        log.info("The screen is created")
-        log.info("Size: $w x $h")
-        log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
+        Log.info("The screen is created")
+        Log.info("Size: $w x $h")
+        Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
 
-
+        Log.info("${SpaceCraft}")
 
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)
@@ -194,7 +190,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     override fun dispose() {
 
-        log.info("The screen is disposed")
+        Log.info("The screen is disposed")
         batch.dispose()
         shapeRenderer.dispose()
         SpaceCraft.dispose()
