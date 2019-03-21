@@ -29,8 +29,6 @@ data class EntityData(val assets: Assets) {
     val currentPowerUpContainers = arrayListOf(0)
     val currentSatellites = arrayListOf(0, 0)
 
-    val attackers = ArrayList<Attacker>()
-
     val powerUpIcons = arrayListOf(
             PowerUpIcon(SHIELD, powerUpIconAssets.getTexture(SHIELD)),
             PowerUpIcon(HPBOOST, powerUpIconAssets.getTexture(HPBOOST)),

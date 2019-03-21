@@ -13,6 +13,7 @@ import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
@@ -143,7 +144,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         }
 
-        for (attacker in data.attackers) {
+        for (attacker in attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
             shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)
         }

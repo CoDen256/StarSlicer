@@ -13,6 +13,7 @@ import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.attackers.PowerUpContainer
 import com.coden.starslicer.entities.attackers.Satellite
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import com.coden.starslicer.util.generateRandomSpawnPoint
@@ -35,9 +36,8 @@ class AttackerHandler(private val data: EntityData) {
             val attacker = iterator.next()
             attacker.update()
             updateCollision(attacker)
-
             if (attacker.isDead) {
-                log.info("${attacker.name} is dead")
+                Log.info("${attacker.name} is dead")
                 decrement(attacker.type, attacker.state)
                 iterator.remove()
             }
@@ -111,7 +111,6 @@ class AttackerHandler(private val data: EntityData) {
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState, data.attackerAssets)
         increment(missile.type, newState)
-        data.attackers.add(missile)
     }
 
     private fun spawnNuclearBomb(state: Int = -100) {
@@ -122,7 +121,6 @@ class AttackerHandler(private val data: EntityData) {
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, newState, data.attackerAssets)
         increment(nuclearBomb.type, newState)
-        data.attackers.add(nuclearBomb)
     }
 
     private fun spawnMeteor(size: Int = -100, state: Int = -100) {
@@ -134,7 +132,6 @@ class AttackerHandler(private val data: EntityData) {
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize, data.attackerAssets)
         increment(meteor.type, newSize)
-        data.attackers.add(meteor)
     }
 
     private fun spawnPowerUpContainer(type: PowerUp.PowerUpType, state: Int = -100) {
@@ -145,7 +142,6 @@ class AttackerHandler(private val data: EntityData) {
         val spawnPoint = generateRandomSpawnPoint()
         val powerUpContainer = PowerUpContainer(spawnPoint, newState, type, data.attackerAssets)
         increment(powerUpContainer.type, newState)
-        data.attackers.add(powerUpContainer)
     }
 
     fun spawnSatellite(type: PowerUp.PowerUpType, state: Int = -100) {
@@ -156,7 +152,6 @@ class AttackerHandler(private val data: EntityData) {
         val spawnPoint = generateRandomSpawnPoint()
         val satellite = Satellite(spawnPoint, newState, type, data.attackerAssets)
         increment(satellite.type, newState)
-        data.attackers.add(satellite)
     }
 
     private fun increment(name: AttackerType?, index: Int) = when (name) {
