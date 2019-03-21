@@ -2,7 +2,7 @@ package com.coden.starslicer.handlers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.Entity.Companion.entities
+import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker

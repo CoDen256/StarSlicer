@@ -1,8 +1,7 @@
 package com.coden.starslicer.entities.powerups
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.Entity.Companion.entities
+import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.util.*
 import com.coden.starslicer.util.EntityLoader.loadPowerUp

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.*
-import com.coden.starslicer.entities.Entity.Companion.entities
+import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
 import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.*
 import com.coden.starslicer.entities.attackers.AttackerType.*
