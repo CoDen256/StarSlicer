@@ -2,16 +2,17 @@ package com.coden.starslicer.handlers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
+import java.awt.Container
 
 class InputManager(private val data: EntityData) {
 
@@ -30,12 +31,12 @@ class InputManager(private val data: EntityData) {
             if (!(firstBlade.active || secondBlade.active)){
                 return
             }
-            for (entity in entities) {
-                if (firstBlade.isSlicing(entity.hitBox) || secondBlade.isSlicing(entity.hitBox)) {
-                    entity.takeDamage(damage) // TODO: The bigger slice the more damage will received
-                    if (entity.isDead && entity is Attacker) {
-                        if (entity.container) addPowerUp(entity.content!!)
-                        if (entity is NuclearBomb) entity.damageAll()
+            for (attacker in attackers) {
+                if (firstBlade.isSlicing(attacker.hitBox) || secondBlade.isSlicing(attacker.hitBox)) {
+                    attacker.takeDamage(SpaceCraft.damage) // TODO: The bigger slice the more damage will received
+                    if (attacker.isDead) {
+                        if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
+                        attacker.onDestroy()
                     }
                 }
             }

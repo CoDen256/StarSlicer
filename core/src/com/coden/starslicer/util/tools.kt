@@ -1,12 +1,9 @@
 package com.coden.starslicer.util
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
-import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 
 
 fun generateRandomSpawnPoint() : Vector2 {

@@ -41,13 +41,11 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    override var hitBox : Rectangle
+    override val hitBox : Rectangle
         get() = Rectangle(pos.x - height*1.5f/2, pos.y - height*1.5f /2, height*1.5f, height*1.5f)
-        set(value) {}
 
-    override var hitCircle: Circle
+    override val hitSphere: Circle
         get() = Circle(pos.x, pos.y, height/2)
-        set(value) {}
 
     /*
     states:

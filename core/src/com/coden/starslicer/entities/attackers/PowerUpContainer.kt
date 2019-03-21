@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
+import com.coden.starslicer.entities.entityInterfaces.Container
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
@@ -14,7 +15,7 @@ class PowerUpContainer(
         override val initialPos: Vector2,
         state: Int,
         override val content: PowerUp.PowerUpType,
-        assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
+        assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), Container {
 
     // TODO: Content of container decided on conditions of current situation
 
@@ -29,13 +30,11 @@ class PowerUpContainer(
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 
     // SPRITE
-    override var hitBox : Rectangle
+    override val hitBox : Rectangle
         get() = Rectangle(pos.x - height/2, pos.y - height/2, height, height)
-        set(value) {}
 
-    override var hitCircle: Circle
+    override val hitSphere: Circle
         get() = Circle(pos.x, pos.y, minOf(width, height)/2)
-        set(value) {}
 
     init {
         velocity = when (state) {

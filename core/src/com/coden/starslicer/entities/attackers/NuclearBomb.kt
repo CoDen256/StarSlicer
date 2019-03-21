@@ -5,30 +5,29 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
-import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.util.*
 
 class NuclearBomb(override val initialPos: Vector2,
                   state: Int,
-                  assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
+                  assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), DamageGiver{
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
     }
 
-    val shieldPortion = 0.2f
+    val shieldAbsorbPortion = snapshot.shieldAbsorbPortion
     // Movement
     override var pos: Vector2 = initialPos
     override var velocity = Vector2()
 
-    override var hitBox :Rectangle
+    override val hitBox :Rectangle
         get() = Rectangle(pos.x - height/1.5f /2, pos.y - height/1.5f /2, height/1.5f , height/1.5f)
-        set(value) {}
 
-    override var hitCircle: Circle
+    override val hitSphere: Circle
         get() = Circle(pos.x, pos.y, minOf(width, height)/2)
-        set(value) {}
+
 
     init {
         velocity = when (state) {
@@ -51,11 +50,17 @@ class NuclearBomb(override val initialPos: Vector2,
     }
 
     fun damageAll() {
-        for (entity in entities) {
-            entity.takeDamage(damage)
+        for (attacker in attackers) {
+            giveDamage(attacker)
         }
-        SpaceCraft.takeDamage(damage*shieldPortion)
+
+        giveDamage(SpaceCraft, damage*shieldAbsorbPortion)
         SpaceCraft.isShielded = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        damageAll()
     }
 
 }

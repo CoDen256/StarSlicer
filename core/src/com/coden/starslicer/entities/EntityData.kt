@@ -11,8 +11,6 @@ import com.coden.starslicer.util.Assets
 
 data class EntityData(val assets: Assets) {
 
-    private val log = Logger("EntityData", Logger.INFO)
-
     val boosts = ArrayList<HPBoost>()
     val shields = ArrayList<Shield>()
     val shockWaves = ArrayList<ShockWave>()
@@ -39,13 +37,11 @@ data class EntityData(val assets: Assets) {
             PowerUpIcon(SHOCKWAVE, powerUpIconAssets.getTexture(SHOCKWAVE))
     )
 
-    var powerUpIconAssets: Assets.PowerUpAssets
+    val powerUpIconAssets: Assets.PowerUpAssets
     get() = assets.powerUpAssets
-    set(value) {}
 
-    var attackerAssets: Assets.AttackerAssets
+    val attackerAssets: Assets.AttackerAssets
     get() =  assets.attackerAssets
-    set(value) {}
 
 
 }

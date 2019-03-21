@@ -1,53 +1,57 @@
-package com.coden.starslicer.entities.SpaceCraft
+package com.coden.starslicer.entities.spacecraft
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.entities.entityInterfaces.Collisional
+import com.coden.starslicer.entities.entityInterfaces.DamageGiver
+import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.util.*
 import com.coden.util.swipe.SwipeHandler
 
 // TODO: To json integration
-object SpaceCraft {
+object SpaceCraft: DamageTaker, DamageGiver, Collisional {
+    override var isDead = false
 
-    // Loaded properties
+    // Overall properties
     val relX = 0.5f
     val relY = 0.5f
-    val damage = 5f
+    override val damage = 5f
 
-    var isShielded = false
-    var shieldRadius = 0f
-    var shieldCircle: Circle
-    get() = Circle(x, y, shieldRadius)
-    set(value) {}
+    // Health
+    override val maxHealth = 100f
+    override var health = maxHealth
 
-    val maxHealth = 100f
-    var health = maxHealth
-
-
-    var pos: Vector2
+    // Positioning
+    val pos: Vector2
         get() = Vector2(x, y)
-        set(value) {}
 
     val spaceCraftTexture = Assets.SpaceCraftAssets.spaceCraftTexture
 
-    val height = spaceCraftTexture.regionHeight
-    val width = spaceCraftTexture.regionWidth
-
+    val width = xRatio * spaceCraftTexture.regionWidth
+    val height = yRatio * spaceCraftTexture.regionHeight
 
     val x = Gdx.graphics.width * relX
     val y = Gdx.graphics.height * relY
 
-    val relativeHeight = yRatio * height
-    val relativeWidth = xRatio * width
+    val centerX = x - width /2
+    val centerY = y - height /2
 
-    val relativeX = x - relativeWidth /2
-    val relativeY = y - relativeHeight /2
+    // Sprite
+    override val hitBox = Rectangle(centerX, centerY, width, height)
+    override val hitSphere = Circle(x, y, (height + width)/2)
 
-    var hitBox = Rectangle(relativeX, relativeY, relativeWidth, relativeHeight)
-    var hitCircle = Circle(x, y, (relativeHeight + relativeWidth)/2)
+    // Shield
+    var isShielded = false
+    var shieldRadius = 0f
 
+    var shieldCircle: Circle
+        get() = Circle(x, y, shieldRadius)
+        set(value) {}
+
+    //Blades
     private var blades = arrayOf(BladePoint(0), BladePoint(1))
 
     val firstBlade = blades[0]
@@ -61,7 +65,7 @@ object SpaceCraft {
 
     fun render(batch: SpriteBatch) {
 
-        batch.draw(spaceCraftTexture, relativeX, relativeY, relativeWidth, relativeHeight)
+        batch.draw(spaceCraftTexture, centerX, centerY, width, height)
     }
 
     fun update(swipe: SwipeHandler) {
@@ -87,10 +91,6 @@ object SpaceCraft {
 
     fun dispose() {
         Assets.SpaceCraftAssets.dispose()
-    }
-
-    fun takeDamage(damage: Float) {
-        health -= damage
     }
 
 

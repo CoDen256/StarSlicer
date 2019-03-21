@@ -4,6 +4,7 @@
   "lifeSpan":5.0,
   "maxMovementSpeed": 300.0,
   "damage":200.0,
+  "shieldAbsorbPortion":0.2,
   "collisionalMap":{
     "0": false,
     "1": true

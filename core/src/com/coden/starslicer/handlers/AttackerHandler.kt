@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.*
-import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
-import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.*
+import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.attackers.PowerUpContainer
 import com.coden.starslicer.entities.attackers.Satellite
@@ -24,13 +24,13 @@ class AttackerHandler(private val data: EntityData) {
 
 
     fun renderAll(batch: SpriteBatch) {
-        for (attacker in data.attackers) {
+        for (attacker in attackers) {
             attacker.render(batch)
         }
     }
 
     fun updateAll() {
-        val iterator = data.attackers.iterator()
+        val iterator = attackers.iterator()
         while (iterator.hasNext()) {
             val attacker = iterator.next()
             attacker.update()
@@ -39,7 +39,6 @@ class AttackerHandler(private val data: EntityData) {
             if (attacker.isDead) {
                 log.info("${attacker.name} is dead")
                 decrement(attacker.type, attacker.state)
-                entities.remove(attacker) // Removing from all entities
                 iterator.remove()
             }
         }
@@ -47,13 +46,12 @@ class AttackerHandler(private val data: EntityData) {
 
     private fun updateCollision(attacker: Attacker) {
         if (SpaceCraft.isShielded) {
-            if (SpaceCraft.shieldCircle.overlaps(attacker.hitCircle)) {
-                if (attacker is NuclearBomb) attacker.damageAll()
-                attacker.kill()
+            if (SpaceCraft.shieldCircle.overlaps(attacker.hitSphere)) {
+                attacker.onDestroy()
             }
         } else if (SpaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {
-            attacker.giveDamage(SpaceCraft, attacker.damage)
-            attacker.kill()
+            attacker.giveDamage(SpaceCraft)
+            attacker.onDestroy()
         }
     }
 

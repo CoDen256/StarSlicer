@@ -1,4 +1,4 @@
-package com.coden.starslicer.entities.SpaceCraft
+package com.coden.starslicer.entities.spacecraft
 
 import com.badlogic.gdx.math.Rectangle
 import com.coden.starslicer.util.sqRatio

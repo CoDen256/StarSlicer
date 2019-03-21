@@ -9,12 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.SpaceCraft.SpaceCraft
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
@@ -146,7 +145,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         for (attacker in data.attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
-            shapeRenderer.circle(attacker.hitCircle.x, attacker.hitCircle.y, attacker.hitCircle.radius)
+            shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)
         }
 
         for (hitBox in SpaceCraft.firstBlade.hitBoxes){

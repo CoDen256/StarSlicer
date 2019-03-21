@@ -2,7 +2,6 @@
   "name": "SATELLITE",
   "minAngleSpeed":3.1,
   "maxAngleSpeed":30.0,
-  "container": true,
   "maxHealth":500.0,
   "lifeSpan":60.0,
   "maxMovementSpeed": 50.0,

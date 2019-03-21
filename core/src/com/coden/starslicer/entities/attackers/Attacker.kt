@@ -4,22 +4,28 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.math.Circle
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.entityInterfaces.Entity
-import com.coden.starslicer.entities.entityInterfaces.Entity.Companion.entities
+import com.coden.starslicer.entities.entityInterfaces.Collisional
+import com.coden.starslicer.entities.entityInterfaces.DamageGiver
+import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
-abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): Entity {
+abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker, Collisional{
+
+    companion object {
+        val attackers = ArrayList<Attacker>()
+    }
 
     init {
-        entities.add(this)
+        attackers.add(this)
     }
 
     // Snapshot properties
     val name = snapshot.name
     val type = snapshot.type
-    val container = snapshot.isContainer()
 
     // If special property is null, so undefined, then look in map for every state
     val lifeSpan = snapshot.getLifeSpan(state)
@@ -37,6 +43,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     // Movement
     abstract val initialPos: Vector2
     abstract var velocity: Vector2
+    abstract var pos: Vector2
 
     // Sprite
     private val spriteTexture: TextureRegion? = assets.getTexture(type)
@@ -45,14 +52,12 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     protected val width = spriteTexture!!.regionWidth * xRatio
     protected val height = spriteTexture!!.regionHeight * yRatio
 
-    open val content: PowerUp.PowerUpType? = null
-
     // specialized vectors
-    var targetVector : Vector2
+    protected var targetVector : Vector2
         get() = pos.cpy().sub(spaceCraftCenter).scl(-1f)
         set(value) {}
 
-    var perpendicularVector : Vector2
+    protected var perpendicularVector : Vector2
         get() = targetVector.cpy().rotate90(-1)
         set(value) {}
 
@@ -61,21 +66,27 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         sprite.draw(batch)
     }
 
-    open fun updateLife() {
+    protected fun updateLife() {
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
-
-
     }
 
-    fun rotate(angleSpeed: Float) {
+    protected fun rotate(angleSpeed: Float) {
         sprite.rotate(angleSpeed*Gdx.graphics.deltaTime)
     }
 
     abstract fun update()
 
-    fun applyVelocity(vel: Vector2) {
+    open fun onDestroy() {
+        kill()
+    }
+
+    protected fun applyVelocity(vel: Vector2) {
         velocity.add(vel)
+    }
+
+    fun pushAway(pushingSpeed: Float){
+        applyVelocity(targetVector.cpy().scl(-1f).setLength(pushingSpeed*Gdx.graphics.deltaTime))
     }
 
 }
