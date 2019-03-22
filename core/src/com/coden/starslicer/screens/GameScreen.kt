@@ -144,6 +144,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         }
 
+
         for (attacker in attackers) {
             renderRect(shapeRenderer, attacker.hitBox)
             shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)

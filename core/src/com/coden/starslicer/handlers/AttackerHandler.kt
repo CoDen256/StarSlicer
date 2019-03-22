@@ -154,12 +154,5 @@ class AttackerHandler(private val data: EntityData) {
         increment(satellite.type, newState)
     }
 
-    private fun increment(name: AttackerType?, index: Int) = when (name) {
-        MISSILE -> data.currentMissiles[index]++
-        NUCLEAR_BOMB -> data.currentNuclearBombs[index]++
-        SMALL_METEOR, MEDIUM_METEOR, LARGE_METEOR -> data.currentMeteors[index]++
-        POWERUP_CONTAINER -> data.currentPowerUpContainers[index]++
-        SATELLITE -> data.currentSatellites[index] ++
-        else -> throw IllegalArgumentException()
-    }
+
 }

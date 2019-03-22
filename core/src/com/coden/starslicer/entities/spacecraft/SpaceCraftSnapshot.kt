@@ -1,11 +1,11 @@
 package com.coden.starslicer.entities.spacecraft
 
-abstract class SpaceCraftSnapshot {
+class SpaceCraftSnapshot {
 
-    abstract var xProportion : Float
-    abstract var yProportion : Float
-    abstract var damage: Float
-    abstract var maxHealth: Float
+    var xProportion : Float =0f
+    var yProportion : Float =0f
+    var damage: Float = 0f
+    var maxHealth: Float = 0f
 
 
 }

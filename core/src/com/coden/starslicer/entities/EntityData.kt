@@ -2,12 +2,14 @@ package com.coden.starslicer.entities
 
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
 import com.coden.starslicer.hud.PowerUpIcon
 import com.coden.starslicer.util.Assets
+import java.lang.IllegalArgumentException
 
 data class EntityData(val assets: Assets) {
 
@@ -41,5 +43,13 @@ data class EntityData(val assets: Assets) {
     val attackerAssets: Assets.AttackerAssets
     get() =  assets.attackerAssets
 
+    fun increment(name: AttackerType?, index: Int) = when (name) {
+        AttackerType.MISSILE -> currentMissiles[index]++
+        AttackerType.NUCLEAR_BOMB -> currentNuclearBombs[index]++
+        AttackerType.SMALL_METEOR, AttackerType.MEDIUM_METEOR, AttackerType.LARGE_METEOR -> currentMeteors[index]++
+        AttackerType.POWERUP_CONTAINER -> currentPowerUpContainers[index]++
+        AttackerType.SATELLITE -> currentSatellites[index] ++
+        else -> throw IllegalArgumentException()
+    }
 
 }

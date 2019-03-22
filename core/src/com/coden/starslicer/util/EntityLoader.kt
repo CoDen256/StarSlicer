@@ -19,5 +19,4 @@ object EntityLoader {
     fun loadAttacker(type: AttackerType) = gson.fromJson(attackerConfigMap[type], AttackerSnapshot::class.java)
     fun loadPowerUp(type: PowerUp.PowerUpType) = gson.fromJson(powerupConfigMap[type], PowerUpSnapshot::class.java)
     fun loadSpaceCraft() = gson.fromJson(spaceCraftConfig, SpaceCraftSnapshot::class.java)
-    fun loadSpaceCraft2() = gson.fromJson(spaceCraftConfig, SpaceCraft::class.java)
 }

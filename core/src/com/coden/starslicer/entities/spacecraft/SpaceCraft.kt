@@ -12,7 +12,6 @@ import com.coden.starslicer.util.*
 import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
 import com.coden.util.swipe.SwipeHandler
 
-// TODO: To json integration
 object SpaceCraft: DamageTaker, DamageGiver, Collisional {
     override var isDead = false
 
