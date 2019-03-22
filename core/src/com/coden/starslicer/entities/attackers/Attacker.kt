@@ -20,7 +20,6 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     }
 
 
-
     init {
         attackers.add(this)
     }

@@ -114,5 +114,3 @@ class InputManager(private val data: EntityData) {
     }
 
 }
-
-}

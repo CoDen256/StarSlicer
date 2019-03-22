@@ -11,6 +11,7 @@ import com.coden.starslicer.entities.entityInterfaces.Container
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
+// TODO: show which powerup contains
 class PowerUpContainer(
         override val initialPos: Vector2,
         state: Int,

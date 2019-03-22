@@ -1,7 +1,7 @@
 {
   "name": "MISSILE",
   "maxHealth":15.0,
-  "damage":30.0,
+  "damage":10.0,
   "collisional":true,
   "spiralRadius": 20.0,
   "spiralInitialCount": 80.0,

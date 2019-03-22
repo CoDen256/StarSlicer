@@ -121,7 +121,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun updateInput() {
-        attackerHandler.debugSpawning()
+        inputManager.debugSpawning()
         inputManager.updateSwiping()
         inputManager.updateClicking()
 
