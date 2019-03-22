@@ -24,6 +24,7 @@ class Meteor(override val initialPos: Vector2,
                 1 to EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
                 2 to EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
         )
+        val current = arrayOf(0, 0, 0)
     }
 
     // Constant Speeds
@@ -46,6 +47,7 @@ class Meteor(override val initialPos: Vector2,
     // size : 1,2,3 - small, medium, large
 
     init {
+        current[size]++
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                          MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
@@ -66,4 +68,9 @@ class Meteor(override val initialPos: Vector2,
 
         rotate(angleSpeed)
 }
+
+    override fun kill() {
+        super.kill()
+        current[size] --
+    }
 }

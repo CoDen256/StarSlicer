@@ -15,6 +15,7 @@ class NuclearBomb(override val initialPos: Vector2,
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
+        val current = arrayOf(0, 0)
     }
 
     val shieldAbsorbPortion = snapshot.shieldAbsorbPortion
@@ -30,6 +31,7 @@ class NuclearBomb(override val initialPos: Vector2,
 
 
     init {
+        current[state] ++
         velocity = when (state) {
             0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
@@ -61,6 +63,11 @@ class NuclearBomb(override val initialPos: Vector2,
     override fun onDestroy() {
         super.onDestroy()
         damageAll()
+    }
+
+    override fun kill() {
+        super.kill()
+        current[state] --
     }
 
 }

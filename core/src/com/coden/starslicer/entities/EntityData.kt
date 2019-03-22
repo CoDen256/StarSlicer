@@ -20,16 +20,12 @@ data class EntityData(val assets: Assets) {
     val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
     val maxNuclearBombs = arrayListOf(8, 0) // 0 - missing, 1 - direct
     val maxMeteors = arrayListOf(17, 8, 2) // 0 - small, 1-medium, 2-large
-    val maxPowerUpContainers = arrayListOf(2) // 0 - missing
-    val maxSatellites = arrayListOf(1, 1) // 0 - missing, 1 - direct
+    val maxPowerUpContainers = arrayListOf(2, 0) // 0 - missing 1 - direct
+    val maxSatellites = arrayListOf(1, 0) // 0 - missing, 1 - direct
 
 
     // TODO: ratio amount can be applied to speed when difficulty is bigger (applied in ProgressClass)
-    val currentMissiles = arrayListOf(0, 0, 0, 0)
-    val currentNuclearBombs = arrayListOf(0, 0)
-    val currentMeteors = arrayListOf(0, 0, 0)
-    val currentPowerUpContainers = arrayListOf(0)
-    val currentSatellites = arrayListOf(0, 0)
+
 
     val powerUpIcons = arrayListOf(
             PowerUpIcon(SHIELD, powerUpIconAssets.getTexture(SHIELD)),
@@ -42,14 +38,5 @@ data class EntityData(val assets: Assets) {
 
     val attackerAssets: Assets.AttackerAssets
     get() =  assets.attackerAssets
-
-    fun increment(name: AttackerType?, index: Int) = when (name) {
-        AttackerType.MISSILE -> currentMissiles[index]++
-        AttackerType.NUCLEAR_BOMB -> currentNuclearBombs[index]++
-        AttackerType.SMALL_METEOR, AttackerType.MEDIUM_METEOR, AttackerType.LARGE_METEOR -> currentMeteors[index]++
-        AttackerType.POWERUP_CONTAINER -> currentPowerUpContainers[index]++
-        AttackerType.SATELLITE -> currentSatellites[index] ++
-        else -> throw IllegalArgumentException()
-    }
 
 }

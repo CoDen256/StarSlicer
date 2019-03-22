@@ -19,6 +19,8 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         val attackers = ArrayList<Attacker>()
     }
 
+
+
     init {
         attackers.add(this)
     }

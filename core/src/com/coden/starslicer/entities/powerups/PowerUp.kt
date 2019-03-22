@@ -7,12 +7,6 @@ abstract class PowerUp(val type: PowerUpType){
 
     }
 
-    object Converter{
-        private val map = PowerUpType.values().map{it.toString() to it}.toMap()
-        fun get(name: String) = map[name]!!
-    }
-
-
     var isDead = false
     var active = false
 

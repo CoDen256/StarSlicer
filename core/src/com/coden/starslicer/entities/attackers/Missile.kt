@@ -15,6 +15,7 @@ class Missile (override val initialPos: Vector2,
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
+        val current = arrayOf(0, 0, 0, 0)
     }
 
 
@@ -57,6 +58,7 @@ class Missile (override val initialPos: Vector2,
      */
 
     init {
+        current[state]++
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
                          MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
@@ -117,5 +119,9 @@ class Missile (override val initialPos: Vector2,
     private fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
 
+    override fun kill() {
+        super.kill()
+        current[state] --
+    }
 
 }

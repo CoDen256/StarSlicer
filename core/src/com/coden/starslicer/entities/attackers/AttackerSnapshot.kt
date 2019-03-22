@@ -29,7 +29,7 @@ class AttackerSnapshot {
     private var collisionalMap = mutableMapOf<Int, Boolean>()
 
     var name = "UNDEFINED"
-    val type: AttackerType get() = AttackerType.Converter.get(name)
+    val type: AttackerType get() = AttackerType.valueOf(name)
 
 
     fun getMaxHealth(state: Int): Float {

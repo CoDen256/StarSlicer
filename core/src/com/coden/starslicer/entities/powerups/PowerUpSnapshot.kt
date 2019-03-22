@@ -9,5 +9,5 @@ class PowerUpSnapshot {
     val pushingSpeed = 0f
 
     val name = "UNDEFINED"
-    val type get() = PowerUp.Converter.get(name) // TODO: Change to such definition
+    val type get() = PowerUp.PowerUpType.valueOf(name)
 }

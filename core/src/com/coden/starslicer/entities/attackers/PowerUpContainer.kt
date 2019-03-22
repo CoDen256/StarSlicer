@@ -21,6 +21,7 @@ class PowerUpContainer(
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
+        val current = arrayOf(0, 0)
     }
 
     // Movement
@@ -37,6 +38,7 @@ class PowerUpContainer(
         get() = Circle(pos.x, pos.y, minOf(width, height)/2)
 
     init {
+        current[state]++
         velocity = when (state) {
             0 -> targetVector.rotate(MathUtils.random(8, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
@@ -56,6 +58,11 @@ class PowerUpContainer(
         sprite.setCenter(pos.x, pos.y)
 
         rotate(angleSpeed)
+    }
+
+    override fun kill() {
+        super.kill()
+        current[state] --
     }
 
 
