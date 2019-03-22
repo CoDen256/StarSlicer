@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 
 
 class HUD(data: EntityData) {
@@ -13,13 +14,18 @@ class HUD(data: EntityData) {
 
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
+    private var debugRenderer: ShapeRenderer = ShapeRenderer()
 
     private val log = Logger("HUD", Logger.INFO)
+
+
+    private val spaceCraftBar = HealthBar(SpaceCraft)
 
 
 
     fun update() {
         powerUpsBar.update()
+        spaceCraftBar.update()
 
     }
 
@@ -27,6 +33,7 @@ class HUD(data: EntityData) {
         batch.begin()
 
         powerUpsBar.render(batch)
+        spaceCraftBar.render(batch)
 
         batch.end()
 
@@ -34,14 +41,21 @@ class HUD(data: EntityData) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
 
         powerUpsBar.render(shapeRenderer)
-
-        debug(shapeRenderer)
+        spaceCraftBar.render(shapeRenderer)
 
         shapeRenderer.end()
+
+        debug()
+
     }
 
-    fun debug(shapeRenderer: ShapeRenderer) {
-        powerUpsBar.debug(shapeRenderer)
+
+    fun debug() {
+        debugRenderer.begin(ShapeRenderer.ShapeType.Line)
+
+        powerUpsBar.debug(debugRenderer)
+
+        debugRenderer.end()
     }
 
 }

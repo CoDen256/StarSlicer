@@ -25,13 +25,16 @@ interface DamageGiver {
     }
 }
 
-interface DamageTaker: Mortal {
+interface DamageTaker: Mortal, Collisional {
     val maxHealth: Float
     var health: Float
 
     fun takeDamage(damage: Float){
         health -= damage
-        if (health <= 0) kill()
+        if (health <= 0) {
+            health = 0f
+            kill()
+        }
         health  = if (health > maxHealth) maxHealth else health
     }
 

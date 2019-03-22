@@ -8,7 +8,7 @@ import com.coden.starslicer.util.generateRandomSpawnPoint
 
 class SpawnContainer(val state: Int = -1, val type: PowerUp.PowerUpType? = null): Command {
     override fun execute(data: EntityData) {
-        val newState = if (state == -100) MathUtils.random(0, 0) else state
+        val newState = if (state == -1) MathUtils.random(0, 0) else state
         val content = if (type == null) PowerUp.PowerUpType.values()[MathUtils.random(0,2)] else type
         if (PowerUpContainer.current[newState] >= data.maxPowerUpContainers[newState]) return
 

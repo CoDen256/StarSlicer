@@ -13,7 +13,7 @@ import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
-abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker, Collisional{
+abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker{
 
     companion object {
         val attackers = ArrayList<Attacker>()

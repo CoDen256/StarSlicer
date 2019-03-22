@@ -12,7 +12,7 @@ import com.coden.starslicer.util.*
 import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
 import com.coden.util.swipe.SwipeHandler
 
-object SpaceCraft: DamageTaker, DamageGiver, Collisional {
+object SpaceCraft: DamageTaker, DamageGiver {
     override var isDead = false
 
     private val snapshot = loadSpaceCraft()
