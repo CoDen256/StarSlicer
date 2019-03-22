@@ -9,19 +9,21 @@ import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
 import com.coden.util.swipe.SwipeHandler
 
 // TODO: To json integration
 object SpaceCraft: DamageTaker, DamageGiver, Collisional {
     override var isDead = false
 
-    // Overall properties
-    val relX = 0.5f
-    val relY = 0.5f
-    override val damage = 5f
+    private val snapshot = loadSpaceCraft()
+
+    val xProportion = snapshot.xProportion
+    val yProportion = snapshot.yProportion
+    override val damage = snapshot.damage
 
     // Health
-    override val maxHealth = 100f
+    override val maxHealth = snapshot.maxHealth
     override var health = maxHealth
 
     // Positioning
@@ -33,8 +35,8 @@ object SpaceCraft: DamageTaker, DamageGiver, Collisional {
     val width = xRatio * spaceCraftTexture.regionWidth
     val height = yRatio * spaceCraftTexture.regionHeight
 
-    val x = Gdx.graphics.width * relX
-    val y = Gdx.graphics.height * relY
+    val x = Gdx.graphics.width * xProportion
+    val y = Gdx.graphics.height * yProportion
 
     val centerX = x - width /2
     val centerY = y - height /2
