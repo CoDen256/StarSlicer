@@ -88,7 +88,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        debugShapes()
+        debugShapes(false)
     }
 
     fun renderMainEntities() {
@@ -130,9 +130,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     // DEBUG SECTION
 
-    fun debugShapes() {
+    fun debugShapes(hitBoxRender: Boolean) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
-        renderRect(shapeRenderer, SpaceCraft.hitBox)
+
         if (SpaceCraft.isShielded){
             shapeRenderer.circle(SpaceCraft.x, SpaceCraft.y, SpaceCraft.shieldRadius)
         }
@@ -145,19 +145,21 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         }
 
 
-        for (attacker in attackers) {
-            renderRect(shapeRenderer, attacker.hitBox)
-            shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)
-        }
+        if (hitBoxRender) {
+            renderRect(shapeRenderer, SpaceCraft.hitBox)
+            for (attacker in attackers) {
+                renderRect(shapeRenderer, attacker.hitBox)
+                shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)
+            }
 
-        for (hitBox in SpaceCraft.firstBlade.hitBoxes){
-            renderRect(shapeRenderer, hitBox)
-        }
-        for (hitBox in SpaceCraft.secondBlade.hitBoxes){
-            renderRect(shapeRenderer, hitBox)
-        }
+            for (hitBox in SpaceCraft.firstBlade.hitBoxes) {
+                renderRect(shapeRenderer, hitBox)
+            }
+            for (hitBox in SpaceCraft.secondBlade.hitBoxes) {
+                renderRect(shapeRenderer, hitBox)
+            }
 
-
+        }
         shapeRenderer.end()
 
     }

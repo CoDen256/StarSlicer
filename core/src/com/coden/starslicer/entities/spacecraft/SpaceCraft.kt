@@ -26,13 +26,14 @@ object SpaceCraft: DamageTaker, DamageGiver {
     override var health = maxHealth
 
     // Positioning
-    val pos: Vector2
+    override var pos
         get() = Vector2(x, y)
+        set(value) {}
 
     val spaceCraftTexture = Assets.SpaceCraftAssets.spaceCraftTexture
 
-    val width = xRatio * spaceCraftTexture.regionWidth
-    val height = yRatio * spaceCraftTexture.regionHeight
+    override val width = xRatio * spaceCraftTexture.regionWidth
+    override val height = yRatio * spaceCraftTexture.regionHeight
 
     val x = Gdx.graphics.width * xProportion
     val y = Gdx.graphics.height * yProportion

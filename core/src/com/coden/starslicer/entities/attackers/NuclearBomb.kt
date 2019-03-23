@@ -59,6 +59,8 @@ class NuclearBomb(override val initialPos: Vector2,
         if (SpaceCraft.isShielded){
             giveDamage(SpaceCraft, damage*shieldAbsorbPortion)
             SpaceCraft.isShielded = false
+        }else{
+            giveDamage(SpaceCraft, damage)
         }
 
     }

@@ -11,6 +11,7 @@ import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.hud.HealthBar
 import com.coden.starslicer.util.*
 
 abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker{
@@ -19,10 +20,11 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         val attackers = ArrayList<Attacker>()
     }
 
-
     init {
         attackers.add(this)
     }
+
+
 
     // Snapshot properties
     val name = snapshot.name
@@ -44,14 +46,15 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     // Movement
     abstract val initialPos: Vector2
     abstract var velocity: Vector2
-    abstract var pos: Vector2
 
     // Sprite
     private val spriteTexture: TextureRegion? = assets.getTexture(type)
     protected val sprite = Sprite(spriteTexture)
 
-    protected val width = spriteTexture!!.regionWidth * xRatio
-    protected val height = spriteTexture!!.regionHeight * yRatio
+    override val width = spriteTexture!!.regionWidth * xRatio
+    override val height = spriteTexture!!.regionHeight * yRatio
+
+    var healthBar : HealthBar? = null
 
     // specialized vectors
     protected var targetVector : Vector2
@@ -70,6 +73,9 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     protected fun updateLife() {
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
+
+        healthBar = if (healthBar == null) HealthBar(this) else healthBar
+        healthBar!!.update()
     }
 
     protected fun rotate(angleSpeed: Float) {

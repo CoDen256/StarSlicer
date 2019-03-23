@@ -2,6 +2,7 @@ package com.coden.starslicer.entities.entityInterfaces
 
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.Log
 
@@ -60,6 +61,13 @@ interface Mortal {
 interface Collisional {
     val hitBox: Rectangle
     val hitSphere: Circle
+
+    val width: Float
+    val height: Float
+
+    var pos: Vector2
+
+
 }
 
 interface Container {
