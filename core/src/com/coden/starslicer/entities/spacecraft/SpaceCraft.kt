@@ -60,9 +60,7 @@ object SpaceCraft: DamageTaker, DamageGiver {
     val secondBlade = blades[1]
 
 
-    override fun toString(): String {
-        return "$health, $damage, $x, $y"
-    }
+    override fun toString()= "SPACECRAFT"
 
 
     fun render(batch: SpriteBatch) {

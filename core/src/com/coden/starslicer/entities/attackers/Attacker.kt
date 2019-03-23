@@ -56,6 +56,8 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     var healthBar : HealthBar? = null
 
+    override fun toString() = name
+
     // specialized vectors
     protected var targetVector : Vector2
         get() = pos.cpy().sub(spaceCraftCenter).scl(-1f)
@@ -73,6 +75,9 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     protected fun updateLife() {
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
+
+        //hitBox.setPosition(pos)
+        //hitSphere.set
 
         healthBar = if (healthBar == null) HealthBar(this) else healthBar
         healthBar!!.update()

@@ -20,7 +20,7 @@ interface DamageGiver {
         }
     }
 
-    fun heal(entity: DamageTaker, amount: Float=damage){
+    fun heal(entity: DamageTaker, amount: Float = damage){
         Log.info("Giving healing to $entity with heal: $amount")
         entity.heal(amount)
     }

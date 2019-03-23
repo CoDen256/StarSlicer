@@ -8,12 +8,12 @@ import sun.java2d.pipe.SpanShapeRenderer
 
 class HealthBar(val entity: DamageTaker) {
 
-    val x  get() = entity.pos.x
-    val y get() = entity.pos.y+entity.height
-    val width get()  = entity.width
-    val height get() = entity.height*0.1f
+    val x  get() = entity.hitBox.x
+    val y get() = entity.hitBox.y+entity.hitBox.height
+    val width get()  = entity.hitBox.width
+    val height get() = entity.hitBox.height*0.1f
 
-    val margin = entity.height * 0.1f
+    val margin = entity.hitBox.height * 0.1f
     val widthScale = 0.8f
     val scaledWidth = width*widthScale
 
