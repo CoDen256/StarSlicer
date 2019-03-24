@@ -32,6 +32,7 @@ interface DamageTaker: Mortal, Collisional {
 
     fun takeDamage(damage: Float){
         health -= damage
+        Log.info("ouch $this took damage of $damage")
         if (health <= 0) {
             health = 0f
             kill()

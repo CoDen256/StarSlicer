@@ -15,6 +15,7 @@ import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.Shield
 import com.coden.starslicer.entities.powerups.ShockWave
+import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.centerX
 import com.coden.starslicer.util.centerY
 import java.awt.Container
@@ -43,16 +44,20 @@ class InputManager(private val data: EntityData) {
                 return
             }
             for (attacker in attackers) {
-                if (firstBlade.isSlicing(attacker.hitBox) || secondBlade.isSlicing(attacker.hitBox)) {
-                    attacker.takeDamage(SpaceCraft.damage) // TODO: The bigger slice the more damage will received
-                    if (attacker.isDead) {
-                        if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
-                        attacker.onDestroy()
-                    }
+                if (firstBlade.isSlicing(attacker.hitBox)) {
+                    attacker.takeDamage(firstBlade.damage)
+                    Log.info("$attacker is been slicing")
+                }
+                if (secondBlade.isSlicing(attacker.hitBox)){
+                    attacker.takeDamage(secondBlade.damage)
+                }
+                if (attacker.isDead) {
+                    if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
+                    attacker.onDestroy()
                 }
             }
         }
-        }
+    }
 
     fun updateClicking(){
         if (Gdx.input.justTouched()){

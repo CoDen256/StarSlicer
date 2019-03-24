@@ -13,7 +13,7 @@ class HealthBar(val entity: DamageTaker) {
     val width get()  = entity.hitBox.width
     val height get() = entity.hitBox.height*0.1f
 
-    val margin = entity.hitBox.height * 0.1f
+    val margin = entity.hitBox.height * 0.18f
     val widthScale = 0.8f
     val scaledWidth = width*widthScale
 
@@ -38,11 +38,11 @@ class HealthBar(val entity: DamageTaker) {
         shapeRenderer.setAutoShapeType(true)
 
         shapeRenderer.set(ShapeRenderer.ShapeType.Filled)
-        shapeRenderer.setColor(0.75f, 0.2f, 0.2f, 0f)
+        shapeRenderer.setColor(0.75f, 0.2f, 0.2f, 1f)
         shapeRenderer.rect(x + (width - scaledWidth) /2, y+margin, scaledWidth * (health/maxHealth), height)
 
         shapeRenderer.set(ShapeRenderer.ShapeType.Line)
-        shapeRenderer.setColor(1f, 1f, 1f, 0f)
+        shapeRenderer.setColor(1f, 1f, 1f, 1f)
         shapeRenderer.rect(x + (width - scaledWidth) /2, y+margin, scaledWidth, height)
 
     }

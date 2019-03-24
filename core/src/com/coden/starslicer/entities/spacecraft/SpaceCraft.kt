@@ -43,7 +43,7 @@ object SpaceCraft: DamageTaker, DamageGiver {
 
     // Sprite
     override val hitBox = Rectangle(centerX, centerY, width, height)
-    override val hitSphere = Circle(x, y, (height + width)/2)
+    override val hitSphere = Circle(x, y, minOf(height, width)/2)
 
     // Shield
     var isShielded = false

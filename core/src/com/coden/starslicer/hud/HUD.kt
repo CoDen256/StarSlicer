@@ -40,7 +40,7 @@ class HUD(data: EntityData) {
 
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
-        shapeRenderer.setColor(1f, 1f, 1f, 0f)
+        shapeRenderer.setColor(1f, 1f, 1f, 1f)
 
         powerUpsBar.render(shapeRenderer)
         spaceCraftBar.render(shapeRenderer)

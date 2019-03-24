@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.handlers.InputManager
@@ -147,9 +148,12 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
+            renderCircle(shapeRenderer, SpaceCraft.hitSphere)
+
+
             for (attacker in attackers) {
                 renderRect(shapeRenderer, attacker.hitBox)
-                shapeRenderer.circle(attacker.hitSphere.x, attacker.hitSphere.y, attacker.hitSphere.radius)
+                renderCircle(shapeRenderer, attacker.hitSphere)
             }
 
             for (hitBox in SpaceCraft.firstBlade.hitBoxes) {
@@ -173,6 +177,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderRect(shapeRenderer: ShapeRenderer,rect: Rectangle) {
         shapeRenderer.rect(rect.x, rect.y, rect.width, rect.height)
+    }
+
+    fun renderCircle(shapeRenderer: ShapeRenderer, circle: Circle){
+        shapeRenderer.circle(circle.x, circle.y, circle.radius)
     }
 
     override fun pause() {
