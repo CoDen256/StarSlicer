@@ -57,9 +57,9 @@ class InputManager(private val data: EntityData) {
                     attacker.takeDamage(secondBlade.damage)
                 }
 
-                if (firstIsSlicing || secondIsSlicing){
-                    if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
+                if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
                     attacker.onDestroy()
+                    if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
                 }
             }
         }
