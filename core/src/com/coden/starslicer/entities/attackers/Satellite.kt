@@ -22,6 +22,7 @@ class Satellite(
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.SATELLITE)
         val current = arrayOf(0, 0)
+        val maxAlive = snapshot.getMaxNumber()
     }
 
     // Movement

@@ -53,6 +53,7 @@ class InputManager(private val data: EntityData) {
                 }
                 if (attacker.isDead) {
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
+                    Log.info("fuck it im dead $attacker")
                     attacker.onDestroy()
                 }
             }

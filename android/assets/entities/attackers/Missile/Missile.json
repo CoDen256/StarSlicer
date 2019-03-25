@@ -5,6 +5,7 @@
   "collisional":true,
   "spiralRadius": 20.0,
   "spiralInitialCount": 80.0,
+  "maxNumber": [20, 5, 20, 20],
   "maxMovementSpeedMap":{
     "0": 480.0, // missing
     "1": 480.0, // direct

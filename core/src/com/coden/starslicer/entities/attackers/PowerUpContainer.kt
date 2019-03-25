@@ -23,6 +23,7 @@ class PowerUpContainer(
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
         val current = arrayOf(0, 0)
+        val maxAlive = snapshot.getMaxNumber()
     }
 
     // Movement

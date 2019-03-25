@@ -19,12 +19,13 @@ class Meteor(override val initialPos: Vector2,
              assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state, assets) {
 
     companion object {
-        val snapshots = mapOf(
-                0 to EntityLoader.loadAttacker(AttackerType.SMALL_METEOR),
-                1 to EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
-                2 to EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
+        val snapshots = arrayOf(
+                EntityLoader.loadAttacker(AttackerType.SMALL_METEOR),
+                EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
+                EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
         )
         val current = arrayOf(0, 0, 0)
+        val maxAlive = snapshots.map{it.getMaxNumber()[0]}
     }
 
     // Constant Speeds

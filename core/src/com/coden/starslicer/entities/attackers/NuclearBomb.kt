@@ -16,6 +16,7 @@ class NuclearBomb(override val initialPos: Vector2,
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
         val current = arrayOf(0, 0)
+        val maxAlive = snapshot.getMaxNumber()
     }
 
     val shieldAbsorbPortion = snapshot.shieldAbsorbPortion

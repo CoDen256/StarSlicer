@@ -8,6 +8,7 @@ class AttackerSnapshot {
     private var maxMovementSpeed: Float? = null
     private var damage: Float? = null
     private var collisional: Boolean? = null
+    private var maxNumber: List<Int>? =  null
 
     // Meteors + Containers
     var minAngleSpeed: Float = 0f
@@ -22,11 +23,11 @@ class AttackerSnapshot {
 
 
 
-    private var lifeSpanMap = mutableMapOf<Int, Float>()
-    private var maxHealthMap = mutableMapOf<Int, Float>()
-    private var maxMovementSpeedMap = mutableMapOf<Int, Float>()
-    private var damageMap = mutableMapOf<Int, Float>()
-    private var collisionalMap = mutableMapOf<Int, Boolean>()
+    private var lifeSpanMap = mapOf<Int, Float>()
+    private var maxHealthMap = mapOf<Int, Float>()
+    private var maxMovementSpeedMap = mapOf<Int, Float>()
+    private var damageMap = mapOf<Int, Float>()
+    private var collisionalMap = mapOf<Int, Boolean>()
 
     var name = "UNDEFINED"
     val type: AttackerType get() = AttackerType.valueOf(name)
@@ -50,6 +51,10 @@ class AttackerSnapshot {
 
     fun getCollisional(state: Int): Boolean {
         return if (collisional == null) collisionalMap[state]!! else collisional!!
+    }
+
+    fun getMaxNumber(): List<Int>{
+        return maxNumber!!
     }
 
 }
