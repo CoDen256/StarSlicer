@@ -32,7 +32,6 @@ interface DamageTaker: Mortal, Collisional {
 
     fun takeDamage(damage: Float){
         health -= damage
-        Log.info("ouch $this took damage of $damage")
         if (health <= 0) {
             health = 0f
             kill()
@@ -61,13 +60,13 @@ interface Mortal {
 
 interface Collisional {
     val hitBox: Rectangle
+
     val hitSphere: Circle
 
     val width: Float
     val height: Float
 
     var pos: Vector2
-
 
 }
 

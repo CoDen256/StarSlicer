@@ -43,14 +43,8 @@ class Missile (override val initialPos: Vector2,
 
     // Sprite
     //TODO: Probably can cause optimization problems since Rectangle created each time
-    override val hitBox : Rectangle
-        get() {
-            //WLog.info("Rectangle created")
-            return Rectangle(pos.x - height*1.5f/2, pos.y - height*1.5f /2, height*1.5f, height*1.5f)
-        }
-
-    override val hitSphere: Circle
-        get() = Circle(pos.x, pos.y, height/2)
+    override val hitBox = Rectangle(0f, 0f, height*1.5f, height*1.5f)
+    override val hitSphere = Circle(0f, 0f, minOf(height, width)*1.5f/2)
 
     /*
     states:
@@ -81,7 +75,6 @@ class Missile (override val initialPos: Vector2,
 
     override fun update() {
         updateLife()
-
         when (state){
             0, 1 -> pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))
             2 -> moveOribting()

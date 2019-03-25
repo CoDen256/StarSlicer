@@ -73,11 +73,11 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     }
 
     protected fun updateLife() {
+        updateHitBoxes()
+
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
 
-        //hitBox.setPosition(pos)
-        //hitSphere.set
 
         healthBar = if (healthBar == null) HealthBar(this) else healthBar
         healthBar!!.update()
@@ -86,6 +86,12 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     protected fun rotate(angleSpeed: Float) {
         sprite.rotate(angleSpeed*Gdx.graphics.deltaTime)
     }
+
+    private fun updateHitBoxes(){
+        hitBox.setPosition(pos.x - hitBox.width/2, pos.y - hitBox.height/2)
+        hitSphere.setPosition(pos.x, pos.y)
+    }
+
 
     abstract fun update()
 

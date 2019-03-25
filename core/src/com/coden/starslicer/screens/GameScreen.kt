@@ -89,7 +89,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        debugShapes(false)
+        debugShapes(true)
     }
 
     fun renderMainEntities() {

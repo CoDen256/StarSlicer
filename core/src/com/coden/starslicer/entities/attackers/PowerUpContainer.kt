@@ -32,11 +32,8 @@ class PowerUpContainer(
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
 
     // SPRITE
-    override val hitBox : Rectangle
-        get() = Rectangle(pos.x - height/2, pos.y - height/2, height, height)
-
-    override val hitSphere: Circle
-        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
+    override val hitBox  = Rectangle(0f, 0f, height, height)
+    override val hitSphere = Circle(0f, 0f, height/2)
 
     init {
         current[state]++

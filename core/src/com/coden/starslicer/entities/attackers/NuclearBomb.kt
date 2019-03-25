@@ -23,11 +23,8 @@ class NuclearBomb(override val initialPos: Vector2,
     override var pos: Vector2 = initialPos
     override var velocity = Vector2()
 
-    override val hitBox :Rectangle
-        get() = Rectangle(pos.x - height/1.5f /2, pos.y - height/1.5f /2, height/1.5f , height/1.5f)
-
-    override val hitSphere: Circle
-        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
+    override val hitBox = Rectangle(0f, 0f, height/1.5f , height/1.5f)
+    override val hitSphere = Circle(0f, 0f, minOf(width, height)/2)
 
 
     init {

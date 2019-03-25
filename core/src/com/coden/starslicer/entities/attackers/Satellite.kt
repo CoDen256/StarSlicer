@@ -34,11 +34,8 @@ class Satellite(
 
     // SPRITE
 
-    override val hitBox : Rectangle
-        get() = Rectangle(pos.x - width/2, pos.y - height/2, width , height )
-
-    override val hitSphere: Circle
-        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
+    override val hitBox = Rectangle(pos.x - width/2, pos.y - height/2, width , height )
+    override val hitSphere = Circle(pos.x, pos.y, minOf(width, height)/2)
 
     init {
         current[state] ++

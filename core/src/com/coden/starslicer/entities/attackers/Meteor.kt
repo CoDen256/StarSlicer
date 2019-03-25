@@ -36,11 +36,8 @@ class Meteor(override val initialPos: Vector2,
     override var velocity = Vector2()
 
 
-    override val hitBox :Rectangle
-        get() = Rectangle(pos.x-width/2, pos.y-height/2, width, height)
-
-    override val hitSphere: Circle
-        get() = Circle(pos.x, pos.y, minOf(width, height)/2)
+    override val hitBox = Rectangle(0f, 0f, width, height)
+    override val hitSphere = Circle(0f, 0f, minOf(width, height)/2)
 
     // state: 0 - miss
     // state: 1 - direct
