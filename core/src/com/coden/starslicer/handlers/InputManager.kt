@@ -59,7 +59,10 @@ class InputManager(private val data: EntityData) {
 
                 if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
                     attacker.onDestroy()
-                    if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
+                    if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
+                        addPowerUp(attacker.content)
+                        Log.info("Granted ${attacker.content}")
+                    }
                 }
             }
         }
@@ -98,16 +101,16 @@ class InputManager(private val data: EntityData) {
 
     fun debugSpawning() {
 
-        if (Gdx.input.justTouched()) {
-            when {
-                Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile.execute(data)
-                Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb.execute(data)
-                Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor.execute(data)
-                Gdx.input.x > centerX && Gdx.input.y > centerY -> {
-                    spawnSatellite.execute(data)
-                    spawnContainer.execute(data)
-                }}
-        }
+        //if (Gdx.input.justTouched()) {
+        //    when {
+        //        Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile.execute(data)
+        //        Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb.execute(data)
+        //        Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor.execute(data)
+        //        Gdx.input.x > centerX && Gdx.input.y > centerY -> {
+        //            spawnSatellite.execute(data)
+        //            spawnContainer.execute(data)
+        //        }}
+        //}
 
         when {
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile.execute(data)

@@ -17,6 +17,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
+import com.coden.starslicer.handlers.DifficultyController
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
 
@@ -32,6 +33,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var data: EntityData
     private lateinit var inputManager: InputManager
+
+    private lateinit var difficultyController: DifficultyController
 
     val font = BitmapFont()
 
@@ -55,6 +58,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 
+        difficultyController = DifficultyController(data)
+
         Log.info("The screen is created")
         Log.info("Size: $w x $h")
         Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
@@ -76,6 +81,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     override fun render(delta: Float) {
         // UPDATING EVENTS
+        difficultyController.update()
         update()
 
         // MAIN BATCH

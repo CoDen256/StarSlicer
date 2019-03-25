@@ -2,7 +2,7 @@
   "pointer": 0,
   "detectionRatio": 0.7,
   "cutRatio" : 2,
-  "firstIgnored" : 3,
+  "firstIgnored" : 4,
   "maxPoints" : 40,
   "initDamage" : 10.0,
   "detectionSize": 30.0

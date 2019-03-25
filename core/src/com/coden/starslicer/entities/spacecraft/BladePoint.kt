@@ -17,7 +17,7 @@ class BladePoint: DamageGiver {
     private val detectionSize : Float? = null
 
     val size get() =  detectionSize!! * sqRatio
-    private val damageFade get() = if (hitBoxes.size > firstIgnored!!) (hitBoxes.size)/(detectionRatio!!*maxPoints!!/cutRatio!!) else 0f
+    private val damageFade get() = if (hitBoxes.size > Math.round(firstIgnored!!*sqRatio)) (hitBoxes.size)/(detectionRatio!!*maxPoints!!/cutRatio!!) else 0f
     override val damage get() = initDamage!! * damageFade
 
     var active = false
