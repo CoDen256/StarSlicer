@@ -43,7 +43,6 @@ class Missile (override val initialPos: Vector2,
 
 
     // Sprite
-    //TODO: Probably can cause optimization problems since Rectangle created each time
     override val hitBox = Rectangle(0f, 0f, height*1.5f, height*1.5f)
     override val hitSphere = Circle(0f, 0f, minOf(height, width)*1.5f/2)
 

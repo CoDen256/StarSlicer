@@ -13,13 +13,6 @@ data class EntityData(val assets: Assets) {
     val shields = ArrayList<Shield>()
     val shockWaves = ArrayList<ShockWave>()
 
-    val maxMissiles = arrayListOf(20, 5, 20, 20) // 0 - missing, 1 - direct, 2 - orbiting , 3 - spiraling
-    val maxNuclearBombs = arrayListOf(8, 0) // 0 - missing, 1 - direct
-    val maxMeteors = arrayListOf(17, 8, 2) // 0 - small, 1-medium, 2-large
-    val maxPowerUpContainers = arrayListOf(2, 0) // 0 - missing 1 - direct
-    val maxSatellites = arrayListOf(1, 0) // 0 - missing, 1 - direct
-
-
     // TODO: ratio amount can be applied to speed when difficulty is bigger (applied in ProgressClass)
 
 

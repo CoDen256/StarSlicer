@@ -46,14 +46,18 @@ class InputManager(private val data: EntityData) {
             for (attacker in attackers) {
 
                 // Only one blade would be registered
-                if (firstBlade.isSlicing(attacker.hitBox)) {
+                val firstIsSlicing = firstBlade.isSlicing(attacker.hitBox)
+                val secondIsSlicing = secondBlade.isSlicing(attacker.hitBox)
+
+                if (firstIsSlicing){
                     attacker.takeDamage(firstBlade.damage)
                 }
-                if (secondBlade.isSlicing(attacker.hitBox)){
+
+                if (secondIsSlicing){
                     attacker.takeDamage(secondBlade.damage)
                 }
 
-                if (attacker.isDead) {
+                if (firstIsSlicing || secondIsSlicing){
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
                     attacker.onDestroy()
                 }
@@ -92,7 +96,6 @@ class InputManager(private val data: EntityData) {
     }
 
 
-    // TODO: Move spawning to ProgressClass
     fun debugSpawning() {
 
         if (Gdx.input.justTouched()) {

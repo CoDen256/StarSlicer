@@ -31,8 +31,6 @@ class AttackerHandler(private val data: EntityData) {
     }
 
     fun updateAll() {
-        //Log.info("NB: ${NuclearBomb.maxAlive}, MISSILE: ${Missile.maxAlive},Meteor:  ${Meteor.maxAlive},Satellite: ${Satellite.maxAlive},PUC: ${PowerUpContainer.maxAlive}")
-        Log.info("NB: ${NuclearBomb.current.toList()}, MISSILE: ${Missile.current.toList()},Meteor: ${Meteor.current.toList()},Satellite:${Satellite.current.toList()},PUC:${PowerUpContainer.current.toList()}")
         val iterator = attackers.iterator()
         while (iterator.hasNext()) {
             val attacker = iterator.next()
