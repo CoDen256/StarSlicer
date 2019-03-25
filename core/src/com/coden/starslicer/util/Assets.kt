@@ -123,6 +123,7 @@ class Assets{
                 PowerUp.PowerUpType.SHOCKWAVE to loadPowerUp("ShockWave/shockwave.json")
         )
 
+        val bladeConfig = arrayOf(loadBlade("blades/first.json"), loadBlade("blades/second.json"))
         val spaceCraftConfig = loadSpaceCraft("spacecraft/spacecraft.json")
 
         private fun load(path: String) = Gdx.files.internal(path).reader()
@@ -139,6 +140,11 @@ class Assets{
 
         private fun loadSpaceCraft(name: String): Reader {
             Gdx.app.log("SpaceCraftConfig", "Loading...$name")
+            return load("entities/$name")
+        }
+
+        private fun loadBlade(name: String): Reader{
+            Gdx.app.log("Bladesconfig", "Loading..$name")
             return load("entities/$name")
         }
 
