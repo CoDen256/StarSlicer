@@ -13,13 +13,15 @@ import com.coden.starslicer.util.EntityLoader.loadBlade
 import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
 import com.coden.util.swipe.SwipeHandler
 
-object SpaceCraft: DamageTaker {
+object SpaceCraft: DamageTaker, DamageGiver {
     override var isDead = false
 
     private val snapshot = loadSpaceCraft()
 
     val xProportion = snapshot.xProportion
     val yProportion = snapshot.yProportion
+
+    override val damage = snapshot.damage // Body Damage
 
     // Health
     override val maxHealth = snapshot.maxHealth

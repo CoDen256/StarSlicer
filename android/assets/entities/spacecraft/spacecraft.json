@@ -1,6 +1,6 @@
 {
   "xProportion" : 0.5,
   "yProportion" : 0.5,
-  "damage" : 5.0,
-  "maxHealth": 150.0
+  "maxHealth": 150.0,
+  "damage": 300.0
 }

@@ -44,16 +44,17 @@ class InputManager(private val data: EntityData) {
                 return
             }
             for (attacker in attackers) {
+
+                // Only one blade would be registered
                 if (firstBlade.isSlicing(attacker.hitBox)) {
                     attacker.takeDamage(firstBlade.damage)
-                    Log.info("$attacker is been slicing")
                 }
                 if (secondBlade.isSlicing(attacker.hitBox)){
                     attacker.takeDamage(secondBlade.damage)
                 }
+
                 if (attacker.isDead) {
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) addPowerUp(attacker.content)
-                    Log.info("fuck it im dead $attacker")
                     attacker.onDestroy()
                 }
             }

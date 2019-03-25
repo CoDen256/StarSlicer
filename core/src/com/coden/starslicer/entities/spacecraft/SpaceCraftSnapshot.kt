@@ -2,9 +2,10 @@ package com.coden.starslicer.entities.spacecraft
 
 class SpaceCraftSnapshot {
 
-    var xProportion : Float = 0f
-    var yProportion : Float = 0f
-    var maxHealth: Float = 0f
+    val xProportion : Float = 0f
+    val yProportion : Float = 0f
+    val maxHealth: Float = 0f
+    val damage : Float = 0f
 
 
 }

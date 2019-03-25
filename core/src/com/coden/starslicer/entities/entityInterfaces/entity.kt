@@ -31,6 +31,7 @@ interface DamageTaker: Mortal, Collisional {
     var health: Float
 
     fun takeDamage(damage: Float){
+        if (isDead) return
         health -= damage
         if (health <= 0) {
             health = 0f

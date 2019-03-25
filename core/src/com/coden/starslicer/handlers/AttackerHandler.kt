@@ -31,7 +31,7 @@ class AttackerHandler(private val data: EntityData) {
     }
 
     fun updateAll() {
-        Log.info("NB: ${NuclearBomb.maxAlive}, MISSILE: ${Missile.maxAlive},Meteor:  ${Meteor.maxAlive},Satellite: ${Satellite.maxAlive},PUC: ${PowerUpContainer.maxAlive}")
+        //Log.info("NB: ${NuclearBomb.maxAlive}, MISSILE: ${Missile.maxAlive},Meteor:  ${Meteor.maxAlive},Satellite: ${Satellite.maxAlive},PUC: ${PowerUpContainer.maxAlive}")
         Log.info("NB: ${NuclearBomb.current.toList()}, MISSILE: ${Missile.current.toList()},Meteor: ${Meteor.current.toList()},Satellite:${Satellite.current.toList()},PUC:${PowerUpContainer.current.toList()}")
         val iterator = attackers.iterator()
         while (iterator.hasNext()) {
@@ -39,7 +39,7 @@ class AttackerHandler(private val data: EntityData) {
             attacker.update()
             updateCollision(attacker)
             if (attacker.isDead) {
-                Log.info("${attacker.name} is dead")
+                Log.info("${attacker.name} is dead so removed from attackers")
                 iterator.remove()
             }
         }
@@ -48,11 +48,12 @@ class AttackerHandler(private val data: EntityData) {
     private fun updateCollision(attacker: Attacker) {
         if (SpaceCraft.isShielded) {
             if (SpaceCraft.shieldCircle.overlaps(attacker.hitSphere)) {
+                attacker.kill()
                 attacker.onDestroy()
             }
         } else if (SpaceCraft.hitBox.overlaps(attacker.hitBox) && attacker.collisional) {
             attacker.giveDamage(SpaceCraft)
-            attacker.onDestroy()
+            SpaceCraft.giveDamage(attacker) // Body damage
         }
     }
 }

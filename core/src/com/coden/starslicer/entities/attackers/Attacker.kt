@@ -95,9 +95,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     abstract fun update()
 
-    open fun onDestroy() {
-        kill()
-    }
+    open fun onDestroy() {}
 
     protected fun applyVelocity(vel: Vector2) {
         velocity.add(vel)
