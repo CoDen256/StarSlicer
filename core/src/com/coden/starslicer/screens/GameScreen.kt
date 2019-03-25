@@ -17,7 +17,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
-import com.coden.starslicer.handlers.DifficultyController
+import com.coden.starslicer.gameplay.DifficultyController
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
 

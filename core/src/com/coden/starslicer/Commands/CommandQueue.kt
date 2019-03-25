@@ -6,9 +6,6 @@ import com.coden.starslicer.entities.EntityData
 class CommandQueue(val data: EntityData) {
     val container = Queue<Command>()
 
-    fun update(){
-    }
-
     fun add(command: Command){
         container.addLast(command)
     }
@@ -17,5 +14,7 @@ class CommandQueue(val data: EntityData) {
         if (container.size == 0) return
         container.removeFirst().execute(data)
     }
+
+    val isEmpty get() = container.size == 0
 
 }

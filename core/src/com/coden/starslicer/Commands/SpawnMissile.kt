@@ -10,7 +10,7 @@ class SpawnMissile(val missileState: Int = -1) : Command{
     override fun execute(data: EntityData){
         val newState = if (missileState == -1) MathUtils.random(0, 3) else missileState
 
-        if (Missile.current[newState] >= Missile.maxAlive[newState]) return
+        //if (Missile.current[newState] >= Missile.maxAlive[newState]) return
 
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState, data.attackerAssets)

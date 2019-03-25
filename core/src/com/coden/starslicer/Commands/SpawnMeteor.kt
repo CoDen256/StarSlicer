@@ -10,7 +10,7 @@ class SpawnMeteor(val state: Int = -1, val size: Int = -1):Command {
         val newState = if (state == -1) MathUtils.random(0, 1) * MathUtils.random(0, 1) else state
         val newSize = if (size == -1) MathUtils.random(0, 2) else size
 
-        if (Meteor.current[newSize] >= Meteor.maxAlive[newSize]) return
+        //if (Meteor.current[newSize] >= Meteor.maxAlive[newSize]) return
 
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize, data.attackerAssets)
