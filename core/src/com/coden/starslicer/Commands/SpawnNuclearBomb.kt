@@ -14,4 +14,8 @@ class SpawnNuclearBomb(val nuclearBombState: Int = -1): Command {
         val spawnPoint = generateRandomSpawnPoint()
         val nuclearBomb = NuclearBomb(spawnPoint, newState, data.attackerAssets)
     }
+
+    override fun toString(): String {
+        return "SpawnNuclearBomb(State:$nuclearBombState)"
+    }
 }

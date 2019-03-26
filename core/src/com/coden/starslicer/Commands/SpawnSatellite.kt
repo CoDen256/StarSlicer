@@ -18,4 +18,8 @@ class SpawnSatellite(val stateSatellite: Int = -1, val type: PowerUp.PowerUpType
         val satellite = Satellite(spawnPoint, newState, content, data.attackerAssets)
     }
 
+    override fun toString(): String {
+        return "SpawnSatellite(State: $stateSatellite)"
+    }
+
 }

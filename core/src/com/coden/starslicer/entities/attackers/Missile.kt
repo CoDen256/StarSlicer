@@ -15,7 +15,7 @@ class Missile (override val initialPos: Vector2,
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
-        val current = arrayOf(0, 0, 0, 0)
+        val current = arrayOf(0, 0, 0, 0) // TODO: Probably evolving can be done by defining for each type the growthRate that will spawn more
         val maxAlive = snapshot.getMaxNumber()
     }
 
@@ -56,6 +56,7 @@ class Missile (override val initialPos: Vector2,
      */
 
     init {
+        // TODO: Spritaling around another point not the spacecraft exactly
         current[state]++
         velocity = when (state) {
             0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,

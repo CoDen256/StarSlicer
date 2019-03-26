@@ -15,4 +15,8 @@ class SpawnContainer(val state: Int = -1, val type: PowerUp.PowerUpType? = null)
         val spawnPoint = generateRandomSpawnPoint()
         val powerUpContainer = PowerUpContainer(spawnPoint, newState, content, data.attackerAssets)
     }
+
+    override fun toString(): String {
+        return "SpawnContainer(State:$state, Content:$type)"
+    }
 }

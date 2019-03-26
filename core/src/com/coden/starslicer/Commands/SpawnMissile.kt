@@ -15,4 +15,8 @@ class SpawnMissile(val missileState: Int = -1) : Command{
         val spawnPoint = generateRandomSpawnPoint()
         val missile = Missile(spawnPoint, newState, data.attackerAssets)
     }
+
+    override fun toString(): String {
+        return "SpawnMissile(State:$missileState)"
+    }
 }

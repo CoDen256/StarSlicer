@@ -15,4 +15,7 @@ class SpawnMeteor(val state: Int = -1, val size: Int = -1):Command {
         val spawnPoint = generateRandomSpawnPoint()
         val meteor = Meteor(spawnPoint, newState, newSize, data.attackerAssets)
 }
+    override fun toString(): String {
+        return "SpawnMeteor(State:$state, Size:$size)"
+    }
 }

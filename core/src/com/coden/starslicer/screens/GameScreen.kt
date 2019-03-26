@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Circle
+import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.handlers.InputManager
@@ -38,6 +39,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     val font = BitmapFont()
 
+    var timePassed = 0f
     val bg = Texture("bg.png")
 
     val w = Gdx.graphics.width + 0f
@@ -93,7 +95,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         game.swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        debugShapes(true)
+        debugShapes(false)
     }
 
     fun renderMainEntities() {
@@ -102,6 +104,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.draw(bg, 0f, 0f, w, h)
 
         renderFPS(batch)
+        renderTimePassed(batch)
 
         SpaceCraft.render(batch)
         attackerHandler.renderAll(batch)
@@ -112,6 +115,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     // UPDATE SECTION
     fun update() {
+
+        timePassed += Gdx.graphics.deltaTime
 
         SpaceCraft.update(game.swipeRenderer.swipe)
 
@@ -173,6 +178,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
     fun renderFPS(batch: SpriteBatch) {
         font.draw(batch, Gdx.graphics.framesPerSecond.toString(), w-50, h-75)
+    }
+
+    fun renderTimePassed(batch: SpriteBatch){
+        font.draw(batch, timePassed.toString(), w-75, h-100)
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
