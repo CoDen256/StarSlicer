@@ -8,10 +8,12 @@ import com.coden.starslicer.util.Log
 
 class DifficultyController(val data: EntityData) {
     val queue = CommandQueue(data)
-    val firstWave = Wave(0, 5f, 10)
+    val firstWave = Wave(1)
 
-    val executeDelta = 2f
+    val executeDelta = 0f
     var currentExecuteDelta = 0f
+
+
 
     fun update(){
 
