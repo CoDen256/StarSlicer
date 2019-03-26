@@ -8,7 +8,7 @@ import com.coden.starslicer.util.Log
 
 class DifficultyController(val data: EntityData) {
     val queue = CommandQueue(data)
-    val firstWave = Wave(1)
+    val firstWave = Wave(0)
 
     val executeDelta = 0f
     var currentExecuteDelta = 0f
@@ -19,6 +19,8 @@ class DifficultyController(val data: EntityData) {
 
         if (firstWave.update(queue)){
 
+        }else{
+            Log.info("wave is dead")
         }
 
 

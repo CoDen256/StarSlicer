@@ -6,8 +6,10 @@ import com.coden.starslicer.entities.EntityData
 class CommandQueue(val data: EntityData) {
     val container = Queue<Command>()
 
-    fun add(command: Command){
-        container.addLast(command)
+    fun add(command: Command, amount: Int = 1){
+        for(i in 0 until amount){
+            container.addLast(command)
+        }
     }
 
     fun executeNext(){
