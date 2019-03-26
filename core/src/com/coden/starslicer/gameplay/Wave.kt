@@ -40,13 +40,13 @@ class Wave(var number: Int) {
             val spawner = iter.next()
             spawner.update(queue)
             if (spawner.isDead){
-                Log.info("Spawner $spawner is dead")
+                Log.info("Spawner $spawner is dead", Log.LogType.SPAWN)
                 iter.remove()
             }
         }
 
         if (spawners.isEmpty()){
-            Log.info("all spawners are dead")
+            Log.info("all spawners are dead", Log.LogType.SPAWN)
             return false
         }
 

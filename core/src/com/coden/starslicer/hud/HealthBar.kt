@@ -22,7 +22,7 @@ class HealthBar(val entity: DamageTaker) {
 
 
     init {
-        Log.info("HealthBar for $entity was created")
+        Log.info("HealthBar for $entity was created", Log.LogType.HUD)
     }
 
     fun update(){

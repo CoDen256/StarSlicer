@@ -49,6 +49,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         game.assets.finishLoading()// TODO: Initialize in starting screen
 
+        Log.info("The screen is created",Log.LogType.SCREENS)
+        Log.info("Size: $w x $h", Log.LogType.SCREENS)
+        Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio", Log.LogType.SCREENS)
+
 
         data = EntityData(game.assets)
 
@@ -59,12 +63,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         inputManager = InputManager(data)
 
         difficultyController = DifficultyController(data)
-
-        Log.info("The screen is created")
-        Log.info("Size: $w x $h")
-        Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio")
-
-        Log.info("${SpaceCraft}")
 
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)
@@ -207,7 +205,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     override fun dispose() {
 
-        Log.info("The screen is disposed")
+        Log.info("The screen is disposed", Log.LogType.SCREENS)
         batch.dispose()
         shapeRenderer.dispose()
         SpaceCraft.dispose()

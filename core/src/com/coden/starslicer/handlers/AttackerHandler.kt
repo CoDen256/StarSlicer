@@ -37,7 +37,7 @@ class AttackerHandler(private val data: EntityData) {
             attacker.update()
             updateCollision(attacker)
             if (attacker.isDead) {
-                Log.info("${attacker.name} is dead so removed from attackers")
+                Log.info("${attacker.name} is dead so removed from attackers", Log.LogType.ATTACKERS)
                 iterator.remove()
             }
         }

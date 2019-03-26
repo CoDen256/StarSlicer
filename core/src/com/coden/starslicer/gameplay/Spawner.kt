@@ -28,8 +28,8 @@ data class Spawner(private val maxNumberGrowth:GrowthResolver,
 
 
     init {
-        Log.debug("Setting up the following Spawner for ${spawnCommand.javaClass} with wave $waveNum for $timelimit seconds")
-        Log.debug("Max: ${maxNumberGrowth.init} -> $maxNumber, NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period")
+        Log.info("Setting up the following Spawner for ${spawnCommand.javaClass} with wave $waveNum for $timelimit seconds", Log.LogType.SPAWN)
+        Log.info("Max: ${maxNumberGrowth.init} -> $maxNumber, NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period", Log.LogType.SPAWN)
     }
 
     override fun toString() = "$spawnCommand"

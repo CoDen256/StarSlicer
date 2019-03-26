@@ -61,7 +61,7 @@ class InputManager(private val data: EntityData) {
                     attacker.onDestroy()
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
                         addPowerUp(attacker.content)
-                        Log.info("Granted ${attacker.content}")
+                        Log.info("Granted ${attacker.content}", Log.LogType.ATTACKERS)
                     }
                 }
             }

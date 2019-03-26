@@ -20,7 +20,7 @@ class DifficultyController(val data: EntityData) {
         if (firstWave.update(queue)){
 
         }else{
-            Log.info("wave is dead")
+            Log.info("wave is dead", Log.LogType.SPAWN)
         }
 
 

@@ -46,7 +46,7 @@ class Satellite(
             else -> Vector2()
         }
 
-        Log.info("Satellite Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("Satellite Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())

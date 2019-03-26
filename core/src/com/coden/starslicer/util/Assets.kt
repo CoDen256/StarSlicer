@@ -39,7 +39,7 @@ class Assets{
 
 
     fun loadTextureAtlases() {
-        Gdx.app.log("Assets", "Loading TextureAtlases...")
+        Log.info("Loading TextureAtlases...", Log.LogType.ASSETS)
         manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
         manager.load(POWER_UP_ATLAS_DESCRIPTOR)
         manager.load(ATTACKER_ATLAS_DESCRIPTOR)
@@ -52,9 +52,9 @@ class Assets{
     }
 
     fun finishLoading() {
-        Gdx.app.log("Assets", "Finishing Loading...")
+        Log.info("Finish Loading...", Log.LogType.ASSETS)
         manager.finishLoading()
-        Gdx.app.log("Assets", "Initializing")
+        Log.info("Initializing", Log.LogType.ASSETS)
         initialize()
     }
 
@@ -80,7 +80,7 @@ class Assets{
         )
 
         init {
-            Gdx.app.log("Initializing", "PowerUpAssets...")
+            Log.info("PowerUpAssets created", Log.LogType.ASSETS)
         }
         fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
 
@@ -100,7 +100,7 @@ class Assets{
                 POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
         )
         init {
-            Gdx.app.log("Initializing", "AttackerAssets...")
+            Log.info("AttackerAssets created", Log.LogType.ASSETS)
         }
         fun getTexture(type: AttackerType): TextureRegion? = map[type]
     }
@@ -129,27 +129,27 @@ class Assets{
         private fun load(path: String) = Gdx.files.internal(path).reader()
 
         private fun loadAttacker(name: String): Reader {
-            Gdx.app.log("AttackerConfigMap", "Loading...$name")
+            Log.info("AttackerConfigMap Loading...$name", Log.LogType.ASSETS)
             return load("entities/attackers/$name")
         }
 
         private fun loadPowerUp(name: String): Reader {
-            Gdx.app.log("PowerUpConfigMap", "Loading...$name")
+            Log.info("PowerUpConfigMap Loading...$name", Log.LogType.ASSETS)
             return load("entities/powerups/$name")
         }
 
         private fun loadSpaceCraft(name: String): Reader {
-            Gdx.app.log("SpaceCraftConfig", "Loading...$name")
+            Log.info("SpaceCraftConfig Loading...$name", Log.LogType.ASSETS)
             return load("entities/$name")
         }
 
         private fun loadBlade(name: String): Reader{
-            Gdx.app.log("Bladesconfig", "Loading..$name")
+            Log.info("Bladesconfig Loading..$name", Log.LogType.ASSETS)
             return load("entities/$name")
         }
 
         init {
-            Gdx.app.log("Loading", "Config files...")
+            Log.info("Loading Config files...", Log.LogType.ASSETS)
         }
     }
 
@@ -158,11 +158,11 @@ class Assets{
         val spaceCraftTexture = TextureRegion(Texture(path))
 
         init {
-            Gdx.app.log("Initializing", "SpaceCraftAssets...")
+            Log.info("SpaceCraftAssets created", Log.LogType.ASSETS)
         }
 
         fun dispose() {
-            Gdx.app.log("SpaceCraftAssets", "disposing")
+            Log.info("SpaceCraftAssets disposing", Log.LogType.ASSETS)
             spaceCraftTexture.texture.dispose()
         }
     }

@@ -53,7 +53,7 @@ class Meteor(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Log.info("Meteor Launched at Vel:$velocity Init:$initialPos State:$state Size:$size")
+        Log.info("Meteor Launched at Vel:$velocity Init:$initialPos State:$state Size:$size", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
     }

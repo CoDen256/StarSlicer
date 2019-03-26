@@ -44,7 +44,7 @@ class PowerUpContainer(
             else -> Vector2()
         }
 
-        Log.info("PUC Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state")
+        Log.info("PUC Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())

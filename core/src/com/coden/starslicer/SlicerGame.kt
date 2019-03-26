@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.screens.GameScreen
 import com.coden.starslicer.util.Assets
+import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.dist2
 import com.coden.util.swipe.SwipeRenderer
 
@@ -16,7 +17,7 @@ class StarSlicerGame : Game() {
 
     override fun create() {
 
-        Gdx.app.log("StarSlicerGame", "Created")
+        Log.info("created", Log.LogType.GAME)
 
         assets = Assets()
         assets.load()
@@ -41,12 +42,12 @@ class StarSlicerGame : Game() {
     override fun render() {
         super.render()
         if (!assets.updateLoading()) {
-            Gdx.app.log("splash screen", "assets loading, ${assets.progress}")
+            Log.info("assets loading, ${assets.progress}", Log.LogType.SCREENS)
         }
     }
 
     override fun dispose() {
-        Gdx.app.log("SlicerGame", "disposing...")
+        Log.info("disposing", Log.LogType.GAME)
         assets.dispose()
         swipeRenderer.dispose()
         //screen.dispose()

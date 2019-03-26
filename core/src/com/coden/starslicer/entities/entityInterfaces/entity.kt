@@ -10,7 +10,7 @@ interface DamageGiver {
     val damage:Float
 
     fun giveDamage(entity: DamageTaker, amount: Float = damage){
-        Log.info("Giving damage to $entity with damage: $amount")
+        Log.info("Giving damage to $entity with damage: $amount", Log.LogType.GAME)
         entity.takeDamage(amount)
     }
 
@@ -21,7 +21,7 @@ interface DamageGiver {
     }
 
     fun heal(entity: DamageTaker, amount: Float = damage){
-        Log.info("Giving healing to $entity with heal: $amount")
+        Log.info("Giving healing to $entity with heal: $amount", Log.LogType.GAME)
         entity.heal(amount)
     }
 }

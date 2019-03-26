@@ -23,14 +23,12 @@ class TimeBasedWave(val number: Int, val lifeSpan: Float, val spawnPeriod: Float
 
         if (life > lifeSpan) {
             if (!isDead) {
-                Log.info("Wave ${number} is dead")
             }
             kill()
             return false
         }
 
         if (spawnTimer > spawnPeriod){
-            Log.info("Adding ${entitiesPerSpawn(maxContainers)} Containers after $spawnTimer")
             spawnTimer = 0f
             for (i in 0 until entitiesPerSpawn(maxContainers)){
                 queue.add(SpawnContainer())
