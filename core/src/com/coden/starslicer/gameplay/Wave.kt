@@ -14,17 +14,17 @@ import com.coden.starslicer.util.Log
 class Wave(var number: Int): Mortal {
 
     val missile0Spawner = Spawner(
-            maxNumberGrowth = GR(10, 2, POLYNOMIAL),
+            maxNumberGrowth = GR(150f, 1.5f, EXPONENTIAL),
             numberGrowth = GR(4, 1, POLYNOMIAL),
-            periodGrowth = GR(10f, 0.95f, EXPONENTIAL),
-            delayGrowth = GR(5, 0, POLYNOMIAL),
+            periodGrowth = GR(2f, 0.95f, EXPONENTIAL),
+            delayGrowth = GR(2.5f, 0f, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(0))
 
     val missile1Spawner = Spawner(
-            maxNumberGrowth = GR(5, 1, POLYNOMIAL),
+            maxNumberGrowth = GR(15, 1, POLYNOMIAL),
             numberGrowth = GR(1, 1, POLYNOMIAL),
-            periodGrowth = GR(10f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(5f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(0, 0, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(1)
@@ -34,7 +34,7 @@ class Wave(var number: Int): Mortal {
     val missile2Spawner = Spawner(
             maxNumberGrowth = GR(30, 1, POLYNOMIAL),
             numberGrowth = GR(3, 1, POLYNOMIAL),
-            periodGrowth = GR(5f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(3f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(1, 0, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(2)
@@ -44,7 +44,7 @@ class Wave(var number: Int): Mortal {
     val missile3Spawner = Spawner(
             maxNumberGrowth = GR(20, 1, POLYNOMIAL),
             numberGrowth = GR(3, 1, POLYNOMIAL),
-            periodGrowth = GR(5f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(4.5f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(2.5f, 0f, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(3)
@@ -52,16 +52,16 @@ class Wave(var number: Int): Mortal {
     )
 
     val containerSpawner1 = Spawner(
-            maxNumberGrowth = GR(5, 1, POLYNOMIAL),
-            numberGrowth = GR(1, 1, POLYNOMIAL),
-            periodGrowth = GR(15f, 0.9f, EXPONENTIAL),
+            maxNumberGrowth = GR(6, 1, POLYNOMIAL),
+            numberGrowth = GR(1f, 1.5f, EXPONENTIAL),
+            periodGrowth = GR(15f, 0.97f, EXPONENTIAL),
             delayGrowth = GR(0, 0, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnContainer(0, PowerUp.PowerUpType.SHIELD)
     )
 
     val containerSpawner2 = containerSpawner1.copy(
-            delayGrowth = GR(5f, 0f, POLYNOMIAL),
+            delayGrowth = GR(7.5f, 0f, POLYNOMIAL),
             spawnCommand = SpawnContainer(0, PowerUp.PowerUpType.SHOCKWAVE))
 
 
@@ -80,8 +80,10 @@ class Wave(var number: Int): Mortal {
 
         }
 
-        if (spawners.all{it.isDead} && !isDead){
-            Log.info("all spawners are dead at $life", Log.LogType.SPAWN)
+        if (spawners.all{it.isDead}){
+            if (!isDead){
+                Log.info("all spawners are dead at $life", Log.LogType.SPAWN)
+            }
             return false
         }
 
@@ -91,6 +93,7 @@ class Wave(var number: Int): Mortal {
     fun evolve(){
         number ++
         life = 0f
+        isDead = false
         for (spawner in spawners){
             spawner.evolve()
         }

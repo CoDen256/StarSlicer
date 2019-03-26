@@ -105,6 +105,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         renderFPS(batch)
         renderTimePassed(batch)
+        difficultyController.render(batch, font)
 
         SpaceCraft.render(batch)
         attackerHandler.renderAll(batch)
