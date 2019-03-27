@@ -1,10 +1,7 @@
 package com.coden.starslicer.gameplay
 
 import com.badlogic.gdx.Gdx
-import com.coden.starslicer.Commands.CommandQueue
-import com.coden.starslicer.Commands.SpawnContainer
-import com.coden.starslicer.Commands.SpawnMeteor
-import com.coden.starslicer.Commands.SpawnMissile
+import com.coden.starslicer.Commands.*
 import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.GrowthResolver as GR
@@ -14,9 +11,9 @@ import com.coden.starslicer.util.Log
 class Wave(var number: Int): Mortal {
 
     val missile0Spawner = Spawner(
-            maxNumberGrowth = GR(150f, 1.5f, EXPONENTIAL),
+            maxNumberGrowth = GR(75f, 1.5f, EXPONENTIAL),
             numberGrowth = GR(4, 1, POLYNOMIAL),
-            periodGrowth = GR(2f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(4f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(2.5f, 0f, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(0))
@@ -32,9 +29,9 @@ class Wave(var number: Int): Mortal {
     )
 
     val missile2Spawner = Spawner(
-            maxNumberGrowth = GR(30, 1, POLYNOMIAL),
+            maxNumberGrowth = GR(24, 1, POLYNOMIAL),
             numberGrowth = GR(3, 1, POLYNOMIAL),
-            periodGrowth = GR(3f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(7f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(1, 0, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(2)
@@ -42,9 +39,9 @@ class Wave(var number: Int): Mortal {
     )
 
     val missile3Spawner = Spawner(
-            maxNumberGrowth = GR(20, 1, POLYNOMIAL),
+            maxNumberGrowth = GR(15, 1, POLYNOMIAL),
             numberGrowth = GR(3, 1, POLYNOMIAL),
-            periodGrowth = GR(4.5f, 0.95f, EXPONENTIAL),
+            periodGrowth = GR(7f, 0.95f, EXPONENTIAL),
             delayGrowth = GR(2.5f, 0f, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMissile(3)
@@ -64,9 +61,35 @@ class Wave(var number: Int): Mortal {
             delayGrowth = GR(7.5f, 0f, POLYNOMIAL),
             spawnCommand = SpawnContainer(0, PowerUp.PowerUpType.SHOCKWAVE))
 
+    //val nuclearSpawner = Spawner(
+    //        maxNumberGrowth = GR(),
+    //        numberGrowth = GR(),
+    //        periodGrowth = GR(),
+    //        delayGrowth = GR(),
+    //        waveNum = number,
+    //        spawnCommand =
+    //)
+
+    val nuclearSpawner = Spawner(
+            maxNumberGrowth = GR(4, 1, POLYNOMIAL),
+            numberGrowth = GR(1f, 0f, POLYNOMIAL),
+            periodGrowth = GR(20f, -0.1f, POLYNOMIAL),
+            delayGrowth = GR(0, 0, POLYNOMIAL),
+            waveNum = number,
+            spawnCommand = SpawnNuclearBomb(0)
+    )
+
+    val meteorSmallSpawner = Spawner(
+            maxNumberGrowth = GR(40, 5, POLYNOMIAL),
+            numberGrowth = GR(2, 1, POLYNOMIAL),
+            periodGrowth = GR(4, 1, POLYNOMIAL),
+            delayGrowth = GR(0.5f, 0f, POLYNOMIAL),
+            waveNum = number,
+            spawnCommand = SpawnMeteor(0, 0)
+    )
 
     val spawners = arrayListOf(missile0Spawner, missile1Spawner, containerSpawner1, containerSpawner2,
-            missile2Spawner, missile3Spawner)
+            missile2Spawner, missile3Spawner, nuclearSpawner,meteorSmallSpawner)
 
 
     var life = 0f
