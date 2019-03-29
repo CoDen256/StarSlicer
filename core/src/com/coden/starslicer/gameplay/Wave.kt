@@ -82,14 +82,23 @@ class Wave(var number: Int): Mortal {
     val meteorSmallSpawner = Spawner(
             maxNumberGrowth = GR(40, 5, POLYNOMIAL),
             numberGrowth = GR(2, 1, POLYNOMIAL),
-            periodGrowth = GR(4, 1, POLYNOMIAL),
+            periodGrowth = GR(4, 0, POLYNOMIAL),
             delayGrowth = GR(0.5f, 0f, POLYNOMIAL),
             waveNum = number,
             spawnCommand = SpawnMeteor(0, 0)
     )
 
+    val meteorMediumSpawner = Spawner(
+            maxNumberGrowth = GR(20, 5, POLYNOMIAL),
+            numberGrowth = GR(1, 1, POLYNOMIAL),
+            periodGrowth = GR(8, 0, POLYNOMIAL),
+            delayGrowth = GR(3f, 0f, POLYNOMIAL),
+            waveNum = number,
+            spawnCommand = SpawnMeteor(0, 1)
+    )
+
     val spawners = arrayListOf(missile0Spawner, missile1Spawner, containerSpawner1, containerSpawner2,
-            missile2Spawner, missile3Spawner, nuclearSpawner,meteorSmallSpawner)
+            missile2Spawner, missile3Spawner, nuclearSpawner,meteorSmallSpawner, meteorMediumSpawner)
 
 
     var life = 0f
