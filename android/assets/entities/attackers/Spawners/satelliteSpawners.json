@@ -1,102 +1,28 @@
 {
   "spawners": {
 
-    "missile0":{
-      "type": "MISSILE",
+    "puc0": {
+      "type": "SATELLITE",
       "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
+      "startWave": 0,
+      "content": "SHIELD",
 
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
+      "maxNumber": {"init": 6, "rate": 1, "type": "POLYNOMIAL"},
+      "number": {"init": 1, "rate": 1.5, "type": "EXPONENTIAL"},
+      "period": {"init": 15, "rate": 0.97, "type": "EXPONENTIAL"},
+      "delay": {"init": 0, "rate": 0, "type": "POLYNOMIAL"}
     },
-    "missile1":{
-      "type": "MISSILE",
+    "puc1": {
+      "type": "SATELLITE",
       "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
+      "startWave": 0,
+      "content": "HPBOOST",
 
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
-    "missile2":{
-      "type": "MISSILE",
-      "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
-
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
-    "missile3":{
-      "type": "MISSILE",
-      "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
-
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
+      "maxNumber": "puc0",
+      "number": "puc0",
+      "period": "puc0",
+      "delay": {"init": 7.5, "rate": 0, "type": "POLYNOMIAL"}
+    }
 
   }
 }

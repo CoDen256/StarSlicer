@@ -1,102 +1,27 @@
 {
   "spawners": {
 
-    "missile0":{
-      "type": "MISSILE",
+    "mis0":{
+      "type": "NUCLEAR_BOMB",
       "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
+      "startWave": 0,
 
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
+      "maxNumber": {"init":75, "rate":1.5, "type":"EXPONENTIAL"},
+      "number": {"init":4, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":4, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
     },
-    "missile1":{
-      "type": "MISSILE",
-      "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
 
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
+    "mis1":{
+      "type": "NUCLEAR_BOMB",
+      "state": 1,
+      "startWave": 0,
 
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
-    "missile2":{
-      "type": "MISSILE",
-      "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
-
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
-    "missile3":{
-      "type": "MISSILE",
-      "state": 0,
-      "maxNumber": {
-        "init":,
-        "rate":,
-        "type":
-      },
-
-      "number": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "period": {
-        "init":,
-        "rate":,
-        "type":},
-
-      "delay": {
-        "init":,
-        "rate":,
-        "type":},
-    },
+      "maxNumber": {"init":15, "rate":1, "type":"POLYNOMIAL"},
+      "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":5, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":0, "rate":0, "type":"POLYNOMIAL"}
+    }
 
   }
 }

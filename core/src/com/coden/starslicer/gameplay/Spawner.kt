@@ -13,7 +13,9 @@ data class Spawner(private val maxNumberGrowth: GrowthResolver,
                    private val numberGrowth: GrowthResolver,
                    private val periodGrowth: GrowthResolver,
                    private val delayGrowth: GrowthResolver,
-                   private var waveNum: Int, val spawnCommand: Command): Mortal {
+                   private val startWave: Int,
+                   val spawnCommand: Command,
+                   private var waveNum: Int = 0): Mortal {
 
 
 

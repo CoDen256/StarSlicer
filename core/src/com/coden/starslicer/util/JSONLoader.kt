@@ -12,9 +12,9 @@ import com.google.gson.JsonIOException
 import java.lang.NullPointerException
 
 
-class JSONLoader {
+class JSONLoader(val path: String) {
     fun load(filename: String): ArrayList<Spawner> {
-        val reader = JsonReader().parse(Gdx.files.internal(filename))
+        val reader = JsonReader().parse(Gdx.files.internal("$path/$filename.json"))
 
         val spawners = reader.get("spawners")
         val result = arrayListOf<Spawner>()
@@ -27,6 +27,7 @@ class JSONLoader {
             val delayGrowth  = parseGrowthResolver(spawner,"delay", spawners)
             val type = spawner.getString("type")
             val state = spawner.getInt("state")
+            val startWave = spawner.getInt("startWave")
 
             val spawnCommand = when(AttackerType.valueOf(type)){
 
@@ -40,7 +41,7 @@ class JSONLoader {
 
             }
 
-            result.add(Spawner(maxNumberGrowth, numberGrowth, periodGrowth, delayGrowth, 0, spawnCommand))
+            result.add(Spawner(maxNumberGrowth, numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand))
 
         }
         return result
