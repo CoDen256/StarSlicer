@@ -1,0 +1,102 @@
+{
+  "spawners": {
+
+    "missile0":{
+      "type": "MISSILE",
+      "state": 0,
+      "maxNumber": {
+        "init":,
+        "rate":,
+        "type":
+      },
+
+      "number": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "period": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "delay": {
+        "init":,
+        "rate":,
+        "type":},
+    },
+    "missile1":{
+      "type": "MISSILE",
+      "state": 0,
+      "maxNumber": {
+        "init":,
+        "rate":,
+        "type":
+      },
+
+      "number": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "period": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "delay": {
+        "init":,
+        "rate":,
+        "type":},
+    },
+    "missile2":{
+      "type": "MISSILE",
+      "state": 0,
+      "maxNumber": {
+        "init":,
+        "rate":,
+        "type":
+      },
+
+      "number": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "period": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "delay": {
+        "init":,
+        "rate":,
+        "type":},
+    },
+    "missile3":{
+      "type": "MISSILE",
+      "state": 0,
+      "maxNumber": {
+        "init":,
+        "rate":,
+        "type":
+      },
+
+      "number": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "period": {
+        "init":,
+        "rate":,
+        "type":},
+
+      "delay": {
+        "init":,
+        "rate":,
+        "type":},
+    },
+
+  }
+}

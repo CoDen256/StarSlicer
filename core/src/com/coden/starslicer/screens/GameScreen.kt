@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Json
 import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
@@ -55,6 +56,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Log.info("Size: $w x $h", Log.LogType.SCREENS)
         Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio", Log.LogType.SCREENS)
 
+        val spawners = JSONLoader().load("entities/attackers/spawners/containerSpawners.json")
+        Log.info(spawners.toString(), Log.LogType.SPAWN)
 
         data = EntityData(game.assets)
 
