@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
+import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.entityInterfaces.Collisional
@@ -77,6 +78,9 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
+        if(dist2(pos, center) > dist2(centerX, centerY) && life > 10)
+            kill()
+
 
 
         healthBar = if (healthBar == null) HealthBar(this) else healthBar

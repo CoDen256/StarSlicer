@@ -8,7 +8,7 @@ object Log {
     private val infoLogger  = Logger("INFO", Logger.INFO)
     private val debugLogger  = Logger("DEBUG", Logger.INFO)
     private val hudLogger  = Logger("HUD", Logger.NONE)
-    private val attackerLogger  = Logger("Attackers", Logger.NONE)
+    private val attackerLogger  = Logger("Attackers", Logger.INFO)
     private val spawnLogger  = Logger("Spawning", Logger.INFO)
     private val screenLogger  = Logger("Screens", Logger.NONE)
     private val assetLogger  = Logger("Assets", Logger.NONE)

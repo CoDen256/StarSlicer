@@ -35,7 +35,7 @@ class DifficultyController(val data: EntityData) {
                 firstWave.evolve()
             }else{
                 waiting = true
-                Log.info("Waiting for all attackers to be destroyed", Log.LogType.SPAWN)
+                //Log.info("Waiting for all attackers to be destroyed", Log.LogType.SPAWN)
             }
         }
 
