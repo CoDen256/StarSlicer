@@ -1,10 +1,10 @@
 {
   "spawners": {
 
-    "puc0": {
+    "sat0": {
       "type": "SATELLITE",
       "state": 0,
-      "startWave": 0,
+      "startWave": 1,
       "content": "SHIELD",
 
       "maxNumber": {"init": 6, "rate": 1, "type": "POLYNOMIAL"},
@@ -12,15 +12,15 @@
       "period": {"init": 15, "rate": 0.97, "type": "EXPONENTIAL"},
       "delay": {"init": 0, "rate": 0, "type": "POLYNOMIAL"}
     },
-    "puc1": {
+    "sat1": {
       "type": "SATELLITE",
       "state": 0,
-      "startWave": 0,
+      "startWave": 2,
       "content": "HPBOOST",
 
-      "maxNumber": "puc0",
-      "number": "puc0",
-      "period": "puc0",
+      "maxNumber": "sat0",
+      "number": "sat0",
+      "period": "sat0",
       "delay": {"init": 7.5, "rate": 0, "type": "POLYNOMIAL"}
     }
 

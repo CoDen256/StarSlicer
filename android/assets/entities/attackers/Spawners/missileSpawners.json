@@ -6,10 +6,10 @@
       "state": 0,
       "startWave": 0,
 
-      "maxNumber": {"init":75, "rate":1.5, "type":"EXPONENTIAL"},
-      "number": {"init":4, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":4, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
+      "maxNumber": {"init":25, "rate":1.5, "type":"EXPONENTIAL"},
+      "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":2, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":1.5, "rate":0, "type":"POLYNOMIAL"}
     },
 
     "mis1":{
@@ -17,10 +17,10 @@
       "state": 1,
       "startWave": 0,
 
-      "maxNumber": {"init":15, "rate":1, "type":"POLYNOMIAL"},
+      "maxNumber": {"init":5, "rate":1, "type":"POLYNOMIAL"},
       "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
       "period": {"init":5, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":0, "rate":0, "type":"POLYNOMIAL"}
+      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
     },
 
     "mis2":{
@@ -28,10 +28,10 @@
       "state": 2,
       "startWave": 0,
 
-      "maxNumber": {"init":24, "rate":1, "type":"POLYNOMIAL"},
-      "number": {"init":3, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":7, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":1, "rate":0, "type":"POLYNOMIAL"}
+      "maxNumber": {"init":13, "rate":1, "type":"POLYNOMIAL"},
+      "number": {"init":2, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":8, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":1.5, "rate":0, "type":"POLYNOMIAL"}
     },
 
     "mis3":{
@@ -39,10 +39,10 @@
       "state": 3,
       "startWave": 0,
 
-      "maxNumber": {"init":15, "rate":1, "type":"POLYNOMIAL"},
-      "number": {"init":3, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":7, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
+      "maxNumber": {"init":13, "rate":1, "type":"POLYNOMIAL"},
+      "number": {"init":2, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":8, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":5.5, "rate":0, "type":"POLYNOMIAL"}
     }
 
   }

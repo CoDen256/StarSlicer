@@ -78,7 +78,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
         life += Gdx.graphics.deltaTime
         if (life >= lifeSpan) kill()
-        if(dist2(pos, center) > dist2(centerX, centerY) && life > 10)
+        if(dist2(pos, center) > dist2(centerX, centerY) + 20 && life > 15)
             kill()
 
 

@@ -45,14 +45,20 @@ data class Spawner(private val maxNumberGrowth: GrowthResolver,
         active = false
         isDead = false
         spawned = 0
-        Log.info("Setting up the following Spawner for ${spawnCommand} with wave $waveNum for $delay + $timelimit seconds", Log.LogType.SPAWN)
-        Log.info("Max: ${maxNumberGrowth.init} -> $maxNumber, NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period", Log.LogType.SPAWN)
+        if (waveNum >= startWave) {
+            Log.info("Setting up the following Spawner for ${spawnCommand} with wave $waveNum for $delay + $timelimit seconds", Log.LogType.SPAWN)
+            Log.info("Max: ${maxNumberGrowth.init} -> $maxNumber, NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period", Log.LogType.SPAWN)
+        }
     }
 
     override fun toString() = spawnCommand.toString()
 
     fun update(queue: CommandQueue){
         timePassed += Gdx.graphics.deltaTime
+
+        if (startWave > waveNum){
+            return
+        }
 
         if (!active){
             if(timePassed >= delay){

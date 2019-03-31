@@ -1,21 +1,21 @@
 {
   "spawners": {
 
-    "mis0":{
+    "nuc0":{
       "type": "NUCLEAR_BOMB",
       "state": 0,
       "startWave": 0,
 
-      "maxNumber": {"init":75, "rate":1.5, "type":"EXPONENTIAL"},
-      "number": {"init":4, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":4, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
+      "maxNumber": {"init":4, "rate":1.5, "type":"EXPONENTIAL"},
+      "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
+      "period": {"init":10, "rate":0.95, "type":"EXPONENTIAL"},
+      "delay": {"init":10, "rate":0, "type":"POLYNOMIAL"}
     },
 
-    "mis1":{
+    "nuc1":{
       "type": "NUCLEAR_BOMB",
       "state": 1,
-      "startWave": 0,
+      "startWave": 8,
 
       "maxNumber": {"init":15, "rate":1, "type":"POLYNOMIAL"},
       "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},

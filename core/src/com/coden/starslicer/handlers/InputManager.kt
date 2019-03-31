@@ -30,13 +30,6 @@ class InputManager(private val data: EntityData) {
     val spawnSatellite = SpawnSatellite()
     val spawnContainer = SpawnContainer()
 
-    init {
-        for (i in 0 until 5) {
-            addPowerUp(HPBOOST)
-            addPowerUp(SHIELD)
-            addPowerUp(SHOCKWAVE)
-        }
-    }
 
     fun updateSwiping(){
         with(SpaceCraft){
