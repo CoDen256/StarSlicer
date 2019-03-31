@@ -56,7 +56,10 @@ data class Spawner(private val maxNumberGrowth: GrowthResolver,
     fun update(queue: CommandQueue){
         timePassed += Gdx.graphics.deltaTime
 
+        if (isDead) return
+
         if (startWave > waveNum){
+            kill()
             return
         }
 
@@ -71,9 +74,9 @@ data class Spawner(private val maxNumberGrowth: GrowthResolver,
         if (spawned >= maxNumber && !isDead) {
             Log.info("Spawner $this is dead", Log.LogType.SPAWN)
             kill()
+            return
         }
 
-        if (isDead) return
 
         if (timePassed >= period){
             timePassed = 0f

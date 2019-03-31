@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 
 
@@ -47,7 +48,10 @@ class HUD(data: EntityData) {
 
         for (attacker in attackers){
             if (attacker.healthBar != null){
-                attacker.healthBar!!.render(shapeRenderer)
+                if (attacker !is Missile){
+                    attacker.healthBar!!.render(shapeRenderer)
+                }
+
             }
 
         }

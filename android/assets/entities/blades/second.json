@@ -5,5 +5,5 @@
   "firstIgnored" : 4,
   "maxPoints" : 40,
   "initDamage" : 10.0,
-  "detectionSize": 30.0
+  "detectionSize": 40.0
 }

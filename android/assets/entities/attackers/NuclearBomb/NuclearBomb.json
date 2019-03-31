@@ -1,6 +1,6 @@
 {
   "name": "NUCLEAR_BOMB",
-  "maxHealth":50.0,
+  "maxHealth":60.0,
   "lifeSpan":5.0,
   "maxMovementSpeed": 300.0,
   "damage":200.0,
