@@ -8,28 +8,32 @@ class GrowthResolver:
 		self.total = total
 		self.type = type
 
-	def get_rate(self, n, type):
-		if type == "Exponential":
-			return self.get_exp(n)
-		elif type == "Polynomial":
-			return self.get_pol(n)
+	def get_rate(self, n, k):
+		if self.type == "Exponential":
+			return self.get_exp(n, k)
+		elif self.type == "Polynomial":
+			return self.get_pol(n, k)
 		else:
 			return "UNDEFINED"
 
 	def __str__(self):
 		return "Init: {}, Total:{}, Type:{}".format(self.init, self.total, self.type)
 
-	def get_exp(self, n):
+	def get_exp(self, n, k):
 		try:
-			return (self.total / self.init) ** (1 / n)
+			return (self.total / self.init) ** (1 / (n - k))
+		except ZeroDivisionError:
+			return 0
 		except:
 			print("!Unable to get Exponential Rate")
 			print("!Total: {}, Init:{}, Num:{}".format(self.total, self.init, n))
 			return "N/A"
 
-	def get_pol(self, n):
+	def get_pol(self, n, k):
 		try:
-			return (self.total - self.init) / n
+			return (self.total - self.init) / (n - k)
+		except ZeroDivisionError:
+			return 0
 		except:
 			print("!Unable to get Polynomial Rate")
 			print("!Total: {}, Init:{}, Num:{}".format(self.total, self.init, n))
@@ -98,45 +102,48 @@ class Application(Frame):
 	def create_widgets(self):
 		self.countWith = StringVar()
 		self.countWith.set('MaxNumber')
-		self.createRadioButtons("Compute By", self.countWith, ['MaxNumber', 'Lifespan'], 0, 0)
 
-		self.first = EntryHolder(*self.createProperty("MaxNumber/Lifespan", 2))
-		self.second = EntryHolder(*self.createProperty("Amount per spawn", 3))
-		self.third = EntryHolder(*self.createProperty("Period", 4))
-		self.fourth = EntryHolder(*self.createProperty("Delay", 5))
+		Label(self, text='id: ').grid(row=0, column=0, sticky=W)
+		self.name_ent = Entry(self)
+		self.name_ent.grid(row=0, column=1, sticky=W)
+		Label(self, text='state: ').grid(row=0, column=2, sticky=W)
+		self.state_ent = Entry(self)
+		self.state_ent.grid(row=0, column=3, sticky=W)
+		self.createRadioButtons("Compute By", self.countWith, ['MaxNumber', 'Lifespan'], 2, 0)
 
-		Label(self, text="Init Wave: ").grid(row=6, column=0, sticky=W)
-		self.init_ent = Entry(self, width=5)
-		self.init_ent.grid(row=6, column=1, sticky=W)
+		self.first = EntryHolder(*self.createProperty("MaxNumber/Lifespan", 4))
+		self.second = EntryHolder(*self.createProperty("Amount per spawn", 5))
+		self.third = EntryHolder(*self.createProperty("Period", 6))
+		self.fourth = EntryHolder(*self.createProperty("Delay", 7))
 
-		Label(self, text="  to").grid(row=6, column=2, sticky=W)
+		Label(self, text="Desired wave:").grid(row=8, column=0, sticky=W)
+		self.des_ent = Entry(self, width=5)
+		self.des_ent.grid(row=8, column=1, sticky=W)
+
+		Label(self, text="  to").grid(row=8, column=2, sticky=W)
 		self.end_ent = Entry(self, width=5)
-		self.end_ent.grid(row=6, column=3, sticky=W)
+		self.end_ent.grid(row=8, column=3, sticky=W)
 
 		self.hasContainer = BooleanVar()
-		Checkbutton(self, text="Has Container", variable=self.hasContainer).grid(row=7, column=1, sticky=W)
+		Checkbutton(self, text="Has Container", variable=self.hasContainer).grid(row=9, column=1, sticky=W)
 
-		Button(self, text="Compute", command=self.computeWave).grid(row=8, column=0, sticky=W)
-		Button(self, text="Format", command=self.format).grid(row=8, column=1, sticky=W)
+		Button(self, text="Compute", command=self.computeWave).grid(row=10, column=0, sticky=W)
+		Button(self, text="Format", command=self.format).grid(row=10, column=1, sticky=W)
 
 		self.result = Text(self, width=100, height=30, wrap=WORD)
-		self.result.grid(row=9, column=0, columnspan=4)
+		self.result.grid(row=11, column=0, columnspan=4)
 
-		Label(self, text='Log:').grid(row=8, column=5, sticky=W)
+		Label(self, text='Log:').grid(row=10, column=5, sticky=W)
 		self.error = Text(self, width=30, height=30, wrap=WORD)
-		self.error.grid(row=9, column=5, columnspan=1)
+		self.error.grid(row=11, column=5, columnspan=1)
 
 	def compute(self):
+		self.name = self.name_ent.get()
+		self.state = self.state_ent.get()
 		self.error_message = "Errors:\n"
 		print("Computing...")
 
 		self.isContainer = self.hasContainer.get()
-		self.init_wave = 0
-		try:
-			self.init_wave = int(self.init_ent.get())
-		except:
-			self.error_message += "Unable to cast init_wave"
-			print("Unable to cast init_wave")
 
 		self.end_wave = 0
 		try:
@@ -144,6 +151,13 @@ class Application(Frame):
 		except:
 			self.error_message += "Unable to cast end_wave"
 			print("Unable to cast end_wave")
+
+		self.des_wave = 0
+		try:
+			self.des_wave = int(self.des_ent.get())
+		except:
+			self.error_message += "Unable to cast des_wave"
+			print("Unable to cast des_wave")
 
 		print("Inializing amount")
 		self.amount = GrowthResolver(*self.second.get_all())
@@ -179,13 +193,20 @@ class Application(Frame):
 
 		message = ""
 
-
-		message += self.generateWaveDescribtion("Wave #{}".format(self.init_wave),
+		message += self.generateWaveDescribtion("Wave #{}".format(self.des_wave),
 												self.lifespan.init,
 												self.max_number.init,
 												self.amount.init,
 												self.period.init,
 												self.delay.init)
+
+		message += self.generateWaveDescribtion("\nGrowthRate",
+												str(self.lifespan.get_rate(self.end_wave,
+																		   self.des_wave)) + "[NOT INCLUDED]",
+												self.max_number.get_rate(self.end_wave, self.des_wave),
+												self.amount.get_rate(self.end_wave, self.des_wave),
+												self.period.get_rate(self.end_wave, self.des_wave),
+												self.delay.get_rate(self.end_wave, self.des_wave))
 
 		message += self.generateWaveDescribtion("\nWave #{}".format(self.end_wave),
 												self.lifespan.total,
@@ -204,13 +225,35 @@ class Application(Frame):
 		self.error.insert(0.0, self.error_message)
 
 	def generateWaveDescribtion(self, start, l, m, a, p, d):
-		return "\n{}\nLifeSpan: {}\nMaxNumber: {}\nAmount:{}\nPeriod:{}\nDelay:{}".format(start, l, m, a, p, d)
+		return "\n{}:\nLifeSpan: {}\nMaxNumber: {}\nAmount:{}\nPeriod:{}\nDelay:{}".format(start, l, m, a, p, d)
 
 	def format(self):
 		self.compute()
+		json = ""
+
+		json += '"{}": {{\n'.format(self.name)
+		json += '  "type": "",\n'
+		json = json + '  "content": "",\n' if self.hasContainer else json
+		json += '  "state": {},\n'.format(self.state)
+		json += '  "startWave": {},\n'.format(self.des_wave)
+		json += '  "maxNumber": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.max_number.init,
+																				  self.max_number.get_rate(self.end_wave, self.des_wave),
+																				  self.max_number.type)
+
+		json += '  "number": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.max_number.init,
+																				  self.max_number.get_rate(self.end_wave, self.des_wave),
+																				  self.max_number.type)
+
+		json += '  "period": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.period.init,
+																				self.period.get_rate(self.end_wave, self.des_wave),
+																				self.period.type)
+
+		json += '  "delay": {{"init": {}, "rate": {}, "type": "{}"}}\n}}'.format(self.delay.init,
+																				self.delay.get_rate(self.end_wave, self.des_wave),
+																				self.delay.type)
 
 		self.result.delete(0.0, END)
-		self.result.insert(0.0, message)
+		self.result.insert(0.0, json)
 
 	def compute_lifespan(self, period, max, npp):
 		try:
