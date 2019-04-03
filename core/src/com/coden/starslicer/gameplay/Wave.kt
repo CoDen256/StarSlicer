@@ -13,9 +13,9 @@ class Wave(var number: Int): Mortal {
 
     val spawnerLoader = JSONLoader("entities/attackers/Spawners")
     val spawners  = with(spawnerLoader){
-        load("containerSpawners") //+ load("meteorSpawners") +
-               load("missileSpawners")+ //+ load("nuclearbombSpawners") + load("satelliteSpawners")
-                    load("satelliteSpawners")
+        load("containerSpawners") + load("meteorSpawners") +
+               load("missileSpawners")//+ //+ load("nuclearbombSpawners") + load("satelliteSpawners")
+                    //load("satelliteSpawners")
     }
 
     var life = 0f

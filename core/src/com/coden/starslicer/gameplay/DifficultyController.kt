@@ -12,7 +12,7 @@ import com.coden.starslicer.util.spaceCraftX
 
 class DifficultyController(val data: EntityData) {
     val queue = CommandQueue(data)
-    val firstWave = Wave(0)
+    val firstWave = Wave(99)
 
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f

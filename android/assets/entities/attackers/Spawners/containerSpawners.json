@@ -1,39 +1,4 @@
 {
   "spawners": {
-    "puc0": {
-      "type": "POWERUP_CONTAINER",
-      "state": 0,
-      "startWave": 0,
-      "content": "SHIELD",
 
-      "maxNumber": {"init": 3, "rate": 1, "type": "POLYNOMIAL"},
-      "number": {"init": 1, "rate": 1.5, "type": "EXPONENTIAL"},
-      "period": {"init": 20, "rate": 0.97, "type": "EXPONENTIAL"},
-      "delay": {"init": 10, "rate": 0, "type": "POLYNOMIAL"},
-
-
-    },
-    "puc1": {
-      "type": "POWERUP_CONTAINER",
-      "state": 0,
-      "startWave": 0,
-      "content": "HPBOOST",
-
-      "maxNumber": {"init": 6, "rate": 1, "type": "POLYNOMIAL"},
-      "number": "puc0",
-      "period": {"init": 10, "rate": 0.97, "type": "EXPONENTIAL"},
-      "delay": {"init": 2.5, "rate": 0, "type": "POLYNOMIAL"}
-    },
-
-    "puc2": {
-      "type": "POWERUP_CONTAINER",
-      "state": 0,
-      "startWave": 1,
-      "content": "SHOCKWAVE",
-
-      "maxNumber": "puc0",
-      "number": "puc0",
-      "period": "puc0",
-      "delay": {"init": 7.5, "rate": 0, "type": "POLYNOMIAL"}
-    }
 }}

@@ -1,49 +1,13 @@
 {
   "spawners": {
-
-    "mis0":{
+    "mis0": {
       "type": "MISSILE",
       "state": 0,
       "startWave": 0,
-
-      "maxNumber": {"init":25, "rate":1.5, "type":"EXPONENTIAL"},
-      "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":2, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":1.5, "rate":0, "type":"POLYNOMIAL"}
-    },
-
-    "mis1":{
-      "type": "MISSILE",
-      "state": 1,
-      "startWave": 0,
-
-      "maxNumber": {"init":5, "rate":1, "type":"POLYNOMIAL"},
-      "number": {"init":1, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":5, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":2.5, "rate":0, "type":"POLYNOMIAL"}
-    },
-
-    "mis2":{
-      "type": "MISSILE",
-      "state": 2,
-      "startWave": 0,
-
-      "maxNumber": {"init":13, "rate":1, "type":"POLYNOMIAL"},
-      "number": {"init":2, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":8, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":1.5, "rate":0, "type":"POLYNOMIAL"}
-    },
-
-    "mis3":{
-      "type": "MISSILE",
-      "state": 3,
-      "startWave": 0,
-
-      "maxNumber": {"init":13, "rate":1, "type":"POLYNOMIAL"},
-      "number": {"init":2, "rate":1, "type":"POLYNOMIAL"},
-      "period": {"init":8, "rate":0.95, "type":"EXPONENTIAL"},
-      "delay": {"init":5.5, "rate":0, "type":"POLYNOMIAL"}
+      "maxNumber": {"init": 7.0, "rate": 3.5748790322580675, "type": "POLYNOMIAL"},
+      "number": {"init": 1.0, "rate": 0.29, "type": "POLYNOMIAL"},
+      "period": {"init": 5.0, "rate": -0.04, "type": "POLYNOMIAL"},
+      "delay": {"init": 0.0, "rate": 0.0, "type": "POLYNOMIAL"}
     }
-
   }
 }

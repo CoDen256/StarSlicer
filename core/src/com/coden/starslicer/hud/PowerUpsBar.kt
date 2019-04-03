@@ -33,6 +33,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
                 SHIELD    -> data.shields.size
                 SHOCKWAVE -> data.shockWaves.size
                 HPBOOST   -> data.boosts.size
+                RANDOM -> throw IllegalArgumentException()
             }
         }
     }

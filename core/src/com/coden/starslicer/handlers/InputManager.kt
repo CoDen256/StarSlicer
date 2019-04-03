@@ -24,13 +24,6 @@ class InputManager(private val data: EntityData) {
 
     private val log = Logger("InputManager", Logger.DEBUG)
 
-    val spawnMissile = SpawnMissile()
-    val spawnMeteor = SpawnMeteor()
-    val spawnNuclearBomb = SpawnNuclearBomb()
-    val spawnSatellite = SpawnSatellite()
-    val spawnContainer = SpawnContainer()
-
-
     fun updateSwiping(){
         with(SpaceCraft){
             if (!(firstBlade.active || secondBlade.active)){
@@ -83,12 +76,14 @@ class InputManager(private val data: EntityData) {
             }
             else Unit
         }
+        RANDOM -> throw IllegalArgumentException()
     }
 
     private fun addPowerUp(ability: PowerUp.PowerUpType) = when (ability) {
         SHIELD     -> data.shields.add(Shield())
         HPBOOST    -> data.boosts.add(HPBoost())
         SHOCKWAVE  -> data.shockWaves.add(ShockWave())
+        RANDOM -> throw IllegalArgumentException()
     }
 
 
@@ -105,18 +100,18 @@ class InputManager(private val data: EntityData) {
         //        }}
         //}
 
-        when {
-            Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> spawnMissile.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> spawnMissile.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> spawnMissile.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.B) -> spawnNuclearBomb.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.M) -> spawnMeteor.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.COMMA) ->spawnMeteor.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> spawnMeteor.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.A) -> spawnSatellite.execute(data)
-            Gdx.input.isKeyJustPressed(Input.Keys.C) -> spawnContainer.execute(data)
-        }
+        //when {
+        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> spawnMissile.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> spawnMissile.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> spawnMissile.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.B) -> spawnNuclearBomb.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.M) -> spawnMeteor.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.COMMA) ->spawnMeteor.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> spawnMeteor.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.A) -> spawnSatellite.execute(data)
+        //    Gdx.input.isKeyJustPressed(Input.Keys.C) -> spawnContainer.execute(data)
+        //}
     }
 
 }

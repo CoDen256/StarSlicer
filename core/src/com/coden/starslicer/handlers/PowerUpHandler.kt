@@ -19,6 +19,7 @@ class PowerUpHandler(private val data: EntityData) {
             SHOCKWAVE  -> data.shockWaves.iterator()
             SHIELD     -> data.shields.iterator()
             HPBOOST    -> data.boosts.iterator()
+            RANDOM     -> throw IllegalArgumentException()
         }
 
         while (iterator.hasNext()) {

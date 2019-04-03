@@ -9,9 +9,9 @@ class GrowthResolver:
 		self.type = type
 
 	def get_rate(self, n, k):
-		if self.type == "Exponential":
+		if self.type == "Exponential".upper():
 			return self.get_exp(n, k)
-		elif self.type == "Polynomial":
+		elif self.type == "Polynomial".upper():
 			return self.get_pol(n, k)
 		else:
 			return "UNDEFINED"
@@ -77,7 +77,7 @@ class Application(Frame):
 		self.create_widgets()
 
 	def createProperty(self, text, r, c=0):
-		types = ["Exponential", "Polynomial"]
+		types = ["Exponential".upper(), "Polynomial".upper()]
 
 		Label(self, text=text).grid(row=r, column=c, sticky=W)
 		initEntry = Entry(self)
@@ -203,7 +203,12 @@ class Application(Frame):
 		message += self.generateWaveDescribtion("\nGrowthRate",
 												str(self.lifespan.get_rate(self.end_wave,
 																		   self.des_wave)) + "[NOT INCLUDED]",
-												self.max_number.get_rate(self.end_wave, self.des_wave),
+												self.compute_maxNumber(
+													self.period.init + self.period.get_rate(self.end_wave, self.des_wave),
+													self.lifespan.init + self.lifespan.get_rate(self.end_wave,self.des_wave),
+													self.amount.init + self.amount.get_rate(self.end_wave, self.des_wave)) - \
+												self.max_number.init,
+
 												self.amount.get_rate(self.end_wave, self.des_wave),
 												self.period.get_rate(self.end_wave, self.des_wave),
 												self.delay.get_rate(self.end_wave, self.des_wave))
@@ -233,16 +238,21 @@ class Application(Frame):
 
 		json += '"{}": {{\n'.format(self.name)
 		json += '  "type": "",\n'
-		json = json + '  "content": "",\n' if self.hasContainer else json
+		json = json + '  "content": "",\n' if self.isContainer else json
 		json += '  "state": {},\n'.format(self.state)
 		json += '  "startWave": {},\n'.format(self.des_wave)
 		json += '  "maxNumber": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.max_number.init,
-																				  self.max_number.get_rate(self.end_wave, self.des_wave),
+													self.compute_maxNumber(
+													self.period.init + self.period.get_rate(self.end_wave, self.des_wave),
+													self.lifespan.init + self.lifespan.get_rate(self.end_wave,self.des_wave),
+													self.amount.init + self.amount.get_rate(self.end_wave, self.des_wave)) - \
+													self.max_number.init, 
+													#self.max_number.get_rate(self.end_wave, self.des_wave),
 																				  self.max_number.type)
 
-		json += '  "number": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.max_number.init,
-																				  self.max_number.get_rate(self.end_wave, self.des_wave),
-																				  self.max_number.type)
+		json += '  "number": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.amount.init,
+																				  self.amount.get_rate(self.end_wave, self.des_wave),
+																				  self.amount.type)
 
 		json += '  "period": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.period.init,
 																				self.period.get_rate(self.end_wave, self.des_wave),
