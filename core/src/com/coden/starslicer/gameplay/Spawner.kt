@@ -9,22 +9,22 @@ import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.util.GrowthResolver
 import com.coden.starslicer.util.Log
 
-data class Spawner(private val maxNumberGrowth: GrowthResolver,
+data class Spawner(private val lifeSpanGrowth: GrowthResolver,
                    private val numberGrowth: GrowthResolver,
                    private val periodGrowth: GrowthResolver,
                    private val delayGrowth: GrowthResolver,
                    private val startWave: Int,
                    val spawnCommand: Command,
-                   private var waveNum: Int = 99): Mortal {
+                   private var waveNum: Int = 0): Mortal {
 
 
 
-    private val maxNumber get() =  maxNumberGrowth.resolve(waveNum).toInt()
+    private val lifeSpan get() =  lifeSpanGrowth.resolve(waveNum).toInt()
     private val number get() = numberGrowth.resolve(waveNum).toInt()
     private val period get() = periodGrowth.resolve(waveNum)
     private val delay get() = delayGrowth.resolve(waveNum)
 
-    private val timelimit get() = period*(maxNumber/number - 1)
+    private val maxNumber get() = number*(lifeSpan/period + 1)
     private var timePassed = 0f
 
     private var spawned = 0
@@ -46,8 +46,10 @@ data class Spawner(private val maxNumberGrowth: GrowthResolver,
         isDead = false
         spawned = 0
         if (waveNum >= startWave) {
-            Log.info("Setting up the following Spawner for ${spawnCommand} with wave $waveNum for $delay + $timelimit seconds", Log.LogType.SPAWN)
-            Log.info("Max: ${maxNumberGrowth.init} -> $maxNumber, NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period", Log.LogType.SPAWN)
+            Log.info("Setting up the following Spawner for ${spawnCommand} with wave $waveNum " +
+                    "for ${lifeSpanGrowth.init} -> $lifeSpan seconds with delay ${delayGrowth.init} -> $delay", Log.LogType.SPAWN)
+
+            Log.info("Max: $maxNumber , NPP: ${numberGrowth.init} -> $number, Period: ${periodGrowth.init} -> $period", Log.LogType.SPAWN)
         }
     }
 

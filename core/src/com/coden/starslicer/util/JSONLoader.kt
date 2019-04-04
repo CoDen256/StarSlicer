@@ -21,7 +21,7 @@ class JSONLoader(val path: String) {
 
         for (spawner in spawners.asIterable()){
 
-            val maxNumberGrowth = parseGrowthResolver(spawner,"maxNumber", spawners)
+            val lifeSpanGrowth = parseGrowthResolver(spawner,"lifeSpan", spawners)
             val numberGrowth  = parseGrowthResolver(spawner,"number", spawners)
             val periodGrowth  = parseGrowthResolver(spawner,"period", spawners)
             val delayGrowth  = parseGrowthResolver(spawner,"delay", spawners)
@@ -41,7 +41,7 @@ class JSONLoader(val path: String) {
 
             }
 
-            result.add(Spawner(maxNumberGrowth, numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand))
+            result.add(Spawner(lifeSpanGrowth, numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand))
 
         }
         return result

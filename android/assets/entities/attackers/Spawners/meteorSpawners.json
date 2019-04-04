@@ -1,6 +1,14 @@
 {
 "spawners": {
-
+  "metS0": {
+    "type": "SMALL_METEOR",
+    "state": 0,
+    "startWave": 0,
+    "lifeSpan": {"init": 30.0, "rate": 5.7, "type": "POLYNOMIAL"},
+    "number": {"init": 1.0, "rate": 0.29, "type": "POLYNOMIAL"},
+    "period": {"init": 7.5, "rate": -0.055, "type": "POLYNOMIAL"},
+    "delay": {"init": 6.5, "rate": -0.045, "type": "POLYNOMIAL"}
+  }
 
 }
 }

@@ -4,10 +4,11 @@
       "type": "MISSILE",
       "state": 0,
       "startWave": 0,
-      "maxNumber": {"init": 7.0, "rate": 3.5748790322580675, "type": "POLYNOMIAL"},
+      "lifeSpan": {"init": 30.0, "rate": 5.7, "type": "POLYNOMIAL"},
       "number": {"init": 1.0, "rate": 0.29, "type": "POLYNOMIAL"},
       "period": {"init": 5.0, "rate": -0.04, "type": "POLYNOMIAL"},
       "delay": {"init": 0.0, "rate": 0.0, "type": "POLYNOMIAL"}
-    }
+    },
+
   }
 }

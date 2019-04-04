@@ -1,4 +1,34 @@
 {
   "spawners": {
+    "puc0": {
+      "type": "POWERUP_CONTAINER",
+      "state": 0,
+      "startWave": 0,
+      "content" : "HPBOOST",
+      "lifeSpan": {"init": 30.0, "rate": 5.7, "type": "POLYNOMIAL"},
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 10.0, "rate": -0.06, "type": "POLYNOMIAL"},
+      "delay": {"init": 7.5, "rate": -0.075, "type": "POLYNOMIAL"}
+    },
+    "puc1": {
+      "type": "POWERUP_CONTAINER",
+      "content": "SHOCKWAVE",
+      "state": 0,
+      "startWave": 5,
+      "lifeSpan": {"init": 58.0, "rate": 5.705263157894737, "type": "POLYNOMIAL"},
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 20.0, "rate": -0.16842105263157894, "type": "POLYNOMIAL"},
+      "delay": {"init": 15.0, "rate": -0.14736842105263157, "type": "POLYNOMIAL"}
+    },
 
+    "puc2": {
+      "type": "POWERUP_CONTAINER",
+      "content": "SHIELD",
+      "state": 0,
+      "startWave": 3,
+      "lifeSpan": {"init": 47.0, "rate": 5.701030927835052, "type": "POLYNOMIAL"},
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 15.0, "rate": -0.1134020618556701, "type": "POLYNOMIAL"},
+      "delay": {"init": 10.0, "rate": -0.08247422680412371, "type": "POLYNOMIAL"}
+    }
 }}
