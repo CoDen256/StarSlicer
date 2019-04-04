@@ -4,10 +4,49 @@
     "type": "SMALL_METEOR",
     "state": 0,
     "startWave": 0,
-    "lifeSpan": {"init": 30.0, "rate": 5.7, "type": "POLYNOMIAL"},
     "number": {"init": 1.0, "rate": 0.29, "type": "POLYNOMIAL"},
     "period": {"init": 7.5, "rate": -0.055, "type": "POLYNOMIAL"},
     "delay": {"init": 6.5, "rate": -0.045, "type": "POLYNOMIAL"}
+  },
+  "metS1": {
+    "type": "SMALL_METEOR",
+    "state": 1,
+    "startWave": 1,
+    "number": {"init": 1.0, "rate": 0.1717171717171717, "type": "POLYNOMIAL"},
+    "period": {"init": 10.0, "rate": -0.0707070707070707, "type": "POLYNOMIAL"},
+    "delay": {"init": 2.0, "rate": 0.0, "type": "POLYNOMIAL"}
+  },
+  "metM0": {
+    "type": "MEDIUM_METEOR",
+    "state": 0,
+    "startWave": 1,
+    "number": {"init": 1.0, "rate": 0.21212121212121213, "type": "POLYNOMIAL"},
+    "period": {"init": 10.0, "rate": -0.07575757575757576, "type": "POLYNOMIAL"},
+    "delay": {"init": 2.0, "rate": 0.0, "type": "POLYNOMIAL"}
+  },
+  "metM1": {
+    "type": "MEDIUM_METEOR",
+    "state": 1,
+    "startWave": 2,
+    "number": {"init": 1.0, "rate": 0.14285714285714285, "type": "POLYNOMIAL"},
+    "period": {"init": 15.0, "rate": -0.10204081632653061, "type": "POLYNOMIAL"},
+    "delay": {"init": 5.0, "rate": -0.025510204081632654, "type": "POLYNOMIAL"}
+  },
+  "metL0": {
+    "type": "LARGE_METEOR",
+    "state": 0,
+    "startWave": 5,
+    "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+    "period": {"init": 25.0, "rate": -0.21052631578947367, "type": "POLYNOMIAL"},
+    "delay": {"init": 7.0, "rate": 0.0, "type": "POLYNOMIAL"}
+  },
+  "metL1": {
+    "type": "LARGE_METEOR",
+    "state": 1,
+    "startWave": 7,
+    "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+    "period": {"init": 25.0, "rate": -0.1935483870967742, "type": "POLYNOMIAL"},
+    "delay": {"init": 10.0, "rate": 0.0, "type": "POLYNOMIAL"}
   }
 
 }

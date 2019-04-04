@@ -3,25 +3,12 @@
 
     "sat0": {
       "type": "SATELLITE",
+      "content": "",
       "state": 0,
-      "startWave": 5,
-      "content": "SHIELD",
-
-      "maxNumber": {"init": 6, "rate": 1, "type": "POLYNOMIAL"},
-      "number": {"init": 1, "rate": 1.5, "type": "EXPONENTIAL"},
-      "period": {"init": 15, "rate": 0.97, "type": "EXPONENTIAL"},
-      "delay": {"init": 0, "rate": 0, "type": "POLYNOMIAL"}
-    },
-    "sat1": {
-      "type": "SATELLITE",
-      "state": 1,
-      "startWave": 10,
-      "content": "HPBOOST",
-
-      "maxNumber": "sat0",
-      "number": "sat0",
-      "period": "sat0",
-      "delay": {"init": 7.5, "rate": 0, "type": "POLYNOMIAL"}
+      "startWave": 6,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 30.0, "rate": -0.23404255319148937, "type": "POLYNOMIAL"},
+      "delay": {"init": 8.0, "rate": 0.07446808510638298, "type": "POLYNOMIAL"}
     }
 
   }

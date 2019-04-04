@@ -4,11 +4,34 @@
       "type": "MISSILE",
       "state": 0,
       "startWave": 0,
-      "lifeSpan": {"init": 30.0, "rate": 5.7, "type": "POLYNOMIAL"},
       "number": {"init": 1.0, "rate": 0.29, "type": "POLYNOMIAL"},
       "period": {"init": 5.0, "rate": -0.04, "type": "POLYNOMIAL"},
       "delay": {"init": 0.0, "rate": 0.0, "type": "POLYNOMIAL"}
     },
+    "mis1": {
+      "type": "MISSILE",
+      "state": 1,
+      "startWave": 0,
+      "number": {"init": 1.0, "rate": 0.14, "type": "POLYNOMIAL"},
+      "period": {"init": 10.0, "rate": -0.07, "type": "POLYNOMIAL"},
+      "delay": {"init": 2.5, "rate": -0.015, "type": "POLYNOMIAL"}
+    },
+    "mis2": {
+      "type": "MISSILE",
+      "state": 2,
+      "startWave": 1,
+      "number": {"init": 3.0, "rate": 0.37373737373737376, "type": "POLYNOMIAL"},
+      "period": {"init": 5.0, "rate": -0.04040404040404041, "type": "POLYNOMIAL"},
+      "delay": {"init": 0.5, "rate": -0.005050505050505051, "type": "POLYNOMIAL"}
+    },
+    "mis3": {
+      "type": "MISSILE",
+      "state": 3,
+      "startWave": 1,
+      "number": {"init": 3.0, "rate": 0.37373737373737376, "type": "POLYNOMIAL"},
+      "period": {"init": 4.5, "rate": -0.03535353535353535, "type": "POLYNOMIAL"},
+      "delay": {"init": 0.0, "rate": 0.0, "type": "POLYNOMIAL"}
+    }
 
   }
 }

@@ -9,12 +9,12 @@ import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.util.GrowthResolver
 import com.coden.starslicer.util.Log
 
-data class Spawner(private val lifeSpanGrowth: GrowthResolver,
-                   private val numberGrowth: GrowthResolver,
+data class Spawner(private val numberGrowth: GrowthResolver,
                    private val periodGrowth: GrowthResolver,
                    private val delayGrowth: GrowthResolver,
                    private val startWave: Int,
                    val spawnCommand: Command,
+                   private val lifeSpanGrowth: GrowthResolver= GrowthResolver(30.0f, 5.7f, GrowthResolver.GrowthType.POLYNOMIAL),
                    private var waveNum: Int = 0): Mortal {
 
 

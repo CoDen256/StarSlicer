@@ -210,7 +210,6 @@ class Application(Frame):
         message += self.generateWaveDescribtion("\nGrowthRate",
                                                 self.lifespan.get_rate(self.end_wave, self.des_wave),
                                                 "[NOT INCLUDED]",
-
                                                 self.amount.get_rate(self.end_wave, self.des_wave),
                                                 self.period.get_rate(self.end_wave, self.des_wave),
                                                 self.delay.get_rate(self.end_wave, self.des_wave))
@@ -247,9 +246,9 @@ class Application(Frame):
         json = json + '  "content": "",\n' if self.isContainer else json
         json += '  "state": {},\n'.format(self.state)
         json += '  "startWave": {},\n'.format(self.des_wave)
-        json += '  "lifeSpan": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.lifespan.init,
-                                                                                    self.lifespan.get_rate(self.end_wave, self.des_wave),
-                                                                                    self.lifespan.type)
+        #json += '  "lifeSpan": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.lifespan.init,
+        #                                                                            self.lifespan.get_rate(self.end_wave, self.des_wave),
+        #                                                                            self.lifespan.type)
 
         json += '  "number": {{"init": {}, "rate": {}, "type": "{}"}},\n'.format(self.amount.init,
                                                                                  self.amount.get_rate(self.end_wave,
