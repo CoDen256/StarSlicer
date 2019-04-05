@@ -8,6 +8,14 @@
       "number": {"init": 1.0, "rate": 0.020618556701030927, "type": "POLYNOMIAL"},
       "period": {"init": 10.0, "rate": -0.07216494845360824, "type": "POLYNOMIAL"},
       "delay": {"init": 4.0, "rate": 0.0, "type": "POLYNOMIAL"}
+    },
+    "nuc1": {
+      "type": "NUCLEAR_BOMB",
+      "state": 1,
+      "startWave": 22,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 50.0, "rate": -0.38461538461538464, "type": "POLYNOMIAL"},
+      "delay": {"init": 50.0, "rate": -0.38461538461538464, "type": "POLYNOMIAL"}
     }
 
   }

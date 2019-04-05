@@ -3,12 +3,48 @@
 
     "sat0": {
       "type": "SATELLITE",
-      "content": "",
+      "content": "RANDOM",
       "state": 0,
       "startWave": 6,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
       "period": {"init": 30.0, "rate": -0.23404255319148937, "type": "POLYNOMIAL"},
-      "delay": {"init": 8.0, "rate": 0.07446808510638298, "type": "POLYNOMIAL"}
+      "delay": {"init": 15.0, "rate": 0.010638297872340425, "type": "POLYNOMIAL"}
+    },
+    "sat1": {
+      "type": "SATELLITE",
+      "content": "HPBOOST",
+      "state": 0,
+      "startWave": 10,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 30.0, "rate": -0.24444444444444444, "type": "POLYNOMIAL"},
+      "delay": {"init": 15.0, "rate": 0.05555555555555555, "type": "POLYNOMIAL"}
+    },
+    "sat2": {
+      "type": "SATELLITE",
+      "content": "SHIELD",
+      "state": 0,
+      "startWave": 15,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 30.0, "rate": -0.25882352941176473, "type": "POLYNOMIAL"},
+      "delay": {"init": 15.0, "rate": 0.11764705882352941, "type": "POLYNOMIAL"}
+    },
+    "sat3_0": {
+      "type": "SATELLITE",
+      "content": "SHOCKWAVE",
+      "state": 0,
+      "startWave": 20,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 30.0, "rate": -0.275, "type": "POLYNOMIAL"},
+      "delay": {"init": 15.0, "rate": 0.1875, "type": "POLYNOMIAL"}
+    },
+    "sat3_1": {
+      "type": "SATELLITE",
+      "content": "",
+      "state": 0,
+      "startWave": 25,
+      "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
+      "period": {"init": 50.0, "rate": -0.3333333333333333, "type": "POLYNOMIAL"},
+      "delay": {"init": 50.0, "rate": 0.0, "type": "POLYNOMIAL"}
     }
 
   }

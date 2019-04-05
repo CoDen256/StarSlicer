@@ -814,3 +814,219 @@ MaxNumber: 151.0
 Amount:1.0
 Period:4.0
 Delay:3.0
+sat1
+SATELLITE
+0
+
+Wave #8:
+LifeSpan: 30.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 6.195652173913044
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:0.0
+Delay:0.0
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+sat1
+SATELLITE
+0
+
+Wave #0:
+LifeSpan: 30.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 5.7
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:0.0
+Delay:0.0
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+sat1
+SATELLITE
+0
+
+Wave #8:
+LifeSpan: 30.0
+MaxNumber: 2.0
+Amount:1.0
+Period:30.0
+Delay:15.0
+
+GrowthRate:
+LifeSpan: 6.195652173913044
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.2391304347826087
+Delay:0.05434782608695652
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 76.0
+Amount:1.0
+Period:8.0
+Delay:20.0
+sat1
+SATELLITE
+0
+
+Wave #10:
+LifeSpan: 30.0
+MaxNumber: 2.0
+Amount:1.0
+Period:30.0
+Delay:15.0
+
+GrowthRate:
+LifeSpan: 6.333333333333333
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.24444444444444444
+Delay:0.05555555555555555
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 76.0
+Amount:1.0
+Period:8.0
+Delay:20.0
+sat2
+SATELLITE
+0
+
+Wave #15:
+LifeSpan: 30.0
+MaxNumber: 2.0
+Amount:1.0
+Period:30.0
+Delay:15.0
+
+GrowthRate:
+LifeSpan: 6.705882352941177
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.25882352941176473
+Delay:0.11764705882352941
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 76.0
+Amount:1.0
+Period:8.0
+Delay:25.0
+sat0
+SATELLITE
+0
+
+Wave #6:
+LifeSpan: 30.0
+MaxNumber: 2.0
+Amount:1.0
+Period:30.0
+Delay:15.0
+
+GrowthRate:
+LifeSpan: 6.0638297872340425
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.23404255319148937
+Delay:0.010638297872340425
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 76.0
+Amount:1.0
+Period:8.0
+Delay:16.0
+sat3_0
+SATELLITE
+0
+
+Wave #20:
+LifeSpan: 30.0
+MaxNumber: 2.0
+Amount:1.0
+Period:30.0
+Delay:15.0
+
+GrowthRate:
+LifeSpan: 7.125
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.275
+Delay:0.1875
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 76.0
+Amount:1.0
+Period:8.0
+Delay:30.0
+sat3_1
+SATELLITE
+0
+
+Wave #25:
+LifeSpan: 30.0
+MaxNumber: 1.6
+Amount:1.0
+Period:50.0
+Delay:50.0
+
+GrowthRate:
+LifeSpan: 7.6
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.3333333333333333
+Delay:0.0
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 25.0
+Amount:1.0
+Period:25.0
+Delay:50.0
+nuc1
+NUCLEAR_BOMB
+1
+
+Wave #22:
+LifeSpan: 30.0
+MaxNumber: 1.6
+Amount:1.0
+Period:50.0
+Delay:50.0
+
+GrowthRate:
+LifeSpan: 7.3076923076923075
+MaxNumber: [NOT INCLUDED]
+Amount:0.0
+Period:-0.38461538461538464
+Delay:-0.38461538461538464
+
+Wave #100:
+LifeSpan: 600.0
+MaxNumber: 31.0
+Amount:1.0
+Period:20.0
+Delay:20.0
