@@ -100,18 +100,18 @@ class InputManager(private val data: EntityData) {
         //        }}
         //}
 
-        //when {
-        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> spawnMissile.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> spawnMissile.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> spawnMissile.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> spawnMissile.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.B) -> spawnNuclearBomb.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.M) -> spawnMeteor.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.COMMA) ->spawnMeteor.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> spawnMeteor.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.A) -> spawnSatellite.execute(data)
-        //    Gdx.input.isKeyJustPressed(Input.Keys.C) -> spawnContainer.execute(data)
-        //}
+        when {
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> SpawnMissile(0).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> SpawnMissile(0).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> SpawnMissile(0).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> SpawnMissile(0).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.B) -> SpawnNuclearBomb(0).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.M) -> SpawnMeteor().execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.COMMA) ->SpawnMeteor().execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> SpawnMeteor(0,1).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.A) -> SpawnSatellite(0, RANDOM).execute(data)
+            Gdx.input.isKeyJustPressed(Input.Keys.C) -> SpawnContainer(0, RANDOM).execute(data)
+        }
     }
 
 }

@@ -39,7 +39,7 @@ class PowerUpContainer(
     init {
         current[state]++
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(8, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.rotate(MathUtils.random(8, 20)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }

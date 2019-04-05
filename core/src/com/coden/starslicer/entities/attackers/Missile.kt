@@ -59,8 +59,7 @@ class Missile (override val initialPos: Vector2,
         // TODO: Spritaling around another point not the spacecraft exactly
         current[state]++
         velocity = when (state) {
-            0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                         MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(maxMovementSpeed)
+            0 -> targetVector.rotate(MathUtils.random(5, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
