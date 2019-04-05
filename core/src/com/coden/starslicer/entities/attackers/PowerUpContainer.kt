@@ -12,7 +12,7 @@ import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
 // TODO: show which powerup contains
-class PowerUpContainer(
+class PowerUpContainer private constructor(
         override val initialPos: Vector2,
         state: Int,
         override val content: PowerUp.PowerUpType,
@@ -22,8 +22,11 @@ class PowerUpContainer(
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
-        val current = arrayOf(0, 0)
-        val maxAlive = snapshot.getMaxNumber()
+
+        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets){
+            val initialPos = generateRandomSpawnPoint()
+            attackers.add(PowerUpContainer(initialPos, state, content, assets))
+        }
     }
 
     // Movement
@@ -37,9 +40,8 @@ class PowerUpContainer(
     override val hitSphere = Circle(0f, 0f, height/2)
 
     init {
-        current[state]++
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(8, 20)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(8, 20)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
@@ -59,10 +61,6 @@ class PowerUpContainer(
         rotate(angleSpeed)
     }
 
-    override fun kill() {
-        super.kill()
-        current[state] --
-    }
 
 
 }

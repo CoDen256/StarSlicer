@@ -9,14 +9,16 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.util.*
 
-class NuclearBomb(override val initialPos: Vector2,
+class NuclearBomb private constructor(override val initialPos: Vector2,
                   state: Int,
                   assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), DamageGiver{
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
-        val current = arrayOf(0, 0)
-        val maxAlive = snapshot.getMaxNumber()
+        fun spawn(state: Int, assets: Assets.AttackerAssets){
+            val initialPos = generateRandomSpawnPoint()
+            attackers.add(NuclearBomb(initialPos, state, assets))
+        }
     }
 
     val shieldAbsorbPortion = snapshot.shieldAbsorbPortion
@@ -29,9 +31,8 @@ class NuclearBomb(override val initialPos: Vector2,
 
 
     init {
-        current[state] ++
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(8, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
@@ -66,11 +67,6 @@ class NuclearBomb(override val initialPos: Vector2,
     override fun onDestroy() {
         super.onDestroy()
         damageAll()
-    }
-
-    override fun kill() {
-        super.kill()
-        current[state] --
     }
 
 }

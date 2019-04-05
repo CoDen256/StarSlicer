@@ -11,7 +11,7 @@ import com.coden.starslicer.entities.entityInterfaces.Container
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
-class Satellite(
+class Satellite private constructor(
         override val initialPos: Vector2,
         state: Int,
         override val content: PowerUp.PowerUpType,
@@ -21,8 +21,10 @@ class Satellite(
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.SATELLITE)
-        val current = arrayOf(0, 0)
-        val maxAlive = snapshot.getMaxNumber()
+        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets){
+            val initialPos = generateRandomSpawnPoint()
+            attackers.add(Satellite(initialPos, state, content, assets))
+        }
     }
 
     // Movement
@@ -39,9 +41,8 @@ class Satellite(
     override val hitSphere = Circle(pos.x, pos.y, minOf(width, height)/2)
 
     init {
-        current[state] ++
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(15, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(15, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
@@ -59,11 +60,6 @@ class Satellite(
         sprite.setCenter(pos.x, pos.y)
 
         rotate(angleSpeed)
-    }
-
-    override fun kill() {
-        super.kill()
-        current[state] --
     }
 
 

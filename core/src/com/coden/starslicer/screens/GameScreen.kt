@@ -60,7 +60,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         hud = HUD(data)
 
-        attackerHandler = AttackerHandler(data)
+        attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler(data)
         inputManager = InputManager(data)
 

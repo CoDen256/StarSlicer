@@ -9,14 +9,17 @@ import com.badlogic.gdx.math.Vector2
 
 import com.coden.starslicer.util.*
 
-class Missile (override val initialPos: Vector2,
+class Missile private constructor(override val initialPos: Vector2,
                state: Int,
                assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
 
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
-        val current = arrayOf(0, 0, 0, 0) // TODO: Probably evolving can be done by defining for each type the growthRate that will spawn more
-        val maxAlive = snapshot.getMaxNumber()
+
+        fun spawn(state: Int,  assets: Assets.AttackerAssets) {
+            val initialPos = generateRandomSpawnPoint()
+            attackers.add(Missile(initialPos, state, assets))
+        }
     }
 
 
@@ -57,9 +60,8 @@ class Missile (override val initialPos: Vector2,
 
     init {
         // TODO: Spritaling around another point not the spacecraft exactly
-        current[state]++
         velocity = when (state) {
-            0 -> targetVector.rotate(MathUtils.random(5, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(5, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }
@@ -116,9 +118,5 @@ class Missile (override val initialPos: Vector2,
     private fun getOrbitalPos(t: Float) = Vector2(getOrbitalX(t), getOrbitalY(t))
 
 
-    override fun kill() {
-        super.kill()
-        current[state] --
-    }
 
 }

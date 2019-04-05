@@ -5,10 +5,9 @@ import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.*
+import com.coden.starslicer.util.Log
 
 class PowerUpHandler(private val data: EntityData) {
-
-    private val log = Logger("PowerUpHandler", Logger.NONE)
 
     fun updateAll() {
         listOf(SHIELD, SHOCKWAVE, HPBOOST).forEach {update(it)}
@@ -28,7 +27,7 @@ class PowerUpHandler(private val data: EntityData) {
                 powerUp.update()
                 if (powerUp.isDead) {
                     iterator.remove()
-                    log.info("${powerUp.type} is dead")
+                    Log.info("${powerUp.type} is dead", Log.LogType.POWERUP)
                 }
             }
         }

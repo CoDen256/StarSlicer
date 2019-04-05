@@ -12,6 +12,7 @@ import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.hud.HealthBar
 import com.coden.starslicer.util.*
 
@@ -20,12 +21,6 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     companion object {
         val attackers = ArrayList<Attacker>()
     }
-
-    init {
-        attackers.add(this)
-    }
-
-
 
     // Snapshot properties
     val name = snapshot.name
@@ -98,6 +93,18 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
 
     abstract fun update()
+
+    fun updateCollision() {
+        if (SpaceCraft.isShielded) {
+            if (SpaceCraft.shieldCircle.overlaps(hitSphere)) {
+                kill()
+                onDestroy()
+            }
+        } else if (SpaceCraft.hitBox.overlaps(hitBox) && collisional) {
+            giveDamage(SpaceCraft)
+            SpaceCraft.giveDamage(this) // Body damage
+        }
+    }
 
     open fun onDestroy() {}
 

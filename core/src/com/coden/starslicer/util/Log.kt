@@ -4,15 +4,16 @@ import com.badlogic.gdx.utils.Logger
 
 
 object Log {
-    enum class LogType {INFO, DEBUG, HUD, ATTACKERS, SCREENS, ASSETS, GAME, SPAWN}
-    private val infoLogger  = Logger("INFO", Logger.INFO)
-    private val debugLogger  = Logger("DEBUG", Logger.INFO)
+    enum class LogType {INFO, DEBUG, HUD, ATTACKERS, SCREENS, ASSETS, GAME, SPAWN, POWERUP}
+    private val infoLogger  = Logger("INFO", Logger.NONE)
+    private val debugLogger  = Logger("DEBUG", Logger.NONE)
     private val hudLogger  = Logger("HUD", Logger.NONE)
-    private val attackerLogger  = Logger("Attackers", Logger.NONE)
-    private val spawnLogger  = Logger("Spawning", Logger.INFO)
+    private val attackerLogger  = Logger("Attackers", Logger.INFO)
+    private val spawnLogger  = Logger("Spawning", Logger.NONE)
     private val screenLogger  = Logger("Screens", Logger.NONE)
     private val assetLogger  = Logger("Assets", Logger.NONE)
     private val gameLogger  = Logger("Game", Logger.NONE)
+    private val powerUpLogger  = Logger("PowerUp", Logger.NONE)
 
     fun info(string: String, type: LogType) = when(type){
         Log.LogType.INFO -> infoLogger.info(string)
@@ -23,5 +24,6 @@ object Log {
         Log.LogType.ASSETS -> assetLogger.info(string)
         Log.LogType.GAME -> gameLogger.info(string)
         Log.LogType.SPAWN -> spawnLogger.info(string)
+        Log.LogType.POWERUP -> powerUpLogger.info(string)
     }
 }

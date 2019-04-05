@@ -13,7 +13,7 @@ import com.coden.starslicer.util.*
 import java.lang.Float.min
 import javax.swing.text.html.parser.Entity
 
-class Meteor(override val initialPos: Vector2,
+class Meteor private constructor(override val initialPos: Vector2,
              state: Int,
              val size: Int,
              assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state, assets) {
@@ -24,8 +24,11 @@ class Meteor(override val initialPos: Vector2,
                 EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
                 EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
         )
-        val current = arrayOf(0, 0, 0)
-        val maxAlive = snapshots.map{it.getMaxNumber()[0]}
+
+        fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets) {
+            val initialPos = generateRandomSpawnPoint()
+            attackers.add(Meteor(initialPos, state, size, assets))
+        }
     }
 
     // Constant Speeds
@@ -45,10 +48,8 @@ class Meteor(override val initialPos: Vector2,
     // size : 1,2,3 - small, medium, large
 
     init {
-        current[size]++
         velocity = when (state) {
-            0 -> Vector2(MathUtils.random(20, Gdx.graphics.width-20)+0f,
-                         MathUtils.random(20, Gdx.graphics.height-20)+0f).sub(initialPos).setLength(movementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(5, 45)*MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(movementSpeed)
             else -> Vector2()
         }
@@ -67,8 +68,4 @@ class Meteor(override val initialPos: Vector2,
         rotate(angleSpeed)
 }
 
-    override fun kill() {
-        super.kill()
-        current[size] --
-    }
 }
