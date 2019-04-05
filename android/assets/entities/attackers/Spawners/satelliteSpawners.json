@@ -39,7 +39,7 @@
     },
     "sat3_1": {
       "type": "SATELLITE",
-      "content": "",
+      "content": "RANDOM",
       "state": 0,
       "startWave": 25,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},

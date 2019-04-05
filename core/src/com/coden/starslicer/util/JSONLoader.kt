@@ -35,8 +35,23 @@ class JSONLoader(val path: String) {
                 AttackerType.LARGE_METEOR -> SpawnMeteor(state, 2)
                 AttackerType.MISSILE -> SpawnMissile(state)
                 AttackerType.NUCLEAR_BOMB -> SpawnNuclearBomb(state)
-                AttackerType.SATELLITE -> SpawnSatellite(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
-                AttackerType.POWERUP_CONTAINER -> SpawnContainer(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
+                AttackerType.SATELLITE -> {
+                    try {
+                        SpawnSatellite(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
+                    }catch (e: Exception){
+                        Log.info("FOR SAT NO SUCH POWERUP: ${spawner.getString("content")}", Log.LogType.SPAWN)
+                        throw e
+                    }
+                }
+                AttackerType.POWERUP_CONTAINER -> {
+                    try {
+                        SpawnContainer(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
+                    }catch (e: Exception){
+                        Log.info("FOR PUC NO SUCH POWERUP: ${spawner.getString("content")}", Log.LogType.SPAWN)
+                        throw e
+                    }
+
+                }
 
             }
 
