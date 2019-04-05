@@ -1,13 +1,14 @@
 package com.coden.starslicer.handlers
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.entities.powerups.*
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
 import com.coden.starslicer.util.Log
 
-class PowerUpHandler(private val data: EntityData) {
+class PowerUpHandler {
 
     fun updateAll() {
         listOf(SHIELD, SHOCKWAVE, HPBOOST).forEach {update(it)}
@@ -15,9 +16,9 @@ class PowerUpHandler(private val data: EntityData) {
 
     private fun update(ability: PowerUp.PowerUpType) {
         val iterator = when (ability) {
-            SHOCKWAVE  -> data.shockWaves.iterator()
-            SHIELD     -> data.shields.iterator()
-            HPBOOST    -> data.boosts.iterator()
+            SHOCKWAVE  -> shockwaves.iterator()
+            SHIELD     -> shields.iterator()
+            HPBOOST    -> hpboosts.iterator()
             RANDOM     -> throw IllegalArgumentException()
         }
 

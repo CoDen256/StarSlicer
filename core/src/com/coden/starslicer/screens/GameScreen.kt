@@ -17,6 +17,7 @@ import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
@@ -61,7 +62,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         hud = HUD(data)
 
         attackerHandler = AttackerHandler()
-        powerUpHandler = PowerUpHandler(data)
+        powerUpHandler = PowerUpHandler()
         inputManager = InputManager(data)
 
         difficultyController = DifficultyController(data)
@@ -148,7 +149,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             shapeRenderer.circle(SpaceCraft.x, SpaceCraft.y, SpaceCraft.shieldRadius)
         }
 
-        for (shockwave in data.shockWaves) {
+        for (shockwave in shockwaves) {
             if (shockwave.active){
                 shapeRenderer.circle(spaceCraftX, spaceCraftY, shockwave.radius)
             }

@@ -8,6 +8,7 @@ class HPBoost: PowerUp(PowerUpType.HPBOOST), DamageGiver {
 
     companion object {
         val snapshot = EntityLoader.loadPowerUp(PowerUpType.HPBOOST)
+
     }
 
     override val damage = snapshot.damage // healing amount

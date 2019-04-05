@@ -9,10 +9,6 @@ import com.coden.starslicer.util.Assets
 
 data class EntityData(val assets: Assets) {
 
-    val boosts = ArrayList<HPBoost>()
-    val shields = ArrayList<Shield>()
-    val shockWaves = ArrayList<ShockWave>()
-
     // TODO: ratio amount can be applied to speed when difficulty is bigger (applied in ProgressClass)
 
 

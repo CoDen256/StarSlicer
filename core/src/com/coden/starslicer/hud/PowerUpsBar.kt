@@ -3,6 +3,9 @@ package com.coden.starslicer.hud
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
+import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
@@ -30,9 +33,9 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     fun update() {
         for (icon in data.powerUpIcons) {
             icon.amount = when (icon.type) {
-                SHIELD    -> data.shields.size
-                SHOCKWAVE -> data.shockWaves.size
-                HPBOOST   -> data.boosts.size
+                SHIELD    -> shields.size
+                SHOCKWAVE -> shockwaves.size
+                HPBOOST   -> hpboosts.size
                 RANDOM -> throw IllegalArgumentException()
             }
         }
