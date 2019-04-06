@@ -12,32 +12,15 @@ import com.coden.starslicer.util.spaceCraftX
 
 class DifficultyController(val data: EntityData) {
     val queue = CommandQueue(data)
-    val firstWave = Wave(0)
+    val currentWave = Wave(0, queue)
 
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f
 
-    var waiting = false
-
     // TODO: STATES FOR WAVE - ENDING WAVE - PAUSE - NEW WAVE
     fun update(){
 
-        if (firstWave.update(queue)){
-
-        }else{
-            if (!firstWave.isDead){
-                Log.info("wave is dead", Log.LogType.SPAWN)
-                firstWave.isDead = true
-            }
-            if (attackers.isEmpty()){
-                Log.info("evolving wave", Log.LogType.SPAWN)
-                waiting = false
-                firstWave.evolve()
-            }else{
-                waiting = true
-                //Log.info("Waiting for all attackers to be destroyed", Log.LogType.SPAWN)
-            }
-        }
+        currentWave.update()
 
 
         currentExecuteDelta += Gdx.graphics.deltaTime
@@ -49,9 +32,7 @@ class DifficultyController(val data: EntityData) {
     }
 
     fun render(batch: SpriteBatch, font: BitmapFont){
-        font.draw(batch, "Wave #${firstWave.number}", 50f, Gdx.graphics.height - 50f)
-        if (waiting){
-            font.draw(batch, "Waiting for all attackers to be destroyed to start new wave...", 50f, Gdx.graphics.height - 100f)
-        }
+        font.draw(batch, "Wave #${currentWave.number}", 50f, Gdx.graphics.height - 50f)
+        currentWave.render(batch, font)
     }
 }

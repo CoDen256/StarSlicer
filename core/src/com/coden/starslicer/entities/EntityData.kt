@@ -9,9 +9,6 @@ import com.coden.starslicer.util.Assets
 
 data class EntityData(val assets: Assets) {
 
-    // TODO: ratio amount can be applied to speed when difficulty is bigger (applied in ProgressClass)
-
-
     val powerUpIcons = arrayListOf(
             PowerUpIcon(SHIELD, powerUpIconAssets.getTexture(SHIELD)),
             PowerUpIcon(HPBOOST, powerUpIconAssets.getTexture(HPBOOST)),
