@@ -4,28 +4,24 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.Commands.*
-import com.coden.starslicer.entities.entityInterfaces.Mortal
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.states.WaveBeginState
-import com.coden.starslicer.states.WaveState
+import com.coden.starslicer.states.wave.WaveBeginState
+import com.coden.starslicer.states.wave.WaveState
 import com.coden.starslicer.util.GrowthResolver as GR
-import com.coden.starslicer.util.GrowthResolver.GrowthType.*
 import com.coden.starslicer.util.JSONLoader
-import com.coden.starslicer.util.Log
 
 class Wave(var number: Int, val queue: CommandQueue) {
 
     val spawnerLoader = JSONLoader("entities/attackers/Spawners")
     val spawners  = with(spawnerLoader){
-        load("containerSpawners") +
-        load("meteorSpawners") +
-        load("missileSpawners") +
-        load("nuclearbombSpawners") +
+        //load("containerSpawners") +
+        //load("meteorSpawners") +
+        //load("missileSpawners") +
+        //load("nuclearbombSpawners") +
         load("satelliteSpawners")
     }
 
     init {
-        for (spawner in spawners) spawner.initialize(number)
+        for (spawner in spawners) spawner.evolveTo(number)
     }
 
     var currentState: WaveState = WaveBeginState(this)
@@ -46,7 +42,7 @@ class Wave(var number: Int, val queue: CommandQueue) {
         number ++
         life = 0f
         for (spawner in spawners){
-            spawner.evolve()
+            spawner.evolveTo(number)
         }
     }
 }

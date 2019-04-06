@@ -1,11 +1,11 @@
-package com.coden.starslicer.states
+package com.coden.starslicer.states.wave
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.coden.starslicer.Commands.CommandQueue
-import com.coden.starslicer.gameplay.Spawner
 import com.coden.starslicer.gameplay.Wave
+import com.coden.starslicer.states.wave.WaveSpawningState
+import com.coden.starslicer.states.wave.WaveState
 import com.coden.starslicer.util.Log
 
 class WaveDelayNextState(val wave: Wave, val time: Float = 5f): WaveState {
