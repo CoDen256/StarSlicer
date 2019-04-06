@@ -24,6 +24,10 @@ class Wave(var number: Int, val queue: CommandQueue) {
         load("satelliteSpawners")
     }
 
+    init {
+        for (spawner in spawners) spawner.initialize(number)
+    }
+
     var currentState: WaveState = WaveBeginState(this)
     var life = 0f
 

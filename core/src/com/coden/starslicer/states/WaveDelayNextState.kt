@@ -8,7 +8,7 @@ import com.coden.starslicer.gameplay.Spawner
 import com.coden.starslicer.gameplay.Wave
 import com.coden.starslicer.util.Log
 
-class WaveDelayNextState(val wave: Wave, val time: Float = 3f): WaveState {
+class WaveDelayNextState(val wave: Wave, val time: Float = 5f): WaveState {
     var counter = 0f
     init {
         Log.info("Wave DELAYSTATE created with duration $time ", Log.LogType.SPAWN)

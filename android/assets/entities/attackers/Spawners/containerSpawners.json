@@ -6,7 +6,7 @@
       "startWave": 1,
       "content" : "HPBOOST",
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 20.0, "rate": -0.06, "type": "POLYNOMIAL"},
+      "period": {"init": 25.0, "rate": -0.06, "type": "POLYNOMIAL"},
       "delay": {"init": 7.5, "rate": -0.075, "type": "POLYNOMIAL"}
     },
     "puc1": {
@@ -15,7 +15,7 @@
       "state": 0,
       "startWave": 5,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 25.0, "rate": -0.16842105263157894, "type": "POLYNOMIAL"},
+      "period": {"init": 35.0, "rate": -0.16842105263157894, "type": "POLYNOMIAL"},
       "delay": {"init": 15.0, "rate": -0.14736842105263157, "type": "POLYNOMIAL"}
     },
 
@@ -25,7 +25,7 @@
       "state": 0,
       "startWave": 3,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 25.0, "rate": -0.1134020618556701, "type": "POLYNOMIAL"},
+      "period": {"init": 30.0, "rate": -0.1134020618556701, "type": "POLYNOMIAL"},
       "delay": {"init": 10.0, "rate": -0.08247422680412371, "type": "POLYNOMIAL"}
     },
     "puc3": {

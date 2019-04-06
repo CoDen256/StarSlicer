@@ -14,8 +14,7 @@ data class Spawner(private val numberGrowth: GrowthResolver,
                    private val delayGrowth: GrowthResolver,
                    private val startWave: Int,
                    val spawnCommand: Command,
-                   private val lifeSpanGrowth: GrowthResolver= GrowthResolver(30.0f, 5.7f, GrowthResolver.GrowthType.POLYNOMIAL),
-                   private var waveNum: Int = 0): Mortal {
+                   private val lifeSpanGrowth: GrowthResolver= GrowthResolver(30.0f, 5.7f, GrowthResolver.GrowthType.POLYNOMIAL)): Mortal {
 
 
 
@@ -30,18 +29,21 @@ data class Spawner(private val numberGrowth: GrowthResolver,
     private var spawned = 0
     override var isDead = false
 
+    var waveNum: Int = 0
+
     var active = false
 
     init {
-        init()
+        initialize(0)
     }
 
     fun evolve(){
-        waveNum ++
-        init()
+        initialize(waveNum + 1)
     }
 
-    fun init() {
+    fun initialize(num: Int = 0) {
+        waveNum = num
+
         active = false
         isDead = false
         spawned = 0

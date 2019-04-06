@@ -16,7 +16,7 @@ class WaveWaitingState(val wave: Wave): WaveState {
     }
 
     override fun execute(): WaveState? {
-        if (attackers.isEmpty()){
+        if (attackers.size <= 3){
             return WaveDelayNextState(wave)
         }
         return null

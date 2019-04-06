@@ -15,7 +15,7 @@ class WaveSpawningState(val wave: Wave): WaveState {
     }
 
     override fun execute(): WaveState? {
-        if (wave.spawners.all{it.isDead}){
+        if (wave.spawners.all{it.isDead} ){
             Log.info("All spawners are dead", Log.LogType.SPAWN)
             return WaveWaitingState(wave)
         }
