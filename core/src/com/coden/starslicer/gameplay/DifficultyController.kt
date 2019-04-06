@@ -17,7 +17,6 @@ class DifficultyController(val data: EntityData) {
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f
 
-    // TODO: STATES FOR WAVE - ENDING WAVE - PAUSE - NEW WAVE
     fun update(){
 
         currentWave.update()

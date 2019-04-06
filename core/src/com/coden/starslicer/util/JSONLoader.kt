@@ -55,7 +55,13 @@ class JSONLoader(val path: String) {
 
             }
 
-            result.add(Spawner(numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand))
+            result.add(Spawner(numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand,
+                    try {
+                        parseGrowthResolver(spawner, "lifeSpan", spawners)
+                    }catch (e: Exception){
+                        GrowthResolver(30.0f, 5.7f, GrowthResolver.GrowthType.POLYNOMIAL)
+                    }
+            ))
 
         }
         return result
