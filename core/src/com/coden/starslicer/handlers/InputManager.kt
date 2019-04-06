@@ -22,8 +22,6 @@ import java.awt.Container
 
 class InputManager(private val data: EntityData) {
 
-    private val log = Logger("InputManager", Logger.DEBUG)
-
     fun updateSwiping(){
         with(SpaceCraft){
             if (!(firstBlade.active || secondBlade.active)){
@@ -65,23 +63,10 @@ class InputManager(private val data: EntityData) {
     }
 
     private fun usePowerUp(ability: PowerUp.PowerUpType) = PowerUp.use(ability)
-
     private fun addPowerUp(ability: PowerUp.PowerUpType) = PowerUp.create(ability)
 
 
     fun debugSpawning() {
-
-        //if (Gdx.input.justTouched()) {
-        //    when {
-        //        Gdx.input.x < centerX && Gdx.input.y < centerY -> spawnMissile.execute(data)
-        //        Gdx.input.x > centerX && Gdx.input.y < centerY -> spawnNuclearBomb.execute(data)
-        //        Gdx.input.x < centerX && Gdx.input.y > centerY -> spawnMeteor.execute(data)
-        //        Gdx.input.x > centerX && Gdx.input.y > centerY -> {
-        //            spawnSatellite.execute(data)
-        //            spawnContainer.execute(data)
-        //        }}
-        //}
-
         when {
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> SpawnMissile(0).execute(data)
             Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> SpawnMissile(1).execute(data)

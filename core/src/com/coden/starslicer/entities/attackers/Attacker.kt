@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
@@ -107,6 +108,10 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     }
 
     open fun onDestroy() {}
+
+    open fun render(shapeRenderer: ShapeRenderer){
+        healthBar!!.render(shapeRenderer)
+    }
 
     protected fun applyVelocity(vel: Vector2) {
         velocity.add(vel)

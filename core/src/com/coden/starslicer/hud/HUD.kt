@@ -47,12 +47,7 @@ class HUD(data: EntityData) {
         spaceCraftBar.render(shapeRenderer)
 
         for (attacker in attackers){
-            if (attacker.healthBar != null){
-                if (attacker !is Missile){
-                    attacker.healthBar!!.render(shapeRenderer)
-                }
-
-            }
+            attacker.render(shapeRenderer)
 
         }
 

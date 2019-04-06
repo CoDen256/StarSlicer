@@ -1,6 +1,7 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 
@@ -73,7 +74,7 @@ class Missile private constructor(override val initialPos: Vector2,
 
     }
 
-
+    override fun render(shapeRenderer: ShapeRenderer) {}
 
     override fun update() {
         updateLife()
