@@ -42,7 +42,7 @@ class Satellite private constructor(
 
     init {
         velocity = when (state) {
-            0 -> targetVector.cpy().rotate(MathUtils.random(15, 45)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
+            0 -> targetVector.cpy().rotate(MathUtils.random(15, 35)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
             1 -> targetVector.cpy().setLength(maxMovementSpeed)
             else -> Vector2()
         }

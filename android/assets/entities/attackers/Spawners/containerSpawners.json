@@ -6,7 +6,7 @@
       "startWave": 1,
       "content" : "HPBOOST",
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 25.0, "rate": -0.06, "type": "POLYNOMIAL"},
+      "period": {"init": 26.0, "rate": -0.05, "type": "POLYNOMIAL"},
       "delay": {"init": 7.5, "rate": -0.075, "type": "POLYNOMIAL"}
     },
     "puc1": {

@@ -5,6 +5,5 @@
   "maxMovementSpeed": 480.0,
   "damage":30.0,
   "collisional": true,
-  "maxAngleSpeed":360,
-  "maxNumber":[17]
+  "maxAngleSpeed":360
 }

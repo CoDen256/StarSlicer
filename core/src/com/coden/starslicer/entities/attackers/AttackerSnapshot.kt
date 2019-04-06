@@ -8,7 +8,6 @@ class AttackerSnapshot {
     private var maxMovementSpeed: Float? = null
     private var damage: Float? = null
     private var collisional: Boolean? = null
-    private var maxNumber: List<Int>? =  null
 
     // Meteors + Containers
     var minAngleSpeed: Float = 0f
@@ -51,10 +50,6 @@ class AttackerSnapshot {
 
     fun getCollisional(state: Int): Boolean {
         return if (collisional == null) collisionalMap[state]!! else collisional!!
-    }
-
-    fun getMaxNumber(): List<Int>{
-        return maxNumber!!
     }
 
 }

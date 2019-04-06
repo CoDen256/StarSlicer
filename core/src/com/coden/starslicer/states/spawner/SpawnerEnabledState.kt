@@ -17,7 +17,6 @@ class SpawnerEnabledState (val spawner: Spawner, start: Float): SpawnerState {
         }
         if (spawned >= spawner.maxNumber){
             Log.info("Spawner $spawner is dead", Log.LogType.SPAWN)
-            Log.info("Setting Disabled State", Log.LogType.SPAWN)
             return SpawnerDisabledState(spawner)
         }
         return null

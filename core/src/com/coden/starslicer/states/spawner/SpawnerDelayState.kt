@@ -9,7 +9,6 @@ class SpawnerDelayState (val spawner: Spawner): SpawnerState {
     var timePassed = 0f
     override fun execute(queue: CommandQueue): SpawnerState? {
         if(timePassed >= spawner.delay){
-            Log.info("Setting Enabled State", Log.LogType.SPAWN)
             return SpawnerEnabledState(spawner, spawner.period)
         }
         return null

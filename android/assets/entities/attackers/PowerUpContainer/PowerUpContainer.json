@@ -6,6 +6,5 @@
   "lifeSpan":15.0,
   "maxMovementSpeed": 150.0,
   "damage":0.0,
-  "collisional": false,
-  "maxNumber":[2, 0]
+  "collisional": false
 }

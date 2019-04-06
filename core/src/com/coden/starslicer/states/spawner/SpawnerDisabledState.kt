@@ -9,7 +9,6 @@ class SpawnerDisabledState(val spawner: Spawner) : SpawnerState {
     override fun execute(queue: CommandQueue): SpawnerState? {
         if (spawner.waveNum >= spawner.startWave){
             initialize()
-            Log.info("Setting Delay State", Log.LogType.SPAWN)
             return SpawnerDelayState(spawner)
         }
         return null
