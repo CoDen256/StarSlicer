@@ -1,6 +1,6 @@
 {
   "name": "SMALL_METEOR",
-  "maxHealth":30.0,
+  "maxHealth":50.0,
   "lifeSpan":40.0,
   "maxMovementSpeed": 480.0,
   "damage":30.0,
