@@ -1,6 +1,6 @@
 {
   "name": "MEDIUM_METEOR",
-  "maxHealth":300.0,
+  "maxHealth":250.0,
   "lifeSpan":50.0,
   "maxMovementSpeed": 240.0,
   "damage":50.0,
