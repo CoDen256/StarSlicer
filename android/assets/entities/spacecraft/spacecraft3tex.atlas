@@ -1,0 +1,12 @@
+spacecraft3tex.png
+size: 183, 187
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+spacecraft3
+  rotate: false
+  xy: 0, 0
+  size: 183, 187
+  orig: 183, 187
+  offset: 0, 0
+  index: -1

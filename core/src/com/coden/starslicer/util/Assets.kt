@@ -154,7 +154,7 @@ class Assets{
     }
 
     object SpaceCraftAssets {
-        private val path = "entities/spacecraft/spacecraft.png"
+        private val path = "entities/spacecraft/spacecraft3tex.png"
         val spaceCraftTexture = TextureRegion(Texture(path))
 
         init {
