@@ -18,7 +18,7 @@ class Assets{
     private val manager = AssetManager()
 
     private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/powerups/powerups.atlas", TextureAtlas::class.java)
-    private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers.atlas", TextureAtlas::class.java)
+    private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers3.atlas", TextureAtlas::class.java)
 
 
     lateinit var powerUpAssets: PowerUpAssets
@@ -97,7 +97,7 @@ class Assets{
                 MEDIUM_METEOR to atlas.findRegion("mediumMeteor") as TextureRegion,
                 LARGE_METEOR to atlas.findRegion("largeMeteor") as TextureRegion,
                 SATELLITE to atlas.findRegion("satellite") as TextureRegion,
-                POWERUP_CONTAINER to atlas.findRegion("powerUpContainer") as TextureRegion
+                POWERUP_CONTAINER to atlas.findRegion("container") as TextureRegion
         )
         init {
             Log.info("AttackerAssets created", Log.LogType.ASSETS)

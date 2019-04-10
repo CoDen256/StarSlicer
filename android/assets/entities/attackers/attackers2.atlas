@@ -1,54 +1,54 @@
-attackers.png
-size: 195, 620
+attackers2.png
+size: 389, 1237
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 container
   rotate: false
-  xy: 121, 0
-  size: 68, 99
-  orig: 68, 99
+  xy: 242, 0
+  size: 134, 197
+  orig: 134, 197
   offset: 0, 0
   index: -1
 largeMeteor
   rotate: false
-  xy: 0, 436
-  size: 177, 184
-  orig: 177, 184
+  xy: 0, 869
+  size: 354, 368
+  orig: 354, 368
   offset: 0, 0
   index: -1
 mediumMeteor
   rotate: false
-  xy: 96, 99
-  size: 99, 96
-  orig: 99, 96
+  xy: 192, 197
+  size: 197, 191
+  orig: 197, 191
   offset: 0, 0
   index: -1
 missile
   rotate: false
-  xy: 60, 0
-  size: 61, 36
-  orig: 61, 36
+  xy: 120, 0
+  size: 122, 70
+  orig: 122, 70
   offset: 0, 0
   index: -1
 nuclearbomb
   rotate: false
-  xy: 0, 99
-  size: 96, 162
-  orig: 96, 162
+  xy: 0, 197
+  size: 192, 323
+  orig: 192, 323
   offset: 0, 0
   index: -1
 satellite
   rotate: false
-  xy: 0, 261
-  size: 173, 175
-  orig: 173, 175
+  xy: 0, 520
+  size: 345, 349
+  orig: 345, 349
   offset: 0, 0
   index: -1
 smallMeteor
   rotate: false
   xy: 0, 0
-  size: 60, 54
-  orig: 60, 54
+  size: 120, 108
+  orig: 120, 108
   offset: 0, 0
   index: -1
