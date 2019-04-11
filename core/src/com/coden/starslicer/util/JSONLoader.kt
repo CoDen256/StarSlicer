@@ -8,15 +8,23 @@ import com.coden.starslicer.Commands.*
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.gameplay.Spawner
+import com.coden.starslicer.util.Assets.Configs.spawnerConfigList
 import com.google.gson.JsonIOException
 import java.lang.NullPointerException
 
 
-class JSONLoader(val path: String) {
-    fun load(filename: String): ArrayList<Spawner> {
-        val reader = JsonReader().parse(Gdx.files.internal("$path/$filename.json"))
+class JSONLoader {
 
-        val spawners = reader.get("spawners")
+    fun loadAllSpanwers(): ArrayList<Spawner>{
+        val spawners = ArrayList<Spawner>()
+        for (config in spawnerConfigList){
+            spawners += loadSpawners(config)
+        }
+        return spawners
+    }
+    fun loadSpawners(config: JsonValue): ArrayList<Spawner> {
+
+        val spawners = config.get("spawners")
         val result = arrayListOf<Spawner>()
 
         for (spawner in spawners.asIterable()){

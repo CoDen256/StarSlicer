@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.utils.JsonReader
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.HPBoost
@@ -17,10 +18,11 @@ import java.io.*
 class Assets{
     private val manager = AssetManager()
 
-    private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/powerups/powerups.atlas", TextureAtlas::class.java)
-    private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/attackers/attackers3.atlas", TextureAtlas::class.java)
+    private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("ui/icons/powerups/powerups.atlas", TextureAtlas::class.java)
+    private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/animation/attackers/attackers3.atlas", TextureAtlas::class.java)
 
 
+    val swipeTexture = Texture("entities/animation/blades/gradient8.png")
     lateinit var powerUpAssets: PowerUpAssets
     lateinit var attackerAssets: AttackerAssets
     //lateinit var attackerConfigs:
@@ -80,7 +82,7 @@ class Assets{
         )
 
         init {
-            Log.info("PowerUpAssets created", Log.LogType.ASSETS)
+            Log.info("PowerUpAssets textureMap created", Log.LogType.ASSETS)
         }
         fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
 
@@ -100,65 +102,17 @@ class Assets{
                 POWERUP_CONTAINER to atlas.findRegion("container") as TextureRegion
         )
         init {
-            Log.info("AttackerAssets created", Log.LogType.ASSETS)
+            Log.info("AttackerAssets  textureMap created", Log.LogType.ASSETS)
         }
         fun getTexture(type: AttackerType): TextureRegion? = map[type]
     }
 
-    companion object {
-        val attackerConfigMap = mapOf(
-                MISSILE to loadAttacker("Missile/Missile.json"),
-                NUCLEAR_BOMB to loadAttacker("NuclearBomb/NuclearBomb.json"),
-                SMALL_METEOR to loadAttacker("Meteor/SmallMeteor.json"),
-                MEDIUM_METEOR to loadAttacker("Meteor/MediumMeteor.json"),
-                LARGE_METEOR to loadAttacker("Meteor/LargeMeteor.json"),
-                SATELLITE to loadAttacker("Satellite/Satellite.json"),
-                POWERUP_CONTAINER to loadAttacker("PowerUpContainer/PowerUpContainer.json")
-
-        )
-
-        val powerupConfigMap = mapOf(
-                PowerUp.PowerUpType.HPBOOST to loadPowerUp("HPBoost/hpboost.json"),
-                PowerUp.PowerUpType.SHIELD to loadPowerUp("Shield/shield.json"),
-                PowerUp.PowerUpType.SHOCKWAVE to loadPowerUp("ShockWave/shockwave.json")
-        )
-
-        val bladeConfig = arrayOf(loadBlade("blades/first.json"), loadBlade("blades/second.json"))
-        val spaceCraftConfig = loadSpaceCraft("spacecraft/spacecraft.json")
-
-        private fun load(path: String) = Gdx.files.internal(path).reader()
-
-        private fun loadAttacker(name: String): Reader {
-            Log.info("AttackerConfigMap Loading...$name", Log.LogType.ASSETS)
-            return load("entities/attackers/$name")
-        }
-
-        private fun loadPowerUp(name: String): Reader {
-            Log.info("PowerUpConfigMap Loading...$name", Log.LogType.ASSETS)
-            return load("entities/powerups/$name")
-        }
-
-        private fun loadSpaceCraft(name: String): Reader {
-            Log.info("SpaceCraftConfig Loading...$name", Log.LogType.ASSETS)
-            return load("entities/$name")
-        }
-
-        private fun loadBlade(name: String): Reader{
-            Log.info("Bladesconfig Loading..$name", Log.LogType.ASSETS)
-            return load("entities/$name")
-        }
-
-        init {
-            Log.info("Loading Config files...", Log.LogType.ASSETS)
-        }
-    }
-
     object SpaceCraftAssets {
-        private val path = "entities/spacecraft/spacecraft3tex.png"
+        val path = "entities/animation/spacecraft/spacecraft3tex.png"
         val spaceCraftTexture = TextureRegion(Texture(path))
 
         init {
-            Log.info("SpaceCraftAssets created", Log.LogType.ASSETS)
+            Log.info("SpaceCraftAssets texture created", Log.LogType.ASSETS)
         }
 
         fun dispose() {
@@ -167,6 +121,41 @@ class Assets{
         }
     }
 
+    companion object Configs{
+        val spaceCraftConfig = loadConfig("spacecraft/spacecraft.json")
+
+        val bladesConfig = arrayOf(
+                loadConfig("blades/first.json"),
+                loadConfig("blades/second.json"))
+
+        val attackerConfigMap = mapOf(
+                MISSILE to loadConfig("missile/missile.json"),
+                NUCLEAR_BOMB to loadConfig("nuclearBomb/nuclearBomb.json"),
+                SMALL_METEOR to loadConfig("meteors/smallMeteor.json"),
+                MEDIUM_METEOR to loadConfig("meteors/mediumMeteor.json"),
+                LARGE_METEOR to loadConfig("meteors/largeMeteor.json"),
+                SATELLITE to loadConfig("satellite/satellite.json"),
+                POWERUP_CONTAINER to loadConfig("container/powerUpContainer.json"))
+
+        val powerupConfigMap = mapOf(
+                PowerUp.PowerUpType.HPBOOST to loadConfig("powerups/hpboost.json"),
+                PowerUp.PowerUpType.SHIELD to loadConfig("powerups/shield.json"),
+                PowerUp.PowerUpType.SHOCKWAVE to loadConfig("powerups/shockwave.json"))
+
+        val spawnerConfigList = arrayListOf(
+                loadSpawnerConfig("containerSpawners.json"),
+                loadSpawnerConfig("meteorSpawners.json"),
+                loadSpawnerConfig("missileSpawners.json"),
+                loadSpawnerConfig("nuclearbombSpawners.json"),
+                loadSpawnerConfig("satelliteSpawners.json")
+        )
 
 
+        private fun loadConfig(path: String) = Gdx.files.internal("entities/config/$path").reader()
+        private fun loadSpawnerConfig(path: String) = JsonReader().parse(Gdx.files.internal("entities/config/spawners/$path"))
+
+        init {
+            Log.info("Config files created", Log.LogType.ASSETS)
+        }
     }
+}

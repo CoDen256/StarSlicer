@@ -9,12 +9,11 @@ import com.coden.util.swipe.mesh.SwipeTriStrip
 
 class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNum: Int,
                     val maxLifeSpan: Float, val thickness: Float,
-                    val maxInputPoint:Int, val texPath: String,
+                    val maxInputPoint:Int, val tex: Texture,
                     val color: Color = Color.WHITE, val endcap: Float = 10f
                     ){
 
     lateinit var swipe: SwipeHandler
-    lateinit var tex: Texture
     lateinit var tris: SwipeTriStrip
 
     fun create() {
@@ -33,7 +32,6 @@ class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNu
         swipe.maxLifeSpan = maxLifeSpan
 
         //we will use a texture for the smooth edge, and also for stroke effects
-        tex = Texture(texPath)
         tex.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)
 
     }

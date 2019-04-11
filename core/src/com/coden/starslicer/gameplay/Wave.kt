@@ -11,14 +11,7 @@ import com.coden.starslicer.util.JSONLoader
 
 class Wave(var number: Int, val queue: CommandQueue) {
 
-    val spawnerLoader = JSONLoader("entities/attackers/Spawners")
-    val spawners  = with(spawnerLoader){
-        load("containerSpawners") +
-        load("meteorSpawners") +
-        load("missileSpawners") +
-        load("nuclearbombSpawners") +
-        load("satelliteSpawners")
-    }
+    val spawners = JSONLoader().loadAllSpanwers()
 
     init {
         for (spawner in spawners) spawner.evolveTo(number)

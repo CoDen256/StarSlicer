@@ -42,7 +42,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     val font = BitmapFont()
 
     var timePassed = 0f
-    val bg = Texture("bg.png")
+    val bg = Texture("ui/backgrounds/background.png")
 
     val w = Gdx.graphics.width + 0f
     val h = Gdx.graphics.height + 0f

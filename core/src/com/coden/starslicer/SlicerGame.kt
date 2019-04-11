@@ -24,7 +24,7 @@ class StarSlicerGame : Game() {
 
         swipeRenderer = SwipeRenderer(10, 10, 2,
                                     0.25f, 20f,
-                                    10, "gradient2.png")
+                                    10, assets.swipeTexture)
         swipeRenderer.create()
 
         //handle swipe input
