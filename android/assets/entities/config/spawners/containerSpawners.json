@@ -25,7 +25,7 @@
       "state": 0,
       "startWave": 3,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 30.0, "rate": -0.1134020618556701, "type": "POLYNOMIAL"},
+      "period": {"init": 35.0, "rate": -0.1134020618556701, "type": "POLYNOMIAL"},
       "delay": {"init": 10.0, "rate": -0.08247422680412371, "type": "POLYNOMIAL"}
     },
     "puc3": {
@@ -34,7 +34,7 @@
       "state": 0,
       "startWave": 6,
       "number": {"init": 1.0, "rate": 0.0, "type": "POLYNOMIAL"},
-      "period": {"init": 15.0, "rate": -0.11702127659574468, "type": "POLYNOMIAL"},
+      "period": {"init": 35.0, "rate": -0.11702127659574468, "type": "POLYNOMIAL"},
       "delay": {"init": 8.0, "rate": -0.05319148936170213, "type": "POLYNOMIAL"}
     }
 }}
