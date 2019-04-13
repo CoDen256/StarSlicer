@@ -104,6 +104,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         batch.draw(bg, 0f, 0f, w, h)
 
+        renderScore(batch)
         renderFPS(batch)
         renderTimePassed(batch)
         difficultyController.render(batch, font)
@@ -184,6 +185,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderTimePassed(batch: SpriteBatch){
         font.draw(batch, timePassed.toString(), w-75, h-100)
+    }
+
+    fun renderScore(batch: SpriteBatch){
+        font.draw(batch, "Score: ${data.score}", w-75, h-150)
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {

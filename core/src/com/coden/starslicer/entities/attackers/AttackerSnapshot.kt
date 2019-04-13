@@ -20,7 +20,7 @@ class AttackerSnapshot {
     // NuclearBomb
     var shieldAbsorbPortion = 0f
 
-
+    var reward: Int  = 10
 
     private var lifeSpanMap = mapOf<Int, Float>()
     private var maxHealthMap = mapOf<Int, Float>()

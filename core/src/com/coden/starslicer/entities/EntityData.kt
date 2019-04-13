@@ -15,6 +15,10 @@ data class EntityData(val assets: Assets) {
             PowerUpIcon(SHOCKWAVE, powerUpIconAssets.getTexture(SHOCKWAVE))
     )
 
+    //TODO:observer
+    var score = 0
+    var coins = 0
+
     val powerUpIconAssets: Assets.PowerUpAssets
     get() = assets.powerUpAssets
 

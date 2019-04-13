@@ -31,6 +31,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     val lifeSpan = snapshot.getLifeSpan(state)
     val maxMovementSpeed = snapshot.getMaxMovementSpeed(state) * sqRatio
     val collisional = snapshot.getCollisional(state)
+    val reward = snapshot.reward
 
     final override val maxHealth = snapshot.getMaxHealth(state)
     override val damage = snapshot.getDamage(state)
