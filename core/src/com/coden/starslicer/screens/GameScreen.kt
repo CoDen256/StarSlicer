@@ -189,6 +189,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderScore(batch: SpriteBatch){
         font.draw(batch, "Score: ${data.score}", w-75, h-150)
+        font.draw(batch, "Coins: ${data.coins}", w-75, h-200)
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {

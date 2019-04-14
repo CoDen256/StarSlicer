@@ -18,8 +18,6 @@ class PowerUpContainer private constructor(
         override val content: PowerUp.PowerUpType,
         assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), Container {
 
-    // TODO: Content of container decided on conditions of current situation
-
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
 

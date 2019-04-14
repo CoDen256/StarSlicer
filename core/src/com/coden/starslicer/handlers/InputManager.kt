@@ -42,7 +42,9 @@ class InputManager(private val data: EntityData) {
                 }
 
                 if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
+                    // observer
                     data.score += attacker.reward
+                    data.coins += MathUtils.random(10, 50)
                     attacker.onDestroy()
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
                         addPowerUp(attacker.content)
