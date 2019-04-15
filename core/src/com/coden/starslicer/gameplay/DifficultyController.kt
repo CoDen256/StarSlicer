@@ -8,6 +8,7 @@ import com.coden.starslicer.Commands.CommandQueue
 import com.coden.starslicer.Commands.SpawnContainer
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
@@ -41,10 +42,13 @@ class DifficultyController(val data: EntityData) {
     }
 
     fun adapt(){
-        if (SpaceCraft.health < 15){
-            if (MathUtils.random(1,70) == 100 && hpboosts.size == 0){
+        if (SpaceCraft.health < 15 && hpboosts.size == 0){
+            if (MathUtils.randomBoolean(0.25f) ){
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }
+        }
+        if (attackers.count{it is Missile} > 20){
+            queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
         }
     }
 }
