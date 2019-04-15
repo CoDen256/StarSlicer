@@ -42,7 +42,7 @@ class DifficultyController(val data: EntityData) {
 
     fun adapt(){
         if (SpaceCraft.health < 15){
-            if (MathUtils.random(1,100) == 100 && hpboosts.size == 0){
+            if (MathUtils.random(1,70) == 100 && hpboosts.size == 0){
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }
         }
