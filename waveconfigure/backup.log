@@ -1030,3 +1030,315 @@ MaxNumber: 31.0
 Amount:1.0
 Period:20.0
 Delay:20.0
+
+
+
+
+Wave #0:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #0:
+LifeSpan: 300.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+
+
+
+Wave #0:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #0:
+LifeSpan: 300.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+
+
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:1.0
+Period:0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:1.0
+Period:0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:1.0
+Period:0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: 26.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: 26.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: 26.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+11
+1
+1
+
+Wave #1:
+LifeSpan: 25.0
+MaxNumber: 26.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+
+GrowthRate:
+LifeSpan: 0
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #1:
+LifeSpan: 300.0
+MaxNumber: 301.0
+Amount:1.0
+Period:1.0
+Delay:1.0
+
+
+
+
+Wave #0:
+LifeSpan: N/A
+MaxNumber: 25.0
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: N/A
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #100:
+LifeSpan: N/A
+MaxNumber: 300.0
+Amount:0
+Period:0
+Delay:0
+
+
+
+
+Wave #0:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 1.0251603778007359
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #100:
+LifeSpan: 300.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+
+
+
+Wave #0:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 1.0251603778007359
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #100:
+LifeSpan: 300.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+
+
+
+Wave #0:
+LifeSpan: 25.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0
+
+GrowthRate:
+LifeSpan: 2.75
+MaxNumber: [NOT INCLUDED]
+Amount:0
+Period:0
+Delay:0
+
+Wave #100:
+LifeSpan: 300.0
+MaxNumber: N/A
+Amount:0
+Period:0
+Delay:0

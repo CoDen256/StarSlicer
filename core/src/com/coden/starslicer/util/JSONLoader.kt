@@ -67,7 +67,7 @@ class JSONLoader {
                     try {
                         parseGrowthResolver(spawner, "lifeSpan", spawners)
                     }catch (e: Exception){
-                        GrowthResolver(30.0f, 5.7f, GrowthResolver.GrowthType.POLYNOMIAL)
+                        GrowthResolver(25.0f, 2.75f, GrowthResolver.GrowthType.POLYNOMIAL)
                     }
             ))
 
