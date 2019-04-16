@@ -12,10 +12,13 @@ import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.events.EventType
+import com.coden.starslicer.events.Subject
+import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.spaceCraftX
 
-class DifficultyController(val data: EntityData) {
+class DifficultyController(val data: EntityData):Subject() {
     val queue = CommandQueue(data)
     val currentWave = Wave(5, queue)
 
@@ -25,13 +28,17 @@ class DifficultyController(val data: EntityData) {
     fun update(){
 
         currentWave.update()
-
         adapt()
 
         currentExecuteDelta += Gdx.graphics.deltaTime
         if (currentExecuteDelta >= executeDelta && !queue.isEmpty) {
             currentExecuteDelta = 0f
             queue.executeNext()
+        }
+
+        val waveState = currentWave.currentState
+        if (waveState is WaveBeginState){
+            notify(EventType.START_GAME, waveState.time)
         }
 
     }
@@ -43,12 +50,17 @@ class DifficultyController(val data: EntityData) {
 
     fun adapt(){
         if (SpaceCraft.health < 15 && hpboosts.size == 0){
-            if (MathUtils.randomBoolean(0.25f) ){
+            if (MathUtils.randomBoolean(0.01f) ){
+                Log.info("SPAWNING BOOST", Log.LogType.DEBUG)
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }
         }
-        if (attackers.count{it is Missile} > 20){
-            queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
+        if (attackers.count{it is Missile} > 30){
+            if (MathUtils.randomBoolean(0.01f)){
+                Log.info("SPAWNING SHIELD", Log.LogType.DEBUG)
+                queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
+            }
+
         }
     }
 }

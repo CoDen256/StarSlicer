@@ -66,6 +66,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         inputManager = InputManager(data)
 
         difficultyController = DifficultyController(data)
+        difficultyController.addObserver(hud)
 
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)

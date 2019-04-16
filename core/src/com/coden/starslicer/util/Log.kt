@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Logger
 object Log {
     enum class LogType {INFO, DEBUG, HUD, ATTACKERS, SCREENS, ASSETS, GAME, SPAWN, POWERUP}
     private val infoLogger  = Logger("INFO", Logger.NONE)
-    private val debugLogger  = Logger("DEBUG", Logger.NONE)
+    private val debugLogger  = Logger("DEBUG", Logger.INFO)
     private val hudLogger  = Logger("HUD", Logger.NONE)
     private val attackerLogger  = Logger("Attackers", Logger.NONE)
     private val spawnLogger  = Logger("Spawning", Logger.NONE)

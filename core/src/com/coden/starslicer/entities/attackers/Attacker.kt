@@ -110,7 +110,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
 
     open fun onDestroy() {}
 
-    open fun render(shapeRenderer: ShapeRenderer){
+    open fun renderHealthBar(shapeRenderer: ShapeRenderer){
         healthBar!!.render(shapeRenderer)
     }
 

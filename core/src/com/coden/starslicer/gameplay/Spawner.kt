@@ -2,8 +2,8 @@ package com.coden.starslicer.gameplay
 
 import com.coden.starslicer.Commands.Command
 import com.coden.starslicer.Commands.CommandQueue
-import com.coden.starslicer.states.spawner.SpawnerDisabledState
-import com.coden.starslicer.states.spawner.SpawnerState
+import com.coden.starslicer.gameplay.spawnerStates.SpawnerDisabledState
+import com.coden.starslicer.gameplay.spawnerStates.SpawnerState
 import com.coden.starslicer.util.GrowthResolver
 
 data class Spawner(val numberGrowth: GrowthResolver,

@@ -1,9 +1,8 @@
-package com.coden.starslicer.states.spawner
+package com.coden.starslicer.gameplay.spawnerStates
 
 import com.badlogic.gdx.Gdx
 import com.coden.starslicer.Commands.CommandQueue
 import com.coden.starslicer.gameplay.Spawner
-import com.coden.starslicer.util.Log
 
 class SpawnerDelayState (val spawner: Spawner): SpawnerState {
     var timePassed = 0f

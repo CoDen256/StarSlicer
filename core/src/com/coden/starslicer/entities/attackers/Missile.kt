@@ -74,7 +74,7 @@ class Missile private constructor(override val initialPos: Vector2,
 
     }
 
-    override fun render(shapeRenderer: ShapeRenderer) {}
+    override fun renderHealthBar(shapeRenderer: ShapeRenderer) {}
 
     override fun update() {
         updateLife()

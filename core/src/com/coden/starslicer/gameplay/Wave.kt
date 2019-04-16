@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.Commands.*
-import com.coden.starslicer.states.wave.WaveBeginState
-import com.coden.starslicer.states.wave.WaveState
+import com.coden.starslicer.events.Subject
+import com.coden.starslicer.gameplay.waveStates.WaveBeginState
+import com.coden.starslicer.gameplay.waveStates.WaveState
 import com.coden.starslicer.util.GrowthResolver as GR
 import com.coden.starslicer.util.JSONLoader
 

@@ -1,4 +1,4 @@
-package com.coden.starslicer.states.spawner
+package com.coden.starslicer.gameplay.spawnerStates
 
 import com.coden.starslicer.Commands.CommandQueue
 

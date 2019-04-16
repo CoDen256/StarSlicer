@@ -1,4 +1,4 @@
-package com.coden.starslicer.states.wave
+package com.coden.starslicer.gameplay.waveStates
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
