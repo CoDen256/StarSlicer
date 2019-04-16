@@ -1,9 +1,9 @@
-package com.coden.starslicer.Commands
+package com.coden.starslicer.Commands.spawnCommands
 
 import com.badlogic.gdx.math.MathUtils
+import com.coden.starslicer.Commands.Command
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.NuclearBomb
-import com.coden.starslicer.util.generateRandomSpawnPoint
 
 class SpawnNuclearBomb(val nuclearBombState: Int = -1): Command {
     override fun execute(data: EntityData) {

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.entityInterfaces.Container
+import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.util.*
 
@@ -25,6 +26,12 @@ class Satellite private constructor(
         }
     }
 
+    override val id = "sat$state$" + when(content){
+        PowerUp.PowerUpType.HPBOOST -> "0"
+        PowerUp.PowerUpType.SHIELD -> "1"
+        PowerUp.PowerUpType.SHOCKWAVE -> "2"
+        else -> "3"
+    }
     // Movement
     override var pos: Vector2 = initialPos
     override var velocity = Vector2()
@@ -45,7 +52,7 @@ class Satellite private constructor(
             else -> Vector2()
         }
 
-        Log.info("Satellite Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
+        Log.info("Satellite $id Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle())

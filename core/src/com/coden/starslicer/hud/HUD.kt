@@ -10,6 +10,7 @@ import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
+import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.centerX
 
 
@@ -30,12 +31,15 @@ class HUD(data: EntityData): Observer {
     var countDown = 0f
 
     init {
-        countDownFont.data.setScale(4f)
+        countDownFont.data.setScale(2f)
     }
 
     override fun <T> onNotify(event: EventType, vararg params: T) {
         if (event == EventType.START_GAME){
             countDown = if (countDown == 0f) params[0] as Float else countDown
+        }
+        if (event == EventType.SPAWNED){
+
         }
     }
 
@@ -82,7 +86,7 @@ class HUD(data: EntityData): Observer {
             return
         }
 
-        countDownFont.draw(batch, "$countDown", centerX, Gdx.graphics.height-400f)
+        countDownFont.draw(batch, "$countDown", 50f, Gdx.graphics.height-400f)
         countDown -= Gdx.graphics.deltaTime
     }
 

@@ -31,6 +31,7 @@ class Meteor private constructor(override val initialPos: Vector2,
         }
     }
 
+    override val id = "met$state$size"
     // Constant Speeds
     private val movementSpeed= MathUtils.random(50f, maxMovementSpeed)
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)
@@ -54,7 +55,7 @@ class Meteor private constructor(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Log.info("Meteor Launched at Vel:$velocity Init:$initialPos State:$state Size:$size", Log.LogType.ATTACKERS)
+        Log.info("Meteor $id Launched at Vel:$velocity Init:$initialPos State:$state Size:$size", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
     }

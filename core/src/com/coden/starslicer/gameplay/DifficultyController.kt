@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.Commands.CommandQueue
-import com.coden.starslicer.Commands.SpawnContainer
+import com.coden.starslicer.Commands.spawnCommands.SpawnContainer
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.attackers.Missile
@@ -15,14 +15,15 @@ import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
+import com.coden.starslicer.events.Observer
 import com.coden.starslicer.events.Subject
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.util.Log
-import com.coden.starslicer.util.spaceCraftX
 
-class DifficultyController(val data: EntityData):Subject() {
+class DifficultyController(val data: EntityData):Subject {
     val queue = CommandQueue(data)
     val currentWave = Wave(5, queue)
+    override val subscribers = ArrayList<Observer>()
 
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f
@@ -36,11 +37,12 @@ class DifficultyController(val data: EntityData):Subject() {
         if (currentExecuteDelta >= executeDelta && !queue.isEmpty) {
             currentExecuteDelta = 0f
             queue.executeNext()
+
         }
 
         val waveState = currentWave.currentState
         if (waveState is WaveBeginState){
-            notify(EventType.START_GAME, waveState.time)
+            notify<Float>(EventType.START_GAME, waveState.time)
         }
 
     }

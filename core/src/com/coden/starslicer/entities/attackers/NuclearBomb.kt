@@ -21,6 +21,8 @@ class NuclearBomb private constructor(override val initialPos: Vector2,
         }
     }
 
+    override val id = "nuc$state"
+
     val shieldAbsorbPortion = snapshot.shieldAbsorbPortion
     // Movement
     override var pos: Vector2 = initialPos
@@ -37,7 +39,7 @@ class NuclearBomb private constructor(override val initialPos: Vector2,
             else -> Vector2()
         }
 
-        Log.info("NB Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
+        Log.info("NB $id Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(velocity.angle()+90)

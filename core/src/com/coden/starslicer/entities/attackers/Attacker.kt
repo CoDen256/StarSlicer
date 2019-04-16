@@ -14,10 +14,12 @@ import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.events.Observer
+import com.coden.starslicer.events.Subject
 import com.coden.starslicer.hud.HealthBar
 import com.coden.starslicer.util.*
 
-abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker{
+abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
 
     companion object {
         val attackers = ArrayList<Attacker>()
@@ -26,6 +28,8 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     // Snapshot properties
     val name = snapshot.name
     val type = snapshot.type
+
+    abstract val id: String
 
     // If special property is null, so undefined, then look in map for every state
     val lifeSpan = snapshot.getLifeSpan(state)
