@@ -21,9 +21,11 @@ class PowerUpContainer private constructor(
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.POWERUP_CONTAINER)
 
-        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets){
+        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
-            attackers.add(PowerUpContainer(initialPos, state, content, assets))
+            val container = PowerUpContainer(initialPos, state, content, assets)
+            attackers.add(container)
+            return container
         }
     }
 

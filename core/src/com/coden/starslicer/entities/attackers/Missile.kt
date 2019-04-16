@@ -17,9 +17,11 @@ class Missile private constructor(override val initialPos: Vector2,
     companion object {
         val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
 
-        fun spawn(state: Int,  assets: Assets.AttackerAssets) {
+        fun spawn(state: Int,  assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()
-            attackers.add(Missile(initialPos, state, assets))
+            val missile = Missile(initialPos, state, assets)
+            attackers.add(missile)
+            return missile
         }
     }
     override val id = "mis$state"

@@ -25,9 +25,11 @@ class Meteor private constructor(override val initialPos: Vector2,
                 EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
         )
 
-        fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets) {
+        fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()
-            attackers.add(Meteor(initialPos, state, size, assets))
+            val meteor = Meteor(initialPos, state, size, assets)
+            attackers.add(meteor)
+            return meteor
         }
     }
 

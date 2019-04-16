@@ -1,6 +1,7 @@
 package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Graphics
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -50,7 +51,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     val w = Gdx.graphics.width + 0f
     val h = Gdx.graphics.height + 0f
-
+    var a = 90.0
 
 
     override fun show() {
@@ -69,7 +70,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         powerUpHandler = PowerUpHandler()
         inputManager = InputManager(data)
 
-
+        add_observers(hud)
         difficultyController = DifficultyController(data)
         difficultyController.addObserver(hud)
 
@@ -163,6 +164,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         }
 
+        a -= Gdx.graphics.deltaTime.toDouble()
+        val x = Math.cos(Math.toRadians(a)).toFloat()*Gdx.graphics.width/2
+        val y = Math.sin(Math.toRadians(a)).toFloat()*Gdx.graphics.height/2
+        val vec = Vector2(x, y)
+        Log.info("$x $y ${Math.sin(Math.toRadians(a))}", Log.LogType.DEBUG)
+        renderVector(shapeRenderer, Vector2(50f, 50f), vec)
+        Log.info("${vec}", Log.LogType.DEBUG)
+        //shapeRenderer.line(center, center.cpy())
+
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
@@ -199,7 +209,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
-        shapeRenderer.line(pos, pos.cpy().add(vector.cpy().setLength(50f)))
+        shapeRenderer.line(pos, pos.cpy().add(vector.cpy()))
     }
 
     fun renderRect(shapeRenderer: ShapeRenderer,rect: Rectangle) {
@@ -208,6 +218,12 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderCircle(shapeRenderer: ShapeRenderer, circle: Circle){
         shapeRenderer.circle(circle.x, circle.y, circle.radius)
+    }
+
+    fun add_observers(hud: HUD){
+        for (command in Locator.spawnServices.values){
+            command.addObserver(hud)
+        }
     }
 
     override fun pause() {

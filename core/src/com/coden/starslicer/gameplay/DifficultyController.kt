@@ -55,13 +55,11 @@ class DifficultyController(val data: EntityData):SubjectAdapter() {
     fun adapt(){
         if (SpaceCraft.health < 15 && hpboosts.size == 0){
             if (MathUtils.randomBoolean(0.01f) && attackers.count { it is PowerUpContainer  && it.content == PowerUp.PowerUpType.HPBOOST} == 0){
-                Log.info("SPAWNING BOOST", Log.LogType.DEBUG)
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }
         }
         if (attackers.count{it is Missile} > 25 && shields.size == 0 ){
             if (MathUtils.randomBoolean(0.01f) && attackers.count{it is PowerUpContainer && it.content == PowerUp.PowerUpType.SHIELD} == 0){
-                Log.info("SPAWNING SHIELD", Log.LogType.DEBUG)
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
             }
 

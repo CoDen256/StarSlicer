@@ -4,13 +4,17 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
+import com.coden.starslicer.hud.HUDElements.ExclamationMark
 import com.coden.starslicer.util.Log
+import com.coden.starslicer.util.center
 import com.coden.starslicer.util.centerX
 
 
@@ -24,14 +28,14 @@ class HUD(data: EntityData): Observer {
     private var countDownFont = BitmapFont()
 
     private val log = Logger("HUD", Logger.INFO)
-
-
     private val spaceCraftBar = HealthBar(SpaceCraft)
 
     var countDown = 0f
+    val exclamations = ArrayList<ExclamationMark>()
 
     init {
         countDownFont.data.setScale(2f)
+
     }
 
     override fun <T> onNotify(event: EventType, vararg params: T) {
@@ -39,7 +43,10 @@ class HUD(data: EntityData): Observer {
             countDown = if (countDown == 0f) params[0] as Float else countDown
         }
         if (event == EventType.SPAWNED){
-
+            val attacker = params[0]
+            if (attacker is NuclearBomb){
+                renderExclamation(attacker.initialPos)
+            }
         }
     }
 
@@ -49,6 +56,14 @@ class HUD(data: EntityData): Observer {
     fun update() {
         powerUpsBar.update()
         spaceCraftBar.update()
+        val iterator = exclamations.iterator()
+        while (iterator.hasNext()){
+            val exlamation = iterator.next()
+            exlamation.update()
+            if (exlamation.isDead){
+                iterator.remove()
+            }
+        }
 
     }
 
@@ -60,11 +75,14 @@ class HUD(data: EntityData): Observer {
         powerUpsBar.render(batch)
         updateCountDown(batch)
 
+        exclamations.forEach { it.render(batch) }
+
         batch.end()
 
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
         shapeRenderer.setColor(1f, 1f, 1f, 1f)
+
 
         powerUpsBar.render(shapeRenderer)
         spaceCraftBar.render(shapeRenderer)
@@ -73,6 +91,8 @@ class HUD(data: EntityData): Observer {
             attacker.renderHealthBar(shapeRenderer)
 
         }
+
+
 
         shapeRenderer.end()
 
@@ -97,6 +117,11 @@ class HUD(data: EntityData): Observer {
         powerUpsBar.debug(debugRenderer)
 
         debugRenderer.end()
+    }
+
+    fun renderExclamation(pos: Vector2){
+        val newPos = pos
+        exclamations.add(ExclamationMark(newPos))
     }
 
 }
