@@ -31,32 +31,31 @@ class JSONLoader {
             val state = spawner.getInt("state")
             val startWave = spawner.getInt("startWave")
 
-            val spawnCommand = when(AttackerType.valueOf(type)){
 
-                AttackerType.SMALL_METEOR -> SpawnMeteor(state, 0)
-                AttackerType.MEDIUM_METEOR -> SpawnMeteor(state, 1)
-                AttackerType.LARGE_METEOR -> SpawnMeteor(state, 2)
-                AttackerType.MISSILE -> SpawnMissile(state)
-                AttackerType.NUCLEAR_BOMB -> SpawnNuclearBomb(state)
-                AttackerType.SATELLITE -> {
-                    try {
-                        SpawnSatellite(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
-                    }catch (e: Exception){
-                        Log.info("FOR SAT NO SUCH POWERUP: ${spawner.getString("content")}", Log.LogType.SPAWN)
-                        throw e
-                    }
-                }
-                AttackerType.POWERUP_CONTAINER -> {
-                    try {
-                        SpawnContainer(state, PowerUp.PowerUpType.valueOf(spawner.getString("content")))
-                    }catch (e: Exception){
-                        Log.info("FOR PUC NO SUCH POWERUP: ${spawner.getString("content")}", Log.LogType.SPAWN)
-                        throw e
-                    }
-
-                }
-
+            val content = try {
+                PowerUp.PowerUpType.valueOf(spawner.getString("content"))
+            }catch (e: Exception){
+                null
             }
+
+            val id = when(AttackerType.valueOf(type)){
+                AttackerType.SMALL_METEOR -> "met${state}0"
+                AttackerType.MEDIUM_METEOR -> "met${state}1"
+                AttackerType.LARGE_METEOR -> "met${state}2"
+                AttackerType.MISSILE -> "mis$state"
+                AttackerType.NUCLEAR_BOMB -> "nuc$state"
+                AttackerType.SATELLITE -> "sat$state" + PowerUp.convert(content!!)
+                AttackerType.POWERUP_CONTAINER -> "puc$state" + PowerUp.convert(content!!)
+            }
+
+            var spawnCommand = Locator.getSpawnCommand(id)
+
+            if (spawnCommand is NullCommand){
+                spawnCommand = SpawnCommand.convert(id)
+                Locator.provide(id, spawnCommand)
+            }
+
+            assert(spawnCommand !is NullCommand)
 
             result.add(Spawner(numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand,
                     try {

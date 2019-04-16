@@ -7,6 +7,7 @@ abstract class PowerUp(val type: PowerUpType){
 
     enum class PowerUpType {
         SHIELD, HPBOOST, SHOCKWAVE, RANDOM;
+
     }
 
 
@@ -15,6 +16,13 @@ abstract class PowerUp(val type: PowerUpType){
         val hpboosts = ArrayList<HPBoost>()
         val shockwaves = ArrayList<ShockWave>()
 
+        fun convert(id: Int) = PowerUpType.values()[id]
+        fun convert(powerUpType: PowerUpType) = when (powerUpType){
+            PowerUpType.SHIELD -> 0
+            PowerUpType.HPBOOST -> 1
+            PowerUpType.SHOCKWAVE -> 2
+            PowerUpType.RANDOM -> 3
+        }
 
         fun create(ability: PowerUp.PowerUpType) = when(ability){
             PowerUpType.SHIELD -> shields.add(Shield())

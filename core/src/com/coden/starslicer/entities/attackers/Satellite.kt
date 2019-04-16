@@ -26,12 +26,7 @@ class Satellite private constructor(
         }
     }
 
-    override val id = "sat$state$" + when(content){
-        PowerUp.PowerUpType.HPBOOST -> "0"
-        PowerUp.PowerUpType.SHIELD -> "1"
-        PowerUp.PowerUpType.SHOCKWAVE -> "2"
-        else -> "3"
-    }
+    override val id = "sat$state$" + PowerUp.convert(content)
     // Movement
     override var pos: Vector2 = initialPos
     override var velocity = Vector2()

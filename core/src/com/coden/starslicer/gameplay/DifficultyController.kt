@@ -17,13 +17,13 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.events.Subject
+import com.coden.starslicer.events.SubjectAdapter
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.util.Log
 
-class DifficultyController(val data: EntityData):Subject {
+class DifficultyController(val data: EntityData):SubjectAdapter() {
     val queue = CommandQueue(data)
     val currentWave = Wave(5, queue)
-    override val subscribers = ArrayList<Observer>()
 
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f
@@ -42,7 +42,7 @@ class DifficultyController(val data: EntityData):Subject {
 
         val waveState = currentWave.currentState
         if (waveState is WaveBeginState){
-            notify<Float>(EventType.START_GAME, waveState.time)
+            notify(EventType.START_GAME, waveState.time)
         }
 
     }

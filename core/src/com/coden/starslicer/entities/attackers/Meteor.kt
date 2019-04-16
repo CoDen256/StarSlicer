@@ -31,7 +31,7 @@ class Meteor private constructor(override val initialPos: Vector2,
         }
     }
 
-    override val id = "met$state$size"
+    override val id = "met$size$state"
     // Constant Speeds
     private val movementSpeed= MathUtils.random(50f, maxMovementSpeed)
     private val angleSpeed = MathUtils.random(snapshot.minAngleSpeed, snapshot.maxAngleSpeed)

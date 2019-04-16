@@ -12,6 +12,10 @@ import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Json
+import com.coden.starslicer.Commands.spawnCommands.SpawnCommand
+import com.coden.starslicer.Commands.spawnCommands.SpawnMissile
+import com.coden.starslicer.Commands.spawnCommands.SpawnNuclearBomb
+import com.coden.starslicer.Commands.spawnCommands.SpawnSatellite
 import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
@@ -64,6 +68,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler()
         inputManager = InputManager(data)
+
 
         difficultyController = DifficultyController(data)
         difficultyController.addObserver(hud)
