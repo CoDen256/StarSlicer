@@ -116,6 +116,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         renderTimePassed(batch)
         difficultyController.render(batch, font)
 
+        font.draw(batch, a.toString(), w-200, h-120)
+
         SpaceCraft.render(batch)
         attackerHandler.renderAll(batch)
 
@@ -163,16 +165,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             }
 
         }
-
-        a -= Gdx.graphics.deltaTime.toDouble()
-        val x = Math.cos(Math.toRadians(a)).toFloat()*Gdx.graphics.width/2
-        val y = Math.sin(Math.toRadians(a)).toFloat()*Gdx.graphics.height/2
-        val vec = Vector2(x, y)
-        Log.info("$x $y ${Math.sin(Math.toRadians(a))}", Log.LogType.DEBUG)
-        renderVector(shapeRenderer, Vector2(50f, 50f), vec)
-        Log.info("${vec}", Log.LogType.DEBUG)
-        //shapeRenderer.line(center, center.cpy())
-
+        a -= Gdx.graphics.deltaTime*10f
+        //val r = if (Math.tan(Math.toRadians(a+Math.atan(250/500.0))) <= 0) 250f/Math.sin(Math.toRadians(a)).toFloat() else 500f/Math.cos(Math.toRadians(a)).toFloat()
+        val wi  = 1000f
+        val he  = 500f
+        var r = (he/2 - 10)/Math.sin(Math.toRadians(a)).toFloat()
+        r = if (Math.abs(r) > dist2((he/2-2), wi/2-10)) (wi/2-10)/Math.cos(Math.toRadians(a)).toFloat() else r
+        Log.info("$r", Log.LogType.DEBUG)
+        renderVector(shapeRenderer, center, Vector2(1f,  0f).rotate(a.toFloat()).setLength(r))
+        shapeRenderer.rect(40f ,20f, 1000f, 500f)
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
