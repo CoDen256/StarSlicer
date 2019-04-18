@@ -24,10 +24,12 @@ class PowerUpContainer private constructor(
         fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
             val container = PowerUpContainer(initialPos, state, content, assets)
+            container.createHealthBar()
             attackers.add(container)
             return container
         }
     }
+
 
     override val id = "puc$state" + PowerUp.convert(content)
     // Movement

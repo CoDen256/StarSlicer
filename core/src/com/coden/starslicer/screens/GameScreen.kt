@@ -70,10 +70,11 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         powerUpHandler = PowerUpHandler()
         inputManager = InputManager(data)
 
-        add_observers(hud)
+
         difficultyController = DifficultyController(data)
         difficultyController.addObserver(hud)
 
+        add_observers(hud)
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)
 
@@ -171,9 +172,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         val he  = 500f
         var r = (he/2 - 10)/Math.sin(Math.toRadians(a)).toFloat()
         r = if (Math.abs(r) > dist2((he/2-2), wi/2-10)) (wi/2-10)/Math.cos(Math.toRadians(a)).toFloat() else r
-        Log.info("$r", Log.LogType.DEBUG)
-        renderVector(shapeRenderer, center, Vector2(1f,  0f).rotate(a.toFloat()).setLength(r))
-        shapeRenderer.rect(40f ,20f, 1000f, 500f)
+       //Log.info("$r", Log.LogType.DEBUG)
+       //renderVector(shapeRenderer, center, Vector2(1f,  0f).rotate(a.toFloat()).setLength(r))
+       //shapeRenderer.rect(40f ,20f, 1000f, 500f)
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
@@ -222,7 +223,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun add_observers(hud: HUD){
+        Log.info("${Locator.spawnServices}", Log.LogType.DEBUG)
         for (command in Locator.spawnServices.values){
+            Log.info("adding observer to $command", Log.LogType.DEBUG)
             command.addObserver(hud)
         }
     }

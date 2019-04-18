@@ -56,7 +56,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     override val width = spriteTexture!!.regionWidth * xRatio
     override val height = spriteTexture!!.regionHeight * yRatio
 
-    var healthBar : HealthBar? = null
+    lateinit var healthBar : HealthBar
 
     override fun toString() = name
 
@@ -82,10 +82,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         if(dist2(pos, center) > dist2(centerX, centerY) + 15 && life > 15)
             kill()
 
-
-
-        healthBar = if (healthBar == null) HealthBar(this) else healthBar
-        healthBar!!.update()
+        healthBar.update()
     }
 
     protected fun rotate(angleSpeed: Float) {
@@ -112,10 +109,14 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         }
     }
 
+    fun createHealthBar(){
+        healthBar = HealthBar(this)
+    }
+
     open fun onDestroy() {}
 
     open fun renderHealthBar(shapeRenderer: ShapeRenderer){
-        healthBar!!.render(shapeRenderer)
+        healthBar.render(shapeRenderer)
     }
 
     protected fun applyVelocity(vel: Vector2) {

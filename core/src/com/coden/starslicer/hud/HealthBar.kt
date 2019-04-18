@@ -13,6 +13,7 @@ class HealthBar(val entity: DamageTaker) {
     val width get()  = entity.hitBox.width
     val height get() = entity.hitBox.height*0.1f
 
+
     val margin = entity.hitBox.height * 0.18f
     val widthScale = 0.8f
     val scaledWidth = width*widthScale

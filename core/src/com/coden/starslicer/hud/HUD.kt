@@ -13,9 +13,7 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.hud.HUDElements.ExclamationMark
-import com.coden.starslicer.util.Log
-import com.coden.starslicer.util.center
-import com.coden.starslicer.util.centerX
+import com.coden.starslicer.util.*
 
 
 class HUD(data: EntityData): Observer {
@@ -39,6 +37,7 @@ class HUD(data: EntityData): Observer {
     }
 
     override fun <T> onNotify(event: EventType, vararg params: T) {
+        Log.info("$event", Log.LogType.DEBUG)
         if (event == EventType.START_GAME){
             countDown = if (countDown == 0f) params[0] as Float else countDown
         }
@@ -120,8 +119,17 @@ class HUD(data: EntityData): Observer {
     }
 
     fun renderExclamation(pos: Vector2){
-        val newPos = pos
-        exclamations.add(ExclamationMark(newPos))
+        Log.info("$pos", Log.LogType.DEBUG)
+        val targetVector = pos.cpy().sub(center)
+        val alpha = targetVector.angleRad().toDouble()
+        val shiftX = 25
+        val shiftY = 40
+
+        var r = (centerY - shiftY)/Math.sin(alpha)
+        r = if (Math.abs(r) > dist2((centerY-shiftY), centerX-shiftX)) (centerX-shiftX)/Math.cos(alpha) else r
+
+        exclamations.add(ExclamationMark(center.cpy().add(targetVector.setLength(r.toFloat()))))
+
     }
 
 }

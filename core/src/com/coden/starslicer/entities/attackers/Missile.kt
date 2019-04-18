@@ -20,10 +20,13 @@ class Missile private constructor(override val initialPos: Vector2,
         fun spawn(state: Int,  assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()
             val missile = Missile(initialPos, state, assets)
+            missile.createHealthBar()
             attackers.add(missile)
             return missile
         }
     }
+
+
     override val id = "mis$state"
 
     // Movement
