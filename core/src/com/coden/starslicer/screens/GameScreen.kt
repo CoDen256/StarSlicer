@@ -2,6 +2,7 @@ package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Graphics
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -44,13 +45,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var difficultyController: DifficultyController
 
+    var randomPoint = generateRandomSpawnPoint(250f, 0f)
+
     val font = BitmapFont()
 
     var timePassed = 0f
     val bg = Texture("ui/backgrounds/background.png")
 
-    val w = Gdx.graphics.width + 0f
-    val h = Gdx.graphics.height + 0f
     var a = 90.0
 
 
@@ -83,6 +84,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         cam.update()
         batch.projectionMatrix = cam.combined
+
+
 
 
     }
@@ -166,7 +169,12 @@ class GameScreen(val game: StarSlicerGame) : Screen {
             }
 
         }
-        a -= Gdx.graphics.deltaTime*10f
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            randomPoint = generateRandomSpawnPoint(250f, 0f)
+            a = MathUtils.random(-45f,  45f).toDouble()
+        }
+
         //val r = if (Math.tan(Math.toRadians(a+Math.atan(250/500.0))) <= 0) 250f/Math.sin(Math.toRadians(a)).toFloat() else 500f/Math.cos(Math.toRadians(a)).toFloat()
         val wi  = 1000f
         val he  = 500f
@@ -174,7 +182,31 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         r = if (Math.abs(r) > dist2((he/2-2), wi/2-10)) (wi/2-10)/Math.cos(Math.toRadians(a)).toFloat() else r
        //Log.info("$r", Log.LogType.DEBUG)
        //renderVector(shapeRenderer, center, Vector2(1f,  0f).rotate(a.toFloat()).setLength(r))
-       //shapeRenderer.rect(40f ,20f, 1000f, 500f)
+        shapeRenderer.rect(340f ,170f, 400f, 200f)
+        shapeRenderer.circle(centerX, centerY, 250f)
+
+        val vec = center.cpy().sub(randomPoint).setLength(100f).rotate(a.toFloat())
+        val shiftX = 10f
+        val shiftY = 10f
+
+        //val alpha = vec.angleRad().toDouble()
+        //val shiftY = 10f
+        //val dh = (540-200)/2 - randomPoint.y
+        //val dh = -200-(540-200)/2 + randomPoint.y
+        //val H = shiftY + dh
+        //val radius = H/Math.sin(alpha)
+        //Log.info("A:${Math.toDegrees(alpha)} DH:$dh, VEL:$vec POS:$randomPoint R:$radius", Log.LogType.DEBUG)
+        //renderVector(shapeRenderer, randomPoint, vec)
+        if (Gdx.input.isTouched){
+            Log.info("${quater(Vector2(Gdx.input.getX().toFloat(), Gdx.input.getY().toFloat()))}", Log.LogType.DEBUG)
+        }
+        val alpha = Math.toRadians(vec.angle() + 90.0)
+       // val dw = -400-(1080-400)/2 + randomPoint.x
+        val dw = (1080-400)/2 - randomPoint.x
+        val W = shiftX + dw
+        val rad = W/Math.sin(alpha)
+       // Log.info("A:${Math.toDegrees(alpha)} DH:$dw, VEL:$vec POS:$randomPoint R:$rad", Log.LogType.DEBUG)
+        //renderVector(shapeRenderer, randomPoint, vec.setLength(radius(randomPoint, vec, (1080-400)/2f, (540-200)/2f, width = 400f, height = 200f).toFloat()))
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
@@ -223,9 +255,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun add_observers(hud: HUD){
-        Log.info("${Locator.spawnServices}", Log.LogType.DEBUG)
         for (command in Locator.spawnServices.values){
-            Log.info("adding observer to $command", Log.LogType.DEBUG)
             command.addObserver(hud)
         }
     }

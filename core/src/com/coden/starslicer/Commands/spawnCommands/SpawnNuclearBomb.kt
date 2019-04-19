@@ -15,7 +15,6 @@ class SpawnNuclearBomb(val nuclearBombState: Int = -1): SpawnCommand {
     override fun execute(data: EntityData) {
         val newState = if (nuclearBombState == -1) MathUtils.random(0, 1) else nuclearBombState
         val attacker = NuclearBomb.spawn(newState, data.attackerAssets)
-        Log.info("notifing $subscribers", Log.LogType.DEBUG)
         notify(EventType.SPAWNED, attacker)
     }
 
