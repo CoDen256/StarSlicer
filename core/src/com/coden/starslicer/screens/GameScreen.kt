@@ -34,8 +34,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var cam: OrthographicCamera
     private lateinit var batch: SpriteBatch
-    private lateinit var hud: HUD
     private lateinit var shapeRenderer: ShapeRenderer
+    private lateinit var hud: HUD
 
     private lateinit var attackerHandler: AttackerHandler
     private lateinit var powerUpHandler: PowerUpHandler
@@ -63,6 +63,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         data = EntityData(game.assets)
 
         hud = HUD(data)
+        Locator.provide(hud)
 
         attackerHandler = AttackerHandler()
         powerUpHandler = PowerUpHandler()
@@ -70,9 +71,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
         difficultyController = DifficultyController(data)
-        difficultyController.addObserver(hud)
 
-        add_observers(hud)
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)
 
@@ -209,12 +208,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     fun renderCircle(shapeRenderer: ShapeRenderer, circle: Circle){
         shapeRenderer.circle(circle.x, circle.y, circle.radius)
-    }
-
-    fun add_observers(hud: HUD){
-        for (command in Locator.spawnServices.values){
-            command.addObserver(hud)
-        }
     }
 
     override fun pause() {

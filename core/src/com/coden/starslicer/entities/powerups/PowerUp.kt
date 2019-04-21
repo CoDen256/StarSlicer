@@ -1,9 +1,10 @@
 package com.coden.starslicer.entities.powerups
 
 import com.badlogic.gdx.math.MathUtils
+import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 
-abstract class PowerUp(val type: PowerUpType){
+abstract class PowerUp(val type: PowerUpType): Mortal{
 
     enum class PowerUpType {
         SHIELD, HPBOOST, SHOCKWAVE, RANDOM;
@@ -53,13 +54,10 @@ abstract class PowerUp(val type: PowerUpType){
         }
     }
 
-    var isDead = false
+    override var isDead = false
     var active = false
 
     abstract fun update()
 
-    open fun kill() {
-        isDead = true
-    }
 
 }

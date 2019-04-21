@@ -13,28 +13,17 @@ fun generateRandomSpawnPoint() : Vector2 {
     return Vector2(1f, 0f).setLength(radius).rotate(angle).add(center)
 }
 
-fun generateRandomSpawnPoint(r: Float, shift: Float) : Vector2 {
+fun generateRandomSpawnPoint(radius: Float) : Vector2 {
 
     val angle = MathUtils.random(0, 360).toFloat()
-    val radius = r+shift
     return Vector2(1f, 0f).setLength(radius).rotate(angle).add(center)
 }
 
 fun quater(pos: Vector2) = when {//0,1,2,3 - right, top, left, bottom
-    pos.y <= linePos(pos.x) && pos.y <= lineNeg(pos.x)  -> {
-        3
-    }
-    pos.y >= linePos(pos.x) && pos.y <= lineNeg(pos.x)  -> {
-        2
-    }
-    pos.y <= linePos(pos.x) && pos.y >= lineNeg(pos.x)  -> {
-        Log.info(" $pos ${linePos(pos.x)} ${lineNeg(pos.x)} ", Log.LogType.DEBUG)
-        0
-    }
-    pos.y >= linePos(pos.x) && pos.y >= lineNeg(pos.x)  -> {
-        Log.info(" $pos ${linePos(pos.x)} ${lineNeg(pos.x)} ", Log.LogType.DEBUG)
-        1
-    }
+    pos.y <= linePos(pos.x) && pos.y <= lineNeg(pos.x) -> 3
+    pos.y >= linePos(pos.x) && pos.y <= lineNeg(pos.x) -> 2
+    pos.y <= linePos(pos.x) && pos.y >= lineNeg(pos.x) -> 0
+    pos.y >= linePos(pos.x) && pos.y >= lineNeg(pos.x) -> 1
     else -> -1
 }
 

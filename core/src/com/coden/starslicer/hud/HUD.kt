@@ -7,12 +7,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.entities.attackers.Attacker
+import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.hud.HUDElements.ExclamationMark
+import com.coden.starslicer.hud.HUDElements.HealthBar
+import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.*
 
 
@@ -28,8 +31,10 @@ class HUD(data: EntityData): Observer {
     private val log = Logger("HUD", Logger.INFO)
     private val spaceCraftBar = HealthBar(SpaceCraft)
 
+    private val healthBars = ArrayList<UIObject>()
+
     var countDown = 0f
-    val exclamations = ArrayList<ExclamationMark>()
+    val exclamations = ArrayList<UIObject>()
 
     init {
         countDownFont.data.setScale(2f)
@@ -41,7 +46,10 @@ class HUD(data: EntityData): Observer {
             countDown = if (countDown == 0f) params[0] as Float else countDown
         }
         if (event == EventType.SPAWNED){
-            val attacker = params[0]
+            val attacker = params[0] as Attacker
+            if (attacker !is Missile){
+                healthBars.add(HealthBar(attacker))
+            }
             if (attacker is NuclearBomb){
                 renderExclamation(attacker.initialPos, attacker.velocity)
             }
@@ -54,15 +62,20 @@ class HUD(data: EntityData): Observer {
     fun update() {
         powerUpsBar.update()
         spaceCraftBar.update()
-        val iterator = exclamations.iterator()
+        updateUIObjects(exclamations)
+        updateUIObjects(healthBars)
+
+    }
+
+    fun updateUIObjects(container: ArrayList<UIObject>){
+        val iterator = container.iterator()
         while (iterator.hasNext()){
-            val exlamation = iterator.next()
-            exlamation.update()
-            if (exlamation.isDead){
+            val uiObject = iterator.next()
+            uiObject.update()
+            if (uiObject.isDead){
                 iterator.remove()
             }
         }
-
     }
 
     fun render() {
@@ -85,12 +98,9 @@ class HUD(data: EntityData): Observer {
         powerUpsBar.render(shapeRenderer)
         spaceCraftBar.render(shapeRenderer)
 
-        for (attacker in attackers){
-            attacker.renderHealthBar(shapeRenderer)
-
+        for (healthBar in healthBars){
+            healthBar.render(shapeRenderer)
         }
-
-
 
         shapeRenderer.end()
 
@@ -118,8 +128,7 @@ class HUD(data: EntityData): Observer {
     }
 
     fun renderExclamation(pos: Vector2, vel: Vector2){
-        val r = radius(pos.cpy(), vel.cpy(), shiftY = 50f, shiftX = 20f)
-
+        val r = radius(pos.cpy(), vel.cpy(), shiftY = 50f, shiftX = 15f)
         exclamations.add(ExclamationMark(pos.cpy().add(vel.cpy().setLength(r.toFloat()))))
 
     }

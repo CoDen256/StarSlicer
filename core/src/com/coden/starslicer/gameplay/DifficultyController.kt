@@ -19,6 +19,7 @@ import com.coden.starslicer.events.Observer
 import com.coden.starslicer.events.Subject
 import com.coden.starslicer.events.SubjectAdapter
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
+import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 
 class DifficultyController(val data: EntityData):SubjectAdapter() {
@@ -27,6 +28,10 @@ class DifficultyController(val data: EntityData):SubjectAdapter() {
 
     val executeDelta = 0.2f
     var currentExecuteDelta = 0.0f
+
+    init {
+        addObserver(Locator.getUI())
+    }
 
     fun update(){
 

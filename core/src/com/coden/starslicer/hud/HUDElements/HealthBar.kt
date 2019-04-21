@@ -1,17 +1,20 @@
-package com.coden.starslicer.hud
+package com.coden.starslicer.hud.HUDElements
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
+import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.util.Log
 import sun.java2d.pipe.SpanShapeRenderer
 
-class HealthBar(val entity: DamageTaker) {
+class HealthBar(val entity: DamageTaker): UIObject {
 
     val x  get() = entity.hitBox.x
     val y get() = entity.hitBox.y+entity.hitBox.height
-    val width get()  = entity.hitBox.width
-    val height get() = entity.hitBox.height*0.1f
+    val width= entity.hitBox.width
+    val height= entity.hitBox.height*0.1f
+
+    override var isDead = false
 
 
     val margin = entity.hitBox.height * 0.18f
@@ -19,23 +22,26 @@ class HealthBar(val entity: DamageTaker) {
     val scaledWidth = width*widthScale
 
     val health get() = entity.health
-    val maxHealth get() = entity.maxHealth
+    val maxHealth  = entity.maxHealth
 
 
     init {
         Log.info("HealthBar for $entity was created", Log.LogType.HUD)
     }
 
-    fun update(){
+    override fun update(){
 
+        if (health <= 0) {
+            kill()
+        }
 
     }
 
-    fun render(batch: SpriteBatch) {
+    override fun render(batch: SpriteBatch) {
 
     }
 
-    fun render(shapeRenderer: ShapeRenderer){
+    override fun render(shapeRenderer: ShapeRenderer){
         shapeRenderer.setAutoShapeType(true)
 
         shapeRenderer.set(ShapeRenderer.ShapeType.Filled)

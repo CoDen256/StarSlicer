@@ -18,7 +18,6 @@ class NuclearBomb private constructor(override val initialPos: Vector2,
         fun spawn(state: Int, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
             val nuclearBomb = NuclearBomb(initialPos, state, assets)
-            nuclearBomb.createHealthBar()
             attackers.add(nuclearBomb)
             return nuclearBomb
         }

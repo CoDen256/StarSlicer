@@ -23,7 +23,6 @@ class Satellite private constructor(
         fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
             val satellite = Satellite(initialPos, state, content, assets)
-            satellite.createHealthBar()
             attackers.add(satellite)
             return satellite
         }

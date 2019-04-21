@@ -20,7 +20,6 @@ class Missile private constructor(override val initialPos: Vector2,
         fun spawn(state: Int,  assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()
             val missile = Missile(initialPos, state, assets)
-            missile.createHealthBar()
             attackers.add(missile)
             return missile
         }
@@ -78,8 +77,6 @@ class Missile private constructor(override val initialPos: Vector2,
         sprite.rotate(if (state == 2) 180f else velocity.angle())
 
     }
-
-    override fun renderHealthBar(shapeRenderer: ShapeRenderer) {}
 
     override fun update() {
         updateLife()

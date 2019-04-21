@@ -28,7 +28,6 @@ class Meteor private constructor(override val initialPos: Vector2,
         fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()
             val meteor = Meteor(initialPos, state, size, assets)
-            meteor.createHealthBar()
             attackers.add(meteor)
             return meteor
         }

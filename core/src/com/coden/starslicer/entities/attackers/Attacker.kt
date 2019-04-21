@@ -5,18 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.Circle
-import com.badlogic.gdx.math.MathUtils
-import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
-import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
-import com.coden.starslicer.events.Observer
-import com.coden.starslicer.events.Subject
-import com.coden.starslicer.hud.HealthBar
+import com.coden.starslicer.hud.HUDElements.HealthBar
 import com.coden.starslicer.util.*
 
 abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
@@ -56,8 +49,6 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
     override val width = spriteTexture!!.regionWidth * xRatio
     override val height = spriteTexture!!.regionHeight * yRatio
 
-    lateinit var healthBar : HealthBar
-
     override fun toString() = name
 
     // specialized vectors
@@ -82,7 +73,6 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         if(dist2(pos, center) > dist2(centerX, centerY) + 15 && life > 15)
             kill()
 
-        healthBar.update()
     }
 
     protected fun rotate(angleSpeed: Float) {
@@ -109,15 +99,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, asset
         }
     }
 
-    fun createHealthBar(){
-        healthBar = HealthBar(this)
-    }
-
     open fun onDestroy() {}
-
-    open fun renderHealthBar(shapeRenderer: ShapeRenderer){
-        healthBar.render(shapeRenderer)
-    }
 
     protected fun applyVelocity(vel: Vector2) {
         velocity.add(vel)

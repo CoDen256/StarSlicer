@@ -7,12 +7,15 @@ import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
+import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
 import com.coden.starslicer.util.yRatio
 
-class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3) {
+class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3): UIObject {
     // x center, y bottom
+
+    override var isDead = false
 
     private val size = data.powerUpIconAssets.width * xRatio
 
@@ -30,7 +33,7 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
         }
     }
 
-    fun update() {
+    override fun update() {
         for (icon in data.powerUpIcons) {
             icon.amount = when (icon.type) {
                 SHIELD    -> shields.size
@@ -42,13 +45,13 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     }
 
 
-    fun render(batch: SpriteBatch) {
+    override fun render(batch: SpriteBatch) {
         for (icon in data.powerUpIcons) {
             icon.draw(batch)
         }
     }
 
-    fun render(shapeRenderer: ShapeRenderer){
+    override fun render(shapeRenderer: ShapeRenderer){
         for (icon in data.powerUpIcons){
             renderAmount(icon, shapeRenderer)
         }

@@ -9,9 +9,17 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
+import com.coden.starslicer.events.Observer
+import com.coden.starslicer.events.Subject
+import com.coden.starslicer.events.SubjectAdapter
+import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 
-class InputManager(private val data: EntityData) {
+class InputManager(private val data: EntityData): SubjectAdapter() {
+
+    init {
+        addObserver(Locator.getUI())
+    }
 
     fun updateSwiping(){
         with(SpaceCraft){

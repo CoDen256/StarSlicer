@@ -56,6 +56,7 @@ class JSONLoader {
             }
 
             assert(spawnCommand !is NullCommand)
+            spawnCommand.addObserver(Locator.getUI())
 
             result.add(Spawner(numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand,
                     try {

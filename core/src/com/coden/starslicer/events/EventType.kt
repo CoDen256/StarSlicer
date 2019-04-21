@@ -4,5 +4,4 @@ enum class EventType {
     SPAWNED, DESTORYED,
     ADDED, USED,
     START_GAME,
-    DAMAGED
 }
