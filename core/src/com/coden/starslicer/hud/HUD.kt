@@ -43,7 +43,7 @@ class HUD(data: EntityData): Observer {
         if (event == EventType.SPAWNED){
             val attacker = params[0]
             if (attacker is NuclearBomb){
-                renderExclamation(attacker.velocity)
+                renderExclamation(attacker.initialPos, attacker.velocity)
             }
         }
     }
@@ -117,17 +117,10 @@ class HUD(data: EntityData): Observer {
         debugRenderer.end()
     }
 
-    fun renderExclamation(pos: Vector2){
-        Log.info("$pos", Log.LogType.DEBUG)
-        val targetVector = pos.cpy().sub(center)
-        val alpha = 180.0 - targetVector.angle()//targetVector.angleRad().toDouble()
-        val shiftX = 25
-        val shiftY = 40
+    fun renderExclamation(pos: Vector2, vel: Vector2){
+        val r = radius(pos.cpy(), vel.cpy(), shiftY = 50f, shiftX = 20f)
 
-        var r = (centerY - shiftY)/Math.sin(Math.toRadians(alpha))
-        r = if (Math.abs(r) > dist2((centerY-shiftY), centerX-shiftX)) (centerX-shiftX)/Math.cos(alpha) else r
-
-        exclamations.add(ExclamationMark(center.cpy().add(targetVector.setLength(r.toFloat()))))
+        exclamations.add(ExclamationMark(pos.cpy().add(vel.cpy().setLength(r.toFloat()))))
 
     }
 

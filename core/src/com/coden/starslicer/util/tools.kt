@@ -38,33 +38,29 @@ fun quater(pos: Vector2) = when {//0,1,2,3 - right, top, left, bottom
     else -> -1
 }
 
-fun radius(pos: Vector2, vec: Vector2, marginX: Float = 0f, marginY: Float = 0f, shiftX: Float = 10f, shiftY: Float = 10f, width: Float = w, height: Float = h)
+fun radius(pos: Vector2, vec: Vector2, startX: Float = 0f, startY: Float = 0f, shiftX: Float = 10f, shiftY: Float = 10f, width: Float = w, height: Float = h)
         = when(quater(pos)){
     0 -> { // right
-        val alpha = Math.toRadians(vec.angle() + 90.0) // TODO: PI
-        val r = pos.x - (marginX + width)
-        //Log.info("right $r ${Math.toDegrees(alpha)} $pos $vec", Log.LogType.DEBUG)
-        (r + shiftX) / Math.sin(alpha)
+        val alpha = vec.angleRad() + MathUtils.PI
+        val r = pos.x - (startX + width)
+        (r + shiftX) / Math.sin(alpha.toDouble())
     }
 
     1 -> { // top
         val alpha = vec.angleRad().toDouble()
-        val r = pos.y - (marginY + height)
-        //Log.info("top $r ${Math.toDegrees(alpha)} $pos $vec", Log.LogType.DEBUG)
+        val r = pos.y - (startY + height)
         (r + shiftY) / Math.sin(alpha)
     }
 
     2 -> { // left
-        val alpha = Math.toRadians(vec.angle() + 90.0)
-        val r = marginX - pos.x
-        //Log.info("left $r ${Math.toDegrees(alpha)} $pos $vec", Log.LogType.DEBUG)
-        (r + shiftX) / Math.sin(alpha)
+        val alpha = vec.angleRad() + MathUtils.PI
+        val r = startX - pos.x
+        (r + shiftX) / Math.sin(alpha.toDouble())
     }
 
     3 -> { // bottom
         val alpha = vec.angleRad().toDouble()
-        val r = marginY - pos.y
-        //Log.info("bottom $r ${Math.toDegrees(alpha)} $pos $vec", Log.LogType.DEBUG)
+        val r = startY - pos.y
         (r + shiftY) / Math.sin(alpha)
     }
     else -> 0.0
@@ -90,5 +86,5 @@ val centerX = Gdx.graphics.width/2f
 val centerY = Gdx.graphics.height/2f
 val center = Vector2(centerX, centerY)
 
-val linePos = {x: Float -> h/w * x}
-val lineNeg = {x: Float -> -h/w * x}
+val linePos = {x: Float -> h/w * (x - w/2) + h/2}
+val lineNeg = {x: Float -> -h/w * (x - w/2) + h/2}
