@@ -50,13 +50,12 @@ class JSONLoader {
 
             var spawnCommand = Locator.getSpawnCommand(id)
 
-            if (spawnCommand is NullCommand){
+            if (spawnCommand is NullSpawnCommand){
                 spawnCommand = SpawnCommand.convert(id)
                 Locator.provide(id, spawnCommand)
             }
 
-            assert(spawnCommand !is NullCommand)
-            spawnCommand.addObserver(Locator.getUI())
+            assert(spawnCommand !is NullSpawnCommand)
 
             result.add(Spawner(numberGrowth, periodGrowth, delayGrowth, startWave, spawnCommand,
                     try {

@@ -8,9 +8,7 @@ import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 
-class SpawnSatellite(val stateSatellite: Int = -1, val type: PowerUp.PowerUpType): SpawnCommand {
-
-    override val subscribers = ArrayList<Observer>()
+class SpawnSatellite(val stateSatellite: Int = -1, val type: PowerUp.PowerUpType): SpawnCommand() {
 
     override fun execute(data: EntityData) {
         val newState = if (stateSatellite == -1) MathUtils.random(0, 1) else stateSatellite

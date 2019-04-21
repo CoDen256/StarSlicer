@@ -3,6 +3,7 @@ package com.coden.starslicer.hud
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
 import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
@@ -34,14 +35,14 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     }
 
     override fun update() {
-        for (icon in data.powerUpIcons) {
-            icon.amount = when (icon.type) {
-                SHIELD    -> shields.size
-                SHOCKWAVE -> shockwaves.size
-                HPBOOST   -> hpboosts.size
-                RANDOM -> throw IllegalArgumentException()
-            }
-        }
+        //for (icon in data.powerUpIcons) {
+        //    icon.amount = when (icon.type) {
+        //        SHIELD    -> shields.size
+        //        SHOCKWAVE -> shockwaves.size
+        //        HPBOOST   -> hpboosts.size
+        //        RANDOM -> throw IllegalArgumentException()
+        //    }
+        //}
     }
 
 
@@ -55,6 +56,14 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
         for (icon in data.powerUpIcons){
             renderAmount(icon, shapeRenderer)
         }
+    }
+
+    fun increaseAmount(ability:PowerUp.PowerUpType){
+        data.powerUpIcons.find{it.type == ability}!!.amount += 1
+    }
+
+    fun decreaseAmount(ability: PowerUp.PowerUpType){
+        data.powerUpIcons.find{it.type == ability}!!.amount -= 1
     }
 
     private fun renderAmount(powerUpIcon: PowerUpIcon, shapeRenderer: ShapeRenderer) {

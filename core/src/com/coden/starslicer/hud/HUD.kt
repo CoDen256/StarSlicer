@@ -10,6 +10,7 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.attackers.NuclearBomb
+import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
@@ -45,6 +46,15 @@ class HUD(data: EntityData): Observer {
         if (event == EventType.START_GAME){
             countDown = if (countDown == 0f) params[0] as Float else countDown
         }
+        if (event == EventType.ADDED){
+            powerUpsBar.increaseAmount(params[0] as PowerUp.PowerUpType)
+        }
+
+        if (event == EventType.USED){
+            powerUpsBar.decreaseAmount(params[0] as PowerUp.PowerUpType)
+
+        }
+
         if (event == EventType.SPAWNED){
             val attacker = params[0] as Attacker
             if (attacker !is Missile){

@@ -1,7 +1,7 @@
 package com.coden.starslicer.Commands
 
 import com.badlogic.gdx.utils.Queue
-import com.coden.starslicer.Commands.spawnCommands.NullCommand
+import com.coden.starslicer.Commands.spawnCommands.NullSpawnCommand
 import com.coden.starslicer.entities.EntityData
 
 class CommandQueue(val data: EntityData) {
@@ -14,7 +14,7 @@ class CommandQueue(val data: EntityData) {
     }
 
     fun executeNext(): Command{
-        if (container.size == 0) return NullCommand()
+        if (container.size == 0) return NullSpawnCommand()
         val command = container.removeFirst()
         command.execute(data)
         return command

@@ -1,13 +1,14 @@
 package com.coden.starslicer.Commands.spawnCommands
 
 import com.coden.starslicer.Commands.Command
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.events.Subject
-import java.lang.IllegalArgumentException
-import java.util.*
+import com.coden.starslicer.events.Observer
+import com.coden.starslicer.events.SubjectAdapter
+import com.coden.starslicer.util.Locator
+import kotlin.collections.ArrayList
 
-interface SpawnCommand: Subject, Command{
+abstract class SpawnCommand: SubjectAdapter(), Command{
+    override val subscribers: ArrayList<Observer> = arrayListOf(Locator.getUI())
 
     companion object {
         fun convert(id: String): SpawnCommand{
@@ -19,7 +20,7 @@ interface SpawnCommand: Subject, Command{
                 "nuc" -> SpawnNuclearBomb(state)
                 "puc" -> SpawnContainer(state, PowerUp.convert(id.last().toString().toInt()))
                 "sat" -> SpawnSatellite(state, PowerUp.convert(id.last().toString().toInt()))
-                else -> NullCommand()
+                else -> NullSpawnCommand()
             }
 
 

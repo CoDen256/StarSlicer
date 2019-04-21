@@ -7,9 +7,7 @@ import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 
-class SpawnMissile(val missileState: Int = -1) : SpawnCommand {
-
-    override val subscribers = ArrayList<Observer>()
+class SpawnMissile(val missileState: Int = -1) : SpawnCommand() {
 
     override fun execute(data: EntityData){
         val newState = if (missileState == -1) MathUtils.random(0, 3) else missileState

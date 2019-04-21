@@ -31,7 +31,7 @@ class HealthBar(val entity: DamageTaker): UIObject {
 
     override fun update(){
 
-        if (health <= 0) {
+        if (entity.isDead) {
             kill()
         }
 
