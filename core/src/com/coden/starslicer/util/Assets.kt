@@ -129,13 +129,13 @@ class Assets{
                 loadConfig("blades/second.json"))
 
         val attackerConfigMap = mapOf(
-                MISSILE to loadConfig("missile/missile.json"),
-                NUCLEAR_BOMB to loadConfig("nuclearBomb/nuclearBomb.json"),
-                SMALL_METEOR to loadConfig("meteors/smallMeteor.json"),
-                MEDIUM_METEOR to loadConfig("meteors/mediumMeteor.json"),
-                LARGE_METEOR to loadConfig("meteors/largeMeteor.json"),
-                SATELLITE to loadConfig("satellite/satellite.json"),
-                POWERUP_CONTAINER to loadConfig("container/powerUpContainer.json"))
+                MISSILE to loadConfig2("missile/missile.json"),
+                NUCLEAR_BOMB to loadConfig2("nuclearBomb/nuclearBomb.json"),
+                SMALL_METEOR to loadConfig2("meteors/smallMeteor.json"),
+                MEDIUM_METEOR to loadConfig2("meteors/mediumMeteor.json"),
+                LARGE_METEOR to loadConfig2("meteors/largeMeteor.json"),
+                SATELLITE to loadConfig2("satellite/satellite.json"),
+                POWERUP_CONTAINER to loadConfig2("container/powerUpContainer.json"))
 
         val powerupConfigMap = mapOf(
                 PowerUp.PowerUpType.HPBOOST to loadConfig("powerups/hpboost.json"),
@@ -152,6 +152,7 @@ class Assets{
 
 
         private fun loadConfig(path: String) = Gdx.files.internal("entities/config/$path").reader()
+        private fun loadConfig2(path: String) = loadConfig(path)//JsonReader().parse(Gdx.files.internal("entities/config/$path"))
         private fun loadSpawnerConfig(path: String) = JsonReader().parse(Gdx.files.internal("entities/config/spawners/$path"))
 
         init {

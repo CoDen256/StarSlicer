@@ -35,14 +35,6 @@ class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: In
     }
 
     override fun update() {
-        //for (icon in data.powerUpIcons) {
-        //    icon.amount = when (icon.type) {
-        //        SHIELD    -> shields.size
-        //        SHOCKWAVE -> shockwaves.size
-        //        HPBOOST   -> hpboosts.size
-        //        RANDOM -> throw IllegalArgumentException()
-        //    }
-        //}
     }
 
 

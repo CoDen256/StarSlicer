@@ -4,15 +4,15 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.Commands.*
-import com.coden.starslicer.events.Subject
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.gameplay.waveStates.WaveState
-import com.coden.starslicer.util.GrowthResolver as GR
-import com.coden.starslicer.util.JSONLoader
+import com.coden.starslicer.util.Assets
+import com.coden.starslicer.util.loaders.SpawnerLoader
+import com.coden.starslicer.gameplay.GrowthResolver as GR
 
 class Wave(var number: Int, val queue: CommandQueue) {
 
-    val spawners = JSONLoader().loadAllSpanwers()
+    val spawners = SpawnerLoader().loadAllConfigs(Assets.spawnerConfigList)
 
     init {
         for (spawner in spawners) spawner.evolveTo(number)
