@@ -4,14 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
-import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
-import com.coden.starslicer.util.yRatio
 
 class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3): UIObject {
     // x center, y bottom

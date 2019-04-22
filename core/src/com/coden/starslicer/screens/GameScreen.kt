@@ -57,7 +57,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         inputManager = InputManager(data)
 
-
+        attackerHandler = AttackerHandler()
         difficultyController = DifficultyController(data)
 
         cam = OrthographicCamera()

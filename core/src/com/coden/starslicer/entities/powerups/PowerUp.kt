@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.util.Log
+import com.coden.starslicer.util.loaders.PowerUpLoader
 import com.coden.starslicer.util.spaceCraftX
 import com.coden.starslicer.util.spaceCraftY
 
@@ -20,6 +21,7 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
         private val shields = ArrayList<Shield>()
         private val hpboosts = ArrayList<HPBoost>()
         private val shockwaves = ArrayList<ShockWave>()
+        val loader = PowerUpLoader()
 
         fun updateAll(){
             listOf(PowerUp.PowerUpType.SHIELD, PowerUp.PowerUpType.SHOCKWAVE, PowerUp.PowerUpType.HPBOOST).forEach { update(it)}
@@ -79,6 +81,13 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
         private fun createRandom(): Boolean{
             create(PowerUpType.values()[MathUtils.random(0,2)])
             return true
+        }
+
+        fun isEmpty(ability: PowerUpType) = when(ability){
+            PowerUpType.SHIELD -> shields.isEmpty()
+            PowerUpType.HPBOOST -> hpboosts.isEmpty()
+            PowerUpType.SHOCKWAVE -> shockwaves.isEmpty()
+            PowerUpType.RANDOM -> throw IllegalArgumentException()
         }
 
         fun debugShapes(shapeRenderer: ShapeRenderer){

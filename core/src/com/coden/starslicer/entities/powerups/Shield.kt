@@ -7,7 +7,7 @@ import com.coden.starslicer.util.EntityLoader
 class Shield: PowerUp(PowerUpType.SHIELD) {
 
     companion object {
-        val snapshot = EntityLoader.loadPowerUp(PowerUpType.SHIELD)
+        val snapshot = loader.load(PowerUpType.SHIELD)
     }
 
     private val maxRadius = snapshot.radius

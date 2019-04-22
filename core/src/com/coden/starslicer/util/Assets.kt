@@ -28,9 +28,8 @@ class Assets{
     lateinit var attackerAssets: AttackerAssets
     //lateinit var attackerConfigs:
 
-    var progress: Float
+    val progress: Float
         get() = manager.progress
-        set(value) {}
 
     fun load() {
         loadAllTextures()
@@ -139,9 +138,9 @@ class Assets{
                 POWERUP_CONTAINER to loadConfig("container/powerUpContainer.json"))
 
         val powerupConfigMap = mapOf(
-                PowerUp.PowerUpType.HPBOOST to loadConfig2("powerups/hpboost.json"),
-                PowerUp.PowerUpType.SHIELD to loadConfig2("powerups/shield.json"),
-                PowerUp.PowerUpType.SHOCKWAVE to loadConfig2("powerups/shockwave.json"))
+                PowerUp.PowerUpType.HPBOOST to loadConfig("powerups/hpboost.json"),
+                PowerUp.PowerUpType.SHIELD to loadConfig("powerups/shield.json"),
+                PowerUp.PowerUpType.SHOCKWAVE to loadConfig("powerups/shockwave.json"))
 
         val spawnerConfigList = arrayListOf(
                 loadSpawnerConfig("containerSpawners.json"),
@@ -152,7 +151,6 @@ class Assets{
         )
 
 
-        private fun loadConfig2(path: String) = Gdx.files.internal("entities/config/$path").reader()
         private fun loadConfig(path: String) = Loader.loadJson("entities/config/$path")
         private fun loadSpawnerConfig(path: String) = Loader.loadJson("entities/config/spawners/$path")
 

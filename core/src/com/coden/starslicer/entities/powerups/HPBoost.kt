@@ -7,7 +7,7 @@ import com.coden.starslicer.util.EntityLoader
 class HPBoost: PowerUp(PowerUpType.HPBOOST), DamageGiver {
 
     companion object {
-        val snapshot = EntityLoader.loadPowerUp(PowerUpType.HPBOOST)
+        val snapshot = loader.load(PowerUpType.HPBOOST)
 
     }
 

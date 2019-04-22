@@ -12,8 +12,7 @@ import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.attackers.PowerUpContainer
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.hpboosts
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.shields
+
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
@@ -59,12 +58,12 @@ class DifficultyController(val data: EntityData):SubjectAdapter() {
     }
 
     fun adapt(){
-        if (SpaceCraft.health < 15 && hpboosts.size == 0){
+        if (SpaceCraft.health < 15 && PowerUp.isEmpty(PowerUp.PowerUpType.HPBOOST)){
             if (MathUtils.randomBoolean(0.01f) && attackers.count { it is PowerUpContainer  && it.content == PowerUp.PowerUpType.HPBOOST} == 0){
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }
         }
-        if (attackers.count{it is Missile} > 25 && shields.size == 0 ){
+        if (attackers.count{it is Missile} > 25 && PowerUp.isEmpty(PowerUp.PowerUpType.SHIELD)){
             if (MathUtils.randomBoolean(0.01f) && attackers.count{it is PowerUpContainer && it.content == PowerUp.PowerUpType.SHIELD} == 0){
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
             }

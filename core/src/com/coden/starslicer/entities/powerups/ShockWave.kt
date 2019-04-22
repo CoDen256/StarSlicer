@@ -4,12 +4,11 @@ import com.badlogic.gdx.Gdx
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.EntityLoader.loadPowerUp
 
 class ShockWave: PowerUp(PowerUpType.SHOCKWAVE), DamageGiver {
 
     companion object {
-        val snapshot = loadPowerUp(PowerUpType.SHOCKWAVE)
+        val snapshot = loader.load(PowerUpType.SHOCKWAVE)
     }
 
     private val pushingSpeed = snapshot.pushingSpeed * sqRatio
