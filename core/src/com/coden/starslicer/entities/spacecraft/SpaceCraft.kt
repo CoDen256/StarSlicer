@@ -9,14 +9,14 @@ import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
 import com.coden.starslicer.util.loaders.BladeLoader
+import com.coden.starslicer.util.loaders.SpaceCraftLoader
 import com.coden.util.swipe.SwipeHandler
 
 object SpaceCraft: DamageTaker, DamageGiver {
     override var isDead = false
 
-    private val snapshot = loadSpaceCraft()
+    private val snapshot = SpaceCraftLoader().load()
 
     val xProportion = snapshot.xProportion
     val yProportion = snapshot.yProportion
@@ -63,7 +63,7 @@ object SpaceCraft: DamageTaker, DamageGiver {
     val secondBlade = blades[1]
 
 
-    override fun toString()= "SPACECRAFT"
+    override fun toString()= "SPACECRAFT\nProportions:$xProportion, $yProportion\nDamage:$damage\nHealth:$maxHealth "
 
 
     fun render(batch: SpriteBatch) {

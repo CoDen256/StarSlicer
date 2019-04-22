@@ -123,7 +123,7 @@ class Assets{
     }
 
     companion object Configs{
-        val spaceCraftConfig = loadConfig2("spacecraft/spacecraft.json")
+        val spaceCraftConfig = loadConfig("spacecraft/spacecraft.json")
 
         val bladesConfig = arrayOf(
                 loadConfig("blades/first.json"),
