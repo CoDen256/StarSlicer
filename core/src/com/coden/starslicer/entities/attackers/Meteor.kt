@@ -10,19 +10,20 @@ import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.loaders.AttackerLoader
 import java.lang.Float.min
 import javax.swing.text.html.parser.Entity
 
 class Meteor private constructor(override val initialPos: Vector2,
              state: Int,
              val size: Int,
-             assets: Assets.AttackerAssets): Attacker(snapshots[size]!!, state, assets) {
+             assets: Assets.AttackerAssets): Attacker(snapshots[size], state, assets) {
 
     companion object {
         val snapshots = arrayOf(
-                EntityLoader.loadAttacker(AttackerType.SMALL_METEOR),
-                EntityLoader.loadAttacker(AttackerType.MEDIUM_METEOR),
-                EntityLoader.loadAttacker(AttackerType.LARGE_METEOR)
+                Attacker.loader.loadByAttacker(AttackerType.SMALL_METEOR),
+                Attacker.loader.loadByAttacker(AttackerType.MEDIUM_METEOR),
+                Attacker.loader.loadByAttacker(AttackerType.LARGE_METEOR)
         )
 
         fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets): Attacker {

@@ -9,11 +9,13 @@ import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.loaders.AttackerLoader
 
-abstract class Attacker(val snapshot: EntitySnapshot, val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
+abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
 
     companion object {
         val attackers = ArrayList<Attacker>()
+        val loader = AttackerLoader()
     }
 
     // Snapshot properties
@@ -26,7 +28,7 @@ abstract class Attacker(val snapshot: EntitySnapshot, val state: Int = 0, assets
     val lifeSpan = snapshot.getLifeSpan(state)
     val maxMovementSpeed = snapshot.getMaxMovementSpeed(state) * sqRatio
     val collisional = snapshot.getCollisional(state)
-    val reward = snapshot.reward
+    val reward = snapshot.getReward(state)
 
     final override val maxHealth = snapshot.getMaxHealth(state)
     override val damage = snapshot.getDamage(state)

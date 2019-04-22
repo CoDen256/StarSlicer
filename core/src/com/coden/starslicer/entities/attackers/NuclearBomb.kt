@@ -14,7 +14,7 @@ class NuclearBomb private constructor(override val initialPos: Vector2,
                   assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), DamageGiver{
 
     companion object {
-        val snapshot = EntityLoader.loadAttacker(AttackerType.NUCLEAR_BOMB)
+        val snapshot = Attacker.loader.loadByAttacker(AttackerType.NUCLEAR_BOMB)
         fun spawn(state: Int, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
             val nuclearBomb = NuclearBomb(initialPos, state, assets)

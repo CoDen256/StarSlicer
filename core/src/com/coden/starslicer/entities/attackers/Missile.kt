@@ -15,7 +15,7 @@ class Missile private constructor(override val initialPos: Vector2,
                assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
 
     companion object {
-        val snapshot = EntityLoader.loadAttacker(AttackerType.MISSILE)
+        val snapshot = Attacker.loader.loadByAttacker(AttackerType.MISSILE)
 
         fun spawn(state: Int,  assets: Assets.AttackerAssets): Attacker {
             val initialPos = generateRandomSpawnPoint()

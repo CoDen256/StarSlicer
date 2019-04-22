@@ -2,6 +2,9 @@ package com.coden.starslicer.util.loaders
 
 import com.badlogic.gdx.utils.JsonValue
 import com.coden.starslicer.entities.attackers.AttackerSnapshot
+import com.coden.starslicer.entities.attackers.AttackerType
+import com.coden.starslicer.util.Assets
+import java.lang.AssertionError
 
 class AttackerLoader : Loader<AttackerSnapshot>{
     override fun loadConfigToSingle(config: JsonValue): AttackerSnapshot? {
@@ -22,5 +25,8 @@ class AttackerLoader : Loader<AttackerSnapshot>{
 
         return snapshot
     }
+
+    fun loadByAttacker(attacker: AttackerType) : AttackerSnapshot = loadConfigToSingle(loadConfig(attacker))!!
+    fun loadConfig(attacker: AttackerType): JsonValue = Assets.attackerConfigMap[attacker]!!
 
 }

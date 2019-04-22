@@ -6,5 +6,5 @@
   "damage":90.0,
   "collisional": true,
   "maxAngleSpeed":90,
-  "reward":200
+  "reward":[200, 1000]
 }

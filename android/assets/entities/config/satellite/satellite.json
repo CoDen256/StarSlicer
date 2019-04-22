@@ -7,5 +7,5 @@
   "maxMovementSpeed": 50.0,
   "damage":200.0,
   "collisional":true,
-  "reward":250
+  "reward":[250, 750]
 }

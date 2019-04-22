@@ -153,7 +153,7 @@ class Assets{
 
 
         private fun loadConfig(path: String) = Gdx.files.internal("entities/config/$path").reader()
-        private fun loadConfig2(path: String) = loadConfig(path)//JsonReader().parse(Gdx.files.internal("entities/config/$path"))
+        private fun loadConfig2(path: String) = Loader.loadJson("entities/config/$path")
         private fun loadSpawnerConfig(path: String) = Loader.loadJson("entities/config/spawners/$path")
 
         init {
