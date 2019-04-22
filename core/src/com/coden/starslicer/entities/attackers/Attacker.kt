@@ -4,15 +4,13 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
-import com.coden.starslicer.hud.HUDElements.HealthBar
 import com.coden.starslicer.util.*
 
-abstract class Attacker(val snapshot: AttackerSnapshot,val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
+abstract class Attacker(val snapshot: EntitySnapshot, val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
 
     companion object {
         val attackers = ArrayList<Attacker>()

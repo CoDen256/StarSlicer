@@ -29,6 +29,8 @@ import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
 import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.loaders.AttackerLoader
+import com.coden.starslicer.util.loaders.Loader
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -80,6 +82,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         cam.update()
         batch.projectionMatrix = cam.combined
+
+
+        Log.info(AttackerLoader().loadConfigToSingle(Loader.loadJson("entities/config/container/powerUpContainer.json"))!!.toString(), Log.LogType.DEBUG)
 
 
 

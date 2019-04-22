@@ -13,6 +13,7 @@ import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
 import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.util.loaders.Loader
 import java.io.*
 
 class Assets{
@@ -153,7 +154,7 @@ class Assets{
 
         private fun loadConfig(path: String) = Gdx.files.internal("entities/config/$path").reader()
         private fun loadConfig2(path: String) = loadConfig(path)//JsonReader().parse(Gdx.files.internal("entities/config/$path"))
-        private fun loadSpawnerConfig(path: String) = JsonReader().parse(Gdx.files.internal("entities/config/spawners/$path"))
+        private fun loadSpawnerConfig(path: String) = Loader.loadJson("entities/config/spawners/$path")
 
         init {
             Log.info("Config files created", Log.LogType.ASSETS)
