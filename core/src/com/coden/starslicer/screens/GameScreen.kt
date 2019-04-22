@@ -1,8 +1,6 @@
 package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Graphics
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -10,27 +8,18 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Circle
-import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.utils.Json
-import com.coden.starslicer.Commands.spawnCommands.SpawnCommand
-import com.coden.starslicer.Commands.spawnCommands.SpawnMissile
-import com.coden.starslicer.Commands.spawnCommands.SpawnNuclearBomb
-import com.coden.starslicer.Commands.spawnCommands.SpawnSatellite
 import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
-import com.coden.starslicer.entities.powerups.PowerUp.Companion.shockwaves
+import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
-import com.coden.starslicer.handlers.PowerUpHandler
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.loaders.AttackerLoader
-import com.coden.starslicer.util.loaders.Loader
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -40,7 +29,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var hud: HUD
 
     private lateinit var attackerHandler: AttackerHandler
-    private lateinit var powerUpHandler: PowerUpHandler
 
     private lateinit var data: EntityData
     private lateinit var inputManager: InputManager
@@ -67,8 +55,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         hud = HUD(data)
         Locator.provide(hud)
 
-        attackerHandler = AttackerHandler()
-        powerUpHandler = PowerUpHandler()
         inputManager = InputManager(data)
 
 
@@ -134,7 +120,9 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         SpaceCraft.update(game.swipeRenderer.swipe)
 
         attackerHandler.updateAll()
-        powerUpHandler.updateAll()
+        PowerUp.updateAll()
+
+
 
 
         updateInput()
@@ -156,16 +144,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun debugShapes(hitBoxRender: Boolean) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
 
-        if (SpaceCraft.isShielded){
-            shapeRenderer.circle(SpaceCraft.x, SpaceCraft.y, SpaceCraft.shieldRadius)
-        }
 
-        for (shockwave in shockwaves) {
-            if (shockwave.active){
-                shapeRenderer.circle(spaceCraftX, spaceCraftY, shockwave.radius)
-            }
-
-        }
+        PowerUp.debugShapes(shapeRenderer)
 
         if (hitBoxRender) {
             renderRect(shapeRenderer, SpaceCraft.hitBox)
