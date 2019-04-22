@@ -1,7 +1,7 @@
 package com.coden.starslicer.entities.attackers
 
+import com.badlogic.gdx.utils.JsonValue
 import java.util.*
-import kotlin.math.min
 
 data class AttackerSnapshot(val name: String) {
 

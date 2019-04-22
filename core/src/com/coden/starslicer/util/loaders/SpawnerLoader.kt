@@ -6,19 +6,26 @@ import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.gameplay.GrowthResolver
 import com.coden.starslicer.gameplay.Spawner
+import com.coden.starslicer.util.Assets
 import com.coden.starslicer.util.Locator
 
 
 class SpawnerLoader : Loader<Spawner>{
-    override fun loadAllConfigs(configList: ArrayList<JsonValue>): ArrayList<Spawner> {
+    override val configMap= Assets.spawnerConfigList
+
+    fun load(): ArrayList<Spawner>{
+        return loadAllConfigs(configMap)
+    }
+
+    fun loadAllConfigs(configList: ArrayList<JsonValue>): ArrayList<Spawner> {
         val spawners = ArrayList<Spawner>()
         for (config in configList){
-            spawners += loadConfigToMultiple(config)
+            spawners += loadSpawners(config)
         }
         return spawners
     }
 
-    override fun loadConfigToMultiple(config: JsonValue): ArrayList<Spawner> {
+    fun loadSpawners(config: JsonValue): ArrayList<Spawner> {
         val spawners = config.get("spawners")
         val result = arrayListOf<Spawner>()
 

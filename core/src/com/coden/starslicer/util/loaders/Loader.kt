@@ -3,25 +3,22 @@ package com.coden.starslicer.util.loaders
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
+import com.badlogic.gdx.utils.JsonWriter
+import com.google.gson.Gson
 import java.lang.Exception
 
-interface Loader <T>{
+interface Loader<T> {
+
+    val configMap: Any
 
     companion object {
         fun loadJson(path: String) = JsonReader().parse(Gdx.files.internal(path))
     }
 
-    fun loadAllConfigs(configList: ArrayList<JsonValue>): ArrayList<T>{
-        return arrayListOf()
+    fun loadReflection(config: JsonValue, type: Class<T>) : T {
+        // Loads pure Reflection of class
+        return Gson().fromJson(config.toJson(JsonWriter.OutputType.json), type)
     }
-    fun loadConfigToMultiple(config: JsonValue): ArrayList<T>{
-        return arrayListOf()
-    }
-    fun loadConfigToSingle(config: JsonValue) : T?{
-        return null
-    }
-
-
 }
 
 fun JsonValue.getFloatArray(name: String): Array<Float>{

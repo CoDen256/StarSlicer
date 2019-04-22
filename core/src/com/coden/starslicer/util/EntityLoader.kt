@@ -1,12 +1,9 @@
 package com.coden.starslicer.util
 
-import com.coden.starslicer.entities.attackers.EntitySnapshot
-import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUpSnapshot
 import com.coden.starslicer.entities.spacecraft.BladePoint
 import com.coden.starslicer.entities.spacecraft.SpaceCraftSnapshot
-import com.coden.starslicer.util.Assets.Configs.attackerConfigMap
 import com.coden.starslicer.util.Assets.Configs.bladesConfig
 import com.coden.starslicer.util.Assets.Configs.powerupConfigMap
 import com.coden.starslicer.util.Assets.Configs.spaceCraftConfig
@@ -20,5 +17,5 @@ object EntityLoader {
     //fun loadAttacker(type: AttackerType) = gson.fromJson(attackerConfigMap[type], EntitySnapshot::class.java)
     fun loadPowerUp(type: PowerUp.PowerUpType) = gson.fromJson(powerupConfigMap[type], PowerUpSnapshot::class.java)
     fun loadSpaceCraft() = gson.fromJson(spaceCraftConfig, SpaceCraftSnapshot::class.java)
-    fun loadBlade(num: Int) = gson.fromJson(bladesConfig[num], BladePoint::class.java)
+    //fun loadBlade(num: Int) = gson.fromJson(bladesConfig[num], BladePoint::class.java)
 }

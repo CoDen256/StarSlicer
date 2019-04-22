@@ -19,7 +19,7 @@ class Satellite private constructor(
         assets: Assets.AttackerAssets) : Attacker(snapshot, state, assets), Container{
 
     companion object {
-        val snapshot = Attacker.loader.loadByAttacker(AttackerType.SATELLITE)
+        val snapshot = Attacker.loader.load(AttackerType.SATELLITE)
 
         fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()

@@ -84,9 +84,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.projectionMatrix = cam.combined
 
 
-        Log.info(AttackerLoader().loadConfigToSingle(Loader.loadJson("entities/config/container/powerUpContainer.json"))!!.toString(), Log.LogType.DEBUG)
-
-
+        Log.info(SpaceCraft.toString(), Log.LogType.DEBUG)
 
 
     }

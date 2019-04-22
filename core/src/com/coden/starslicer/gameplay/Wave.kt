@@ -12,7 +12,7 @@ import com.coden.starslicer.gameplay.GrowthResolver as GR
 
 class Wave(var number: Int, val queue: CommandQueue) {
 
-    val spawners = SpawnerLoader().loadAllConfigs(Assets.spawnerConfigList)
+    val spawners = SpawnerLoader().load()
 
     init {
         for (spawner in spawners) spawner.evolveTo(number)

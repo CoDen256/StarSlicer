@@ -4,31 +4,42 @@ import com.badlogic.gdx.math.Rectangle
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.util.sqRatio
 import com.coden.util.swipe.SwipeHandler
+import com.google.gson.annotations.SerializedName
 
 class BladePoint: DamageGiver {
 
-    // Seializable
-    private val pointer : Int? = null
-    private val detectionRatio : Float? = null
-    private val cutRatio : Int? = null
-    private val firstIgnored : Int? = null
-    private val maxPoints : Int? = null
-    private val initDamage : Float? = null
-    private val detectionSize : Float? = null
+    // Serializable
+    var pointer : Int = -1
+    var detectionRatio : Float = -1f
+    var cutRatio : Int = -1
+    var firstIgnored : Int = -1
+    var maxPoints : Int = -1
+    var initDamage : Float = -1f
+    var detectionSize : Float = -1f
 
-    val size get() =  detectionSize!! * sqRatio
-    private val damageFade get() = if (hitBoxes.size > Math.round(firstIgnored!!*sqRatio)) (hitBoxes.size)/(detectionRatio!!*maxPoints!!/cutRatio!!) else 0f
-    override val damage get() = initDamage!! * damageFade
+    val size get() =  detectionSize * sqRatio
+    private val damageFade get() = if (hitBoxes.size > Math.round(firstIgnored*sqRatio)) (hitBoxes.size)/(detectionRatio*maxPoints/cutRatio) else 0f
+    override val damage get() = initDamage * damageFade
 
     var active = false
     var hitBoxes = ArrayList<Rectangle>()
 
+    override fun toString(): String {
+        return "Blade $pointer\n" +
+                "DetectionRation :$detectionRatio\n" +
+                "CutRatio: $cutRatio\n" +
+                "FirstIgnored : $firstIgnored\n" +
+                "MaxPoints: $maxPoints\n" +
+                "IniDamage: $initDamage\n" +
+                "DetectionSize: $detectionSize"
+    }
+
     fun update(swipe: SwipeHandler) {
         if (active) {
             hitBoxes.clear()
-            val simplified = swipe.path(pointer!!)
-            for (i in 0 until Math.round(simplified.size*detectionRatio!!)) {
-                if (i % cutRatio!! == 0){
+            val simplified = swipe.path(pointer)
+            for (i in 0 until Math.round(simplified.size*detectionRatio)) {
+                if (i % cutRatio == 0){
                     hitBoxes.add(Rectangle(simplified[i].x-size/2, simplified[i].y-size/2, size, size))
                 }
 

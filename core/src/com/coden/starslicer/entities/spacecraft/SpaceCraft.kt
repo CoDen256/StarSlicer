@@ -9,8 +9,8 @@ import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.EntityLoader.loadBlade
 import com.coden.starslicer.util.EntityLoader.loadSpaceCraft
+import com.coden.starslicer.util.loaders.BladeLoader
 import com.coden.util.swipe.SwipeHandler
 
 object SpaceCraft: DamageTaker, DamageGiver {
@@ -51,13 +51,13 @@ object SpaceCraft: DamageTaker, DamageGiver {
     var isShielded = false
     var shieldRadius = 0f
 
-    var shieldCircle: Circle
+    val shieldCircle: Circle
         get() = Circle(x, y, shieldRadius)
-        set(value) {}
 
     //Blades
     //private var blades = arrayOf(BladePoint(0), BladePoint(1))
-    private var blades = arrayOf(loadBlade(0), loadBlade(1))
+    private val bladeLoader = BladeLoader()
+    private var blades = arrayOf(bladeLoader.load(0), bladeLoader.load(1))
 
     val firstBlade = blades[0]
     val secondBlade = blades[1]

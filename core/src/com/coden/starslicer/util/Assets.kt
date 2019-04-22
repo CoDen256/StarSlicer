@@ -123,25 +123,25 @@ class Assets{
     }
 
     companion object Configs{
-        val spaceCraftConfig = loadConfig("spacecraft/spacecraft.json")
+        val spaceCraftConfig = loadConfig2("spacecraft/spacecraft.json")
 
         val bladesConfig = arrayOf(
                 loadConfig("blades/first.json"),
                 loadConfig("blades/second.json"))
 
         val attackerConfigMap = mapOf(
-                MISSILE to loadConfig2("missile/missile.json"),
-                NUCLEAR_BOMB to loadConfig2("nuclearBomb/nuclearBomb.json"),
-                SMALL_METEOR to loadConfig2("meteors/smallMeteor.json"),
-                MEDIUM_METEOR to loadConfig2("meteors/mediumMeteor.json"),
-                LARGE_METEOR to loadConfig2("meteors/largeMeteor.json"),
-                SATELLITE to loadConfig2("satellite/satellite.json"),
-                POWERUP_CONTAINER to loadConfig2("container/powerUpContainer.json"))
+                MISSILE to loadConfig("missile/missile.json"),
+                NUCLEAR_BOMB to loadConfig("nuclearBomb/nuclearBomb.json"),
+                SMALL_METEOR to loadConfig("meteors/smallMeteor.json"),
+                MEDIUM_METEOR to loadConfig("meteors/mediumMeteor.json"),
+                LARGE_METEOR to loadConfig("meteors/largeMeteor.json"),
+                SATELLITE to loadConfig("satellite/satellite.json"),
+                POWERUP_CONTAINER to loadConfig("container/powerUpContainer.json"))
 
         val powerupConfigMap = mapOf(
-                PowerUp.PowerUpType.HPBOOST to loadConfig("powerups/hpboost.json"),
-                PowerUp.PowerUpType.SHIELD to loadConfig("powerups/shield.json"),
-                PowerUp.PowerUpType.SHOCKWAVE to loadConfig("powerups/shockwave.json"))
+                PowerUp.PowerUpType.HPBOOST to loadConfig2("powerups/hpboost.json"),
+                PowerUp.PowerUpType.SHIELD to loadConfig2("powerups/shield.json"),
+                PowerUp.PowerUpType.SHOCKWAVE to loadConfig2("powerups/shockwave.json"))
 
         val spawnerConfigList = arrayListOf(
                 loadSpawnerConfig("containerSpawners.json"),
@@ -152,8 +152,8 @@ class Assets{
         )
 
 
-        private fun loadConfig(path: String) = Gdx.files.internal("entities/config/$path").reader()
-        private fun loadConfig2(path: String) = Loader.loadJson("entities/config/$path")
+        private fun loadConfig2(path: String) = Gdx.files.internal("entities/config/$path").reader()
+        private fun loadConfig(path: String) = Loader.loadJson("entities/config/$path")
         private fun loadSpawnerConfig(path: String) = Loader.loadJson("entities/config/spawners/$path")
 
         init {

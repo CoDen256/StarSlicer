@@ -7,7 +7,13 @@ import com.coden.starslicer.util.Assets
 import java.lang.AssertionError
 
 class AttackerLoader : Loader<AttackerSnapshot>{
-    override fun loadConfigToSingle(config: JsonValue): AttackerSnapshot? {
+    override val configMap = Assets.attackerConfigMap
+
+    fun load(attacker: AttackerType): AttackerSnapshot {
+        return loadToSnapshot(configMap[attacker]!!)
+    }
+
+     fun loadToSnapshot(config: JsonValue): AttackerSnapshot {
         val snapshot = AttackerSnapshot(config.getString("name"))
 
         snapshot.minAngleSpeed = config.getFloat("minAngleSpeed", 0f)
@@ -25,8 +31,5 @@ class AttackerLoader : Loader<AttackerSnapshot>{
 
         return snapshot
     }
-
-    fun loadByAttacker(attacker: AttackerType) : AttackerSnapshot = loadConfigToSingle(loadConfig(attacker))!!
-    fun loadConfig(attacker: AttackerType): JsonValue = Assets.attackerConfigMap[attacker]!!
 
 }

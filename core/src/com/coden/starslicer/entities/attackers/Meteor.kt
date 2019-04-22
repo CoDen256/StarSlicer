@@ -21,9 +21,9 @@ class Meteor private constructor(override val initialPos: Vector2,
 
     companion object {
         val snapshots = arrayOf(
-                Attacker.loader.loadByAttacker(AttackerType.SMALL_METEOR),
-                Attacker.loader.loadByAttacker(AttackerType.MEDIUM_METEOR),
-                Attacker.loader.loadByAttacker(AttackerType.LARGE_METEOR)
+                Attacker.loader.load(AttackerType.SMALL_METEOR),
+                Attacker.loader.load(AttackerType.MEDIUM_METEOR),
+                Attacker.loader.load(AttackerType.LARGE_METEOR)
         )
 
         fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets): Attacker {

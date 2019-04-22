@@ -19,7 +19,7 @@ class PowerUpContainer private constructor(
         assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), Container {
 
     companion object {
-        val snapshot = Attacker.loader.loadByAttacker(AttackerType.POWERUP_CONTAINER)
+        val snapshot = Attacker.loader.load(AttackerType.POWERUP_CONTAINER)
 
         fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
             val initialPos = generateRandomSpawnPoint()
