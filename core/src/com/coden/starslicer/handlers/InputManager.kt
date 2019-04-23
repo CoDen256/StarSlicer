@@ -13,6 +13,7 @@ import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.events.Subject
 import com.coden.starslicer.events.SubjectAdapter
+import com.coden.starslicer.util.AssetLocator
 import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 
@@ -57,7 +58,7 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
 
     fun updateClicking(){
         if (Gdx.input.justTouched()){
-            for (icon in data.powerUpIcons) {
+            for (icon in AssetLocator.getPowerUpAssets().icons) {
                 if (icon.hitBox.contains(Gdx.input.x * 1f, Gdx.graphics.height - Gdx.input.y * 1f)) {
                     usePowerUp(icon.type)
                 }
@@ -76,16 +77,16 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
 
     fun debugSpawning() {
             when {
-                Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> SpawnMissile(0).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> SpawnMissile(1).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> SpawnMissile(2).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> SpawnMissile(3).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.B) -> SpawnNuclearBomb(0).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.M) -> SpawnMeteor(size = 0).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.COMMA) -> SpawnMeteor(size = 1).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> SpawnMeteor(size = 2).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.A) -> SpawnSatellite(0, RANDOM).execute(data)
-                Gdx.input.isKeyJustPressed(Input.Keys.C) -> SpawnContainer(0, RANDOM).execute(data)
+                Gdx.input.isKeyJustPressed(Input.Keys.NUM_0) -> SpawnMissile(0).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) -> SpawnMissile(1).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) -> SpawnMissile(2).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) -> SpawnMissile(3).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.B) -> SpawnNuclearBomb(0).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.M) -> SpawnMeteor(size = 0).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.COMMA) -> SpawnMeteor(size = 1).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.PERIOD) -> SpawnMeteor(size = 2).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.A) -> SpawnSatellite(0, RANDOM).execute()
+                Gdx.input.isKeyJustPressed(Input.Keys.C) -> SpawnContainer(0, RANDOM).execute()
             }
         }
 

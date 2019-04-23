@@ -16,12 +16,12 @@ class Locator {
         }
 
 
-        private lateinit var uiManager: HUD
+        private lateinit var uiService: HUD
         fun getUI(): HUD{
-            return uiManager
+            return uiService
         }
         fun provide(hud: HUD){
-            uiManager = hud
+            uiService = hud
         }
     }
 }

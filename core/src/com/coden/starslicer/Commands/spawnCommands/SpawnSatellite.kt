@@ -10,11 +10,11 @@ import com.coden.starslicer.events.Observer
 
 class SpawnSatellite(val stateSatellite: Int = -1, val type: PowerUp.PowerUpType): SpawnCommand() {
 
-    override fun execute(data: EntityData) {
+    override fun execute() {
         val newState = if (stateSatellite == -1) MathUtils.random(0, 1) else stateSatellite
         val content = if (type == PowerUp.PowerUpType.RANDOM) PowerUp.PowerUpType.values()[MathUtils.random(0,2)] else type
 
-        val attacker = Satellite.spawn(newState, content, data.attackerAssets)
+        val attacker = Satellite.spawn(newState, content)
         notify(EventType.SPAWNED, attacker)
     }
 

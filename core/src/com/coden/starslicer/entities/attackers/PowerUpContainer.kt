@@ -15,15 +15,14 @@ import com.coden.starslicer.util.*
 class PowerUpContainer private constructor(
         override val initialPos: Vector2,
         state: Int,
-        override val content: PowerUp.PowerUpType,
-        assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), Container {
+        override val content: PowerUp.PowerUpType): Attacker(snapshot, state), Container {
 
     companion object {
         val snapshot = Attacker.loader.load(AttackerType.POWERUP_CONTAINER)
 
-        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
+        fun spawn(state: Int, content: PowerUp.PowerUpType): Attacker{
             val initialPos = generateRandomSpawnPoint()
-            val container = PowerUpContainer(initialPos, state, content, assets)
+            val container = PowerUpContainer(initialPos, state, content)
             attackers.add(container)
             return container
         }

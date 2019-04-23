@@ -11,7 +11,7 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.util.*
 import com.coden.starslicer.util.loaders.AttackerLoader
 
-abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0, assets: Assets.AttackerAssets): DamageGiver, DamageTaker {
+abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0): DamageGiver, DamageTaker {
 
     companion object {
         val attackers = ArrayList<Attacker>()
@@ -43,6 +43,7 @@ abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0, asse
     abstract var velocity: Vector2
 
     // Sprite
+    val assets = AssetLocator.getAttackerAssets()
     private val spriteTexture: TextureRegion? = assets.getTexture(type)
     protected val sprite = Sprite(spriteTexture)
 

@@ -9,9 +9,9 @@ import com.coden.starslicer.events.Observer
 
 class SpawnMissile(val missileState: Int = -1) : SpawnCommand() {
 
-    override fun execute(data: EntityData){
+    override fun execute(){
         val newState = if (missileState == -1) MathUtils.random(0, 3) else missileState
-        val attacker = Missile.spawn(newState, data.attackerAssets)
+        val attacker = Missile.spawn(newState)
         notify(EventType.SPAWNED, attacker)
     }
 

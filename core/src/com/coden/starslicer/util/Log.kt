@@ -11,7 +11,7 @@ object Log {
     private val attackerLogger  = Logger("Attackers", Logger.NONE)
     private val spawnLogger  = Logger("Spawning", Logger.NONE)
     private val screenLogger  = Logger("Screens", Logger.INFO)
-    private val assetLogger  = Logger("Assets", Logger.NONE)
+    private val assetLogger  = Logger("Assets", Logger.INFO)
     private val gameLogger  = Logger("Game", Logger.NONE)
     private val powerUpLogger  = Logger("PowerUp", Logger.NONE)
 

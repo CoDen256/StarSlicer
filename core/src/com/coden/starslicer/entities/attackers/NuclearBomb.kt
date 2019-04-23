@@ -10,14 +10,13 @@ import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.util.*
 
 class NuclearBomb private constructor(override val initialPos: Vector2,
-                  state: Int,
-                  assets: Assets.AttackerAssets): Attacker(snapshot, state, assets), DamageGiver{
+                  state: Int): Attacker(snapshot, state), DamageGiver{
 
     companion object {
         val snapshot = Attacker.loader.load(AttackerType.NUCLEAR_BOMB)
-        fun spawn(state: Int, assets: Assets.AttackerAssets): Attacker{
+        fun spawn(state: Int): Attacker{
             val initialPos = generateRandomSpawnPoint()
-            val nuclearBomb = NuclearBomb(initialPos, state, assets)
+            val nuclearBomb = NuclearBomb(initialPos, state)
             attackers.add(nuclearBomb)
             return nuclearBomb
         }

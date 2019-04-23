@@ -5,5 +5,5 @@ import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.events.Observer
 
 class NullSpawnCommand: SpawnCommand() {
-    override fun execute(data: EntityData) {}
+    override fun execute() {}
 }

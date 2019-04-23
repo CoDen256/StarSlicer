@@ -23,7 +23,7 @@ import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 
 class DifficultyController(val data: EntityData):SubjectAdapter() {
-    val queue = CommandQueue(data)
+    val queue = CommandQueue()
     val currentWave = Wave(5, queue)
 
     val executeDelta = 0.2f

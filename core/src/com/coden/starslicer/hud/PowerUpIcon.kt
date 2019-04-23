@@ -8,25 +8,22 @@ import com.coden.starslicer.util.*
 
 class PowerUpIcon(val type: PowerUp.PowerUpType, private val texture: TextureRegion?) {
 
-    var pos = Vector2()
     var width = 0f
-
     var amount: Int = 0
 
-    var topright: Vector2
-    get() = Vector2(pos.x + width, pos.y + width)
-    set(value) {}
+    lateinit var pos: Vector2
+    lateinit var topright: Vector2
+    lateinit var hitBox: Rectangle
 
-    var hitBox: Rectangle
-    get() = Rectangle(pos.x, pos.y, width, width)
-    set(value) {}
 
     val font = BitmapFont()
     val glyphLayout = GlyphLayout()
 
     fun initialize(x: Float, y: Float, size: Float) {
         pos = Vector2(x, y)
-        this.width = size
+        topright = Vector2(x + size, y + size)
+        hitBox = Rectangle(x, y, size, size)
+        width = size
     }
 
     fun draw(batch: SpriteBatch) {

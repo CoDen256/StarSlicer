@@ -15,15 +15,14 @@ import com.coden.starslicer.util.*
 class Satellite private constructor(
         override val initialPos: Vector2,
         state: Int,
-        override val content: PowerUp.PowerUpType,
-        assets: Assets.AttackerAssets) : Attacker(snapshot, state, assets), Container{
+        override val content: PowerUp.PowerUpType) : Attacker(snapshot, state), Container{
 
     companion object {
         val snapshot = Attacker.loader.load(AttackerType.SATELLITE)
 
-        fun spawn(state: Int, content: PowerUp.PowerUpType, assets: Assets.AttackerAssets): Attacker{
+        fun spawn(state: Int, content: PowerUp.PowerUpType): Attacker{
             val initialPos = generateRandomSpawnPoint()
-            val satellite = Satellite(initialPos, state, content, assets)
+            val satellite = Satellite(initialPos, state, content)
             attackers.add(satellite)
             return satellite
         }

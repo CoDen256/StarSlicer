@@ -45,6 +45,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     override fun show() {
 
         game.assets.finishLoading()// TODO: Initialize in starting screen
+        game.assetProvider.finish()
+
+        AssetLocator.provide(game.assetProvider.attackerAssets)
+        AssetLocator.provide(game.assetProvider.powerUpAssets)
 
         Log.info("The screen is created",Log.LogType.SCREENS)
         Log.info("Size: $w x $h", Log.LogType.SCREENS)

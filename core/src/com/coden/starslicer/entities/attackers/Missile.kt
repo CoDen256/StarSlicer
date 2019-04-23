@@ -11,15 +11,14 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.util.*
 
 class Missile private constructor(override val initialPos: Vector2,
-               state: Int,
-               assets: Assets.AttackerAssets): Attacker(snapshot, state, assets){
+               state: Int): Attacker(snapshot, state){
 
     companion object {
         val snapshot = Attacker.loader.load(AttackerType.MISSILE)
 
-        fun spawn(state: Int,  assets: Assets.AttackerAssets): Attacker {
+        fun spawn(state: Int): Attacker {
             val initialPos = generateRandomSpawnPoint()
-            val missile = Missile(initialPos, state, assets)
+            val missile = Missile(initialPos, state)
             attackers.add(missile)
             return missile
         }

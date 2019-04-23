@@ -16,8 +16,7 @@ import javax.swing.text.html.parser.Entity
 
 class Meteor private constructor(override val initialPos: Vector2,
              state: Int,
-             val size: Int,
-             assets: Assets.AttackerAssets): Attacker(snapshots[size], state, assets) {
+             val size: Int): Attacker(snapshots[size], state) {
 
     companion object {
         val snapshots = arrayOf(
@@ -26,9 +25,9 @@ class Meteor private constructor(override val initialPos: Vector2,
                 Attacker.loader.load(AttackerType.LARGE_METEOR)
         )
 
-        fun spawn(state: Int, size: Int, assets: Assets.AttackerAssets): Attacker {
+        fun spawn(state: Int, size: Int): Attacker {
             val initialPos = generateRandomSpawnPoint()
-            val meteor = Meteor(initialPos, state, size, assets)
+            val meteor = Meteor(initialPos, state, size)
             attackers.add(meteor)
             return meteor
         }
