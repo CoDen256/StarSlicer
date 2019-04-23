@@ -20,6 +20,8 @@ import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
 import com.coden.starslicer.util.*
+import com.coden.util.swipe.SwipeHandler
+import com.coden.util.swipe.SwipeRenderer
 
 class GameScreen(val game: StarSlicerGame) : Screen {
 
@@ -27,6 +29,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var batch: SpriteBatch
     private lateinit var shapeRenderer: ShapeRenderer
     private lateinit var hud: HUD
+
+    private lateinit var swipeRenderer: SwipeRenderer
 
     private lateinit var attackerHandler: AttackerHandler
 
@@ -44,17 +48,18 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     override fun show() {
 
-        game.assets.finishLoading()// TODO: Initialize in starting screen
+
         game.assetProvider.finish()
 
         AssetLocator.provide(game.assetProvider.attackerAssets)
         AssetLocator.provide(game.assetProvider.powerUpAssets)
+        AssetLocator.provide(game.assetProvider.swipeAssets)
 
         Log.info("The screen is created",Log.LogType.SCREENS)
         Log.info("Size: $w x $h", Log.LogType.SCREENS)
         Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio", Log.LogType.SCREENS)
 
-        data = EntityData(game.assets)
+        data = EntityData(0,0)
 
         hud = HUD(data)
         Locator.provide(hud)
@@ -73,8 +78,15 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         cam.update()
         batch.projectionMatrix = cam.combined
 
+        swipeRenderer = SwipeRenderer(10, 10, 2,
+                                    0.25f, 20f,
+                                    10)
 
-        Log.info(SpaceCraft.toString(), Log.LogType.DEBUG)
+        //handle swipe input
+        //swipeRenderer.create()
+        //Gdx.input.inputProcessor = swipeRenderer.swipe
+
+        //swipeRenderer.changeTexture(0)
 
 
     }
@@ -93,7 +105,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         hud.render()
 
         // SWIPE RENDERER
-        game.swipeRenderer.render(cam)
+        //swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
         debugShapes(false)
@@ -103,6 +115,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.begin()
 
         batch.draw(bg, 0f, 0f, w, h)
+        batch.draw(AssetLocator.getSwipeAssets().getTexture(0), 20f, 20f)
 
         renderScore(batch)
         renderFPS(batch)
@@ -121,7 +134,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         timePassed += Gdx.graphics.deltaTime
 
-        SpaceCraft.update(game.swipeRenderer.swipe)
+        //SpaceCraft.update(swipeRenderer.swipe)
 
         attackerHandler.updateAll()
         PowerUp.updateAll()
@@ -219,6 +232,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.dispose()
         shapeRenderer.dispose()
         SpaceCraft.dispose()
+        swipeRenderer.dispose()
 
     }
 

@@ -5,16 +5,24 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.coden.starslicer.util.AssetLocator
+import com.coden.starslicer.util.SwipeAssets
 import com.coden.util.swipe.mesh.SwipeTriStrip
 
 class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNum: Int,
                     val maxLifeSpan: Float, val thickness: Float,
-                    val maxInputPoint:Int, val tex: Texture,
+                    val maxInputPoint:Int,
                     val color: Color = Color.WHITE, val endcap: Float = 10f
                     ){
 
     lateinit var swipe: SwipeHandler
     lateinit var tris: SwipeTriStrip
+    lateinit var tex: Texture
+
+    //fun changeTexture(num: Int){
+    //    tex = AssetLocator.getSwipeAssets().getTexture(num)
+    //}
 
     fun create() {
         tris = SwipeTriStrip()
@@ -31,6 +39,7 @@ class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNu
         // lifespan of each particle
         swipe.maxLifeSpan = maxLifeSpan
 
+       // changeTexture(0)
         //we will use a texture for the smooth edge, and also for stroke effects
         tex.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)
 

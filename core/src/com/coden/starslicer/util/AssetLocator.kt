@@ -24,6 +24,15 @@ class AssetLocator {
             return attackerAssetService
         }
 
+        private lateinit var swipeAssetService: SwipeAssets
+        fun provide(assets: SwipeAssets){
+            swipeAssetService = assets
+        }
+
+        fun getSwipeAssets(): SwipeAssets{
+            return swipeAssetService
+        }
+
 
 
     }

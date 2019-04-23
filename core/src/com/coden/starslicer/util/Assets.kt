@@ -17,61 +17,9 @@ import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.hud.PowerUpIcon
 import com.coden.starslicer.util.loaders.Loader
 import java.io.*
+import javax.xml.soap.Text
 
 class Assets{
-    private val manager = AssetManager()
-
-    //private val POWER_UP_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("ui/icons/powerups/powerups.atlas", TextureAtlas::class.java)
-    //private val ATTACKER_ATLAS_DESCRIPTOR = AssetDescriptor<TextureAtlas>("entities/animation/attackers/attackers3.atlas", TextureAtlas::class.java)
-
-
-    val swipeTexture = Texture("entities/animation/blades/gradient8.png")
-    //lateinit var powerUpAssets: PowerUpAssets
-    //lateinit var attackerAssets: AttackerAssets
-
-    val progress: Float
-        get() = manager.progress
-
-    fun load() {
-        loadTextureAtlases()
-    }
-
-
-    fun loadTextureAtlases() {
-        Log.info("Loading TextureAtlases...", Log.LogType.ASSETS)
-       //manager.setLoader(TextureAtlas::class.java, TextureAtlasLoader(InternalFileHandleResolver()))
-       //manager.load(POWER_UP_ATLAS_DESCRIPTOR)
-       //manager.load(ATTACKER_ATLAS_DESCRIPTOR)
-        //manager.setLoader(Texture::class.java, TextureLoader(InternalFileHandleResolver()))
-
-    }
-
-
-    fun updateLoading(): Boolean {
-        return manager.update()
-    }
-
-    fun finishLoading() {
-        Log.info("Finish Loading...", Log.LogType.ASSETS)
-        manager.finishLoading()
-        Log.info("Initializing", Log.LogType.ASSETS)
-        initialize()
-    }
-
-    private fun initialize() {
-        //powerUpAssets = PowerUpAssets(manager.get(POWER_UP_ATLAS_DESCRIPTOR))
-        //attackerAssets = AttackerAssets(manager.get(ATTACKER_ATLAS_DESCRIPTOR))
-
-    }
-
-    fun dispose() {
-        manager.dispose()
-    }
-
-    fun getManager(): AssetManager {
-        return manager
-    }
-
     object SpaceCraftAssets {
         val path = "entities/animation/spacecraft/spacecraft3tex.png"
         val spaceCraftTexture = TextureRegion(Texture(path))
@@ -161,4 +109,21 @@ class AttackerAssets(atlas: TextureAtlas){
         Log.info("AttackerAssets  textureMap created", Log.LogType.ASSETS)
     }
     fun getTexture(type: AttackerType): TextureRegion? = map[type]
+}
+
+class SwipeAssets(atlas: TextureAtlas){
+    var i = 0
+    private val map = atlas.findRegion("gradient0") as TextureRegion
+        //atlas.findRegion("gradient${i++}") as TextureRegion
+    //}.take(9).toList()
+
+    init {
+        Log.info("SwipeAssets textureMap created", Log.LogType.ASSETS)
+
+    }
+
+    fun getTexture(num: Int): TextureRegion
+    {
+        return map
+    }
 }

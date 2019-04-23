@@ -35,8 +35,6 @@ class MainMenuScreen(val game: StarSlicerGame) : Screen {
 
         update()
 
-        game.swipeRenderer.render(cam)
-
         batch.begin()
         batch.draw(Texture("gradient.png"), Gdx.graphics.width/2 + 0f, Gdx.graphics.height/2 + 0f)
         batch.end()
