@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.entityInterfaces.Collisional
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.loaders.BladeLoader
 import com.coden.starslicer.util.loaders.SpaceCraftLoader
 import com.coden.util.swipe.SwipeHandler
@@ -38,7 +38,7 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
         get() = Vector2(x, y)
         set(value) {}
 
-    val spaceCraftTexture = Assets.SpaceCraftAssets.spaceCraftTexture
+    val spaceCraftTexture = AssetLocator.getSpaceCraftAssets().getTexture()
 
     override val width = xRatio * spaceCraftTexture.regionWidth
     override val height = yRatio * spaceCraftTexture.regionHeight
@@ -98,7 +98,7 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
 
 
     fun dispose() {
-        Assets.SpaceCraftAssets.dispose()
+        AssetLocator.getSpaceCraftAssets().dispose()
     }
 
 

@@ -17,11 +17,10 @@ import com.coden.starslicer.StarSlicerGame
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
 import com.coden.starslicer.util.*
-import com.coden.util.swipe.SwipeHandler
+import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.util.swipe.SwipeRenderer
 
 class GameScreen(val game: StarSlicerGame) : Screen {
@@ -55,6 +54,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         AssetLocator.provide(game.assetProvider.attackerAssets)
         AssetLocator.provide(game.assetProvider.powerUpAssets)
         AssetLocator.provide(game.assetProvider.swipeAssets)
+        AssetLocator.provide(game.assetProvider.spaceCraftAssets)
 
         Log.info("The screen is created",Log.LogType.SCREENS)
         Log.info("Size: $w x $h", Log.LogType.SCREENS)

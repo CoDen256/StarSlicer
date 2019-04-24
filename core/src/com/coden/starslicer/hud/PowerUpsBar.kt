@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.hud.HUDElements.UIObject
-import com.coden.starslicer.util.AssetLocator
+import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
 

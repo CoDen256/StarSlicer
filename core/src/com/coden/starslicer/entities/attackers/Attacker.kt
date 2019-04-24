@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.entities.entityInterfaces.DamageGiver
 import com.coden.starslicer.entities.entityInterfaces.DamageTaker
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.util.*
+import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.loaders.AttackerLoader
 
 abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0): DamageGiver, DamageTaker {

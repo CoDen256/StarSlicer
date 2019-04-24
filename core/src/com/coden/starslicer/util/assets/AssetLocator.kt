@@ -1,7 +1,4 @@
-package com.coden.starslicer.util
-
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.hud.PowerUpIcon
+package com.coden.starslicer.util.assets
 
 class AssetLocator {
 
@@ -31,6 +28,15 @@ class AssetLocator {
 
         fun getSwipeAssets(): SwipeAssets{
             return swipeAssetService
+        }
+
+        private lateinit var spaceCraftAssets: SpaceCraftAssets
+        fun provide(assets: SpaceCraftAssets){
+            spaceCraftAssets = assets
+        }
+
+        fun getSpaceCraftAssets(): SpaceCraftAssets{
+            return spaceCraftAssets
         }
 
 

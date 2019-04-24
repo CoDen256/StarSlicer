@@ -5,15 +5,12 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.Commands.spawnCommands.*
 import com.coden.starslicer.entities.EntityData
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 import com.coden.starslicer.events.EventType
-import com.coden.starslicer.events.Observer
-import com.coden.starslicer.events.Subject
 import com.coden.starslicer.events.SubjectAdapter
-import com.coden.starslicer.util.AssetLocator
+import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 

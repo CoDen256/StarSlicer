@@ -2,7 +2,7 @@ package com.coden.starslicer.util.loaders
 
 import com.badlogic.gdx.utils.JsonValue
 import com.coden.starslicer.entities.spacecraft.BladePoint
-import com.coden.starslicer.util.Assets
+import com.coden.starslicer.util.assets.Assets
 
 class BladeLoader : Loader<BladePoint>{
     override val configMap = Assets.bladesConfig

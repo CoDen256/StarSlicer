@@ -1,8 +1,6 @@
 package com.coden.starslicer.entities.powerups
 
 import com.badlogic.gdx.Gdx
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
-import com.coden.starslicer.util.EntityLoader
 import com.coden.starslicer.util.Locator
 
 class Shield: PowerUp(PowerUpType.SHIELD) {

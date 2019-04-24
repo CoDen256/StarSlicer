@@ -6,7 +6,7 @@ import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.gameplay.GrowthResolver
 import com.coden.starslicer.gameplay.Spawner
-import com.coden.starslicer.util.Assets
+import com.coden.starslicer.util.assets.Assets
 import com.coden.starslicer.util.Locator
 
 

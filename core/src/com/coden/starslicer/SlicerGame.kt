@@ -1,12 +1,10 @@
 package com.coden.starslicer
 
 import com.badlogic.gdx.Game
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.screens.GameScreen
 import com.coden.starslicer.util.*
-import com.coden.util.swipe.SwipeRenderer
+import com.coden.starslicer.util.assets.AssetProvider
 
 
 class StarSlicerGame : Game() {
