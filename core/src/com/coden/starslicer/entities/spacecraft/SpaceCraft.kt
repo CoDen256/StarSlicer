@@ -69,11 +69,10 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
     val secondBlade = blades[1]
 
 
-    override fun toString()= "SPACECRAFT\nProportions:$xProportion, $yProportion\nDamage:$damage\nHealth:$maxHealth "
+    override fun toString()= "SPACECRAFT\nProportions:$xProportion, $yProportion\nDamage:$damage\nHealth:$maxHealth\n CurrentHealth:$health"
 
 
     fun render(batch: SpriteBatch) {
-
         batch.draw(spaceCraftTexture, centerX, centerY, width, height)
     }
 

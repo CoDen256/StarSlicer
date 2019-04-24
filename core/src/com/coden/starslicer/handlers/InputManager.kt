@@ -43,13 +43,16 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
                 }
 
                 if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
-                    // observer
+                    // TODO: observer
                     data.score += attacker.reward
-                    data.coins += MathUtils.random(10, 50)
+
                     attacker.onDestroy()
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
                         addPowerUp(attacker.content)
                         Log.info("Granted ${attacker.content}", Log.LogType.ATTACKERS)
+                    }
+                    else{
+                        data.coins += MathUtils.random(10, 50)
                     }
                 }
             }

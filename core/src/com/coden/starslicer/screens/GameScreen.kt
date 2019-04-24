@@ -79,6 +79,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         cam.update()
         batch.projectionMatrix = cam.combined
 
+
         swipeRenderer = SwipeRenderer(10, 10, 2,
                                     0.25f, 20f,
                                     10)
