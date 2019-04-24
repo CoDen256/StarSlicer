@@ -24,7 +24,7 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
     }
 
     fun updateSwiping(){
-        with(SpaceCraft){
+        with(Locator.spaceCraft){
             if (!(firstBlade.active || secondBlade.active)){
                 return
             }

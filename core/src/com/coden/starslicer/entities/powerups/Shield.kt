@@ -3,6 +3,7 @@ package com.coden.starslicer.entities.powerups
 import com.badlogic.gdx.Gdx
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.util.EntityLoader
+import com.coden.starslicer.util.Locator
 
 class Shield: PowerUp(PowerUpType.SHIELD) {
 
@@ -18,25 +19,25 @@ class Shield: PowerUp(PowerUpType.SHIELD) {
     private var life = 0f
 
     fun applyEffect() {
-        SpaceCraft.isShielded = true
-        SpaceCraft.shieldRadius = radius
+        Locator.spaceCraft.isShielded = true
+        Locator.spaceCraft.shieldRadius = radius
         active = true
 
     }
 
     override fun update() {
         life += Gdx.graphics.deltaTime
-        if (life >= lifeSpan || !SpaceCraft.isShielded) kill()
+        if (life >= lifeSpan || !Locator.spaceCraft.isShielded) kill()
 
         if (radius < maxRadius) radius += growthSpeed*Gdx.graphics.deltaTime
-        SpaceCraft.shieldRadius = radius
+        Locator.spaceCraft.shieldRadius = radius
 
 
     }
 
     override fun kill() {
         super.kill()
-        SpaceCraft.isShielded = false
+        Locator.spaceCraft.isShielded = false
     }
 
 

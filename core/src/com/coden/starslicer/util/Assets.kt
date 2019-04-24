@@ -1,23 +1,13 @@
 package com.coden.starslicer.util
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.assets.AssetDescriptor
-import com.badlogic.gdx.assets.AssetManager
-import com.badlogic.gdx.assets.loaders.TextureAtlasLoader
-import com.badlogic.gdx.assets.loaders.TextureLoader
-import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.utils.JsonReader
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.attackers.AttackerType.*
-import com.coden.starslicer.entities.powerups.HPBoost
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.hud.PowerUpIcon
 import com.coden.starslicer.util.loaders.Loader
-import java.io.*
-import javax.xml.soap.Text
 
 class Assets{
     object SpaceCraftAssets {
@@ -67,9 +57,7 @@ class Assets{
         private fun loadConfig(path: String) = Loader.loadJson("entities/config/$path")
         private fun loadSpawnerConfig(path: String) = Loader.loadJson("entities/config/spawners/$path")
 
-        init {
-            Log.info("Config files created", Log.LogType.ASSETS)
-        }
+        init { Log.info("Config files created", Log.LogType.ASSETS) }
     }
 }
 
@@ -80,23 +68,22 @@ class PowerUpAssets(atlas: TextureAtlas){
             PowerUp.PowerUpType.SHOCKWAVE to atlas.findRegion("shockwave") as TextureRegion
     )
 
-    init {
-        Log.info("PowerUpAssets textureMap created", Log.LogType.ASSETS)
-    }
-    fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
-
     val icons = arrayListOf(
             PowerUpIcon(PowerUp.PowerUpType.SHIELD, getTexture(PowerUp.PowerUpType.SHIELD)),
             PowerUpIcon(PowerUp.PowerUpType.HPBOOST, getTexture(PowerUp.PowerUpType.HPBOOST)),
             PowerUpIcon(PowerUp.PowerUpType.SHOCKWAVE, getTexture(PowerUp.PowerUpType.SHOCKWAVE))
     )
 
+    init { Log.info("PowerUpAssets textureMap created", Log.LogType.ASSETS) }
+
+    fun getTexture(type: PowerUp.PowerUpType): TextureRegion? = map[type]
+
     val width = map[PowerUp.PowerUpType.SHIELD]!!.regionWidth
     val height = map[PowerUp.PowerUpType.SHIELD]!!.regionHeight
 
 }
 class AttackerAssets(atlas: TextureAtlas){
-    private val map = mapOf(
+    private val textureMap = mapOf(
             AttackerType.MISSILE to atlas.findRegion("missile") as TextureRegion,
             AttackerType.NUCLEAR_BOMB to atlas.findRegion("nuclearbomb") as TextureRegion,
             AttackerType.SMALL_METEOR to atlas.findRegion("smallMeteor") as TextureRegion,
@@ -105,21 +92,16 @@ class AttackerAssets(atlas: TextureAtlas){
             AttackerType.SATELLITE to atlas.findRegion("satellite") as TextureRegion,
             AttackerType.POWERUP_CONTAINER to atlas.findRegion("container") as TextureRegion
     )
-    init {
-        Log.info("AttackerAssets  textureMap created", Log.LogType.ASSETS)
-    }
-    fun getTexture(type: AttackerType): TextureRegion? = map[type]
+    init { Log.info("AttackerAssets  textureMap created", Log.LogType.ASSETS) }
+
+    fun getTexture(type: AttackerType): TextureRegion? = textureMap[type]
 }
 
 class SwipeAssets(val textureMap: List<Texture>){
     companion object { var max = 4 }
 
-    init {
-        Log.info("SwipeAssets textureMap created", Log.LogType.ASSETS)
-    }
+    init { Log.info("SwipeAssets textureMap created", Log.LogType.ASSETS)}
 
-    fun getTexture(num: Int): Texture
-    {
-        return textureMap[textureMap.lastIndex - num]
-    }
+
+    fun getTexture(num: Int): Texture =  textureMap[textureMap.lastIndex - num]
 }

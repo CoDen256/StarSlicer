@@ -89,14 +89,14 @@ abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0): Dam
     abstract fun update()
 
     fun updateCollision() {
-        if (SpaceCraft.isShielded) {
-            if (SpaceCraft.shieldCircle.overlaps(hitSphere)) {
+        if (Locator.spaceCraft.isShielded) {
+            if (Locator.spaceCraft.shieldCircle.overlaps(hitSphere)) {
                 kill()
                 onDestroy()
             }
-        } else if (SpaceCraft.hitBox.overlaps(hitBox) && collisional) {
-            giveDamage(SpaceCraft)
-            SpaceCraft.giveDamage(this) // Body damage
+        } else if (Locator.spaceCraft.hitBox.overlaps(hitBox) && collisional) {
+            giveDamage(Locator.spaceCraft)
+            Locator.spaceCraft.giveDamage(this) // Body damage
         }
     }
 

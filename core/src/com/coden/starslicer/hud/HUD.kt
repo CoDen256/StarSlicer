@@ -30,7 +30,7 @@ class HUD(data: EntityData): Observer {
     private var countDownFont = BitmapFont()
 
     private val log = Logger("HUD", Logger.INFO)
-    private val spaceCraftBar = HealthBar(SpaceCraft)
+    private val spaceCraftBar = HealthBar(Locator.spaceCraft)
 
     private val healthBars = ArrayList<UIObject>()
 

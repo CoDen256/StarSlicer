@@ -13,7 +13,13 @@ import com.coden.starslicer.util.loaders.BladeLoader
 import com.coden.starslicer.util.loaders.SpaceCraftLoader
 import com.coden.util.swipe.SwipeHandler
 
-object SpaceCraft: DamageTaker, DamageGiver {
+class SpaceCraft private constructor() : DamageTaker, DamageGiver {
+    companion object {
+        private var spaceCraft: SpaceCraft? = null
+        fun create(): SpaceCraft{
+            return spaceCraft ?: SpaceCraft()
+        }
+    }
     override var isDead = false
 
     private val snapshot = SpaceCraftLoader().load()

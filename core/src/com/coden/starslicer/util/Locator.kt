@@ -2,6 +2,7 @@ package com.coden.starslicer.util
 
 import com.coden.starslicer.Commands.spawnCommands.NullSpawnCommand
 import com.coden.starslicer.Commands.spawnCommands.SpawnCommand
+import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.hud.HUD
 
 class Locator {
@@ -23,5 +24,8 @@ class Locator {
         fun provide(hud: HUD){
             uiService = hud
         }
+
+        val spaceCraft: SpaceCraft = SpaceCraft.create()
+
     }
 }

@@ -58,7 +58,7 @@ class DifficultyController(val data: EntityData):SubjectAdapter() {
     }
 
     fun adapt(){
-        if (SpaceCraft.health < 15 && PowerUp.isEmpty(PowerUp.PowerUpType.HPBOOST)){
+        if (Locator.spaceCraft.health < 15 && PowerUp.isEmpty(PowerUp.PowerUpType.HPBOOST)){
             if (MathUtils.randomBoolean(0.01f) && attackers.count { it is PowerUpContainer  && it.content == PowerUp.PowerUpType.HPBOOST} == 0){
                 queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
             }

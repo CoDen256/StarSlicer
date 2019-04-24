@@ -59,11 +59,11 @@ class NuclearBomb private constructor(override val initialPos: Vector2,
             giveDamage(attacker)
         }
 
-        if (SpaceCraft.isShielded){
-            giveDamage(SpaceCraft, damage*shieldAbsorbPortion)
-            SpaceCraft.isShielded = false
+        if (Locator.spaceCraft.isShielded){
+            giveDamage(Locator.spaceCraft, damage*shieldAbsorbPortion)
+            Locator.spaceCraft.isShielded = false
         }else{
-            giveDamage(SpaceCraft, damage)
+            giveDamage(Locator.spaceCraft, damage)
         }
 
     }

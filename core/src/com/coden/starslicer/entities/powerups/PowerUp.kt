@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils
 import com.coden.starslicer.entities.entityInterfaces.Mortal
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.loaders.PowerUpLoader
 import com.coden.starslicer.util.spaceCraftX
@@ -64,7 +65,7 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
         }
 
         fun use(ability: PowerUpType) = when(ability){
-            PowerUpType.SHIELD -> if (!shields.isEmpty() && !SpaceCraft.isShielded) shields[0].applyEffect() else Unit
+            PowerUpType.SHIELD -> if (!shields.isEmpty() && !Locator.spaceCraft.isShielded) shields[0].applyEffect() else Unit
             PowerUpType.HPBOOST -> if (!hpboosts.isEmpty()) hpboosts[0].applyEffect() else Unit
             PowerUpType.SHOCKWAVE -> {
                 if (!shockwaves.isEmpty()) {
@@ -99,7 +100,7 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
             }
             for (shield in shields){
                 if (shield.active){
-                    shapeRenderer.circle(spaceCraftX, spaceCraftY, SpaceCraft.shieldRadius)
+                    shapeRenderer.circle(spaceCraftX, spaceCraftY, Locator.spaceCraft.shieldRadius)
                     break
                 }
             }

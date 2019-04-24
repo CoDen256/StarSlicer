@@ -87,9 +87,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         swipeRenderer.create()
         Gdx.input.inputProcessor = swipeRenderer.swipe
 
-        //swipeRenderer.changeTexture(0)
-
-
     }
     // RENDER SECTION
 
@@ -122,7 +119,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         renderTimePassed(batch)
         difficultyController.render(batch, font)
 
-        SpaceCraft.render(batch)
+        Locator.spaceCraft.render(batch)
         attackerHandler.renderAll(batch)
 
 
@@ -134,7 +131,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         timePassed += Gdx.graphics.deltaTime
 
-        SpaceCraft.update(swipeRenderer.swipe)
+        Locator.spaceCraft.update(swipeRenderer.swipe)
 
         attackerHandler.updateAll()
         PowerUp.updateAll()
@@ -172,8 +169,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         PowerUp.debugShapes(shapeRenderer)
 
         if (hitBoxRender) {
-            renderRect(shapeRenderer, SpaceCraft.hitBox)
-            renderCircle(shapeRenderer, SpaceCraft.hitSphere)
+            renderRect(shapeRenderer, Locator.spaceCraft.hitBox)
+            renderCircle(shapeRenderer, Locator.spaceCraft.hitSphere)
 
 
             for (attacker in attackers) {
@@ -181,10 +178,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
                 renderCircle(shapeRenderer, attacker.hitSphere)
             }
 
-            for (hitBox in SpaceCraft.firstBlade.hitBoxes) {
+            for (hitBox in Locator.spaceCraft.firstBlade.hitBoxes) {
                 renderRect(shapeRenderer, hitBox)
             }
-            for (hitBox in SpaceCraft.secondBlade.hitBoxes) {
+            for (hitBox in Locator.spaceCraft.secondBlade.hitBoxes) {
                 renderRect(shapeRenderer, hitBox)
             }
 
@@ -238,7 +235,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Log.info("The screen is disposed", Log.LogType.SCREENS)
         batch.dispose()
         shapeRenderer.dispose()
-        SpaceCraft.dispose()
+        Locator.spaceCraft.dispose()
         swipeRenderer.dispose()
 
     }

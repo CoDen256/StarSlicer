@@ -67,8 +67,8 @@ val xRatio = Gdx.graphics.width/2030f
 val yRatio = Gdx.graphics.height/1080f
 val sqRatio = dist2(xRatio, yRatio)
 
-val spaceCraftX = SpaceCraft.x
-val spaceCraftY = SpaceCraft.y
+val spaceCraftX = Locator.spaceCraft.x
+val spaceCraftY = Locator.spaceCraft.y
 val spaceCraftCenter = Vector2(spaceCraftX, spaceCraftY)
 
 val centerX = Gdx.graphics.width/2f
