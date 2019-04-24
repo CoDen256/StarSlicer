@@ -27,6 +27,7 @@ class AssetProvider{
     lateinit var attackerAssets: AttackerAssets
     lateinit var swipeAssets: SwipeAssets
     lateinit var spaceCraftAssets: SpaceCraftAssets
+    lateinit var configurationAssets: ConfigurationAssets
 
 
     fun load(){
@@ -54,6 +55,7 @@ class AssetProvider{
         attackerAssets = AttackerAssets(manager.get(ATTACKER_ATLAS_DESCRIPTOR))
         swipeAssets = SwipeAssets(SWIPE_TEXTURE_DESCRIPTORS.map { manager.get(it) })
         spaceCraftAssets = SpaceCraftAssets(manager.get(SPACECRAFT_TEXTURE_DESCRIPTOR))
+        configurationAssets = ConfigurationAssets()
     }
 
 

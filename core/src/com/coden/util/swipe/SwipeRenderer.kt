@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
 import com.coden.starslicer.util.assets.AssetLocator
-import com.coden.starslicer.util.SwipeAssets
 import com.coden.util.swipe.mesh.SwipeTriStrip
 
 class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNum: Int,

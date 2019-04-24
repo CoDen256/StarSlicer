@@ -55,6 +55,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         AssetLocator.provide(game.assetProvider.powerUpAssets)
         AssetLocator.provide(game.assetProvider.swipeAssets)
         AssetLocator.provide(game.assetProvider.spaceCraftAssets)
+        AssetLocator.provide(game.assetProvider.configurationAssets)
 
         Log.info("The screen is created",Log.LogType.SCREENS)
         Log.info("Size: $w x $h", Log.LogType.SCREENS)

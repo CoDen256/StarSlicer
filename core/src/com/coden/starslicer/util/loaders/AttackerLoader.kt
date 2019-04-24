@@ -3,10 +3,10 @@ package com.coden.starslicer.util.loaders
 import com.badlogic.gdx.utils.JsonValue
 import com.coden.starslicer.entities.attackers.AttackerSnapshot
 import com.coden.starslicer.entities.attackers.AttackerType
-import com.coden.starslicer.util.assets.Assets
+import com.coden.starslicer.util.assets.AssetLocator
 
 class AttackerLoader : Loader<AttackerSnapshot>{
-    override val configMap = Assets.attackerConfigMap
+    override val configMap = AssetLocator.getConfigs().attackerConfigMap
 
     fun load(attacker: AttackerType): AttackerSnapshot {
         return loadToSnapshot(configMap[attacker]!!)

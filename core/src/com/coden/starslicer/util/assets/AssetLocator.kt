@@ -39,6 +39,15 @@ class AssetLocator {
             return spaceCraftAssets
         }
 
+        private lateinit var configurationAssets: ConfigurationAssets
+        fun provide(assets: ConfigurationAssets){
+            configurationAssets = assets
+        }
+
+        fun getConfigs(): ConfigurationAssets{
+            return configurationAssets
+        }
+
 
 
     }
