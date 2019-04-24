@@ -1,6 +1,7 @@
 package com.coden.starslicer.screens
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -83,8 +84,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
                                     10)
 
         //handle swipe input
-        //swipeRenderer.create()
-        //Gdx.input.inputProcessor = swipeRenderer.swipe
+        swipeRenderer.create()
+        Gdx.input.inputProcessor = swipeRenderer.swipe
 
         //swipeRenderer.changeTexture(0)
 
@@ -105,7 +106,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         hud.render()
 
         // SWIPE RENDERER
-        //swipeRenderer.render(cam)
+        swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
         debugShapes(false)
@@ -115,7 +116,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         batch.begin()
 
         batch.draw(bg, 0f, 0f, w, h)
-        batch.draw(AssetLocator.getSwipeAssets().getTexture(0), 20f, 20f)
 
         renderScore(batch)
         renderFPS(batch)
@@ -134,7 +134,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         timePassed += Gdx.graphics.deltaTime
 
-        //SpaceCraft.update(swipeRenderer.swipe)
+        SpaceCraft.update(swipeRenderer.swipe)
 
         attackerHandler.updateAll()
         PowerUp.updateAll()
@@ -161,6 +161,13 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     fun debugShapes(hitBoxRender: Boolean) {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line)
 
+        when{
+        Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0) -> swipeRenderer.changeTexture(0)
+        Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1) -> swipeRenderer.changeTexture(1)
+        Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_2) -> swipeRenderer.changeTexture(2)
+        Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_3) -> swipeRenderer.changeTexture(3)
+
+        }
 
         PowerUp.debugShapes(shapeRenderer)
 

@@ -111,19 +111,15 @@ class AttackerAssets(atlas: TextureAtlas){
     fun getTexture(type: AttackerType): TextureRegion? = map[type]
 }
 
-class SwipeAssets(atlas: TextureAtlas){
-    var i = 0
-    private val map = atlas.findRegion("gradient0") as TextureRegion
-        //atlas.findRegion("gradient${i++}") as TextureRegion
-    //}.take(9).toList()
+class SwipeAssets(val textureMap: List<Texture>){
+    companion object { var max = 4 }
 
     init {
         Log.info("SwipeAssets textureMap created", Log.LogType.ASSETS)
-
     }
 
-    fun getTexture(num: Int): TextureRegion
+    fun getTexture(num: Int): Texture
     {
-        return map
+        return textureMap[textureMap.lastIndex - num]
     }
 }

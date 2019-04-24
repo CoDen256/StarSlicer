@@ -20,9 +20,9 @@ class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNu
     lateinit var tris: SwipeTriStrip
     lateinit var tex: Texture
 
-    //fun changeTexture(num: Int){
-    //    tex = AssetLocator.getSwipeAssets().getTexture(num)
-    //}
+    fun changeTexture(num: Int){
+        tex = AssetLocator.getSwipeAssets().getTexture(num)
+    }
 
     fun create() {
         tris = SwipeTriStrip()
@@ -39,7 +39,7 @@ class SwipeRenderer(val initialDistance: Int, val minDistance: Int, val bladesNu
         // lifespan of each particle
         swipe.maxLifeSpan = maxLifeSpan
 
-       // changeTexture(0)
+        changeTexture(0)
         //we will use a texture for the smooth edge, and also for stroke effects
         tex.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear)
 
