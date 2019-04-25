@@ -1,18 +1,11 @@
 package com.coden.starslicer.entities.attackers
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.g2d.Sprite
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.loaders.AttackerLoader
-import java.lang.Float.min
-import javax.swing.text.html.parser.Entity
 
 class Meteor private constructor(override val initialPos: Vector2,
              state: Int,

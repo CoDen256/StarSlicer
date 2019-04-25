@@ -4,25 +4,19 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
-import com.coden.starslicer.Commands.CommandQueue
-import com.coden.starslicer.Commands.spawnCommands.SpawnCommand
-import com.coden.starslicer.Commands.spawnCommands.SpawnContainer
-import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.commands.CommandQueue
+import com.coden.starslicer.commands.spawnCommands.SpawnContainer
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.attackers.PowerUpContainer
 import com.coden.starslicer.entities.powerups.PowerUp
 
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
-import com.coden.starslicer.events.Observer
-import com.coden.starslicer.events.Subject
 import com.coden.starslicer.events.SubjectAdapter
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.util.Locator
-import com.coden.starslicer.util.Log
 
-class DifficultyController(val data: EntityData):SubjectAdapter() {
+class DifficultyController:SubjectAdapter() {
     val queue = CommandQueue()
     val currentWave = Wave(5, queue)
 

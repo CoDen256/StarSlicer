@@ -1,6 +1,6 @@
-package com.coden.starslicer.Commands.spawnCommands
+package com.coden.starslicer.commands.spawnCommands
 
-import com.coden.starslicer.Commands.Command
+import com.coden.starslicer.commands.Command
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.events.SubjectAdapter

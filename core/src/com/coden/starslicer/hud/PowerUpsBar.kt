@@ -2,14 +2,13 @@ package com.coden.starslicer.hud
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
 
-class PowerUpsBar(val x: Float,val  y:Float, val data: EntityData, maxNumber: Int = 3): UIObject {
+class PowerUpsBar(val x: Float,val  y:Float, maxNumber: Int = 3): UIObject {
     // x center, y bottom
 
     val assets = AssetLocator.getPowerUpAssets()

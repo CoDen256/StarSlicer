@@ -6,12 +6,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker
 import com.coden.starslicer.entities.attackers.Missile
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
 import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.hud.HUDElements.ExclamationMark
@@ -20,9 +18,9 @@ import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.*
 
 
-class HUD(data: EntityData): Observer {
+class HUD: Observer {
 
-    private val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.5f, Gdx.graphics.height*0.88f, data)
+    private val powerUpsBar = PowerUpsBar(Gdx.graphics.width*0.5f, Gdx.graphics.height*0.88f)
 
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()

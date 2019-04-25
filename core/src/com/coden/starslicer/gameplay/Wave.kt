@@ -3,7 +3,7 @@ package com.coden.starslicer.gameplay
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.coden.starslicer.Commands.*
+import com.coden.starslicer.commands.*
 import com.coden.starslicer.gameplay.waveStates.WaveBeginState
 import com.coden.starslicer.gameplay.waveStates.WaveState
 import com.coden.starslicer.util.loaders.SpawnerLoader

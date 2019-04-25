@@ -14,11 +14,11 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.handlers.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.handlers.AttackerHandler
 import com.coden.starslicer.gameplay.DifficultyController
+import com.coden.starslicer.gameplay.GameData
 import com.coden.starslicer.util.*
 import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.util.swipe.SwipeRenderer
@@ -33,11 +33,10 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     private lateinit var swipeRenderer: SwipeRenderer
 
     private lateinit var attackerHandler: AttackerHandler
-
-    private lateinit var data: EntityData
     private lateinit var inputManager: InputManager
-
     private lateinit var difficultyController: DifficultyController
+
+    private lateinit var gameData: GameData
 
     val font = BitmapFont()
 
@@ -61,15 +60,16 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         Log.info("Size: $w x $h", Log.LogType.SCREENS)
         Log.info("xRatio: $xRatio, yRatio: $yRatio, sqRatio:$sqRatio", Log.LogType.SCREENS)
 
-        data = EntityData(0,0)
 
-        hud = HUD(data)
+        hud = HUD()
+        gameData = GameData()
         Locator.provide(hud)
+        Locator.provide(gameData)
 
-        inputManager = InputManager(data)
+        inputManager = InputManager()
 
         attackerHandler = AttackerHandler()
-        difficultyController = DifficultyController(data)
+        difficultyController = DifficultyController()
 
         cam = OrthographicCamera()
         cam.setToOrtho(false, w, h)
@@ -200,8 +200,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     }
 
     fun renderScore(batch: SpriteBatch){
-        font.draw(batch, "Score: ${data.score}", w-75, h-150)
-        font.draw(batch, "Coins: ${data.coins}", w-75, h-200)
+        font.draw(batch, "Score: ${gameData.points}", w-75, h-150)
+        font.draw(batch, "Coins: ${gameData.coins}", w-75, h-200)
     }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {

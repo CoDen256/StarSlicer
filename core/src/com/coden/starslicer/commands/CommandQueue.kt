@@ -1,8 +1,7 @@
-package com.coden.starslicer.Commands
+package com.coden.starslicer.commands
 
 import com.badlogic.gdx.utils.Queue
-import com.coden.starslicer.Commands.spawnCommands.NullSpawnCommand
-import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.commands.spawnCommands.NullSpawnCommand
 
 class CommandQueue {
     val container = Queue<Command>()

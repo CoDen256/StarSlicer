@@ -1,7 +1,7 @@
 package com.coden.starslicer.util.loaders
 
 import com.badlogic.gdx.utils.JsonValue
-import com.coden.starslicer.Commands.spawnCommands.*
+import com.coden.starslicer.commands.spawnCommands.*
 import com.coden.starslicer.entities.attackers.AttackerType
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.gameplay.GrowthResolver

@@ -1,7 +1,7 @@
 package com.coden.starslicer.gameplay
 
-import com.coden.starslicer.Commands.Command
-import com.coden.starslicer.Commands.CommandQueue
+import com.coden.starslicer.commands.Command
+import com.coden.starslicer.commands.CommandQueue
 import com.coden.starslicer.gameplay.spawnerStates.SpawnerDisabledState
 import com.coden.starslicer.gameplay.spawnerStates.SpawnerState
 

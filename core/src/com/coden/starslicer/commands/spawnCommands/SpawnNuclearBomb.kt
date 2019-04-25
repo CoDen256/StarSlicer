@@ -1,7 +1,6 @@
-package com.coden.starslicer.Commands.spawnCommands
+package com.coden.starslicer.commands.spawnCommands
 
 import com.badlogic.gdx.math.MathUtils
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.NuclearBomb
 import com.coden.starslicer.events.EventType
 

@@ -3,8 +3,7 @@ package com.coden.starslicer.handlers
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.math.MathUtils
-import com.coden.starslicer.Commands.spawnCommands.*
-import com.coden.starslicer.entities.EntityData
+import com.coden.starslicer.commands.spawnCommands.*
 import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
@@ -14,7 +13,7 @@ import com.coden.starslicer.util.assets.AssetLocator
 import com.coden.starslicer.util.Locator
 import com.coden.starslicer.util.Log
 
-class InputManager(private val data: EntityData): SubjectAdapter() {
+class InputManager: SubjectAdapter() {
 
     init {
         addObserver(Locator.getUI())
@@ -41,7 +40,7 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
 
                 if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
                     // TODO: observer
-                    data.score += attacker.reward
+                    Locator.getGameData().points += attacker.reward
 
                     attacker.onDestroy()
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
@@ -49,7 +48,7 @@ class InputManager(private val data: EntityData): SubjectAdapter() {
                         Log.info("Granted ${attacker.content}", Log.LogType.ATTACKERS)
                     }
                     else{
-                        data.coins += MathUtils.random(10, 50)
+                        Locator.getGameData().coins += MathUtils.random(10, 50)
                     }
                 }
             }

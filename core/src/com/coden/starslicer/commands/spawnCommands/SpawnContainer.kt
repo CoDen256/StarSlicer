@@ -1,12 +1,9 @@
-package com.coden.starslicer.Commands.spawnCommands
+package com.coden.starslicer.commands.spawnCommands
 
 import com.badlogic.gdx.math.MathUtils
-import com.coden.starslicer.Commands.Command
-import com.coden.starslicer.entities.EntityData
 import com.coden.starslicer.entities.attackers.PowerUpContainer
 import com.coden.starslicer.entities.powerups.PowerUp
 import com.coden.starslicer.events.EventType
-import com.coden.starslicer.events.Observer
 
 class SpawnContainer(val state: Int = -1, val type: PowerUp.PowerUpType): SpawnCommand(){
 

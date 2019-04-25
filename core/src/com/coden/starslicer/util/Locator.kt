@@ -1,8 +1,9 @@
 package com.coden.starslicer.util
 
-import com.coden.starslicer.Commands.spawnCommands.NullSpawnCommand
-import com.coden.starslicer.Commands.spawnCommands.SpawnCommand
+import com.coden.starslicer.commands.spawnCommands.NullSpawnCommand
+import com.coden.starslicer.commands.spawnCommands.SpawnCommand
 import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.gameplay.GameData
 import com.coden.starslicer.hud.HUD
 
 class Locator {
@@ -26,6 +27,15 @@ class Locator {
         }
 
         val spaceCraft: SpaceCraft = SpaceCraft.create()
+
+        private lateinit var gameDataService: GameData
+        fun getGameData(): GameData{
+            return gameDataService
+        }
+
+        fun provide(gameData: GameData){
+            gameDataService = gameData
+        }
 
     }
 }
