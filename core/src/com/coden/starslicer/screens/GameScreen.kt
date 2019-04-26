@@ -62,7 +62,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
 
         hud = HUD()
-        gameData = GameData()
+        gameData = GameData(0, 0)
         Locator.provide(hud)
         Locator.provide(gameData)
 
@@ -116,7 +116,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         batch.draw(bg, 0f, 0f, w, h)
 
-        renderScore(batch)
         renderFPS(batch)
         renderTimePassed(batch)
         difficultyController.render(batch, font)
@@ -199,10 +198,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         font.draw(batch, timePassed.toString(), w-75, h-100)
     }
 
-    fun renderScore(batch: SpriteBatch){
-        font.draw(batch, "Score: ${gameData.points}", w-75, h-150)
-        font.draw(batch, "Coins: ${gameData.coins}", w-75, h-200)
-    }
 
     fun renderVector(shapeRenderer: ShapeRenderer, pos: Vector2, vector: Vector2) {
         shapeRenderer.line(pos, pos.cpy().add(vector.cpy()))

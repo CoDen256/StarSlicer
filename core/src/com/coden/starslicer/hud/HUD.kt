@@ -25,11 +25,12 @@ class HUD: Observer {
     private var batch: SpriteBatch = SpriteBatch()
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
     private var debugRenderer: ShapeRenderer = ShapeRenderer()
+    // TODO: Text class
     private var countDownFont = BitmapFont()
+    private var statsFont = BitmapFont()
 
     private val log = Logger("HUD", Logger.INFO)
     private val spaceCraftBar = HealthBar(Locator.spaceCraft)
-
     private val healthBars = ArrayList<UIObject>()
 
     var countDown = 0f
@@ -37,6 +38,7 @@ class HUD: Observer {
 
     init {
         countDownFont.data.setScale(2f)
+        statsFont.data.setScale(1f)
 
     }
 
@@ -93,6 +95,7 @@ class HUD: Observer {
         spaceCraftBar.render(batch)
         powerUpsBar.render(batch)
         updateCountDown(batch)
+        renderStats(batch)
 
         exclamations.forEach { it.render(batch) }
 
@@ -124,6 +127,10 @@ class HUD: Observer {
 
         countDownFont.draw(batch, "$countDown", 50f, Gdx.graphics.height-400f)
         countDown -= Gdx.graphics.deltaTime
+    }
+
+    fun renderStats(batch: SpriteBatch){
+        statsFont.draw(batch, "Points:${Locator.getGameData().points}\nCoints: ${Locator.getGameData().coins}", w-100, h-200)
     }
 
 

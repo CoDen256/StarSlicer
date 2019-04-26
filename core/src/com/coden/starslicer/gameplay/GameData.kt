@@ -1,6 +1,11 @@
 package com.coden.starslicer.gameplay
 
-class GameData {
-    var coins = 0
-    var points = 0
+data class GameData(var coins: Int, var points: Int) {
+    fun gainCoins(amount: Int){
+        coins += amount
+    }
+
+    fun gainPoints(amount: Int){
+        points += amount
+    }
 }

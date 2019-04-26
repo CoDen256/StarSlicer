@@ -40,7 +40,7 @@ class InputManager: SubjectAdapter() {
 
                 if ((firstIsSlicing || secondIsSlicing) && attacker.isDead){
                     // TODO: observer
-                    Locator.getGameData().points += attacker.reward
+                    Locator.getGameData().gainPoints(attacker.reward)
 
                     attacker.onDestroy()
                     if (attacker is com.coden.starslicer.entities.entityInterfaces.Container) {
@@ -48,7 +48,7 @@ class InputManager: SubjectAdapter() {
                         Log.info("Granted ${attacker.content}", Log.LogType.ATTACKERS)
                     }
                     else{
-                        Locator.getGameData().coins += MathUtils.random(10, 50)
+                        Locator.getGameData().gainCoins(MathUtils.random(10, 50))
                     }
                 }
             }
