@@ -72,21 +72,12 @@ class HUD: Observer {
     fun update() {
         powerUpsBar.update()
         spaceCraftBar.update()
-        updateUIObjects(exclamations)
-        updateUIObjects(healthBars)
+        UIObject.update(exclamations)
+        UIObject.update(healthBars)
 
     }
 
-    fun updateUIObjects(container: ArrayList<UIObject>){
-        val iterator = container.iterator()
-        while (iterator.hasNext()){
-            val uiObject = iterator.next()
-            uiObject.update()
-            if (uiObject.isDead){
-                iterator.remove()
-            }
-        }
-    }
+
 
     fun render() {
         batch.begin()

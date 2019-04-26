@@ -9,7 +9,7 @@ data class Spawner(val numberGrowth: GrowthResolver,
                    val periodGrowth: GrowthResolver,
                    val delayGrowth: GrowthResolver,
                    val startWave: Int,
-                   val spawnCommand: Command, // TODO: has to be already initialized commands
+                   val spawnCommand: Command,
                    val lifeSpanGrowth: GrowthResolver) {
 
 

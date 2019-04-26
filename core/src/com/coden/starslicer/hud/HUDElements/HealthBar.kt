@@ -54,6 +54,7 @@ class HealthBar(val entity: DamageTaker): UIObject {
 
     }
 
-    fun dispose(){
+    override fun dispose(){
+
     }
 }

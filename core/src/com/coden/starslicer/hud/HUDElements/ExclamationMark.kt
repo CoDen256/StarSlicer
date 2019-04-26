@@ -32,4 +32,7 @@ class ExclamationMark(val pos: Vector2): UIObject{
         }
     }
 
+    override fun dispose() {
+        font.dispose()
+    }
 }
