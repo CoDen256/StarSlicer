@@ -28,7 +28,7 @@ class HUD: Observer {
     private var debugRenderer: ShapeRenderer = ShapeRenderer()
     // TODO: Text class
     private var countDownLabel = Label(BitmapFont())
-    private var statsFont = BitmapFont()
+    private var statsLabel = Label(BitmapFont())
 
     private val log = Logger("HUD", Logger.INFO)
     private val spaceCraftBar = HealthBar(Locator.spaceCraft)
@@ -38,8 +38,8 @@ class HUD: Observer {
     val exclamations = ArrayList<UIObject>()
 
     init {
-        countDownFont.data.setScale(2f)
-        statsFont.data.setScale(1f)
+        countDownLabel.setScale(2f)
+        statsLabel.setScale(1f)
 
     }
 
@@ -123,7 +123,8 @@ class HUD: Observer {
     }
 
     fun renderStats(batch: SpriteBatch){
-        statsFont.draw(batch, "Points:${Locator.getGameData().points}\nCoints: ${Locator.getGameData().coins}", w-100, h-200)
+        statsLabel.setPosition(w-100, h-200)
+        statsLabel.render(batch, "Points:${Locator.getGameData().points}\nCoints: ${Locator.getGameData().coins}")
     }
 
 

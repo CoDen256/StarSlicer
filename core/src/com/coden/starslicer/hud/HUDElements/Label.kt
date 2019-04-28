@@ -18,6 +18,10 @@ class Label(val font: BitmapFont){
         pos = Vector2(x, y)
     }
 
+    fun setScale(ratio: Float){
+        font.data.setScale(ratio)
+    }
+
     fun render(batch: SpriteBatch, text: String = ""){
         if (text.isNotEmpty()){
             setText(text)
