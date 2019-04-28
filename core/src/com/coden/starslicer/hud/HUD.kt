@@ -14,6 +14,7 @@ import com.coden.starslicer.events.EventType
 import com.coden.starslicer.events.Observer
 import com.coden.starslicer.hud.HUDElements.ExclamationMark
 import com.coden.starslicer.hud.HUDElements.HealthBar
+import com.coden.starslicer.hud.HUDElements.Label
 import com.coden.starslicer.hud.HUDElements.UIObject
 import com.coden.starslicer.util.*
 
@@ -26,7 +27,7 @@ class HUD: Observer {
     private var shapeRenderer: ShapeRenderer = ShapeRenderer()
     private var debugRenderer: ShapeRenderer = ShapeRenderer()
     // TODO: Text class
-    private var countDownFont = BitmapFont()
+    private var countDownLabel = Label(BitmapFont())
     private var statsFont = BitmapFont()
 
     private val log = Logger("HUD", Logger.INFO)
@@ -116,7 +117,8 @@ class HUD: Observer {
             return
         }
 
-        countDownFont.draw(batch, "$countDown", 50f, Gdx.graphics.height-400f)
+        countDownLabel.setPosition(50f, Gdx.graphics.height-400f)
+        countDownLabel.render(batch, "$countDown")
         countDown -= Gdx.graphics.deltaTime
     }
 
