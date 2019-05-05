@@ -66,8 +66,10 @@ class InputManager: SubjectAdapter() {
     }
 
     private fun usePowerUp(ability: PowerUp.PowerUpType){
-        notify(EventType.USED, ability)
-        PowerUp.use(ability)
+        if (PowerUp.isUsable(ability)){
+            notify(EventType.USED, ability)
+            PowerUp.use(ability)
+        }
     }
     private fun addPowerUp(ability: PowerUp.PowerUpType){
         notify(EventType.ADDED, ability)

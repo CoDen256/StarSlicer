@@ -67,4 +67,8 @@ class PowerUpsBar(val x: Float,val  y:Float, maxNumber: Int = 3): UIObject {
         }
     }
 
+    override fun dispose(){
+
+    }
+
 }

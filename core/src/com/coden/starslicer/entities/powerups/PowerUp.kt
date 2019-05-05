@@ -9,6 +9,7 @@ import com.coden.starslicer.util.Log
 import com.coden.starslicer.util.loaders.PowerUpLoader
 import com.coden.starslicer.util.spaceCraftX
 import com.coden.starslicer.util.spaceCraftY
+import com.coden.starslicer.entities.powerups.PowerUp.PowerUpType.*
 
 abstract class PowerUp(val type: PowerUpType): Mortal{
 
@@ -30,10 +31,10 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
 
         fun update(ability: PowerUpType){
             val iterator = when (ability) {
-                PowerUpType.SHOCKWAVE -> shockwaves.iterator()
-                PowerUpType.SHIELD -> shields.iterator()
-                PowerUpType.HPBOOST -> hpboosts.iterator()
-                PowerUpType.RANDOM -> throw IllegalArgumentException()
+                SHOCKWAVE -> shockwaves.iterator()
+                SHIELD -> shields.iterator()
+                HPBOOST -> hpboosts.iterator()
+                RANDOM -> throw IllegalArgumentException()
             }
 
             while (iterator.hasNext()) {
@@ -50,33 +51,17 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
 
         fun convert(id: Int) = PowerUpType.values()[id]
         fun convert(powerUpType: PowerUpType) = when (powerUpType){
-            PowerUpType.SHIELD -> 0
-            PowerUpType.HPBOOST -> 1
-            PowerUpType.SHOCKWAVE -> 2
-            PowerUpType.RANDOM -> 3
+            SHIELD -> 0
+            HPBOOST -> 1
+            SHOCKWAVE -> 2
+            RANDOM -> 3
         }
 
         fun create(ability: PowerUp.PowerUpType) = when(ability){
-            PowerUpType.SHIELD -> shields.add(Shield())
-            PowerUpType.HPBOOST -> hpboosts.add(HPBoost())
-            PowerUpType.SHOCKWAVE -> shockwaves.add(ShockWave())
-            PowerUpType.RANDOM ->  createRandom()
-
-        }
-
-        fun use(ability: PowerUpType) = when(ability){
-            PowerUpType.SHIELD -> if (!shields.isEmpty() && !Locator.spaceCraft.isShielded) shields[0].applyEffect() else Unit
-            PowerUpType.HPBOOST -> if (!hpboosts.isEmpty()) hpboosts[0].applyEffect() else Unit
-            PowerUpType.SHOCKWAVE -> {
-                if (!shockwaves.isEmpty()) {
-                    for (shockWave in shockwaves) if (!shockWave.active) {
-                        shockWave.applyEffect()
-                        break
-                    }
-                }
-                else Unit
-            }
-            PowerUpType.RANDOM -> throw IllegalArgumentException()
+            SHIELD -> shields.add(Shield())
+            HPBOOST -> hpboosts.add(HPBoost())
+            SHOCKWAVE -> shockwaves.add(ShockWave())
+            RANDOM ->  createRandom()
         }
 
         private fun createRandom(): Boolean{
@@ -84,11 +69,25 @@ abstract class PowerUp(val type: PowerUpType): Mortal{
             return true
         }
 
+        fun isUsable(ability: PowerUpType) = when(ability){
+            SHIELD    -> !shields.isEmpty() && !Locator.spaceCraft.isShielded
+            HPBOOST   -> !hpboosts.isEmpty()
+            SHOCKWAVE -> !shockwaves.isEmpty()
+            RANDOM    -> false
+        }
+
+        fun use(ability: PowerUpType) = when(ability){
+            SHIELD -> shields[0].applyEffect()
+            HPBOOST -> hpboosts[0].applyEffect()
+            SHOCKWAVE -> shockwaves.find {!it.active}?.applyEffect()
+            RANDOM -> throw IllegalArgumentException()
+        }
+
         fun isEmpty(ability: PowerUpType) = when(ability){
-            PowerUpType.SHIELD -> shields.isEmpty()
-            PowerUpType.HPBOOST -> hpboosts.isEmpty()
-            PowerUpType.SHOCKWAVE -> shockwaves.isEmpty()
-            PowerUpType.RANDOM -> throw IllegalArgumentException()
+            SHIELD -> shields.isEmpty()
+            HPBOOST -> hpboosts.isEmpty()
+            SHOCKWAVE -> shockwaves.isEmpty()
+            RANDOM -> throw IllegalArgumentException()
         }
 
         fun debugShapes(shapeRenderer: ShapeRenderer){

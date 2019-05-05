@@ -20,7 +20,6 @@ class Shield: PowerUp(PowerUpType.SHIELD) {
         Locator.spaceCraft.isShielded = true
         Locator.spaceCraft.shieldRadius = radius
         active = true
-
     }
 
     override fun update() {
