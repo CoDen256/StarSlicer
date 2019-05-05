@@ -38,10 +38,12 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
         get() = Vector2(x, y)
         set(value) {}
 
-    val spaceCraftTexture = AssetLocator.getSpaceCraftAssets().getTexture()
+    // ANIMATION
+    val animator = Animator()
+    //val spaceCraftTexture = AssetLocator.getSpaceCraftAssets().getTexture()
 
-    override val width = xRatio * spaceCraftTexture.regionWidth
-    override val height = yRatio * spaceCraftTexture.regionHeight
+    override val width = xRatio * animator.width
+    override val height = yRatio * animator.height
 
     val x = Gdx.graphics.width * xProportion
     val y = Gdx.graphics.height * yProportion
@@ -69,11 +71,15 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
     val secondBlade = blades[1]
 
 
+    init {
+        animator.create()
+    }
     override fun toString()= "SPACECRAFT\nProportions:$xProportion, $yProportion\nDamage:$damage\nHealth:$maxHealth\n CurrentHealth:$health"
 
 
     fun render(batch: SpriteBatch) {
-        batch.draw(spaceCraftTexture, centerX, centerY, width, height)
+        //batch.draw(spaceCraftTexture, centerX, centerY, width, height)
+        animator.render(batch, centerX, centerY, width, height)
     }
 
     fun update(swipe: SwipeHandler) {

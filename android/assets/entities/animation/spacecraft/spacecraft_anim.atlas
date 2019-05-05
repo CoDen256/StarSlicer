@@ -1,0 +1,89 @@
+spacecraft_anim.png
+size: 460, 1380
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+corabel
+  rotate: false
+  xy: 0, 0
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 0
+corabel
+  rotate: false
+  xy: 230, 0
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 1
+corabel
+  rotate: false
+  xy: 0, 230
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 2
+corabel
+  rotate: false
+  xy: 230, 230
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 3
+corabel
+  rotate: false
+  xy: 0, 460
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 4
+corabel
+  rotate: false
+  xy: 230, 460
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 5
+corabel
+  rotate: false
+  xy: 0, 690
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 6
+corabel
+  rotate: false
+  xy: 230, 690
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 7
+corabel
+  rotate: false
+  xy: 0, 920
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 8
+corabel
+  rotate: false
+  xy: 230, 920
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 9
+corabel
+  rotate: false
+  xy: 0, 1150
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 10
+corabel
+  rotate: false
+  xy: 230, 1150
+  size: 230, 230
+  orig: 230, 230
+  offset: 0, 0
+  index: 11
