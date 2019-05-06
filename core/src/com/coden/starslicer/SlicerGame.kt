@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.Texture
 import com.coden.starslicer.screens.GameScreen
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.assets.AssetProvider
+import com.coden.starslicer.assets.assetUtils.AssetProvider
 
 
 class StarSlicerGame : Game() {

@@ -2,9 +2,10 @@ package com.coden.starslicer.hud
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.gameObjects.powerups.PowerUp
 import com.coden.starslicer.hud.HUDElements.UIObject
-import com.coden.starslicer.util.assets.AssetLocator
+import com.coden.starslicer.assets.AssetLocator
+import com.coden.starslicer.gameObjects.powerups.PowerUpType
 import com.coden.starslicer.util.sqRatio
 import com.coden.starslicer.util.xRatio
 
@@ -48,11 +49,11 @@ class PowerUpsBar(val x: Float,val  y:Float, maxNumber: Int = 3): UIObject {
         }
     }
 
-    fun increaseAmount(ability:PowerUp.PowerUpType){
+    fun increaseAmount(ability: PowerUpType){
         powerUpIcons.find{it.type == ability}!!.amount += 1
     }
 
-    fun decreaseAmount(ability: PowerUp.PowerUpType){
+    fun decreaseAmount(ability: PowerUpType){
         powerUpIcons.find{it.type == ability}!!.amount -= 1
     }
 

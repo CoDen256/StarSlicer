@@ -2,10 +2,8 @@ package com.coden.starslicer.hud.HUDElements
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.coden.starslicer.entities.entityInterfaces.DamageTaker
-import com.coden.starslicer.entities.entityInterfaces.Mortal
+import com.coden.starslicer.gameObjects.DamageTaker
 import com.coden.starslicer.util.Log
-import sun.java2d.pipe.SpanShapeRenderer
 
 class HealthBar(val entity: DamageTaker): UIObject {
 

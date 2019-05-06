@@ -2,7 +2,7 @@ package com.coden.starslicer.hud.HUDElements
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.coden.starslicer.entities.entityInterfaces.Mortal
+import com.coden.starslicer.gameObjects.Mortal
 
 interface UIObject: Mortal {
     companion object {

@@ -3,10 +3,11 @@ package com.coden.starslicer.hud
 import com.badlogic.gdx.graphics.g2d.*
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.gameObjects.powerups.PowerUp
+import com.coden.starslicer.gameObjects.powerups.PowerUpType
 import com.coden.starslicer.util.*
 
-class PowerUpIcon(val type: PowerUp.PowerUpType, private val texture: TextureRegion?) {
+class PowerUpIcon(val type: PowerUpType, private val texture: TextureRegion?) {
 
     var width = 0f
     var amount: Int = 0

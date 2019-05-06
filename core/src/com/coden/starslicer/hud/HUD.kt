@@ -6,12 +6,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Logger
-import com.coden.starslicer.entities.attackers.Attacker
-import com.coden.starslicer.entities.attackers.Missile
-import com.coden.starslicer.entities.attackers.NuclearBomb
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.events.EventType
-import com.coden.starslicer.events.Observer
+import com.coden.starslicer.gameObjects.attackers.Attacker
+import com.coden.starslicer.gameObjects.attackers.Missile
+import com.coden.starslicer.gameObjects.attackers.NuclearBomb
+import com.coden.starslicer.gameplay.events.EventType
+import com.coden.starslicer.gameplay.events.Observer
+import com.coden.starslicer.gameObjects.powerups.PowerUpType
 import com.coden.starslicer.hud.HUDElements.ExclamationMark
 import com.coden.starslicer.hud.HUDElements.HealthBar
 import com.coden.starslicer.hud.HUDElements.Label
@@ -48,11 +48,11 @@ class HUD: Observer {
             countDown = if (countDown == 0f) params[0] as Float else countDown
         }
         if (event == EventType.ADDED){
-            powerUpsBar.increaseAmount(params[0] as PowerUp.PowerUpType)
+            powerUpsBar.increaseAmount(params[0] as PowerUpType)
         }
 
         if (event == EventType.USED){
-            powerUpsBar.decreaseAmount(params[0] as PowerUp.PowerUpType)
+            powerUpsBar.decreaseAmount(params[0] as PowerUpType)
 
         }
 

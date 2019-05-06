@@ -11,16 +11,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.handlers.InputManager
+import com.coden.starslicer.gameplay.InputManager
 import com.coden.starslicer.hud.HUD
 import com.coden.starslicer.StarSlicerGame
-import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
-import com.coden.starslicer.entities.powerups.PowerUp
-import com.coden.starslicer.handlers.AttackerHandler
+import com.coden.starslicer.gameObjects.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.gameObjects.powerups.PowerUp
 import com.coden.starslicer.gameplay.DifficultyController
 import com.coden.starslicer.gameplay.GameData
 import com.coden.starslicer.util.*
-import com.coden.starslicer.util.assets.AssetLocator
+import com.coden.starslicer.assets.AssetLocator
+import com.coden.starslicer.gameObjects.attackers.Attacker
 import com.coden.util.swipe.SwipeRenderer
 
 class GameScreen(val game: StarSlicerGame) : Screen {
@@ -32,7 +32,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
     private lateinit var swipeRenderer: SwipeRenderer
 
-    private lateinit var attackerHandler: AttackerHandler
     private lateinit var inputManager: InputManager
     private lateinit var difficultyController: DifficultyController
 
@@ -68,7 +67,6 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         inputManager = InputManager()
 
-        attackerHandler = AttackerHandler()
         difficultyController = DifficultyController()
 
         cam = OrthographicCamera()
@@ -121,7 +119,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         difficultyController.render(batch, font)
 
         Locator.spaceCraft.render(batch)
-        attackerHandler.renderAll(batch)
+        Attacker.renderAll(batch)
 
 
         batch.end()
@@ -134,7 +132,7 @@ class GameScreen(val game: StarSlicerGame) : Screen {
 
         Locator.spaceCraft.update(swipeRenderer.swipe)
 
-        attackerHandler.updateAll()
+        Attacker.updateAll()
         PowerUp.updateAll()
 
 

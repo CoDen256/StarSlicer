@@ -1,8 +1,8 @@
 package com.coden.starslicer.util
 
-import com.coden.starslicer.commands.spawnCommands.NullSpawnCommand
-import com.coden.starslicer.commands.spawnCommands.SpawnCommand
-import com.coden.starslicer.entities.spacecraft.SpaceCraft
+import com.coden.starslicer.gameplay.commands.spawnCommands.NullSpawnCommand
+import com.coden.starslicer.gameplay.commands.spawnCommands.SpawnCommand
+import com.coden.starslicer.gameObjects.spacecraft.SpaceCraft
 import com.coden.starslicer.gameplay.GameData
 import com.coden.starslicer.hud.HUD
 

@@ -4,16 +4,18 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.MathUtils
-import com.coden.starslicer.commands.CommandQueue
-import com.coden.starslicer.commands.spawnCommands.SpawnContainer
-import com.coden.starslicer.entities.attackers.Attacker.Companion.attackers
-import com.coden.starslicer.entities.attackers.Missile
-import com.coden.starslicer.entities.attackers.PowerUpContainer
-import com.coden.starslicer.entities.powerups.PowerUp
+import com.coden.starslicer.gameplay.commands.CommandQueue
+import com.coden.starslicer.gameplay.commands.spawnCommands.SpawnContainer
+import com.coden.starslicer.gameObjects.attackers.Attacker.Companion.attackers
+import com.coden.starslicer.gameObjects.attackers.Missile
+import com.coden.starslicer.gameObjects.attackers.PowerUpContainer
+import com.coden.starslicer.gameObjects.powerups.PowerUp
 
-import com.coden.starslicer.events.EventType
-import com.coden.starslicer.events.SubjectAdapter
-import com.coden.starslicer.gameplay.waveStates.WaveBeginState
+import com.coden.starslicer.gameplay.events.EventType
+import com.coden.starslicer.gameplay.events.SubjectAdapter
+import com.coden.starslicer.gameObjects.powerups.PowerUpType
+import com.coden.starslicer.gameplay.wave.Wave
+import com.coden.starslicer.gameplay.wave.WaveBeginState
 import com.coden.starslicer.util.Locator
 
 class DifficultyController:SubjectAdapter() {
@@ -52,14 +54,14 @@ class DifficultyController:SubjectAdapter() {
     }
 
     fun adapt(){
-        if (Locator.spaceCraft.health < 15 && PowerUp.isEmpty(PowerUp.PowerUpType.HPBOOST)){
-            if (MathUtils.randomBoolean(0.01f) && attackers.count { it is PowerUpContainer  && it.content == PowerUp.PowerUpType.HPBOOST} == 0){
-                queue.add(SpawnContainer(0, PowerUp.PowerUpType.HPBOOST))
+        if (Locator.spaceCraft.health < 15 && PowerUp.isEmpty(PowerUpType.HPBOOST)){
+            if (MathUtils.randomBoolean(0.01f) && attackers.count { it is PowerUpContainer  && it.content == PowerUpType.HPBOOST} == 0){
+                queue.add(SpawnContainer(0, PowerUpType.HPBOOST))
             }
         }
-        if (attackers.count{it is Missile} > 25 && PowerUp.isEmpty(PowerUp.PowerUpType.SHIELD)){
-            if (MathUtils.randomBoolean(0.01f) && attackers.count{it is PowerUpContainer && it.content == PowerUp.PowerUpType.SHIELD} == 0){
-                queue.add(SpawnContainer(0, PowerUp.PowerUpType.SHIELD))
+        if (attackers.count{it is Missile} > 25 && PowerUp.isEmpty(PowerUpType.SHIELD)){
+            if (MathUtils.randomBoolean(0.01f) && attackers.count{it is PowerUpContainer && it.content == PowerUpType.SHIELD} == 0){
+                queue.add(SpawnContainer(0, PowerUpType.SHIELD))
             }
 
         }

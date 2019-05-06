@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Vector2
-import com.coden.starslicer.entities.entityInterfaces.Mortal
 
 class ExclamationMark(val pos: Vector2): UIObject{
     override var isDead = false
