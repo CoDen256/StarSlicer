@@ -1,0 +1,159 @@
+nuclearbomb_anim.png
+size: 188, 1716
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bomb
+  rotate: false
+  xy: 0, 0
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 0
+bomb
+  rotate: false
+  xy: 0, 78
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 1
+bomb
+  rotate: false
+  xy: 0, 156
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 2
+bomb
+  rotate: false
+  xy: 0, 234
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 3
+bomb
+  rotate: false
+  xy: 0, 312
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 4
+bomb
+  rotate: false
+  xy: 0, 390
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 5
+bomb
+  rotate: false
+  xy: 0, 468
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 6
+bomb
+  rotate: false
+  xy: 0, 546
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 7
+bomb
+  rotate: false
+  xy: 0, 624
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 8
+bomb
+  rotate: false
+  xy: 0, 702
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 9
+bomb
+  rotate: false
+  xy: 0, 780
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 10
+bomb
+  rotate: false
+  xy: 0, 858
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 11
+bomb
+  rotate: false
+  xy: 0, 936
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 12
+bomb
+  rotate: false
+  xy: 0, 1014
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 13
+bomb
+  rotate: false
+  xy: 0, 1092
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 14
+bomb
+  rotate: false
+  xy: 0, 1170
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 15
+bomb
+  rotate: false
+  xy: 0, 1248
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 16
+bomb
+  rotate: false
+  xy: 0, 1326
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 17
+bomb
+  rotate: false
+  xy: 0, 1404
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 18
+bomb
+  rotate: false
+  xy: 0, 1482
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 19
+bomb
+  rotate: false
+  xy: 0, 1560
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 20
+bomb
+  rotate: false
+  xy: 0, 1638
+  size: 188, 78
+  orig: 188, 78
+  offset: 0, 0
+  index: 21

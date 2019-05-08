@@ -3,150 +3,150 @@ size: 480, 1309
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-spacecraft
+corabel
   rotate: false
   xy: 0, 0
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 0
-spacecraft
+corabel
   rotate: false
   xy: 160, 0
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 1
-spacecraft
+corabel
   rotate: false
   xy: 320, 0
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 2
-spacecraft
+corabel
   rotate: false
   xy: 0, 187
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 3
-spacecraft
+corabel
   rotate: false
   xy: 160, 187
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 4
-spacecraft
+corabel
   rotate: false
   xy: 320, 187
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 5
-spacecraft
+corabel
   rotate: false
   xy: 0, 374
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 6
-spacecraft
+corabel
   rotate: false
   xy: 160, 374
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 7
-spacecraft
+corabel
   rotate: false
   xy: 320, 374
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 8
-spacecraft
+corabel
   rotate: false
   xy: 0, 561
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 9
-spacecraft
+corabel
   rotate: false
   xy: 160, 561
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 10
-spacecraft
+corabel
   rotate: false
   xy: 320, 561
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 11
-spacecraft
+corabel
   rotate: false
   xy: 0, 748
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 12
-spacecraft
+corabel
   rotate: false
   xy: 160, 748
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 13
-spacecraft
+corabel
   rotate: false
   xy: 320, 748
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 14
-spacecraft
+corabel
   rotate: false
   xy: 0, 935
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 15
-spacecraft
+corabel
   rotate: false
   xy: 160, 935
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 16
-spacecraft
+corabel
   rotate: false
   xy: 320, 935
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 17
-spacecraft
+corabel
   rotate: false
   xy: 0, 1122
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 18
-spacecraft
+corabel
   rotate: false
   xy: 160, 1122
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
   index: 19
-spacecraft
+corabel
   rotate: false
   xy: 320, 1122
   size: 160, 187
   orig: 160, 187
   offset: 0, 0
-  index: 27
+  index: 20

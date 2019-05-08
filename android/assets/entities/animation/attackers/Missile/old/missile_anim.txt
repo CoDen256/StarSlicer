@@ -1,0 +1,89 @@
+missile_anim.png
+size: 1680, 100
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+referat
+  rotate: false
+  xy: 0, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 0
+referat
+  rotate: false
+  xy: 140, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 1
+referat
+  rotate: false
+  xy: 280, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 2
+referat
+  rotate: false
+  xy: 420, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 3
+referat
+  rotate: false
+  xy: 560, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 4
+referat
+  rotate: false
+  xy: 700, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 5
+referat
+  rotate: false
+  xy: 840, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 6
+referat
+  rotate: false
+  xy: 980, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 7
+referat
+  rotate: false
+  xy: 1120, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 8
+referat
+  rotate: false
+  xy: 1260, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 9
+referat
+  rotate: false
+  xy: 1400, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 10
+referat
+  rotate: false
+  xy: 1540, 0
+  size: 140, 100
+  orig: 140, 100
+  offset: 0, 0
+  index: 11

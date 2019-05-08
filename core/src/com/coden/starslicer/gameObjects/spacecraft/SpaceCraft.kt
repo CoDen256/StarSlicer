@@ -39,12 +39,12 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
         get() = Vector2(x, y)
         set(value) {}
 
-    // ANIMATION
-    val animator = Animator()
+    // ANIMATION // TODO: via Assets
+    val animator = Animator("entities/animation/spacecraft/spacecraft_anim.png", 2, 6, 0.025f)
     //val spaceCraftTexture = AssetLocator.getSpaceCraftAssets().getTexture()
 
-    override val width = xRatio * animator.width
-    override val height = yRatio * animator.height
+    override val width = xRatio * animator.frameWidth
+    override val height = yRatio * animator.frameHeight
 
     val x = Gdx.graphics.width * xProportion
     val y = Gdx.graphics.height * yProportion
@@ -72,9 +72,6 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
     val secondBlade = blades[1]
 
 
-    init {
-        animator.create()
-    }
     override fun toString()= "SPACECRAFT\nProportions:$xProportion, $yProportion\nDamage:$damage\nHealth:$maxHealth\n CurrentHealth:$health"
 
 

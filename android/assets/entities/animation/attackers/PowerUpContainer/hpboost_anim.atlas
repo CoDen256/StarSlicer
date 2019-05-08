@@ -1,0 +1,292 @@
+hpboost_anim.png
+size: 488, 1331
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hpboost
+  rotate: false
+  xy: 0, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 0
+hpboost
+  rotate: false
+  xy: 122, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 1
+hpboost
+  rotate: false
+  xy: 244, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 2
+hpboost
+  rotate: false
+  xy: 366, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 3
+hpboost
+  rotate: false
+  xy: 0, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 4
+hpboost
+  rotate: false
+  xy: 122, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 5
+hpboost
+  rotate: false
+  xy: 244, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 6
+hpboost
+  rotate: false
+  xy: 366, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 7
+hpboost
+  rotate: false
+  xy: 0, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 8
+hpboost
+  rotate: false
+  xy: 122, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 9
+hpboost
+  rotate: false
+  xy: 244, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 10
+hpboost
+  rotate: false
+  xy: 366, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 11
+hpboost
+  rotate: false
+  xy: 0, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 12
+hpboost
+  rotate: false
+  xy: 122, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 13
+hpboost
+  rotate: false
+  xy: 244, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 14
+hpboost
+  rotate: false
+  xy: 366, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 15
+hpboost
+  rotate: false
+  xy: 0, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 16
+hpboost
+  rotate: false
+  xy: 122, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 17
+hpboost
+  rotate: false
+  xy: 244, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 18
+hpboost
+  rotate: false
+  xy: 366, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 19
+hpboost
+  rotate: false
+  xy: 0, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 20
+hpboost
+  rotate: false
+  xy: 122, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 21
+hpboost
+  rotate: false
+  xy: 244, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 22
+hpboost
+  rotate: false
+  xy: 366, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 23
+hpboost
+  rotate: false
+  xy: 0, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 24
+hpboost
+  rotate: false
+  xy: 122, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 25
+hpboost
+  rotate: false
+  xy: 244, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 26
+hpboost
+  rotate: false
+  xy: 366, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 27
+hpboost
+  rotate: false
+  xy: 0, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 28
+hpboost
+  rotate: false
+  xy: 122, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 29
+hpboost
+  rotate: false
+  xy: 244, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 30
+hpboost
+  rotate: false
+  xy: 366, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 31
+hpboost
+  rotate: false
+  xy: 0, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 32
+hpboost
+  rotate: false
+  xy: 122, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 33
+hpboost
+  rotate: false
+  xy: 244, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 34
+hpboost
+  rotate: false
+  xy: 366, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 35
+hpboost
+  rotate: false
+  xy: 0, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 36
+hpboost
+  rotate: false
+  xy: 122, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 37
+hpboost
+  rotate: false
+  xy: 244, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 38
+hpboost
+  rotate: false
+  xy: 366, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 39
+hpboost
+  rotate: false
+  xy: 0, 1210
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 40

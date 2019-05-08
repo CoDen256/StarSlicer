@@ -1,0 +1,180 @@
+satellite_anim.png
+size: 831, 1809
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+satellite
+  rotate: false
+  xy: 0, 0
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 0
+satellite
+  rotate: false
+  xy: 277, 0
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 1
+satellite
+  rotate: false
+  xy: 554, 0
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 2
+satellite
+  rotate: false
+  xy: 0, 201
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 3
+satellite
+  rotate: false
+  xy: 277, 201
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 4
+satellite
+  rotate: false
+  xy: 554, 201
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 5
+satellite
+  rotate: false
+  xy: 0, 402
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 6
+satellite
+  rotate: false
+  xy: 277, 402
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 7
+satellite
+  rotate: false
+  xy: 554, 402
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 8
+satellite
+  rotate: false
+  xy: 0, 603
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 9
+satellite
+  rotate: false
+  xy: 277, 603
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 10
+satellite
+  rotate: false
+  xy: 554, 603
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 11
+satellite
+  rotate: false
+  xy: 0, 804
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 12
+satellite
+  rotate: false
+  xy: 277, 804
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 13
+satellite
+  rotate: false
+  xy: 554, 804
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 14
+satellite
+  rotate: false
+  xy: 0, 1005
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 15
+satellite
+  rotate: false
+  xy: 277, 1005
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 16
+satellite
+  rotate: false
+  xy: 554, 1005
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 17
+satellite
+  rotate: false
+  xy: 0, 1206
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 18
+satellite
+  rotate: false
+  xy: 277, 1206
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 19
+satellite
+  rotate: false
+  xy: 554, 1206
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 20
+satellite
+  rotate: false
+  xy: 0, 1407
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 21
+satellite
+  rotate: false
+  xy: 277, 1407
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 22
+satellite
+  rotate: false
+  xy: 554, 1407
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 23
+satellite
+  rotate: false
+  xy: 0, 1608
+  size: 277, 201
+  orig: 277, 201
+  offset: 0, 0
+  index: 24

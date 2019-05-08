@@ -6,38 +6,34 @@ import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 
-class Animator{
+class Animator(path: String, cols: Int, rows:Int, duration:Float){
 
-    var stateTime = 0f
-    val rows = 6
-    val cols = 2
+    private var stateTime = 0f
 
-    val filePath = "entities/animation/spacecraft/spacecraft_anim.png"
-    val animTexture = Texture(filePath)
+    private val filePath = path
+    private val animTexture = Texture(filePath)
 
-    lateinit var animation: Animation<TextureRegion>
+    val frameWidth= animTexture.width/cols
+    val frameHeight = animTexture.height/rows
 
-    val width= animTexture.width/cols
-    val height = animTexture.height/rows
+    private var animation: Animation<TextureRegion>
 
 
-    fun render(batch: SpriteBatch, x: Float, y: Float, width: Float, height: Float){
+     init {
+         val tmp = TextureRegion.split(animTexture, frameWidth, frameHeight)
+         val frames = arrayListOf<TextureRegion>()
+         for (row in tmp){
+             for (textureRegion in row){
+                 frames.add(textureRegion)
+             }
+         }
+         animation = Animation(duration, *frames.toTypedArray())
+     }
+
+    fun render(batch: SpriteBatch, x: Float, y: Float, width: Float=frameWidth+0f, height: Float=frameHeight+0f){
         stateTime += Gdx.graphics.deltaTime
         val currentFrame = animation.getKeyFrame(stateTime, true)
         batch.draw(currentFrame, x, y, width, height)
-    }
-
-     fun create() {
-        val tmp = TextureRegion.split(animTexture, animTexture.width/cols, animTexture.height/rows)
-        val frames = arrayListOf<TextureRegion>()
-        var index = 0
-        for (row in tmp){
-            for (tex in row){
-                frames.add(tex)
-            }
-        }
-        animation = Animation(0.025f, *frames.toTypedArray())
-
     }
 
     fun dispose() {

@@ -1,0 +1,285 @@
+shield_anim.png
+size: 488, 1210
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shield
+  rotate: false
+  xy: 0, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 0
+shield
+  rotate: false
+  xy: 122, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 1
+shield
+  rotate: false
+  xy: 244, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 2
+shield
+  rotate: false
+  xy: 366, 0
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 3
+shield
+  rotate: false
+  xy: 0, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 4
+shield
+  rotate: false
+  xy: 122, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 5
+shield
+  rotate: false
+  xy: 244, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 6
+shield
+  rotate: false
+  xy: 366, 121
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 7
+shield
+  rotate: false
+  xy: 0, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 8
+shield
+  rotate: false
+  xy: 122, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 9
+shield
+  rotate: false
+  xy: 244, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 10
+shield
+  rotate: false
+  xy: 366, 242
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 11
+shield
+  rotate: false
+  xy: 0, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 12
+shield
+  rotate: false
+  xy: 122, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 13
+shield
+  rotate: false
+  xy: 244, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 14
+shield
+  rotate: false
+  xy: 366, 363
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 15
+shield
+  rotate: false
+  xy: 0, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 16
+shield
+  rotate: false
+  xy: 122, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 17
+shield
+  rotate: false
+  xy: 244, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 18
+shield
+  rotate: false
+  xy: 366, 484
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 19
+shield
+  rotate: false
+  xy: 0, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 20
+shield
+  rotate: false
+  xy: 122, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 21
+shield
+  rotate: false
+  xy: 244, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 22
+shield
+  rotate: false
+  xy: 366, 605
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 23
+shield
+  rotate: false
+  xy: 0, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 24
+shield
+  rotate: false
+  xy: 122, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 25
+shield
+  rotate: false
+  xy: 244, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 26
+shield
+  rotate: false
+  xy: 366, 726
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 27
+shield
+  rotate: false
+  xy: 0, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 28
+shield
+  rotate: false
+  xy: 122, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 29
+shield
+  rotate: false
+  xy: 244, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 30
+shield
+  rotate: false
+  xy: 366, 847
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 31
+shield
+  rotate: false
+  xy: 0, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 32
+shield
+  rotate: false
+  xy: 122, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 33
+shield
+  rotate: false
+  xy: 244, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 34
+shield
+  rotate: false
+  xy: 366, 968
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 35
+shield
+  rotate: false
+  xy: 0, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 36
+shield
+  rotate: false
+  xy: 122, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 37
+shield
+  rotate: false
+  xy: 244, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 38
+shield
+  rotate: false
+  xy: 366, 1089
+  size: 122, 121
+  orig: 122, 121
+  offset: 0, 0
+  index: 39
