@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.coden.starslicer.util.Log
 
 class Animator(path: String, cols: Int, rows:Int, duration:Float){
 
@@ -19,6 +20,8 @@ class Animator(path: String, cols: Int, rows:Int, duration:Float){
 
     private var animation: Animation<TextureRegion>
 
+    var firstFrame: TextureRegion
+
 
      init {
          val tmp = TextureRegion.split(animTexture, frameWidth, frameHeight)
@@ -29,6 +32,7 @@ class Animator(path: String, cols: Int, rows:Int, duration:Float){
              }
          }
          animation = Animation(duration, *frames.toTypedArray())
+         firstFrame = frames[0]
      }
 
     fun render(batch: SpriteBatch, x: Float, y: Float, width: Float=frameWidth+0f, height: Float=frameHeight+0f){
@@ -40,6 +44,7 @@ class Animator(path: String, cols: Int, rows:Int, duration:Float){
     fun render(batch: SpriteBatch, sprite: Sprite){
         stateTime += Gdx.graphics.deltaTime
         val currentFrame = animation.getKeyFrame(stateTime, true)
+        Log.info("${sprite.height} ${sprite.width}", Log.LogType.DEBUG)
         sprite.setRegion(currentFrame)
         sprite.draw(batch)
     }

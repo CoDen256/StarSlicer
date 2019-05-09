@@ -10,6 +10,7 @@ import com.coden.starslicer.gameObjects.DamageTaker
 import com.coden.starslicer.util.*
 import com.coden.starslicer.assets.AssetLocator
 import com.coden.starslicer.assets.loaders.AttackerLoader
+import com.coden.starslicer.graphics.Animator
 
 abstract class Attacker(val snapshot: AttackerSnapshot, val state: Int = 0): DamageGiver, DamageTaker {
 

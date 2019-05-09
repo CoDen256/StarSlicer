@@ -1,6 +1,8 @@
 package com.coden.starslicer.gameObjects.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
@@ -8,6 +10,7 @@ import com.badlogic.gdx.math.Vector2
 import com.coden.starslicer.gameObjects.Container
 import com.coden.starslicer.gameObjects.powerups.PowerUp
 import com.coden.starslicer.gameObjects.powerups.PowerUpType
+import com.coden.starslicer.graphics.Animator
 import com.coden.starslicer.util.*
 
 class Satellite private constructor(
@@ -41,6 +44,7 @@ class Satellite private constructor(
     override val hitBox = Rectangle(pos.x - width/2, pos.y - height/2, width , height )
     override val hitSphere = Circle(pos.x, pos.y, minOf(width, height)/2)
 
+    val animator = Animator("entities/animation/attackers/Satellite/satellite_anim.png", 3, 9, 0.025f)
     init {
         velocity = when (state) {
             0 -> targetVector.cpy().rotate(MathUtils.random(15, 35)* MathUtils.randomSign().toFloat()).setLength(maxMovementSpeed)
@@ -54,6 +58,9 @@ class Satellite private constructor(
         sprite.rotate(velocity.angle())
     }
 
+    override fun render(batch: SpriteBatch) {
+        animator.render(batch, sprite)
+    }
     override fun update() {
         updateLife()
         pos.add(velocity.cpy().scl(Gdx.graphics.deltaTime))

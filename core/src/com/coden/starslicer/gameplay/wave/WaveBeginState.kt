@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.coden.starslicer.util.Log
 
-class WaveBeginState(val wave: Wave, val time: Float = 100f): WaveState {
+class WaveBeginState(val wave: Wave, val time: Float = 1000f): WaveState {
     var counter = 0f
 
     init {

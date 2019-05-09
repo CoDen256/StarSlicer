@@ -28,7 +28,6 @@ class Missile private constructor(override val initialPos: Vector2,
 
     override val id = "mis$state"
 
-    val animator = Animator("entities/animation/attackers/Missile/missile_anim.png", 1, 31, 0.05f)
 
     // Movement
     override var pos = initialPos
@@ -64,7 +63,7 @@ class Missile private constructor(override val initialPos: Vector2,
     3 : Spiraling (clockwise)
 
      */
-
+    val animator = Animator("entities/animation/attackers/Missile/missile_anim.png", 1, 31, 0.05f)
     init {
         // TODO: Spritaling around another point not the spacecraft exactly
         velocity = when (state) {
@@ -78,6 +77,10 @@ class Missile private constructor(override val initialPos: Vector2,
         sprite.setCenter(pos.x,pos.y)
         sprite.rotate(if (state == 2) 0f else 180f+velocity.angle())
 
+    }
+
+    override fun render(batch: SpriteBatch) {
+        animator.render(batch, sprite)
     }
 
     override fun update() {
@@ -94,11 +97,6 @@ class Missile private constructor(override val initialPos: Vector2,
         sprite.setCenter(pos.x, pos.y)
 
     }
-
-    override fun render(batch: SpriteBatch) {
-        animator.render(batch, sprite)
-    }
-
 
     private fun moveOribting() {
         //currentOrbitingSpeed = oribtingSpeed * dist2(pos, center)/dist2(initialPos, center)

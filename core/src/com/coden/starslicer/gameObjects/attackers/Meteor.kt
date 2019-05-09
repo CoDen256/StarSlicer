@@ -5,9 +5,11 @@ import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.graphics.Animator
 import com.coden.starslicer.util.*
 
-class Meteor private constructor(override val initialPos: Vector2,
+class Meteor private constructor(
+             override val initialPos: Vector2,
              state: Int,
              val size: Int): Attacker(snapshots[size], state) {
 
