@@ -21,7 +21,7 @@ class AssetProvider{
     private val SWIPE_TEXTURE_DESCRIPTORS = generateSequence { "entities/animation/blades/gradient${--SwipeAssets.max}.png" }
             .map{AssetDescriptor<Texture>(it, Texture::class.java)}.takeWhile { SwipeAssets.max >= 0 }.toList()
 
-    private val SPACECRAFT_TEXTURE_DESCRIPTOR = AssetDescriptor<Texture>("entities/animation/spacecraft/spacecraft3tex.png", Texture::class.java)
+    private val SPACECRAFT_TEXTURE_DESCRIPTOR = AssetDescriptor<Texture>("entities/animation/spacecraft/old/spacecraft3tex.png", Texture::class.java)
 
     lateinit var powerUpAssets: PowerUpAssets
     lateinit var attackerAssets: AttackerAssets

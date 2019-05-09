@@ -1,11 +1,13 @@
 package com.coden.starslicer.gameObjects.attackers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.MathUtils
 
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.coden.starslicer.graphics.Animator
 
 import com.coden.starslicer.util.*
 
@@ -25,6 +27,8 @@ class Missile private constructor(override val initialPos: Vector2,
 
 
     override val id = "mis$state"
+
+    val animator = Animator("entities/animation/attackers/Missile/missile_anim.png", 1, 31, 0.05f)
 
     // Movement
     override var pos = initialPos
@@ -72,7 +76,7 @@ class Missile private constructor(override val initialPos: Vector2,
         Log.info("Missile $id Launched at Vel:$velocity Angle:${velocity.angle()} Init:$initialPos State:$state", Log.LogType.ATTACKERS)
 
         sprite.setCenter(pos.x,pos.y)
-        sprite.rotate(if (state == 2) 180f else velocity.angle())
+        sprite.rotate(if (state == 2) 0f else 180f+velocity.angle())
 
     }
 
@@ -84,9 +88,15 @@ class Missile private constructor(override val initialPos: Vector2,
             3 -> moveSpiral()
         }
 
-        sprite.setScale(yRatio, yRatio)
+
+
+        sprite.setScale(1.2f*yRatio, 1.2f*yRatio)
         sprite.setCenter(pos.x, pos.y)
 
+    }
+
+    override fun render(batch: SpriteBatch) {
+        animator.render(batch, sprite)
     }
 
 

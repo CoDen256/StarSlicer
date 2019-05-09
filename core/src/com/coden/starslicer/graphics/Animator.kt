@@ -3,6 +3,7 @@ package com.coden.starslicer.graphics
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
+import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 
@@ -34,6 +35,13 @@ class Animator(path: String, cols: Int, rows:Int, duration:Float){
         stateTime += Gdx.graphics.deltaTime
         val currentFrame = animation.getKeyFrame(stateTime, true)
         batch.draw(currentFrame, x, y, width, height)
+    }
+
+    fun render(batch: SpriteBatch, sprite: Sprite){
+        stateTime += Gdx.graphics.deltaTime
+        val currentFrame = animation.getKeyFrame(stateTime, true)
+        sprite.setRegion(currentFrame)
+        sprite.draw(batch)
     }
 
     fun dispose() {

@@ -40,7 +40,7 @@ class SpaceCraft private constructor() : DamageTaker, DamageGiver {
         set(value) {}
 
     // ANIMATION // TODO: via Assets
-    val animator = Animator("entities/animation/spacecraft/spacecraft_anim.png", 2, 6, 0.025f)
+    val animator = Animator("entities/animation/spacecraft/spacecraft_anim.png", 3, 7, 0.025f)
     //val spaceCraftTexture = AssetLocator.getSpaceCraftAssets().getTexture()
 
     override val width = xRatio * animator.frameWidth

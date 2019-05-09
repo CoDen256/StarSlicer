@@ -42,6 +42,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
     var timePassed = 0f
     val bg = Texture("ui/backgrounds/background.png")
 
+    var debugging = false
+
 
 
     override fun show() {
@@ -106,7 +108,8 @@ class GameScreen(val game: StarSlicerGame) : Screen {
         swipeRenderer.render(cam)
 
         // SHAPE RENDERER FOR DEBUG
-        debugShapes(false)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) debugging = !debugging
+        debugShapes(debugging)
     }
 
     fun renderMainEntities() {
